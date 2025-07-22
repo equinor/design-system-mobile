@@ -1,0 +1,29 @@
+site_name: Design System Mobile
+nav:
+  - Home: README.md
+  - Accordion: Accordion.md
+  - AutoComplete: Autocomplete.md
+  - Button: Button.md
+  - Cell: Cell.md
+  - Chip: Chip.md
+  - Dialog: Dialog.md
+  - Icon: Icon.md
+  - Input: Input.md
+  - Label: Label.md
+  - Menu: Menu.md
+  - Paper: Paper.md
+  - Popover: Popover.md
+  - PressableHighlight: PressableHighlight.md
+  - Progress: Progress.md
+  - Search: Search.md
+  - Select: Select.md
+  - SelectionControls: SelectionControls.md
+  - Scrim: Scrim.md
+  - Tabs: Tabs.md
+  - TextField: TextField.md
+
+# Add more components or guides here as needed
+
+theme:
+  name: readthedocs
+# You can change the theme or add plugins as needed
