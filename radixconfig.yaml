@@ -1,0 +1,38 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: eds-mobile-docs
+  namespace: eds-mobile-docs
+spec:
+  build:
+    useBuildKit: true
+    useBuildCache: true
+  environments:
+    - name: prod
+    - name: qa
+      build:
+        from: main
+  components:
+    - name: design-system-mobile
+      src: "."
+      # publicPort: http
+      ports:
+        - name: http
+          port: 8080
+      # authentication:
+      #   oauth2:
+      #     clientId:
+      resources:
+        requests:
+          memory: 30M
+          cpu: 5m
+        limits:
+          cpu: 5m
+      volumeMounts:
+        - name: tmp
+          path: /tmp
+          emptyDir:
+            sizeLimit: 10M
+  dnsAppAlias:
+    environment: prod
+    component: design-system-mobile

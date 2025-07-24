@@ -10,7 +10,11 @@
     "syncpack:list": "yarn syncpack list-mismatches",
     "syncpack:fix": "yarn syncpack fix-mismatches",
     "syncpack:update": "yarn syncpack update",
-    "syncpack:format": "yarn syncpack format"
+    "syncpack:format": "yarn syncpack format",
+    "docs:build": "mkdocs serve -a localhost:8080",
+    "docker:build": "docker build -t equinor/oss-web .",
+    "docker:start": "docker run -p 8080:8080 equinor/oss-web",
+    "docker:inspect": "docker run -it equinor/oss-web /bin/sh"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
