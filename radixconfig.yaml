@@ -1,8 +1,7 @@
 apiVersion: radix.equinor.com/v1
 kind: RadixApplication
 metadata:
-  name: eds-mobile-docs
-  namespace: eds-mobile-docs
+  name: design-system-mobile
 spec:
   build:
     useBuildKit: true
