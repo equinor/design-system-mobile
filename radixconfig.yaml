@@ -14,7 +14,7 @@ spec:
   components:
     - name: design-system-mobile
       src: "."
-      # publicPort: http
+      publicPort: http
       ports:
         - name: http
           port: 8080
