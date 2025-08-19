@@ -1,84 +1,133 @@
-# Turborepo starter
+# Design System Mobile
 
-This Turborepo starter is maintained by the Turborepo core team.
+Welcome to the Design System Mobile project! This monorepo contains a set of reusable components and utilities for building consistent mobile user interfaces.
 
-## Using this example
+## Project Structure
 
-Run the following command:
+- **/apps**: Contains application projects (e.g., documentation site, web app).
+- **/packages/components**: Core component library with reusable UI components, hooks, and styling utilities.
+- **/scripts**: Utility scripts for project maintenance.
 
-```sh
-npx create-turbo@latest
+## Packages
+
+### components
+
+Reusable React Native components, hooks, and utilities for mobile UI development.
+
+- Located in `packages/components`
+- Includes: Accordion, Autocomplete, Button, Dialog, Icon, Input, Menu, Tabs, Typography, and more.
+
+For detailed component documentation, see the files in this `/docs` folder or the README in each package.
+
+This is a library of EDS components for React Native. Using this library should feel similar as for
+[EDS for React](https://www.npmjs.com/package/@equinor/eds-core-react).
+
+## 🧑‍🏫 How to use
+
+### Installation
+
+---
+
+#### **_NOTE:_**
+
+THIS LIBRARY IS NOT YET AVAILABLE FOR USE.
+
+The component library requires the following libraries to properly function:
+
+- [`react-native-svg`](https://github.com/software-mansion/react-native-svg#installation)
+- [`react-native-reanimated`](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/installation)
+- [`react-native-gesture-handler`](https://docs.swmansion.com/react-native-gesture-handler/docs/installation/)
+
+Please make sure to follow these installation instructions before using this package.
+
+### Getting started
+
+Before using the components in your app, make sure to load the fonts and assets required by the
+library somewhere in your root component. It is also recommended that you wrap your app in the
+`EDSProvider`. This will give you access to dynamically switching between `tablet` and `phone` mode
+as well as `dark` and `light` mode support:
+
+```tsx
+export default function App() {
+  const [hasLoadedEds, edsLoadError] = useEDS();
+  if (!hasLoadedEds) {
+    return null;
+  } else {
+    return (
+      <SafeAreaProvider>
+        <EDSProvider colorScheme="light" density="phone">
+          <Navigation colorScheme="light" />
+          <StatusBar />
+        </EDSProvider>
+      </SafeAreaProvider>
+    );
+  }
+}
 ```
 
-## What's inside?
+### 🖼️ Theming
 
-This Turborepo includes the following packages/apps:
+Creating stylesheets that use EDS values is made to be easy and performant. Start by creating a
+`EDSStyleSheet`, almost just like for a normal React Native StyleSheet:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```tsx
+const themeStyles = EDSStyleSheet.create((theme) => ({
+  container: {
+    backgroundColor: theme.colors.container.background,
+    borderRadius: theme.geometry.border.containerBorderRadius,
+  },
+}));
 ```
 
-### Develop
+Notice that we pass `theme` into our style sheet. This is a resolved token based on the current
+configuration of the app. This means that the value for `theme.colors.container` can change between
+light/dark mode without you having to worry about anything 😎
 
-To develop all apps and packages, run the following command:
+We resolve our stylesheet in our components using the provided `useStyles` hook:
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```tsx
+const MyComponent = () => {
+  const styles = useStyles(themeStyles);
+  return <View style={styles.container} />;
+};
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Ideally, all styling, be it conditional or not should happen outside of our components to reduce
+clutter. The `EDSStyleSheet.create` callback method accepts a second optional argument which allows
+you to pass any additional props into the style sheet:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```tsx
+// Notice that we type our second argument!
+const themeStylesWithProps = EDSStyleSheet.create(
+  (theme, props: { color?: string }) => {
+    const backgroundColor = color ?? theme.colors.container.background;
 
+    return {
+      container: {
+        backgroundColor,
+      },
+    };
+  }
+);
 ```
-npx turbo link
+
+We are then required by our `useStyle` hook to pass these props in with the `EDSStyleSheet`:
+
+```tsx
+const MyOtherComponent = () => {
+  // Normally you'd pass some of your component props into this hook.
+  const styles = useStyles(themeStylesWithProps, { color: "red" });
+  return <View style={styles.container} />;
+};
 ```
 
-## Useful Links
+## Contributing
 
-Learn more about the power of Turborepo:
+- Please read the [CODE_OF_CONDUCT.md](../packages/components/CODE_OF_CONDUCT.md) before contributing.
+- Open issues or pull requests for bugs, features, or improvements.
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## License
+
+This project is licensed under the [MIT License](../LICENSE).
+
+---

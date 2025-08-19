@@ -14,13 +14,19 @@
     "docs:build": "mkdocs serve -a localhost:8080",
     "docker:build": "docker build -t equinor/oss-web .",
     "docker:start": "docker run -p 8080:8080 equinor/oss-web",
-    "docker:inspect": "docker run -it equinor/oss-web /bin/sh"
+    "docker:inspect": "docker run -it equinor/oss-web /bin/sh",
+    "lint:component": "turbo run lint --filter @equinor/design-system-mobile-components",
+    "lint:all": "turbo run lint"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
     "prettier": "^3.5.3",
+    "syncpack": "^13.0.3",
+    "tsup": "^8.5.0",
     "turbo": "^2.5.4",
-    "typescript": "^5.8.2",
-    "syncpack": "^13.0.3"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=18"

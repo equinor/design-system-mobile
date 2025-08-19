@@ -1,8 +1,11 @@
 {
-  "name": "@repo/typescript-config",
+  "name": "@equinor/tsconfig-eds-mobile",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "files": [
+    "base.json"
+  ],
   "publishConfig": {
     "access": "public"
   },

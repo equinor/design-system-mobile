@@ -13,10 +13,10 @@
     "sourceMap": false,
     "allowUnreachableCode": false,
     "importHelpers": true,
-    "lib": ["DOM", "ESNext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }
