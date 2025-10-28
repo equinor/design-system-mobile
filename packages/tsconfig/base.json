@@ -12,11 +12,11 @@
     "forceConsistentCasingInFileNames": true,
     "sourceMap": false,
     "allowUnreachableCode": false,
-    "importHelpers": true,
+    "importHelpers": false,
+    "lib": ["DOM", "ESNext"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "resolveJsonModule": true,
-    "jsx": "react-jsx"
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
+  "exclude": ["node_modules"]
 }

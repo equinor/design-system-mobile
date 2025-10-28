@@ -1,39 +1,47 @@
 {
   "name": "design-system-mobile",
   "private": true,
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "syncpack:list": "yarn syncpack list-mismatches",
-    "syncpack:fix": "yarn syncpack fix-mismatches",
-    "syncpack:update": "yarn syncpack update",
-    "syncpack:format": "yarn syncpack format",
+    "clean:all": "turbo run clean && rm -rf node_modules .turbo .pnpm",
+    "syncpack:list": "pnpm syncpack list-mismatches",
+    "syncpack:fix": "pnpm syncpack fix-mismatches",
+    "syncpack:update": "pnpm syncpack update",
+    "syncpack:format": "pnpm syncpack format",
     "docs:build": "mkdocs serve -a localhost:8080",
     "docker:build": "docker build -t equinor/oss-web .",
     "docker:start": "docker run -p 8080:8080 equinor/oss-web",
     "docker:inspect": "docker run -it equinor/oss-web /bin/sh",
-    "lint:component": "turbo run lint --filter @equinor/design-system-mobile-components",
-    "lint:all": "turbo run lint"
+    "lint:component": "turbo run lint --filter design-system-mobile-components",
+    "lint:all": "turbo run lint",
+    "dev:component-chronicles": "turbo run dev --filter component-chronicles"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.38.0",
-    "@typescript-eslint/parser": "^8.38.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
     "eslint": "^9.32.0",
     "prettier": "^3.5.3",
     "syncpack": "^13.0.3",
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
-  "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
-    "packages/*"
-  ]
+    "packages/*",
+    "packages/**/*"
+  ],
+  "dependencies": {
+    "metro": "~0.80.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
 }
