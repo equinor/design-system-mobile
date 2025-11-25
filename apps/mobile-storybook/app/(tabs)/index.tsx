@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { StyleSheet } from "react-native";
 
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { Button } from "@equinor/design-system-mobile-components";
+import { Accordion, Button, Popover, Search } from "@equinor/design-system-mobile-components";
 
 export default function HomeScreen() {
   return (
@@ -16,6 +16,9 @@ export default function HomeScreen() {
       }
     >
       <Button title="Equinor Button" onPress={() => alert("Button pressed")} />
+      <Search cancellable/>
+      <Accordion title="Equinor Accordion">
+      </Accordion>
     </ParallaxScrollView>
   );
 }
