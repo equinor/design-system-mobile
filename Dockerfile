@@ -4,12 +4,15 @@ FROM nginxinc/nginx-unprivileged:1-alpine
 USER root
 
 # Update and install latest packages
-RUN apk update
-RUN apk upgrade
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache \
+        libxml2 \
+        pcre2 \
+        libpng
 
 # Install Python 3 and pip for building MkDocs documentation
-RUN apk add python3
-RUN apk add py-pip
+RUN apk add --no-cache python3 py3-pip
 
 # Set working directory and copy files to the container
 WORKDIR /docs
