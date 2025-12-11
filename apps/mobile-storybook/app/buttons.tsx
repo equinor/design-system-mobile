@@ -1,29 +1,72 @@
-import { Button } from "@equinor/design-system-mobile-components";
+import {
+  iconButtons,
+  statesButtons,
+  toggleButtons,
+  variantButtons,
+} from "@/codeSnippets/buttons";
+import { useCodeSnippet } from "@/hooks/useCodeSnippet";
+import {
+  Button,
+  Spacer,
+  Typography,
+} from "@equinor/design-system-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-
 export default function ButtonsScreen() {
   const [togglePressed, setTogglePressed] = useState(false);
+  const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
 
   return (
     <ScrollView style={styles.container}>
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Button Variants</ThemedText>
+      <View style={styles.section}>
+        <Typography variant="h5">Button</Typography>
+        <Typography variant="p">
+          Buttons let users take action with a single tap — submitting forms,
+          triggering events, or navigating through your app.
+        </Typography>
+      </View>
 
+      <View style={styles.section}>
+        <Typography variant="h6">Colours & States</Typography>
         <View style={styles.buttonGroup}>
           <Button
             title="Primary Button"
-            variant="contained"
+            color="primary"
             onPress={() => alert("Primary Button pressed")}
+          />
+          <Button
+            title="Secondary Button"
+            color="secondary"
+            onPress={() => alert("Secondary Button pressed")}
+          />
+          <Button
+            title="Danger Button"
+            color="danger"
+            onPress={() => alert("Danger Button pressed")}
+          />
+          <Button
+            title="Disabled Button"
+            variant="contained"
+            disabled
+            onPress={() => alert("Disabled Button pressed")}
+          />
+          <ViewCode title="Button Variations" code={statesButtons} />
+        </View>
+        <Spacer amount="small" />
+        <Typography variant="h6">Variants</Typography>
+        <View style={styles.buttonGroup}>
+          <Button
+            title="Contained Button"
+            variant="contained"
+            onPress={() => alert("Contained Button pressed")}
           />
 
           <Button
-            title="Secondary Button"
+            title="Outlined Button"
+            color="secondary"
             variant="outlined"
-            onPress={() => alert("Secondary Button pressed")}
+            onPress={() => alert("Outlined Button pressed")}
           />
 
           <Button
@@ -31,19 +74,31 @@ export default function ButtonsScreen() {
             variant="ghost"
             onPress={() => alert("Ghost Button pressed")}
           />
+          <ViewCode title="Button Variants" code={variantButtons} />
+        </View>
+        <Typography variant="h6">Icon Buttons</Typography>
+        <Typography variant="p">
+          Add icons to reinforce meaning or create compact, icon-only buttons.
+        </Typography>
 
+        <Typography>Icon positions:</Typography>
+        <View style={styles.row}>
           <Button
-            title="Disabled Button"
-            variant="contained"
-            disabled
-            onPress={() => alert("Disabled Button pressed")}
+            title="Leading"
+            iconPosition="leading"
+            variant="outlined"
+            iconName="home-outline"
+          />
+          <Button
+            title="Trailing"
+            iconPosition="trailing"
+            iconName="send-outline"
+            variant="outlined"
           />
         </View>
-      </ThemedView>
 
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Icon Buttons</ThemedText>
-
+        <Spacer amount="small" />
+        <Typography variant="p">Just Icons</Typography>
         <View style={styles.row}>
           <Button.Icon
             name="heart"
@@ -68,16 +123,18 @@ export default function ButtonsScreen() {
             onPress={() => alert("Disabled Check Button pressed")}
           />
         </View>
-      </ThemedView>
-
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Toggle Button Group</ThemedText>
+        <ViewCode title="Icon Buttons" code={iconButtons} />
+      </View>
+      <View style={styles.section}>
+        <Typography variant="h6">Toggle Button Group</Typography>
 
         <Button.Toggle activeIndex={togglePressed ? 1 : 0}>
           <Button title="Option 1" onPress={() => setTogglePressed(false)} />
           <Button title="Option 2" onPress={() => setTogglePressed(true)} />
         </Button.Toggle>
-      </ThemedView>
+        <ViewCode title="Toggle Button Group" code={toggleButtons} />
+      </View>
+      <CodeSnippetDialog />
     </ScrollView>
   );
 }
@@ -87,7 +144,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   section: {
-    padding: 20,
+    padding: 10,
     gap: 16,
   },
   buttonGroup: {

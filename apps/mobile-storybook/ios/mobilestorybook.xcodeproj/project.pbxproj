@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0698199213BBBD731A1A0876 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF751CBCD50E315412149501 /* ExpoModulesProvider.swift */; };
+		07DB2CC724932A0997D386ED /* libPods-mobilestorybook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3B4EE98E136E5E203F89FD /* libPods-mobilestorybook.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2187BA5C77C287C906760FE8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C07DB17E2355961CF8739D16 /* PrivacyInfo.xcprivacy */; };
+		21BEAAB41EDC7F2E512AA445 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C206A6D63D68E6DAEF0B46 /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		48E4F939AA2A249F9554AABB /* libPods-mobilestorybook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 567B5D8FE291CDF81B05CB29 /* libPods-mobilestorybook.a */; };
+		3F9D463806A628605FB0ED9F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1AE2791EC11999CEBCDD2BA /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C5B363DF3FA1A847BCE2C16 /* Pods-mobilestorybook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobilestorybook.release.xcconfig"; path = "Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* mobilestorybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobilestorybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = mobilestorybook/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mobilestorybook/Info.plist; sourceTree = "<group>"; };
-		378195F3D20A46FEA947A71F /* Pods-mobilestorybook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobilestorybook.debug.xcconfig"; path = "Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook.debug.xcconfig"; sourceTree = "<group>"; };
-		3886918E12DD3AF1962F3AE2 /* Pods-mobilestorybook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobilestorybook.release.xcconfig"; path = "Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook.release.xcconfig"; sourceTree = "<group>"; };
-		567B5D8FE291CDF81B05CB29 /* libPods-mobilestorybook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobilestorybook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E3B4EE98E136E5E203F89FD /* libPods-mobilestorybook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobilestorybook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D996D37C58F75575CBA9793 /* Pods-mobilestorybook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobilestorybook.debug.xcconfig"; path = "Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook.debug.xcconfig"; sourceTree = "<group>"; };
+		A1AE2791EC11999CEBCDD2BA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = mobilestorybook/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A6C206A6D63D68E6DAEF0B46 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-mobilestorybook/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = mobilestorybook/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C07DB17E2355961CF8739D16 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = mobilestorybook/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		DF751CBCD50E315412149501 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-mobilestorybook/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = mobilestorybook/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* mobilestorybook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "mobilestorybook-Bridging-Header.h"; path = "mobilestorybook/mobilestorybook-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,29 +37,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48E4F939AA2A249F9554AABB /* libPods-mobilestorybook.a in Frameworks */,
+				07DB2CC724932A0997D386ED /* libPods-mobilestorybook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		007BCD499F35F4B5AF8FC14F /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				0E88AD1025C1F1F67E69D871 /* mobilestorybook */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		0E88AD1025C1F1F67E69D871 /* mobilestorybook */ = {
-			isa = PBXGroup;
-			children = (
-				DF751CBCD50E315412149501 /* ExpoModulesProvider.swift */,
-			);
-			name = mobilestorybook;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* mobilestorybook */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				C07DB17E2355961CF8739D16 /* PrivacyInfo.xcprivacy */,
+				A1AE2791EC11999CEBCDD2BA /* PrivacyInfo.xcprivacy */,
 			);
 			name = mobilestorybook;
 			sourceTree = "<group>";
@@ -78,9 +62,25 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				567B5D8FE291CDF81B05CB29 /* libPods-mobilestorybook.a */,
+				1E3B4EE98E136E5E203F89FD /* libPods-mobilestorybook.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38EBABD3E9C5CE82993FD31C /* mobilestorybook */ = {
+			isa = PBXGroup;
+			children = (
+				A6C206A6D63D68E6DAEF0B46 /* ExpoModulesProvider.swift */,
+			);
+			name = mobilestorybook;
+			sourceTree = "<group>";
+		};
+		3E4031457538451941D5DE69 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				38EBABD3E9C5CE82993FD31C /* mobilestorybook */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -97,8 +97,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				868B41CC6AD45DA5065EB2B0 /* Pods */,
-				007BCD499F35F4B5AF8FC14F /* ExpoModulesProviders */,
+				C791E4BB8125CDC1CC926D35 /* Pods */,
+				3E4031457538451941D5DE69 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -113,16 +113,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		868B41CC6AD45DA5065EB2B0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				378195F3D20A46FEA947A71F /* Pods-mobilestorybook.debug.xcconfig */,
-				3886918E12DD3AF1962F3AE2 /* Pods-mobilestorybook.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +120,16 @@
 			);
 			name = Supporting;
 			path = mobilestorybook/Supporting;
+			sourceTree = "<group>";
+		};
+		C791E4BB8125CDC1CC926D35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D996D37C58F75575CBA9793 /* Pods-mobilestorybook.debug.xcconfig */,
+				0C5B363DF3FA1A847BCE2C16 /* Pods-mobilestorybook.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "mobilestorybook" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				89B343101ABA8D30A15A12E4 /* [Expo] Configure project */,
+				248DA73DD8133F0036EFE6B1 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				FC654E6AC61E263791ADB43F /* [CP] Embed Pods Frameworks */,
+				20A1A717BC3E6080680632B7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				2187BA5C77C287C906760FE8 /* PrivacyInfo.xcprivacy in Resources */,
+				3F9D463806A628605FB0ED9F /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +240,43 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		20A1A717BC3E6080680632B7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		248DA73DD8133F0036EFE6B1 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-mobilestorybook/expo-configure-project.sh\"\n";
+		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,43 +315,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		89B343101ABA8D30A15A12E4 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-mobilestorybook/expo-configure-project.sh\"\n";
-		};
-		FC654E6AC61E263791ADB43F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mobilestorybook/Pods-mobilestorybook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -323,7 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				0698199213BBBD731A1A0876 /* ExpoModulesProvider.swift in Sources */,
+				21BEAAB41EDC7F2E512AA445 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +332,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 378195F3D20A46FEA947A71F /* Pods-mobilestorybook.debug.xcconfig */;
+			baseConfigurationReference = 4D996D37C58F75575CBA9793 /* Pods-mobilestorybook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -357,7 +357,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.equinor.eds.mobile-storybook";
-				PRODUCT_NAME = "mobilestorybook";
+				PRODUCT_NAME = mobilestorybook;
 				SWIFT_OBJC_BRIDGING_HEADER = "mobilestorybook/mobilestorybook-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -368,7 +368,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3886918E12DD3AF1962F3AE2 /* Pods-mobilestorybook.release.xcconfig */;
+			baseConfigurationReference = 0C5B363DF3FA1A847BCE2C16 /* Pods-mobilestorybook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -388,7 +388,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.equinor.eds.mobile-storybook";
-				PRODUCT_NAME = "mobilestorybook";
+				PRODUCT_NAME = mobilestorybook;
 				SWIFT_OBJC_BRIDGING_HEADER = "mobilestorybook/mobilestorybook-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

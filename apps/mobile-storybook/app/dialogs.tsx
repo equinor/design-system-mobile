@@ -1,32 +1,56 @@
-import { Button, Dialog } from "@equinor/design-system-mobile-components";
+import { basicDialog, dialogWithActions } from "@/codeSnippets/dialogs";
+import { useCodeSnippet } from "@/hooks/useCodeSnippet";
+import {
+  Button,
+  Dialog,
+  Typography,
+} from "@equinor/design-system-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
 
 export default function DialogsScreen() {
   const [basicOpen, setBasicOpen] = useState(false);
   const [withActionsOpen, setWithActionsOpen] = useState(false);
   const [customOpen, setCustomOpen] = useState(false);
+  const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
 
   return (
     <ScrollView style={styles.container}>
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Basic Dialog</ThemedText>
+      <View style={styles.section}>
+        <Typography variant="h5">Dialog</Typography>
+        <Typography variant="p">
+          Dialogs pop up when you really need someone&apos;s attention — a
+          confirmation, a warning, or an important message.
+        </Typography>
+      </View>
+
+      <View style={styles.section}>
+        <Typography variant="h6">Basic Dialog</Typography>
+        <Typography variant="p">
+          A straightforward dialog — show a message, let users tap outside to
+          close it. Nice and simple.
+        </Typography>
 
         <Button title="Open Basic Dialog" onPress={() => setBasicOpen(true)} />
 
         <Dialog isOpen={basicOpen} onScrimPress={() => setBasicOpen(false)}>
-          <ThemedText type="title">Basic Dialog</ThemedText>
-          <ThemedText>
-            This is a simple dialog with just a title and content.
-          </ThemedText>
+          <View style={styles.section}>
+            <Typography variant="h6">Basic Dialog</Typography>
+            <Typography variant="p">
+              This is a simple dialog with just a title and content.
+            </Typography>
+          </View>
         </Dialog>
-      </ThemedView>
 
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Dialog with Actions</ThemedText>
+        <ViewCode title="Basic Dialog" code={basicDialog} />
+      </View>
+
+      <View style={styles.section}>
+        <Typography variant="h6">Dialog with Actions</Typography>
+        <Typography variant="p">
+          When you need a yes or no, add some buttons. Great for confirmations
+          or giving users a clear way out.
+        </Typography>
 
         <Button
           title="Open Dialog with Actions"
@@ -37,29 +61,37 @@ export default function DialogsScreen() {
           isOpen={withActionsOpen}
           onScrimPress={() => setWithActionsOpen(false)}
         >
-          <ThemedText type="title">Confirm Action</ThemedText>
-          <ThemedText>
-            Are you sure you want to proceed with this action?
-          </ThemedText>
-          <View style={styles.dialogActions}>
-            <Button
-              title="Cancel"
-              variant="ghost"
-              onPress={() => setWithActionsOpen(false)}
-            />
-            <Button
-              title="Confirm"
-              onPress={() => {
-                console.log("Confirmed!");
-                setWithActionsOpen(false);
-              }}
-            />
+          <View style={styles.section}>
+            <Typography variant="h6">Confirm Action</Typography>
+            <Typography variant="p">
+              Are you sure you want to proceed with this action?
+            </Typography>
+            <View style={styles.dialogActions}>
+              <Button
+                title="Cancel"
+                variant="ghost"
+                onPress={() => setWithActionsOpen(false)}
+              />
+              <Button
+                title="Confirm"
+                onPress={() => {
+                  console.log("Confirmed!");
+                  setWithActionsOpen(false);
+                }}
+              />
+            </View>
           </View>
         </Dialog>
-      </ThemedView>
 
-      <ThemedView style={styles.section}>
-        <ThemedText type="title">Custom Dialog</ThemedText>
+        <ViewCode title="Dialog with Actions" code={dialogWithActions} />
+      </View>
+
+      <View style={styles.section}>
+        <Typography variant="h6">Custom Dialog</Typography>
+        <Typography variant="p">
+          Need something more creative? Drop in your own content — forms,
+          images, whatever works for your use case.
+        </Typography>
 
         <Button
           title="Open Custom Dialog"
@@ -68,11 +100,11 @@ export default function DialogsScreen() {
 
         <Dialog isOpen={customOpen} onScrimPress={() => setCustomOpen(false)}>
           <View style={styles.customContent}>
-            <ThemedText type="title">Custom Content</ThemedText>
-            <ThemedText type="subtitle">Additional Information</ThemedText>
-            <ThemedText>
+            <Typography variant="h6">Custom Content</Typography>
+            <Typography variant="h5">Additional Information</Typography>
+            <Typography variant="p">
               You can add any custom React Native components here.
-            </ThemedText>
+            </Typography>
             <Button
               title="Close"
               variant="outlined"
@@ -80,7 +112,9 @@ export default function DialogsScreen() {
             />
           </View>
         </Dialog>
-      </ThemedView>
+      </View>
+
+      <CodeSnippetDialog />
     </ScrollView>
   );
 }
