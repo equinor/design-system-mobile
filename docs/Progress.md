@@ -10,7 +10,7 @@ Progress component when handling more than one task.
 ## Usage
 
 ```tsx
-import { Progress } from "@equinor/mad-components";
+import { Progress } from "@equinor/design-system-mobile-components";
 
 <Progress>
   <Progress.Item
