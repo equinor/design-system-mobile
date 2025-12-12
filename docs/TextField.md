@@ -7,7 +7,7 @@ The `TextField` component is a labeled input field for React Native, styled acco
 ## Usage
 
 ```tsx
-import { TextField } from "@equinor/mad-components";
+import { TextField } from "@equinor/design-system-mobile-components";
 
 <TextField
   label="Username"
