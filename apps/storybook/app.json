@@ -7,7 +7,7 @@
     "icon": "./assets/images/eDS_Logo_Light.png",
     "scheme": "mobile-storybook",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.equinor.eds.mobile-storybook"
