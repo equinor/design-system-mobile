@@ -6,7 +6,7 @@ import {
   Spacer,
   Switch,
   Typography,
-} from "@equinor/design-system-mobile-components";
+} from "@equinor/eds-mobile";
 import { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 

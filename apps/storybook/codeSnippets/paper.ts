@@ -1,4 +1,4 @@
-export const basicPaper = `import { Paper, Typography } from "@equinor/design-system-mobile-components";
+export const basicPaper = `import { Paper, Typography } from "@equinor/eds-mobile";
 
 <Paper elevation="raised" style={{ padding: 16 }}>
   <Typography variant="p">
@@ -6,7 +6,7 @@ export const basicPaper = `import { Paper, Typography } from "@equinor/design-sy
   </Typography>
 </Paper>`;
 
-export const paperElevations = `import { Paper, Typography, Elevation } from "@equinor/design-system-mobile-components";
+export const paperElevations = `import { Paper, Typography, Elevation } from "@equinor/eds-mobile";
 
 // Available elevations: 'none', 'raised', 'overlay', 'sticky', 'temporaryNav', 'aboveScrim'
 

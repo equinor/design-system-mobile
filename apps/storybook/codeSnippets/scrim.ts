@@ -1,4 +1,4 @@
-export const basicScrim = `import { Scrim, Button, Typography, View } from "@equinor/design-system-mobile-components";
+export const basicScrim = `import { Scrim, Button, Typography, View } from "@equinor/eds-mobile";
 import { useState } from "react";
 
 const [scrimOpen, setScrimOpen] = useState(false);

@@ -1,10 +1,6 @@
 import { basicSearch, cancellableSearch } from "@/codeSnippets/search";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  Search,
-  Spacer,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { Search, Spacer, Typography } from "@equinor/eds-mobile";
 import { useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 

@@ -1,11 +1,6 @@
 import { basicInput, inputWithAdornments } from "@/codeSnippets/input";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  Icon,
-  Input,
-  Spacer,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { Icon, Input, Spacer, Typography } from "@equinor/eds-mobile";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

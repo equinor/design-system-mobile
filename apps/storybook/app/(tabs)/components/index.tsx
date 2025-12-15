@@ -1,4 +1,4 @@
-import { Cell, Typography } from "@equinor/design-system-mobile-components";
+import { Cell, Typography } from "@equinor/eds-mobile";
 import { useRouter } from "expo-router";
 import { SectionList, StyleSheet, View } from "react-native";
 

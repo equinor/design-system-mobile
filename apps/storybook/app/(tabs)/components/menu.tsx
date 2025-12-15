@@ -1,10 +1,6 @@
 import { basicMenu, menuWithIcons } from "@/codeSnippets/menu";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  Button,
-  Menu,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { Button, Menu, Typography } from "@equinor/eds-mobile";
 import { useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

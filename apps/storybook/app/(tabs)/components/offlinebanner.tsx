@@ -1,10 +1,6 @@
 import { offlineBanner } from "@/codeSnippets/offlinebanner";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  OfflineBanner,
-  Spacer,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { OfflineBanner, Spacer, Typography } from "@equinor/eds-mobile";
 import { ScrollView, View } from "react-native";
 
 export default function OfflineBannerScreen() {

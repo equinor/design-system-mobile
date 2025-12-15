@@ -3,11 +3,7 @@ import {
   textFieldWithValidation,
 } from "@/codeSnippets/textfield";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  Spacer,
-  TextField,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { Spacer, TextField, Typography } from "@equinor/eds-mobile";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

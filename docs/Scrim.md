@@ -5,7 +5,7 @@ The `Scrim` component provides a semi-transparent overlay that is used to obscur
 ## Usage
 
 ```tsx
-import { Scrim } from "@equinor/design-system-mobile-components";
+import { Scrim } from "@equinor/eds-mobile";
 
 <Scrim isOpen={isOpen} onPress={handleClose}>
   {/* Foreground content, e.g., a dialog */}

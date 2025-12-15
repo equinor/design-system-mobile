@@ -7,7 +7,7 @@ The `Popover` component displays floating content anchored to another element, s
 ## Usage
 
 ```tsx
-import { Popover } from "@equinor/design-system-mobile-components";
+import { Popover } from "@equinor/eds-mobile";
 
 const anchorRef = useRef<View>(null);
 

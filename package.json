@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev --filter @equinor/mobile-storybook",
     "lint": "turbo run lint",
-    "lint:component": "turbo run lint --filter design-system-mobile-components",
+    "lint:component": "turbo run lint --filter @equinor/eds-mobile",
     "clean": "turbo run clean && rm -rf node_modules .turbo .pnpm",
     "clean:storybook": "turbo run clean --filter @equinor/mobile-storybook",
     "syncpack:list": "pnpm syncpack list-mismatches",

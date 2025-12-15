@@ -6,7 +6,7 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 import "react-native-gesture-handler";
 import "react-native-reanimated";
 
-import { EDSProvider, useEDS } from "@equinor/design-system-mobile-components";
+import { EDSProvider, useEDS } from "@equinor/eds-mobile";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();

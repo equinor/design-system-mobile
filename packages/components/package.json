@@ -8,8 +8,7 @@
   "bugs": "https://github.com/equinor/design-system-mobile/issues",
   "dependencies": {
     "@floating-ui/react-native": "^0.10.7",
-    "react-error-boundary": "^6.0.0",
-    "react-native-worklets": "^0.5.1"
+    "react-error-boundary": "^6.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",

@@ -1,19 +1,22 @@
-import { Button, Typography } from '@equinor/design-system-mobile-components';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Button, Typography } from "@equinor/eds-mobile";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
 export default function CellDetailScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ title?: string; description?: string }>();
+  const params = useLocalSearchParams<{
+    title?: string;
+    description?: string;
+  }>();
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Typography variant="h5" style={styles.title}>
-          {params.title || 'Detail Screen'}
+          {params.title || "Detail Screen"}
         </Typography>
         <View style={{ height: 16 }} />
-        
+
         {params.description && (
           <>
             <Typography variant="p" style={styles.description}>
@@ -22,7 +25,7 @@ export default function CellDetailScreen() {
             <View style={{ height: 24 }} />
           </>
         )}
-        
+
         <Typography variant="p">
           This is a detail screen that shows when you tap a navigation cell.
         </Typography>
@@ -36,25 +39,25 @@ export default function CellDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   content: {
     padding: 16,
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   description: {
     opacity: 0.7,
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     padding: 16,
     borderRadius: 8,
-    alignItems: 'center',
+    alignItems: "center",
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: "#fff",
+    fontWeight: "600",
   },
 });

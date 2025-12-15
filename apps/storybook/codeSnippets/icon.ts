@@ -1,10 +1,10 @@
-export const basicIcon = `import { Icon } from "@equinor/design-system-mobile-components";
+export const basicIcon = `import { Icon } from "@equinor/eds-mobile";
 
 <Icon name="heart" size={24} />
 <Icon name="home" size={32} />
 <Icon name="cog" size={48} />`;
 
-export const iconWithColor = `import { Icon } from "@equinor/design-system-mobile-components";
+export const iconWithColor = `import { Icon } from "@equinor/eds-mobile";
 
 <Icon name="heart" size={32} color="#FF0000" />
 <Icon name="star" size={32} color="#FFD700" />
