@@ -29,7 +29,7 @@ export default function CellScreen() {
             title="Navigate to Settings"
             onPress={() =>
               router.push({
-                pathname: "/cell-detail",
+                pathname: "/(tabs)/components/cell-detail",
                 params: { title: "Settings" },
               })
             }
@@ -41,7 +41,7 @@ export default function CellScreen() {
             iconName="bell"
             onPress={() =>
               router.push({
-                pathname: "/cell-detail",
+                pathname: "/(tabs)/components/cell-detail",
                 params: {
                   title: "Notifications",
                   description: "Manage your notifications",
