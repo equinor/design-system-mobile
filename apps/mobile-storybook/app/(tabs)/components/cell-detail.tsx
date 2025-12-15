@@ -27,7 +27,7 @@ export default function CellDetailScreen() {
           This is a detail screen that shows when you tap a navigation cell.
         </Typography>
         <View style={{ height: 32 }} />
-        <Button title="Go Back" onPress={() => router.push('/cell')} />
+        <Button title="Go Back" onPress={() => router.back()} />
       </View>
     </View>
   );
