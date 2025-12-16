@@ -11,7 +11,7 @@ The `SelectionControls` package provides interactive selection components for Re
 A toggle switch for binary on/off states.
 
 ```tsx
-import { Switch } from "@equinor/design-system-mobile-components";
+import { Switch } from "@equinor/eds-mobile-components";
 
 <Switch
   active={isActive}
@@ -36,7 +36,7 @@ import { Switch } from "@equinor/design-system-mobile-components";
 A compact version of the switch, suitable for dense UIs.
 
 ```tsx
-import { Switch } from "@equinor/design-system-mobile-components";
+import { Switch } from "@equinor/eds-mobile-components";
 
 <Switch.Small active={isActive} onChange={setIsActive} disabled={false} />;
 ```
@@ -55,7 +55,7 @@ import { Switch } from "@equinor/design-system-mobile-components";
 A radio button for single-choice selection.
 
 ```tsx
-import { Radio } from "@equinor/design-system-mobile-components";
+import { Radio } from "@equinor/eds-mobile-components";
 
 <Radio
   checked={isChecked}

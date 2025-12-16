@@ -9,7 +9,7 @@ The `Select` component provides a dropdown menu for selecting a single value, an
 ### Single Select
 
 ```tsx
-import { Select } from "@equinor/design-system-mobile-components";
+import { Select } from "@equinor/eds-mobile-components";
 
 const items = [
   { title: "Option 1", value: "1" },

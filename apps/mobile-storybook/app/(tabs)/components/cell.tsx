@@ -1,6 +1,6 @@
 import { navigationCell, swipeableCell } from "@/codeSnippets/cell";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Cell, Typography } from "@equinor/design-system-mobile-components";
+import { Cell, Typography } from "@equinor/eds-mobile-components";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";

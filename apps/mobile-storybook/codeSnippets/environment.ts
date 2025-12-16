@@ -1,7 +1,7 @@
 export const environmentBanner = `import { 
   EnvironmentBanner, 
   EnvironmentProvider 
-} from "@equinor/design-system-mobile-components";
+} from "@equinor/eds-mobile-components";
 
 // Development Environment
 <EnvironmentProvider currentEnvironment="dev">

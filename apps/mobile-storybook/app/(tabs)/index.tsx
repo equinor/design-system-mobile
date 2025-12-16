@@ -1,24 +1,23 @@
-import { Paper, Typography } from "@equinor/design-system-mobile-components";
+import { Paper, Typography } from "@equinor/eds-mobile-components";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.welcome}>
-        <Typography style={styles.title}>EDS Mobile</Typography>
-        <Typography style={styles.subtitle}>
-          Equinor Design System for React Native
-        </Typography>
-      </View>
       <View style={styles.hero}>
         <Image
-          source={require("../../assets/images/Connecting-teams-2-green.png")}
+          source={require("../../assets/images/puzzle_illu.png")}
           style={styles.image}
         />
       </View>
-
+      <View style={styles.welcome}>
+        <Typography variant="h2" style={styles.title}>EDS Mobile</Typography>
+        <Typography variant="h6">
+          Equinor Design System for React Native
+        </Typography>
+      </View>
       <View style={styles.section}>
-        <Typography style={styles.text}>
+        <Typography variant="p">
           This is a component library showcase for the Equinor Design System
           Mobile.
         </Typography>
@@ -71,18 +70,7 @@ const styles = StyleSheet.create({
     color: "#000",
     paddingVertical: 8,
   },
-  subtitle: {
-    fontSize: 16,
-    color: "#555",
-    lineHeight: 24,
-  },
   section: {
-    marginTop: 8,
     padding: 24,
-  },
-  text: {
-    fontSize: 16,
-    color: "#555",
-    lineHeight: 24,
   },
 });

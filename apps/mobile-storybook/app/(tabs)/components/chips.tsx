@@ -6,7 +6,7 @@ import {
   Dialog,
   Popover,
   Typography,
-} from "@equinor/design-system-mobile-components";
+} from "@equinor/eds-mobile-components";
 import { useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

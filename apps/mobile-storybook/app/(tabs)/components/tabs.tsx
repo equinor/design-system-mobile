@@ -1,10 +1,6 @@
 import { scrollableAndDisabledTabs, tabsWithIcons } from "@/codeSnippets/tabs";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import {
-  Spacer,
-  Tabs,
-  Typography,
-} from "@equinor/design-system-mobile-components";
+import { Spacer, Tabs, Typography } from "@equinor/eds-mobile-components";
 import { ScrollView, View } from "react-native";
 
 export default function TabsScreen() {
