@@ -4,7 +4,7 @@ import {
   OfflineBanner,
   Spacer,
   Typography,
-} from "@equinor/design-system-mobile-components";
+} from "@equinor/eds-mobile-components";
 import { ScrollView, View } from "react-native";
 
 export default function OfflineBannerScreen() {

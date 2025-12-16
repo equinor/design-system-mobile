@@ -7,7 +7,7 @@ The `Input` component is a styled text input field for React Native, supporting 
 ## Usage
 
 ```tsx
-import { Input } from "@equinor/design-system-mobile-components";
+import { Input } from "@equinor/eds-mobile-components";
 
 <Input
   placeholder="Enter text"

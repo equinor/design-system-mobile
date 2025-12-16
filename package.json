@@ -18,7 +18,7 @@
     "docker:build": "docker build -t equinor/oss-web .",
     "docker:start": "docker run -p 8080:8080 equinor/oss-web",
     "docker:inspect": "docker run -it equinor/oss-web /bin/sh",
-    "lint:component": "turbo run lint --filter design-system-mobile-components",
+    "lint:component": "turbo run lint --filter @equinor/eds-mobile-components",
     "lint:all": "turbo run lint",
     "dev:storybook": "turbo run dev --filter @equinor/mobile-storybook",
     "clear:storybook": "pnpm --filter @equinor/mobile-storybook exec rm -rf .expo node_modules/.cache"

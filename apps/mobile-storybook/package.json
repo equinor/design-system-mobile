@@ -13,7 +13,7 @@
     "clean": "rm -rf .expo ios android .turbo node_modules"
   },
   "dependencies": {
-    "@equinor/design-system-mobile-components": "workspace:*",
+    "@equinor/eds-mobile-components": "workspace:*",
     "@expo/vector-icons": "^14.1.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/drawer": "^7.7.4",

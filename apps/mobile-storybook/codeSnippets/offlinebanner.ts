@@ -1,4 +1,4 @@
-export const offlineBanner = `import { OfflineBanner } from "@equinor/design-system-mobile-components";
+export const offlineBanner = `import { OfflineBanner } from "@equinor/eds-mobile-components";
 
 // Shows banner when offline
 <OfflineBanner isConnected={false} />

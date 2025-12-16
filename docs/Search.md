@@ -7,7 +7,7 @@ The `Search` component provides a styled, animated search input field for React 
 ## Usage
 
 ```tsx
-import { Search } from "@equinor/design-system-mobile-components";
+import { Search } from "@equinor/eds-mobile-components";
 
 <Search
   placeholder="Search"

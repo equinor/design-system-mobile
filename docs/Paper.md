@@ -7,7 +7,7 @@ The `Paper` component provides a surface with elevation and background styling, 
 ## Usage
 
 ```tsx
-import { Paper } from "@equinor/design-system-mobile-components";
+import { Paper } from "@equinor/eds-mobile-components";
 
 <Paper elevation="temporaryNav">
   <Text>Content goes here</Text>

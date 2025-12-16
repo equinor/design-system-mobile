@@ -1,4 +1,4 @@
-import { Icon } from "@equinor/design-system-mobile-components";
+import { Icon, IconProps } from "@equinor/eds-mobile-components";
 import { Tabs } from "expo-router";
 
 export default function TabLayout() {
@@ -15,7 +15,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" size={size} color={color} />
+            <Icon name="home" size={size} color={color as IconProps["color"]} />
           ),
         }}
       />
@@ -24,7 +24,11 @@ export default function TabLayout() {
         options={{
           title: "Components",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="view-grid" size={size} color={color} />
+            <Icon
+              name="view-grid"
+              size={size}
+              color={color as IconProps["color"]}
+            />
           ),
         }}
       />

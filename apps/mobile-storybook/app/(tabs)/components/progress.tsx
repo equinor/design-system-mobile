@@ -1,6 +1,6 @@
 import { basicProgress, progressWithTasks } from "@/codeSnippets/progress";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Progress, Typography } from "@equinor/design-system-mobile-components";
+import { Progress, Typography } from "@equinor/eds-mobile-components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function ProgressScreen() {
