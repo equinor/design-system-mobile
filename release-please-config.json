@@ -6,7 +6,7 @@
       "component": "eds-mobile-components",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true
+      "bump-patch-for-minor-pre-major": false
     }
   },
   "changelog-sections": [
