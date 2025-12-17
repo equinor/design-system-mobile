@@ -5,7 +5,7 @@ import {
   variantButtons,
 } from "@/codeSnippets/buttons";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Button, Spacer, Typography } from "@equinor/eds-mobile";
+import { Button, Spacer, Typography } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

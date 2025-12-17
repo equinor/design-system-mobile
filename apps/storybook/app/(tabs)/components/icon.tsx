@@ -1,6 +1,6 @@
 import { basicIcon, iconWithColor } from "@/codeSnippets/icon";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Icon, Typography } from "@equinor/eds-mobile";
+import { Icon, Typography } from "@equinor/eds-mobile-components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function IconScreen() {

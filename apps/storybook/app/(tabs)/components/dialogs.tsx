@@ -1,6 +1,6 @@
 import { basicDialog, dialogWithActions } from "@/codeSnippets/dialogs";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Button, Dialog, Typography } from "@equinor/eds-mobile";
+import { Button, Dialog, Typography } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

@@ -4,7 +4,7 @@ import {
   chevronAndDisabled,
 } from "@/codeSnippets/accordion";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Accordion, Radio, Typography } from "@equinor/eds-mobile";
+import { Accordion, Radio, Typography } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

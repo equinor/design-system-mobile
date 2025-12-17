@@ -1,6 +1,11 @@
 import { basicPaper, paperElevations } from "@/codeSnippets/paper";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Elevation, Paper, Spacer, Typography } from "@equinor/eds-mobile";
+import {
+  Elevation,
+  Paper,
+  Spacer,
+  Typography,
+} from "@equinor/eds-mobile-components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function PaperScreen() {

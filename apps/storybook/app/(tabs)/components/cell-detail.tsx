@@ -1,4 +1,4 @@
-import { Button, Typography } from "@equinor/eds-mobile";
+import { Button, Typography } from "@equinor/eds-mobile-components";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { StyleSheet, View } from "react-native";
 

@@ -1,4 +1,4 @@
-import { Button } from "@equinor/eds-mobile";
+import { Button } from "@equinor/eds-mobile-components";
 import { Stack, useRouter } from "expo-router";
 
 function BackButton() {

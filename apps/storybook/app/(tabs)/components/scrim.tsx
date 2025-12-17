@@ -1,6 +1,11 @@
 import { basicScrim } from "@/codeSnippets/scrim";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Button, Scrim, Spacer, Typography } from "@equinor/eds-mobile";
+import {
+  Button,
+  Scrim,
+  Spacer,
+  Typography,
+} from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

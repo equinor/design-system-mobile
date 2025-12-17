@@ -1,6 +1,12 @@
 import { basicChips, deletableChips } from "@/codeSnippets/chips";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Button, Chip, Dialog, Popover, Typography } from "@equinor/eds-mobile";
+import {
+  Button,
+  Chip,
+  Dialog,
+  Popover,
+  Typography,
+} from "@equinor/eds-mobile-components";
 import { useRef, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

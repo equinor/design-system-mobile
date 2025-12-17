@@ -1,6 +1,6 @@
 import { horizontalSpacer, verticalSpacer } from "@/codeSnippets/spacer";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Paper, Spacer, Typography } from "@equinor/eds-mobile";
+import { Paper, Spacer, Typography } from "@equinor/eds-mobile-components";
 import { ScrollView, View } from "react-native";
 
 export default function SpacerScreen() {

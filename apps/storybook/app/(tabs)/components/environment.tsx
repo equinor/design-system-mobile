@@ -4,7 +4,7 @@ import {
   EnvironmentBanner,
   EnvironmentProvider,
   Typography,
-} from "@equinor/eds-mobile";
+} from "@equinor/eds-mobile-components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function EnvironmentScreen() {
