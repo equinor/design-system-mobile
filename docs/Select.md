@@ -12,15 +12,15 @@ The `Select` component provides a dropdown menu for selecting a single value, an
 import { Select } from "@equinor/eds-mobile-components";
 
 const items = [
-  { title: "Option 1", value: "1" },
-  { title: "Option 2", value: "2", icon: "star" },
+    { title: "Option 1", value: "1" },
+    { title: "Option 2", value: "2", icon: "star" },
 ];
 
 <Select
-  items={items}
-  selectedItem={selected}
-  onSelect={setSelected}
-  placeholder="Choose an option"
+    items={items}
+    selectedItem={selected}
+    onSelect={setSelected}
+    placeholder="Choose an option"
 />;
 ```
 
@@ -28,10 +28,10 @@ const items = [
 
 ```tsx
 <Select.Multi
-  items={items}
-  selectedItems={selectedItems}
-  onSelect={setSelectedItems}
-  placeholder="Choose options"
+    items={items}
+    selectedItems={selectedItems}
+    onSelect={setSelectedItems}
+    placeholder="Choose options"
 />
 ```
 
@@ -92,15 +92,15 @@ const items = [
 
 ```tsx
 const items = [
-  { title: "Apple", value: "apple", icon: "apple" },
-  { title: "Banana", value: "banana", icon: "food-apple" },
+    { title: "Apple", value: "apple", icon: "apple" },
+    { title: "Banana", value: "banana", icon: "food-apple" },
 ];
 
 <Select
-  items={items}
-  selectedItem={selected}
-  onSelect={setSelected}
-  placeholder="Choose a fruit"
+    items={items}
+    selectedItem={selected}
+    onSelect={setSelected}
+    placeholder="Choose a fruit"
 />;
 ```
 

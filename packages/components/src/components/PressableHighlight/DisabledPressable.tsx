@@ -6,5 +6,5 @@ import { PressableProps, View, ViewProps } from "react-native";
  * if you want press events to fall through.
  */
 export const DisabledPressable = (props: PressableProps) => {
-  return <View {...(props as ViewProps)} />;
+    return <View {...(props as ViewProps)} />;
 };

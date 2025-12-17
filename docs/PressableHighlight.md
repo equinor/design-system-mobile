@@ -8,7 +8,7 @@ The `PressableHighlight` component is a wrapper for pressable surfaces in React 
 import { PressableHighlight } from "@equinor/eds-mobile-components";
 
 <PressableHighlight onPress={() => alert("Pressed!")}>
-  <Text>Tap me</Text>
+    <Text>Tap me</Text>
 </PressableHighlight>;
 ```
 
@@ -41,11 +41,11 @@ import { PressableHighlight } from "@equinor/eds-mobile-components";
 
 ```tsx
 <PressableHighlight
-  onPress={() => doSomething()}
-  disabled={isDisabled}
-  style={{ borderRadius: 8, backgroundColor: "#eee" }}
+    onPress={() => doSomething()}
+    disabled={isDisabled}
+    style={{ borderRadius: 8, backgroundColor: "#eee" }}
 >
-  <Text>Press me</Text>
+    <Text>Press me</Text>
 </PressableHighlight>
 ```
 

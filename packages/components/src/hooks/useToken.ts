@@ -8,11 +8,11 @@ import { EDSContext } from "../components/EDSProvider/EDSContext";
  * @returns A resolved instance of the master token that adheres to the current app theme.
  */
 export function useToken() {
-  const context = useContext(EDSContext);
-  if (!context) {
-    throw new Error(
-      "useToken must be called within a EDSProvider. Did you forget to wrap your application in it?",
-    );
-  }
-  return context.token;
+    const context = useContext(EDSContext);
+    if (!context) {
+        throw new Error(
+            "useToken must be called within a EDSProvider. Did you forget to wrap your application in it?"
+        );
+    }
+    return context.token;
 }

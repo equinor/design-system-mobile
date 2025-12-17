@@ -10,14 +10,14 @@ The Dialog component displays important information or actions in a modal overla
 import { Dialog } from "@your-org/components";
 
 <Dialog isOpen={isOpen} onScrimPress={onClose}>
-  <Dialog.Header>Dialog Title</Dialog.Header>
-  <Dialog.CustomContent>
-    <Text>Dialog content goes here.</Text>
-  </Dialog.CustomContent>
-  <Dialog.Actions align="right">
-    <Button title="Cancel" onPress={onClose} />
-    <Button title="Confirm" onPress={onConfirm} />
-  </Dialog.Actions>
+    <Dialog.Header>Dialog Title</Dialog.Header>
+    <Dialog.CustomContent>
+        <Text>Dialog content goes here.</Text>
+    </Dialog.CustomContent>
+    <Dialog.Actions align="right">
+        <Button title="Cancel" onPress={onClose} />
+        <Button title="Confirm" onPress={onConfirm} />
+    </Dialog.Actions>
 </Dialog>;
 ```
 

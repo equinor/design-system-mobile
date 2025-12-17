@@ -7,53 +7,53 @@ import { Typography } from "../Typography";
 import { CellSwipeItemProps, SwipeableMethods } from "./types";
 
 export const CellSwipeItem = ({
-  title,
-  iconName,
-  color,
-  swipeableMethods,
-  onPress,
+    title,
+    iconName,
+    color,
+    swipeableMethods,
+    onPress,
 }: CellSwipeItemProps & { swipeableMethods?: SwipeableMethods }) => {
-  const styles = useStyles(themeStyles, { color });
+    const styles = useStyles(themeStyles, { color });
 
-  return (
-    <PressableHighlight
-      style={styles.container}
-      onPress={() => swipeableMethods && onPress?.(swipeableMethods)}
-    >
-      {iconName && (
-        <Icon
-          name={iconName}
-          style={styles.textStyle}
-          size={title ? undefined : 28}
-        />
-      )}
-      {title && (
-        <Typography
-          group="interactive"
-          variant="button"
-          style={styles.textStyle}
+    return (
+        <PressableHighlight
+            style={styles.container}
+            onPress={() => swipeableMethods && onPress?.(swipeableMethods)}
         >
-          {title}
-        </Typography>
-      )}
-    </PressableHighlight>
-  );
+            {iconName && (
+                <Icon
+                    name={iconName}
+                    style={styles.textStyle}
+                    size={title ? undefined : 28}
+                />
+            )}
+            {title && (
+                <Typography
+                    group="interactive"
+                    variant="button"
+                    style={styles.textStyle}
+                >
+                    {title}
+                </Typography>
+            )}
+        </PressableHighlight>
+    );
 };
 
 const themeStyles = EDSStyleSheet.create(
-  (theme, props: { color?: EDSColor }) => ({
-    container: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: theme.spacing.button.iconGap,
-      backgroundColor: props.color
-        ? theme.colors.interactive[props.color]
-        : theme.colors.interactive.primary,
-      paddingHorizontal: theme.spacing.element.paddingHorizontal,
-      paddingVertical: theme.spacing.element.paddingVertical,
-    },
-    textStyle: {
-      color: theme.colors.text.primaryInverted,
-    },
-  }),
+    (theme, props: { color?: EDSColor }) => ({
+        container: {
+            flexDirection: "row",
+            alignItems: "center",
+            gap: theme.spacing.button.iconGap,
+            backgroundColor: props.color
+                ? theme.colors.interactive[props.color]
+                : theme.colors.interactive.primary,
+            paddingHorizontal: theme.spacing.element.paddingHorizontal,
+            paddingVertical: theme.spacing.element.paddingVertical,
+        },
+        textStyle: {
+            color: theme.colors.text.primaryInverted,
+        },
+    })
 );

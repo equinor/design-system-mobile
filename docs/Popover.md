@@ -12,12 +12,12 @@ import { Popover } from "@equinor/eds-mobile-components";
 const anchorRef = useRef<View>(null);
 
 <Popover
-  anchorEl={anchorRef}
-  open={popoverOpen}
-  onClose={() => setPopoverOpen(false)}
-  placement="top"
+    anchorEl={anchorRef}
+    open={popoverOpen}
+    onClose={() => setPopoverOpen(false)}
+    placement="top"
 >
-  <Text>This is a popover!</Text>
+    <Text>This is a popover!</Text>
 </Popover>;
 ```
 
@@ -46,12 +46,12 @@ const anchorRef = useRef<View>(null);
 
 ```tsx
 <Popover
-  anchorEl={anchorRef}
-  open={popoverOpen}
-  onClose={() => setPopoverOpen(false)}
-  placement="bottom"
+    anchorEl={anchorRef}
+    open={popoverOpen}
+    onClose={() => setPopoverOpen(false)}
+    placement="bottom"
 >
-  <Text>Popover content</Text>
+    <Text>Popover content</Text>
 </Popover>
 ```
 

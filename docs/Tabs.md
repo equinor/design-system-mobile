@@ -10,15 +10,15 @@ The `Tabs` component provides a horizontal navigation bar for switching between 
 import { Tabs } from "@equinor/eds-mobile-components";
 
 <Tabs initialActiveIndex={0}>
-  <Tabs.Tab title="Home" iconName="home">
-    <HomeScreen />
-  </Tabs.Tab>
-  <Tabs.Tab title="Profile" iconName="account">
-    <ProfileScreen />
-  </Tabs.Tab>
-  <Tabs.Tab title="Settings" disabled>
-    <SettingsScreen />
-  </Tabs.Tab>
+    <Tabs.Tab title="Home" iconName="home">
+        <HomeScreen />
+    </Tabs.Tab>
+    <Tabs.Tab title="Profile" iconName="account">
+        <ProfileScreen />
+    </Tabs.Tab>
+    <Tabs.Tab title="Settings" disabled>
+        <SettingsScreen />
+    </Tabs.Tab>
 </Tabs>;
 ```
 
@@ -63,13 +63,13 @@ import { Tabs } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Tabs scrollable initialActiveIndex={1}>
-  <Tabs.Tab title="Tab 1">Content 1</Tabs.Tab>
-  <Tabs.Tab title="Tab 2" iconName="star">
-    Content 2
-  </Tabs.Tab>
-  <Tabs.Tab title="Tab 3" disabled>
-    Content 3
-  </Tabs.Tab>
+    <Tabs.Tab title="Tab 1">Content 1</Tabs.Tab>
+    <Tabs.Tab title="Tab 2" iconName="star">
+        Content 2
+    </Tabs.Tab>
+    <Tabs.Tab title="Tab 3" disabled>
+        Content 3
+    </Tabs.Tab>
 </Tabs>
 ```
 

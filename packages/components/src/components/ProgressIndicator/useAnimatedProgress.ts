@@ -11,28 +11,28 @@ const DEFAULT_PROGRESS = 0.618033; // Golden angle / ratio, if anyone is interes
  * @returns An animated value that is animated towards the provided `value` argument.
  */
 export const useAnimatedProgress = (
-  value?: number,
-  invertedDefaltProgress = false,
+    value?: number,
+    invertedDefaltProgress = false
 ) => {
-  const defaultProgress = invertedDefaltProgress
-    ? 1 - DEFAULT_PROGRESS
-    : DEFAULT_PROGRESS;
-  const token = useToken();
-  const progressValue = useSharedValue<number>(value ?? defaultProgress);
+    const defaultProgress = invertedDefaltProgress
+        ? 1 - DEFAULT_PROGRESS
+        : DEFAULT_PROGRESS;
+    const token = useToken();
+    const progressValue = useSharedValue<number>(value ?? defaultProgress);
 
-  useEffect(() => {
-    if (value !== undefined) {
-      progressValue.value = withTiming(value, {
-        duration: token.timing.animation.normal,
-        easing: Easing.inOut(Easing.ease),
-      });
-    } else {
-      progressValue.value = withTiming(defaultProgress, {
-        duration: token.timing.animation.normal,
-        easing: Easing.inOut(Easing.ease),
-      });
-    }
-  }, [value, defaultProgress, token.timing.animation.normal, progressValue]);
+    useEffect(() => {
+        if (value !== undefined) {
+            progressValue.value = withTiming(value, {
+                duration: token.timing.animation.normal,
+                easing: Easing.inOut(Easing.ease),
+            });
+        } else {
+            progressValue.value = withTiming(defaultProgress, {
+                duration: token.timing.animation.normal,
+                easing: Easing.inOut(Easing.ease),
+            });
+        }
+    }, [value, defaultProgress, token.timing.animation.normal, progressValue]);
 
-  return progressValue;
+    return progressValue;
 };

@@ -14,10 +14,10 @@ A toggle switch for binary on/off states.
 import { Switch } from "@equinor/eds-mobile-components";
 
 <Switch
-  active={isActive}
-  onChange={setIsActive}
-  color="primary"
-  disabled={false}
+    active={isActive}
+    onChange={setIsActive}
+    color="primary"
+    disabled={false}
 />;
 ```
 
@@ -58,11 +58,11 @@ A radio button for single-choice selection.
 import { Radio } from "@equinor/eds-mobile-components";
 
 <Radio
-  checked={isChecked}
-  onPress={setChecked}
-  color="primary"
-  disabled={false}
-  size={24}
+    checked={isChecked}
+    onPress={setChecked}
+    color="primary"
+    disabled={false}
+    size={24}
 />;
 ```
 

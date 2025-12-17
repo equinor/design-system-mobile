@@ -10,7 +10,7 @@ An Accordion is a component that organizes content into collapsible sections. Ea
 import { AccordionItem } from "@your-org/components";
 
 <AccordionItem title="Section Title">
-  <Text>Content goes here</Text>
+    <Text>Content goes here</Text>
 </AccordionItem>;
 ```
 
@@ -31,7 +31,7 @@ import { AccordionItem } from "@your-org/components";
 
 ```tsx
 <AccordionItem title="Details">
-  <Text>This is the content inside the accordion.</Text>
+    <Text>This is the content inside the accordion.</Text>
 </AccordionItem>
 ```
 
@@ -39,11 +39,11 @@ import { AccordionItem } from "@your-org/components";
 
 ```tsx
 <AccordionItem
-  title="Settings"
-  iconName="settings"
-  adornment={<Badge label="New" />}
+    title="Settings"
+    iconName="settings"
+    adornment={<Badge label="New" />}
 >
-  <Text>Settings content here.</Text>
+    <Text>Settings content here.</Text>
 </AccordionItem>
 ```
 

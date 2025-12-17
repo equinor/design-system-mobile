@@ -20,7 +20,7 @@ The `Typography` component is the core text rendering element in the design syst
 import { Typography } from "@equinor/eds-mobile-components/components";
 
 <Typography group="basic" variant="h1" color="primary" bold>
-  Heading Text
+    Heading Text
 </Typography>;
 ```
 

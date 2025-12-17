@@ -8,7 +8,7 @@ The `Scrim` component provides a semi-transparent overlay that is used to obscur
 import { Scrim } from "@equinor/eds-mobile-components";
 
 <Scrim isOpen={isOpen} onPress={handleClose}>
-  {/* Foreground content, e.g., a dialog */}
+    {/* Foreground content, e.g., a dialog */}
 </Scrim>;
 ```
 
@@ -41,7 +41,7 @@ import { Scrim } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Scrim isOpen={showDialog} onPress={() => setShowDialog(false)}>
-  <Dialog>Dialog content</Dialog>
+    <Dialog>Dialog content</Dialog>
 </Scrim>
 ```
 

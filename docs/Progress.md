@@ -13,18 +13,18 @@ Progress component when handling more than one task.
 import { Progress } from "@equinor/eds-mobile-components";
 
 <Progress>
-  <Progress.Item
-    title="Upload files"
-    status="inProgress"
-    description="Uploading 3 of 5 files"
-  />
-  <Progress.Item
-    title="Process data"
-    tasks={[
-      { title: "Step 1", status: "success" },
-      { title: "Step 2", status: "inProgress" },
-    ]}
-  />
+    <Progress.Item
+        title="Upload files"
+        status="inProgress"
+        description="Uploading 3 of 5 files"
+    />
+    <Progress.Item
+        title="Process data"
+        tasks={[
+            { title: "Step 1", status: "success" },
+            { title: "Step 2", status: "inProgress" },
+        ]}
+    />
 </Progress>;
 ```
 
@@ -79,23 +79,23 @@ import { Progress } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Progress>
-  <Progress.Item
-    title="Download"
-    status="success"
-    description="Download complete"
-  />
-  <Progress.Item
-    title="Process"
-    tasks={[
-      { title: "Step 1", status: "success" },
-      {
-        title: "Step 2",
-        status: "error",
-        error: { message: "Failed to process" },
-      },
-    ]}
-    onRetryButtonPress={(task) => retryTask(task)}
-  />
+    <Progress.Item
+        title="Download"
+        status="success"
+        description="Download complete"
+    />
+    <Progress.Item
+        title="Process"
+        tasks={[
+            { title: "Step 1", status: "success" },
+            {
+                title: "Step 2",
+                status: "error",
+                error: { message: "Failed to process" },
+            },
+        ]}
+        onRetryButtonPress={(task) => retryTask(task)}
+    />
 </Progress>
 ```
 

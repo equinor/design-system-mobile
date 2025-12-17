@@ -14,12 +14,12 @@ type ButtonColorVariant = Exclude<ButtonProps["color"], undefined>;
  * @returns a color value, or 'transparent'
  */
 export const getBackgroundColorForButton = (
-  theme: Theme,
-  variant: Variant,
-  color: ButtonColorVariant,
-  disabled: boolean
+    theme: Theme,
+    variant: Variant,
+    color: ButtonColorVariant,
+    disabled: boolean
 ) => {
-  if (variant !== "contained") return "transparent";
-  if (disabled) return theme.colors.interactive.disabled;
-  return theme.colors.interactive[color];
+    if (variant !== "contained") return "transparent";
+    if (disabled) return theme.colors.interactive.disabled;
+    return theme.colors.interactive[color];
 };
