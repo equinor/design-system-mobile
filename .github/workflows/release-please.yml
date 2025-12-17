@@ -23,3 +23,27 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   config-file: release-please-config.json
                   manifest-file: .release-please-manifest.json
+
+    release-packages:
+        needs: release-please
+        runs-on: ubuntu-latest
+        if: needs.release-please.outputs.releases_created == 'true'
+        steps:
+            - name: 👀 Checkout repository
+              uses: actions/checkout@v6
+
+            - name: ⚛️ Enable corepack
+              run: corepack enable
+
+            - name: 🛠️ Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "22"
+                  cache: "pnpm"
+                  cache-dependency-path: ./pnpm-lock.yaml
+
+            - name: 📦 Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: 🧱 Build packages
+              run: pnpm build
