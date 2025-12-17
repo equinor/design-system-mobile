@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { LayoutRectangle, Pressable, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { LayoutRectangle, Pressable, ScrollView, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { Icon } from "../Icon";
 import { inputTokenStyles } from "../Input/inputStyle";

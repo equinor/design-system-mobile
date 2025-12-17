@@ -31,14 +31,12 @@ export const useFadeAnimation = ({
   const pressedOverlay = token.colors.interactive.pressedOverlay;
 
   const handlePressIn = () => {
-    "worklet";
     fadeAnimation.value = withTiming(1, {
       duration: durationMapping[fadeInDuration],
     });
   };
 
   const handlePressOut = () => {
-    "worklet";
     fadeAnimation.value = withTiming(0, {
       duration: durationMapping[fadeOutDuration],
     });

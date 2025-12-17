@@ -7,6 +7,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "build": "turbo run build",
     "build:docs": "mkdocs serve -a localhost:8080",
+    "build:components": "turbo run build --filter @equinor/eds-mobile",
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev --filter @equinor/mobile-storybook",
     "dev:components": "turbo run dev --filter @equinor/eds-mobile",
