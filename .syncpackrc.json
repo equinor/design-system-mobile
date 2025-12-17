@@ -1,0 +1,35 @@
+{
+    "$schema": "./node_modules/syncpack/schema.json",
+    "versionGroups": [
+        {
+            "label": "Use workspace protocol for local packages",
+            "dependencyTypes": [
+                "prod",
+                "dev",
+                "peer"
+            ],
+            "dependencies": [
+                "$LOCAL"
+            ],
+            "pinVersion": "workspace:*"
+        }
+    ],
+    "semverGroups": [
+        {
+            "label": "Native peer dependencies must use minor version range",
+            "dependencyTypes": [
+                "peer"
+            ],
+            "dependencies": [
+                "react",
+                "react-dom",
+                "react-native",
+                "react-native-reanimated",
+                "react-native-gesture-handler",
+                "expo-font",
+                "react-native-svg"
+            ],
+            "range": "^"
+        }
+    ]
+}

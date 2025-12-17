@@ -15,10 +15,6 @@
     "lint:components": "turbo run lint --filter @equinor/eds-mobile-components",
     "clean": "turbo run clean && rm -rf node_modules .turbo .pnpm",
     "clean:storybook": "turbo run clean --filter @equinor/mobile-storybook",
-    "syncpack:list": "pnpm syncpack list-mismatches",
-    "syncpack:fix": "pnpm syncpack fix-mismatches",
-    "syncpack:update": "pnpm syncpack update",
-    "syncpack:format": "pnpm syncpack format",
     "docker:build": "docker build -t equinor/oss-web .",
     "docker:start": "docker run -p 8080:8080 equinor/oss-web",
     "docker:inspect": "docker run -it equinor/oss-web /bin/sh"
@@ -28,7 +24,7 @@
     "@typescript-eslint/parser": "^8.39.0",
     "eslint": "^9.25.0",
     "prettier": "^3.5.3",
-    "syncpack": "^13.0.3",
+    "syncpack": "^14.0.0-alpha.32",
     "tsup": "^8.5.0",
     "turbo": "^2.5.4",
     "typescript": "~5.8.3"
