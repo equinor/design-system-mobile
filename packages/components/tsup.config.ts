@@ -2,13 +2,12 @@ import { spawnSync } from "child_process";
 import { defineConfig } from "tsup";
 
 export default defineConfig((options) => ({
-  entry: ["./src/index.ts"],
-  splitting: false,
-  minify: true,
-  clean: !options.watch,
+  entry: ["./src/**/*.ts?(x)", "!./src/types.d.ts", "!./src/__tests__/*"],
+  splitting: true,
+  clean: true,
   dts: false,
   format: "esm",
-  bundle: true,
+  bundle: !options.watch,
   tsconfig: "./tsconfig.json",
   loader: {
     ".otf": "copy",
@@ -21,6 +20,7 @@ export default defineConfig((options) => ({
     // If not in watch mode, we run tsc separately
     // to make sure PR validation works
     if (!options.watch) return;
+    // eslint-disable-next-line no-console
     console.log("⚙️ Generating typescript declarations..");
     spawnSync("tsc", [
       "--project",
