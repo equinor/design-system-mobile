@@ -1,7 +1,7 @@
 import { Link, Stack } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
-import { Typography } from "@equinor/eds-mobile";
+import { Typography } from "@equinor/eds-mobile-components";
 
 export default function NotFoundScreen() {
   return (

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import "react-native-gesture-handler";
 
-import { EDSProvider, useEDS } from "@equinor/eds-mobile";
+import { EDSProvider, useEDS } from "@equinor/eds-mobile-components";
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();

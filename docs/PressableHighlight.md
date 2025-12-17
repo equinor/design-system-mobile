@@ -5,7 +5,7 @@ The `PressableHighlight` component is a wrapper for pressable surfaces in React 
 ## Usage
 
 ```tsx
-import { PressableHighlight } from "@equinor/eds-mobile";
+import { PressableHighlight } from "@equinor/eds-mobile-components";
 
 <PressableHighlight onPress={() => alert("Pressed!")}>
   <Text>Tap me</Text>

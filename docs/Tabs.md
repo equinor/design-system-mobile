@@ -7,7 +7,7 @@ The `Tabs` component provides a horizontal navigation bar for switching between 
 ## Usage
 
 ```tsx
-import { Tabs } from "@equinor/eds-mobile";
+import { Tabs } from "@equinor/eds-mobile-components";
 
 <Tabs initialActiveIndex={0}>
   <Tabs.Tab title="Home" iconName="home">

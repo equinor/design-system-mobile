@@ -7,7 +7,7 @@ The `Menu` component provides a floating contextual menu for React Native, style
 ## Usage
 
 ```tsx
-import { Menu } from "@equinor/eds-mobile";
+import { Menu } from "@equinor/eds-mobile-components";
 
 const anchorRef = useRef<View>(null);
 

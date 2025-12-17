@@ -1,6 +1,6 @@
 import { basicSelect, multiSelect } from "@/codeSnippets/select";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Select, Spacer, Typography } from "@equinor/eds-mobile";
+import { Select, Spacer, Typography } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { LogBox, ScrollView, StyleSheet, View } from "react-native";
 

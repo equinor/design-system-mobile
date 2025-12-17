@@ -1,4 +1,4 @@
-import { Icon } from "@equinor/eds-mobile";
+import { Icon } from "@equinor/eds-mobile-components";
 import { Tabs } from "expo-router";
 
 export default function TabLayout() {

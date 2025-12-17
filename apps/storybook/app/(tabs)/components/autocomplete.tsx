@@ -3,7 +3,7 @@ import {
   singleSelectAutocomplete,
 } from "@/codeSnippets/autocomplete";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Autocomplete, Typography } from "@equinor/eds-mobile";
+import { Autocomplete, Typography } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 

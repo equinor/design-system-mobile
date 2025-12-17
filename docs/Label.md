@@ -14,7 +14,7 @@ Additionally, all props from `TypographyProps` are supported, allowing you to cu
 ## Usage
 
 ```tsx
-import { Label } from "@equinor/eds-mobile/components";
+import { Label } from "@equinor/eds-mobile-components/components";
 
 <Label label="Username" meta="Required" />;
 ```

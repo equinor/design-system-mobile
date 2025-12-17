@@ -1,5 +1,5 @@
 import { CodeDialog } from "@/components/CodeDialog";
-import { Button } from "@equinor/eds-mobile";
+import { Button } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { View } from "react-native";
 

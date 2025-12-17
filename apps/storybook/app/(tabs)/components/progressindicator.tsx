@@ -10,7 +10,7 @@ import {
   LinearProgress,
   Spacer,
   Typography,
-} from "@equinor/eds-mobile";
+} from "@equinor/eds-mobile-components";
 import { ScrollView, View } from "react-native";
 
 export default function ProgressIndicatorScreen() {

@@ -35,7 +35,7 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@equinor/eds-mobile':
+      '@equinor/eds-mobile-components':
         specifier: workspace:*
         version: link:../../packages/components
       '@expo/vector-icons':

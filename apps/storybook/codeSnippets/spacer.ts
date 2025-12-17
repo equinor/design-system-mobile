@@ -1,4 +1,4 @@
-export const verticalSpacer = `import { Spacer } from "@equinor/eds-mobile";
+export const verticalSpacer = `import { Spacer } from "@equinor/eds-mobile-components";
 
 <View>
   <Text>First element</Text>
@@ -10,7 +10,7 @@ export const verticalSpacer = `import { Spacer } from "@equinor/eds-mobile";
   <Text>Fourth element</Text>
 </View>`;
 
-export const horizontalSpacer = `import { Spacer } from "@equinor/eds-mobile";
+export const horizontalSpacer = `import { Spacer } from "@equinor/eds-mobile-components";
 
 <View style={{ flexDirection: 'row' }}>
   <Text>First</Text>

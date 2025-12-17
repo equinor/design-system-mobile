@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@equinor/eds-mobile";
+import { Paper, Typography } from "@equinor/eds-mobile-components";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {

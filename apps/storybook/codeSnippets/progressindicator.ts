@@ -1,4 +1,4 @@
-export const circularProgress = `import { CircularProgress } from "@equinor/eds-mobile";
+export const circularProgress = `import { CircularProgress } from "@equinor/eds-mobile-components";
 
 // Indeterminate (loading)
 <CircularProgress size={48} color="primary" />
@@ -7,7 +7,7 @@ export const circularProgress = `import { CircularProgress } from "@equinor/eds-
 <CircularProgress size={48} color="primary" value={0.5} />
 <CircularProgress size={48} color="neutral" value={0.75} />`;
 
-export const linearProgress = `import { LinearProgress } from "@equinor/eds-mobile";
+export const linearProgress = `import { LinearProgress } from "@equinor/eds-mobile-components";
 
 // Indeterminate (loading)
 <LinearProgress />
@@ -16,6 +16,6 @@ export const linearProgress = `import { LinearProgress } from "@equinor/eds-mobi
 <LinearProgress value={0.3} />
 <LinearProgress value={0.6} />`;
 
-export const dotProgress = `import { DotProgress } from "@equinor/eds-mobile";
+export const dotProgress = `import { DotProgress } from "@equinor/eds-mobile-components";
 
 <DotProgress size={48} color="primary" />`;

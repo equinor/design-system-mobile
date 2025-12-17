@@ -1,4 +1,4 @@
-export const basicProgress = `import { Progress } from "@equinor/eds-mobile";
+export const basicProgress = `import { Progress } from "@equinor/eds-mobile-components";
 
 <Progress>
   <Progress.Item
@@ -23,7 +23,7 @@ export const basicProgress = `import { Progress } from "@equinor/eds-mobile";
   />
 </Progress>`;
 
-export const progressWithTasks = `import { Progress } from "@equinor/eds-mobile";
+export const progressWithTasks = `import { Progress } from "@equinor/eds-mobile-components";
 
 <Progress>
   <Progress.Item

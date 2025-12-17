@@ -1,4 +1,4 @@
-import { Button, Dialog } from "@equinor/eds-mobile";
+import { Button, Dialog } from "@equinor/eds-mobile-components";
 import * as Clipboard from "expo-clipboard";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 
