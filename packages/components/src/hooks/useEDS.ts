@@ -19,7 +19,7 @@ const fontMap = {
   "Equinor-LightItalic": EquinorLightItalic as FontSource,
   "Equinor-Medium": EquinorMedium as FontSource,
   "Equinor-MediumItalic": EquinorMediumItalic as FontSource,
-  "Inter": Inter as FontSource,
+  Inter: Inter as FontSource,
 };
 
 /**

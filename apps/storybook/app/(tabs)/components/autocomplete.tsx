@@ -24,7 +24,7 @@ type Country = { label: string; value: string };
 
 export default function AutocompleteScreen() {
   const [selectedCountry, setSelectedCountry] = useState<Country | undefined>(
-    undefined
+    undefined,
   );
   const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
   const { ViewCode, CodeSnippetDialog } = useCodeSnippet();

@@ -39,7 +39,7 @@ export const Multiselect = <T,>({
     selectedItems
       .map(
         (selectedItem) =>
-          items.find((item) => item.value === selectedItem)?.title ?? ""
+          items.find((item) => item.value === selectedItem)?.title ?? "",
       )
       .join(", ") || placeholder;
 
@@ -50,7 +50,7 @@ export const Multiselect = <T,>({
         : [...selectedItems, value];
       onSelect(newSelection);
     },
-    [onSelect, selectedItems]
+    [onSelect, selectedItems],
   );
 
   const toggleMenuOpen = () => {

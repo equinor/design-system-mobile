@@ -3,7 +3,7 @@ import { PortalProvider } from "./PortalContext";
 import { PortalHost, PortalHostProps } from "./PortalHost";
 
 type PortalFamily = typeof _Portal & {
-    Host: typeof PortalHost;
+  Host: typeof PortalHost;
 };
 
 const Portal = _Portal as PortalFamily;

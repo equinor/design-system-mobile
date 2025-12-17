@@ -37,7 +37,7 @@ export const PressableHighlight = forwardRef<
 
       ...rest
     }: React.PropsWithChildren<PressableHightlightProps>,
-    ref
+    ref,
   ) => {
     const { handlePressIn, handlePressOut, animatedStyle } = useFadeAnimation();
 
@@ -77,7 +77,7 @@ export const PressableHighlight = forwardRef<
         {children}
       </PressableComponent>
     );
-  }
+  },
 );
 
 const styles = StyleSheet.create({

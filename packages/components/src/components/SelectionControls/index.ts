@@ -3,7 +3,7 @@ import { SmallSwitch, SmallSwitchProps } from "./SmallSwitch";
 import { Radio, RadioProps } from "./Radio";
 
 type SwitchFamily = typeof _Switch & {
-    Small: typeof SmallSwitch;
+  Small: typeof SmallSwitch;
 };
 
 const Switch = _Switch as SwitchFamily;

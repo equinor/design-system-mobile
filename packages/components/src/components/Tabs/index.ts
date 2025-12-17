@@ -2,10 +2,10 @@ import { TabsProps, Tabs as _Tabs } from "./Tabs";
 import { Tab, TabProps } from "./Tab";
 
 type TabsFamily = typeof _Tabs & {
-    /**
-     * A single tab component. Use this inside a {@link Tabs} component.
-     */
-    Tab: typeof Tab;
+  /**
+   * A single tab component. Use this inside a {@link Tabs} component.
+   */
+  Tab: typeof Tab;
 };
 
 const Tabs = _Tabs as TabsFamily;

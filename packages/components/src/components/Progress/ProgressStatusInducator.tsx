@@ -7,28 +7,28 @@ import { statusToColor, statusToIconName } from "./progressUtils";
 import { ProgressStatus } from "./types";
 
 export type ProgressStatusIndicatorProps = {
-    size: number;
-    status: ProgressStatus;
+  size: number;
+  status: ProgressStatus;
 } & ViewProps;
 
 export const ProgressStatusIndicator = ({
-    status,
-    size,
-    ...viewProps
+  status,
+  size,
+  ...viewProps
 }: ProgressStatusIndicatorProps) => {
-    const token = useToken();
+  const token = useToken();
 
-    return (
-        <View {...viewProps}>
-            {status === "inProgress" ? (
-                <CircularProgress size={size} />
-            ) : (
-                <Icon
-                    name={statusToIconName(status)}
-                    color={statusToColor(status, token)}
-                    size={size}
-                />
-            )}
-        </View>
-    );
+  return (
+    <View {...viewProps}>
+      {status === "inProgress" ? (
+        <CircularProgress size={size} />
+      ) : (
+        <Icon
+          name={statusToIconName(status)}
+          color={statusToColor(status, token)}
+          size={size}
+        />
+      )}
+    </View>
+  );
 };

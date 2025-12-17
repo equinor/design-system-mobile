@@ -31,10 +31,10 @@ export const Autocomplete = <T,>({
       if (!item) return "";
       return transformItem?.(item) ?? (item as string);
     },
-    [transformItem]
+    [transformItem],
   );
   const [inputValue, setInputValue] = useState<string>(
-    internalTransform(selectedOption)
+    internalTransform(selectedOption),
   );
 
   const filteredOptions = useMemo(
@@ -45,7 +45,7 @@ export const Autocomplete = <T,>({
           : (option as string);
         return transformedItem.toLowerCase().includes(inputValue.toLowerCase());
       }),
-    [inputValue, options, transformItem]
+    [inputValue, options, transformItem],
   );
 
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
@@ -167,5 +167,5 @@ const themedStyles = EDSStyleSheet.create(
     menuIcon: {
       marginRight: 3,
     },
-  })
+  }),
 );

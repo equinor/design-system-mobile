@@ -59,10 +59,7 @@ The `EDSProvider` gives you access to:
 Create stylesheets that respond to the current theme using `EDSStyleSheet`:
 
 ```tsx
-import {
-  EDSStyleSheet,
-  useStyles,
-} from "@equinor/eds-mobile-components";
+import { EDSStyleSheet, useStyles } from "@equinor/eds-mobile-components";
 
 const themeStyles = EDSStyleSheet.create((theme) => ({
   container: {
@@ -91,7 +88,7 @@ const themeStyles = EDSStyleSheet.create(
         ? theme.colors.interactive.primary
         : theme.colors.container.background,
     },
-  })
+  }),
 );
 
 const MyComponent = ({ highlight }: { highlight?: boolean }) => {

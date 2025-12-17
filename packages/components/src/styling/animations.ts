@@ -47,7 +47,7 @@ export const useFadeAnimation = ({
       backgroundColor: interpolateColor(
         fadeAnimation.value,
         [0, 1],
-        ["transparent", pressedOverlay]
+        ["transparent", pressedOverlay],
       ),
     };
   });

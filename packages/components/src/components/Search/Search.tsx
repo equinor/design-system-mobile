@@ -53,7 +53,7 @@ export const Search = ({
     const translateX = interpolate(
       animationValue.value,
       [0, 1],
-      [cancelButtonWidth.value, 0]
+      [cancelButtonWidth.value, 0],
     );
 
     return {
@@ -67,7 +67,7 @@ export const Search = ({
       marginRight: interpolate(
         animationValue.value,
         [0, 1],
-        [0, cancelButtonWidth.value + paddingHorizontal]
+        [0, cancelButtonWidth.value + paddingHorizontal],
       ),
     };
   });
@@ -122,7 +122,7 @@ export const Search = ({
   };
 
   const handleOnBlurNative = (
-    e: NativeSyntheticEvent<TextInputFocusEventData>
+    e: NativeSyntheticEvent<TextInputFocusEventData>,
   ) => {
     setIsInputFocused(false);
     restProps.onBlur?.(e);
@@ -220,5 +220,5 @@ const themedStyles = EDSStyleSheet.create(
         pointerEvents: props.isInputFocused ? "auto" : "none",
       },
     };
-  }
+  },
 );

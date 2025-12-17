@@ -29,7 +29,7 @@ export const ExpandableSection = ({
   const derivedHeight = useDerivedValue(() =>
     withTiming(height.value * Number(isExpanded), {
       duration: animationDuration,
-    })
+    }),
   );
 
   const bodyStyle = useAnimatedStyle(() => ({

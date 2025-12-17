@@ -40,7 +40,7 @@ export const MultiselectAutocomplete = <T,>({
           : (option as string);
         return transformedItem.toLowerCase().includes(inputValue.toLowerCase());
       }),
-    [inputValue, options, transformItem]
+    [inputValue, options, transformItem],
   );
 
   const [isOptionsVisible, setIsOptionsVisible] = useState<boolean>(false);
@@ -145,7 +145,7 @@ export const MultiselectAutocomplete = <T,>({
         >
           <ScrollView keyboardShouldPersistTaps="always">
             {filteredOptions.map((option) =>
-              renderMultiselectItem(option, selectedOptions?.includes(option))
+              renderMultiselectItem(option, selectedOptions?.includes(option)),
             )}
           </ScrollView>
         </Menu>
@@ -171,5 +171,5 @@ const themedStyles = EDSStyleSheet.create(
     menuIcon: {
       marginRight: 3,
     },
-  })
+  }),
 );

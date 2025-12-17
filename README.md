@@ -107,7 +107,7 @@ const themeStylesWithProps = EDSStyleSheet.create(
         backgroundColor,
       },
     };
-  }
+  },
 );
 ```
 

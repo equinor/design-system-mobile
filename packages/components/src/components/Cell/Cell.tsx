@@ -73,7 +73,7 @@ export const Cell = forwardRef<View, React.PropsWithChildren<CellProps>>(
       children,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const { isFirstCell, isLastCell } = useContext(CellGroupContext);
     const { handlePressIn, handlePressOut, animatedStyle } = useFadeAnimation();
@@ -88,7 +88,7 @@ export const Cell = forwardRef<View, React.PropsWithChildren<CellProps>>(
         openRight: () => swipeableRef.current?.openRight(),
         reset: () => swipeableRef.current?.reset(),
       }),
-      [swipeableRef]
+      [swipeableRef],
     );
 
     const cellContent = () => (
@@ -188,7 +188,7 @@ export const Cell = forwardRef<View, React.PropsWithChildren<CellProps>>(
     ) : (
       renderCell()
     );
-  }
+  },
 );
 
 Cell.displayName = "Cell";
@@ -241,5 +241,5 @@ const themeStyle = EDSStyleSheet.create(
       flex: 1,
       flexDirection: "row",
     },
-  })
+  }),
 );

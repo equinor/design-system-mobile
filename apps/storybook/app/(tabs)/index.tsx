@@ -11,7 +11,9 @@ export default function HomeScreen() {
         />
       </View>
       <View style={styles.welcome}>
-        <Typography variant="h2" style={styles.title}>EDS Mobile</Typography>
+        <Typography variant="h2" style={styles.title}>
+          EDS Mobile
+        </Typography>
         <Typography variant="h6">
           Equinor Design System for React Native
         </Typography>

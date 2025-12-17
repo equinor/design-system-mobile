@@ -48,7 +48,7 @@ export const Select = <T,>({
       const newValue = selectedItem === value ? undefined : value;
       onSelect(newValue);
     },
-    [onSelect, selectedItem]
+    [onSelect, selectedItem],
   );
 
   const toggleMenuOpen = () => {
