@@ -27,6 +27,11 @@ out/
 build
 dist
 
+# Expo prebuild (at root level - storybook ios/android are tracked)
+/ios/
+/android/
+/.expo/
+/app.json
 
 # Debug
 npm-debug.log*
