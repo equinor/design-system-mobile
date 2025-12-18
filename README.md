@@ -7,10 +7,15 @@ A React Native component library implementing the [Equinor Design System](https:
 
 ## Packages
 
-| Package                                                 | Description                        |
-| ------------------------------------------------------- | ---------------------------------- |
-| [@equinor/eds-mobile-components](./packages/components) | Core component library             |
-| [@equinor/mobile-storybook](./apps/storybook)           | Interactive component showcase app |
+| Package                                                 | Description            |
+| ------------------------------------------------------- | ---------------------- |
+| [@equinor/eds-mobile-components](./packages/components) | Core component library |
+
+## Apps
+
+| App                           | Description                        |
+| ----------------------------- | ---------------------------------- |
+| [storybook](./apps/storybook) | Interactive component showcase app |
 
 ## Quick Start
 
