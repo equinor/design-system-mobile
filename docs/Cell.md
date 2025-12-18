@@ -56,8 +56,8 @@ Cells can be grouped using the `CellGroup` component for visual separation and s
 import { Cell, CellGroup } from "@your-org/components";
 
 <CellGroup title="Settings">
-  <Cell>Profile</Cell>
-  <Cell>Notifications</Cell>
+    <Cell>Profile</Cell>
+    <Cell>Notifications</Cell>
 </CellGroup>;
 ```
 
@@ -71,11 +71,11 @@ A specialized cell for button-like actions, with support for icons, color, and d
 import { ButtonCell } from "@your-org/components";
 
 <ButtonCell
-  title="Delete"
-  description="Remove this item"
-  iconName="delete"
-  color="danger"
-  onPress={() => alert("Deleted!")}
+    title="Delete"
+    description="Remove this item"
+    iconName="delete"
+    color="danger"
+    onPress={() => alert("Deleted!")}
 />;
 ```
 
@@ -101,11 +101,11 @@ A cell with a switch control on the right, for toggling settings.
 import { SwitchCell } from "@your-org/components";
 
 <SwitchCell
-  title="Enable notifications"
-  isActive={enabled}
-  onChange={setEnabled}
-  iconName="bell"
-  color="textPrimary"
+    title="Enable notifications"
+    isActive={enabled}
+    onChange={setEnabled}
+    iconName="bell"
+    color="textPrimary"
 />;
 ```
 

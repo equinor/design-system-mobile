@@ -10,11 +10,11 @@ The `Input` component is a styled text input field for React Native, supporting 
 import { Input } from "@equinor/eds-mobile-components";
 
 <Input
-  placeholder="Enter text"
-  onChange={(text) => setValue(text)}
-  leftAdornments={<Icon name="magnify" />}
-  rightAdornments={<Icon name="close" />}
-  variant="danger"
+    placeholder="Enter text"
+    onChange={(text) => setValue(text)}
+    leftAdornments={<Icon name="magnify" />}
+    rightAdornments={<Icon name="close" />}
+    variant="danger"
 />;
 ```
 
@@ -47,10 +47,10 @@ import { Input } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Input
-  placeholder="Email"
-  leftAdornments={<Icon name="email" />}
-  variant="success"
-  autoCapitalize="none"
+    placeholder="Email"
+    leftAdornments={<Icon name="email" />}
+    variant="success"
+    autoCapitalize="none"
 />
 ```
 

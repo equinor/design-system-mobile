@@ -5,7 +5,7 @@ The `Icon` component provides access to the [MaterialCommunityIcons](https://ico
 ## Usage
 
 ```tsx
-import { Icon} from "@equinor/eds-mobile-components";
+import { Icon } from "@equinor/eds-mobile-components";
 
 <Icon name="home" size={24} color="primary" />;
 ```
@@ -32,10 +32,10 @@ import { Icon} from "@equinor/eds-mobile-components";
 
 ```tsx
 <Icon
-  name="account"
-  size={32}
-  color="secondary"
-  accessibilityLabel="User account"
+    name="account"
+    size={32}
+    color="secondary"
+    accessibilityLabel="User account"
 />
 ```
 

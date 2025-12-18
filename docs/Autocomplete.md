@@ -11,18 +11,18 @@ import { Autocomplete } from "@your-org/components";
 
 // Single-select
 <Autocomplete
-  options={["Apple", "Banana", "Cherry"]}
-  selectedOption={selected}
-  onSelect={setSelected}
-  placeholder="Type to search..."
+    options={["Apple", "Banana", "Cherry"]}
+    selectedOption={selected}
+    onSelect={setSelected}
+    placeholder="Type to search..."
 />;
 
 // Multi-select
 <Autocomplete.Multiselect
-  options={["Apple", "Banana", "Cherry"]}
-  selectedOptions={selectedList}
-  onSelect={setSelectedList}
-  placeholder="Type to search..."
+    options={["Apple", "Banana", "Cherry"]}
+    selectedOptions={selectedList}
+    onSelect={setSelectedList}
+    placeholder="Type to search..."
 />;
 ```
 
@@ -54,10 +54,10 @@ import { Autocomplete } from "@your-org/components";
 
 ```tsx
 <Autocomplete
-  options={["Red", "Green", "Blue"]}
-  selectedOption={selected}
-  onSelect={setSelected}
-  placeholder="Choose a color"
+    options={["Red", "Green", "Blue"]}
+    selectedOption={selected}
+    onSelect={setSelected}
+    placeholder="Choose a color"
 />
 ```
 
@@ -65,13 +65,13 @@ import { Autocomplete } from "@your-org/components";
 
 ```tsx
 <Autocomplete
-  options={[
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-  ]}
-  transformItem={(option) => option.label}
-  selectedOption={selected}
-  onSelect={setSelected}
+    options={[
+        { label: "Apple", value: "apple" },
+        { label: "Banana", value: "banana" },
+    ]}
+    transformItem={(option) => option.label}
+    selectedOption={selected}
+    onSelect={setSelected}
 />
 ```
 
@@ -79,10 +79,10 @@ import { Autocomplete } from "@your-org/components";
 
 ```tsx
 <Autocomplete.Multiselect
-  options={["Apple", "Banana", "Cherry"]}
-  selectedOptions={selectedList}
-  onSelect={setSelectedList}
-  placeholder="Type to search..."
+    options={["Apple", "Banana", "Cherry"]}
+    selectedOptions={selectedList}
+    onSelect={setSelectedList}
+    placeholder="Type to search..."
 />
 ```
 

@@ -17,10 +17,10 @@ The `Typography` component is the core text rendering element in the design syst
 ## Usage
 
 ```tsx
-import { Typography } from "@equinor/eds-mobile/components";
+import { Typography } from "@equinor/eds-mobile-components/components";
 
 <Typography group="basic" variant="h1" color="primary" bold>
-  Heading Text
+    Heading Text
 </Typography>;
 ```
 

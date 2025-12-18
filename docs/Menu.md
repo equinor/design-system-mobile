@@ -12,18 +12,18 @@ import { Menu } from "@equinor/eds-mobile-components";
 const anchorRef = useRef<View>(null);
 
 <Menu
-  anchorEl={anchorRef}
-  open={menuOpen}
-  onClose={() => setMenuOpen(false)}
-  placement="bottom"
+    anchorEl={anchorRef}
+    open={menuOpen}
+    onClose={() => setMenuOpen(false)}
+    placement="bottom"
 >
-  <Menu.Item title="Edit" iconName="pencil" onPress={handleEdit} />
-  <Menu.Item
-    title="Delete"
-    iconName="delete"
-    variant="danger"
-    onPress={handleDelete}
-  />
+    <Menu.Item title="Edit" iconName="pencil" onPress={handleEdit} />
+    <Menu.Item
+        title="Delete"
+        iconName="delete"
+        variant="danger"
+        onPress={handleDelete}
+    />
 </Menu>;
 ```
 
@@ -63,8 +63,8 @@ const anchorRef = useRef<View>(null);
 
 ```tsx
 <Menu anchorEl={anchorRef} open={menuOpen} onClose={() => setMenuOpen(false)}>
-  <Menu.Item title="Profile" iconName="account" onPress={goToProfile} />
-  <Menu.Item title="Logout" iconName="logout" onPress={logout} />
+    <Menu.Item title="Profile" iconName="account" onPress={goToProfile} />
+    <Menu.Item title="Logout" iconName="logout" onPress={logout} />
 </Menu>
 ```
 

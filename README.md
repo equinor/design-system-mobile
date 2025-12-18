@@ -49,19 +49,19 @@ as well as `dark` and `light` mode support:
 
 ```tsx
 export default function App() {
-  const [hasLoadedEds, edsLoadError] = useEDS();
-  if (!hasLoadedEds) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <EDSProvider colorScheme="light" density="phone">
-          <Navigation colorScheme="light" />
-          <StatusBar />
-        </EDSProvider>
-      </SafeAreaProvider>
-    );
-  }
+    const [hasLoadedEds, edsLoadError] = useEDS();
+    if (!hasLoadedEds) {
+        return null;
+    } else {
+        return (
+            <SafeAreaProvider>
+                <EDSProvider colorScheme="light" density="phone">
+                    <Navigation colorScheme="light" />
+                    <StatusBar />
+                </EDSProvider>
+            </SafeAreaProvider>
+        );
+    }
 }
 ```
 
@@ -72,10 +72,10 @@ Creating stylesheets that use EDS values is made to be easy and performant. Star
 
 ```tsx
 const themeStyles = EDSStyleSheet.create((theme) => ({
-  container: {
-    backgroundColor: theme.colors.container.background,
-    borderRadius: theme.geometry.border.containerBorderRadius,
-  },
+    container: {
+        backgroundColor: theme.colors.container.background,
+        borderRadius: theme.geometry.border.containerBorderRadius,
+    },
 }));
 ```
 
@@ -87,8 +87,8 @@ We resolve our stylesheet in our components using the provided `useStyles` hook:
 
 ```tsx
 const MyComponent = () => {
-  const styles = useStyles(themeStyles);
-  return <View style={styles.container} />;
+    const styles = useStyles(themeStyles);
+    return <View style={styles.container} />;
 };
 ```
 
@@ -99,15 +99,15 @@ you to pass any additional props into the style sheet:
 ```tsx
 // Notice that we type our second argument!
 const themeStylesWithProps = EDSStyleSheet.create(
-  (theme, props: { color?: string }) => {
-    const backgroundColor = color ?? theme.colors.container.background;
+    (theme, props: { color?: string }) => {
+        const backgroundColor = color ?? theme.colors.container.background;
 
-    return {
-      container: {
-        backgroundColor,
-      },
-    };
-  }
+        return {
+            container: {
+                backgroundColor,
+            },
+        };
+    }
 );
 ```
 
@@ -115,9 +115,9 @@ We are then required by our `useStyle` hook to pass these props in with the `EDS
 
 ```tsx
 const MyOtherComponent = () => {
-  // Normally you'd pass some of your component props into this hook.
-  const styles = useStyles(themeStylesWithProps, { color: "red" });
-  return <View style={styles.container} />;
+    // Normally you'd pass some of your component props into this hook.
+    const styles = useStyles(themeStylesWithProps, { color: "red" });
+    return <View style={styles.container} />;
 };
 ```
 

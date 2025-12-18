@@ -10,11 +10,11 @@ The `TextField` component is a labeled input field for React Native, styled acco
 import { TextField } from "@equinor/eds-mobile-components";
 
 <TextField
-  label="Username"
-  placeholder="Enter your username"
-  helperText="Required"
-  inputIcon="account"
-  variant="danger"
+    label="Username"
+    placeholder="Enter your username"
+    helperText="Required"
+    inputIcon="account"
+    variant="danger"
 />;
 ```
 
@@ -51,11 +51,11 @@ import { TextField } from "@equinor/eds-mobile-components";
 
 ```tsx
 <TextField
-  label="Email"
-  placeholder="Enter your email"
-  helperText="We'll never share your email."
-  inputIcon="email"
-  unit="@company.com"
+    label="Email"
+    placeholder="Enter your email"
+    helperText="We'll never share your email."
+    inputIcon="email"
+    unit="@company.com"
 />
 ```
 

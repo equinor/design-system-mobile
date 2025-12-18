@@ -10,7 +10,7 @@ The `Paper` component provides a surface with elevation and background styling, 
 import { Paper } from "@equinor/eds-mobile-components";
 
 <Paper elevation="temporaryNav">
-  <Text>Content goes here</Text>
+    <Text>Content goes here</Text>
 </Paper>;
 ```
 
@@ -44,7 +44,7 @@ The `elevation` prop controls the shadow and background color. Available values 
 
 ```tsx
 <Paper elevation="card" style={{ margin: 16 }}>
-  <Text>Card content</Text>
+    <Text>Card content</Text>
 </Paper>
 ```
 

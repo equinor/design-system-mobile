@@ -10,11 +10,11 @@ The `Search` component provides a styled, animated search input field for React 
 import { Search } from "@equinor/eds-mobile-components";
 
 <Search
-  placeholder="Search"
-  value={searchText}
-  onChange={setSearchText}
-  cancellable
-  onCancelPress={() => setSearchText("")}
+    placeholder="Search"
+    value={searchText}
+    onChange={setSearchText}
+    cancellable
+    onCancelPress={() => setSearchText("")}
 />;
 ```
 
@@ -52,11 +52,11 @@ import { Search } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Search
-  placeholder="Find items"
-  value={query}
-  onChange={setQuery}
-  cancellable
-  onCancelPress={() => setQuery("")}
+    placeholder="Find items"
+    value={query}
+    onChange={setQuery}
+    cancellable
+    onCancelPress={() => setQuery("")}
 />
 ```
 
