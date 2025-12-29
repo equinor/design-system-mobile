@@ -2,15 +2,11 @@
 // Matches masterToken.colors structure while sourcing from EDS where possible
 
 import { colors } from "./colors";
-import { EDSSemanticJson } from "./edsTokenTypes";
+import {
+    darkSemantic as darkSemanticJson,
+    lightSemantic as lightSemanticJson,
+} from "./edsSemanticTokens.generated";
 import { ColorToken } from "./types";
-
-/* eslint-disable @typescript-eslint/no-require-imports */
-const lightSemanticJson =
-    require("@equinor/eds-tokens/build/json/color/color-scheme/nested/light-semantic.json") as EDSSemanticJson;
-const darkSemanticJson =
-    require("@equinor/eds-tokens/build/json/color/color-scheme/nested/dark-semantic.json") as EDSSemanticJson;
-/* eslint-enable @typescript-eslint/no-require-imports */
 
 // EDS Background tokens (camelCase accessors)
 const edsBg = {
