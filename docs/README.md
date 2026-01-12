@@ -44,7 +44,7 @@ Please make sure to follow these installation instructions before using this pac
 
 Before using the components in your app, make sure to load the fonts and assets required by the
 library somewhere in your root component. It is also recommended that you wrap your app in the
-`EDSProvider`. This will give you access to dynamically switching between `tablet` and `phone` mode
+`EDSProvider`. This will give you access to dynamically switching between `spacious` and `comfortable` mode
 as well as `dark` and `light` mode support:
 
 ```tsx
@@ -55,7 +55,7 @@ export default function App() {
     } else {
         return (
             <SafeAreaProvider>
-                <EDSProvider colorScheme="light" density="phone">
+                <EDSProvider colorScheme="light" density="comfortable">
                     <Navigation colorScheme="light" />
                     <StatusBar />
                 </EDSProvider>
