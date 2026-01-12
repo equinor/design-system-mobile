@@ -106,14 +106,9 @@ export const Button = forwardRef<View, ButtonProps>(
         });
 
         const leadingIconName =
-            (iconName && iconPosition === "leading") || leadingIcon
-                ? (iconName ?? leadingIcon)
-                : undefined;
+            leadingIcon ?? (iconPosition === "leading" ? iconName : undefined);
         const trailingIconName =
-            (iconName && iconPosition === "trailing") || trailingIcon
-                ? (iconName ?? trailingIcon)
-                : undefined;
-
+            trailingIcon ?? (iconPosition === "trailing" ? iconName : undefined);
         const ButtonContent = () => (
             <View style={styles.labelContainer}>
                 {leadingIconName && (
