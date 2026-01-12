@@ -184,7 +184,7 @@ export type OldToken = {
             large: DensityValues<number>;
         };
         tabs: {
-            paddingVerical: DensityValues<number>;
+            paddingVertical: DensityValues<number>;
             paddingHorizontal: DensityValues<number>;
         };
     };
