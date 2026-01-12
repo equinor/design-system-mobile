@@ -164,6 +164,7 @@ export const Button = forwardRef<View, ButtonProps>(
     }
 );
 
+Button.displayName = "Button";
 type ButtonStyleSheetProps = {
     groupData: { isFirstItem: boolean; isLastItem: boolean };
     isToggleButton: boolean;
