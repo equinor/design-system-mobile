@@ -250,7 +250,7 @@ export const layoutToken: OldToken = {
             },
         },
         tabs: {
-            paddingVerical: {
+            paddingVertical: {
                 spacious: spacings.medium,
                 comfortable: spacings.medium,
             },
