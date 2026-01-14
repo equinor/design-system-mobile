@@ -54,7 +54,7 @@ export default function App() {
 
     return (
         <SafeAreaProvider>
-            <EDSProvider colorScheme="light" density="phone">
+            <EDSProvider colorScheme="light" density="comfortable">
                 <YourApp />
             </EDSProvider>
         </SafeAreaProvider>
@@ -95,7 +95,7 @@ const MyComponent = () => {
 };
 ```
 
-Styles automatically adapt to light/dark mode and phone/tablet density.
+Styles automatically adapt to light/dark mode and comfortable/spacious density.
 
 ### Conditional styling with props
 
