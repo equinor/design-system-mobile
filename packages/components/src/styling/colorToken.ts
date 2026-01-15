@@ -6,7 +6,7 @@ import {
     darkSemantic as darkSemanticJson,
     lightSemantic as lightSemanticJson,
 } from "./edsSemanticTokens.generated";
-import { ColorToken } from "./tokens";
+import { OldColorToken } from "./tokens";
 
 // EDS Background tokens (camelCase accessors)
 const edsBg = {
@@ -365,7 +365,7 @@ const edsText = {
 // Using EDS tokens where possible + custom tokens for gaps
 // =============================================================================
 
-export const colorToken: ColorToken = {
+export const colorToken: OldColorToken = {
     // Border colors - using EDS neutral borders
     border: {
         lighter: edsBorder.neutral.subtle, // EDS subtle border

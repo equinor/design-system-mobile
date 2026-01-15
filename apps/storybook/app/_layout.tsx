@@ -2,7 +2,12 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import {
+    ActivityIndicator,
+    StyleSheet,
+    useColorScheme,
+    View,
+} from "react-native";
 import "react-native-gesture-handler";
 
 import { EDSProvider, useEDS } from "@equinor/eds-mobile-components";
@@ -56,8 +61,9 @@ function AppContent() {
 }
 
 export default function RootLayout() {
+    const colorScheme = useColorScheme();
     return (
-        <EDSProvider density="comfortable" colorScheme="light">
+        <EDSProvider density="comfortable" colorScheme={colorScheme ?? "light"}>
             <AppContent />
         </EDSProvider>
     );
