@@ -47,7 +47,7 @@
     "scripts": {
         "build": "tsup-node && echo '\n ⚙️ Generating typescript declarations..' && tsc --project tsconfig.json --emitDeclarationOnly --declaration",
         "clean": "rm -rf node_modules dist .turbo",
-        "dev": "pnpm generate-tokens && tsup-node --watch --clean=false",
+        "dev": "tsup-node --watch --clean=false",
         "lint": "eslint .",
         "test": "jest"
     },
