@@ -1,13 +1,13 @@
 import { Cell, Typography } from "@equinor/eds-mobile-components";
 import { useRouter } from "expo-router";
-import { SectionList, StyleSheet, View } from "react-native";
+import { SectionList, StyleSheet } from "react-native";
 
 type ComponentItem = { name: string; route: string };
 
 const sections = [
     {
         title: "Actions",
-        data: [{ name: "Button", route: "buttons" }],
+        data: [{ name: "Button", route: "button" }],
     },
     {
         title: "Data Display",
@@ -87,15 +87,6 @@ export default function ComponentsIndex() {
         </Typography>
     );
 
-    const renderHeader = () => (
-        <View style={styles.header}>
-            <Typography variant="h5">Components</Typography>
-            <Typography variant="p" style={styles.subtitle}>
-                Tap a component to explore its variants and usage.
-            </Typography>
-        </View>
-    );
-
     return (
         <SectionList
             style={styles.container}
@@ -103,8 +94,8 @@ export default function ComponentsIndex() {
             keyExtractor={(item) => item.route}
             renderItem={renderItem}
             renderSectionHeader={renderSectionHeader}
-            ListHeaderComponent={renderHeader}
             stickySectionHeadersEnabled={true}
+            contentInsetAdjustmentBehavior="automatic"
         />
     );
 }
