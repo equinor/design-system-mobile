@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import "react-native-gesture-handler";
 
+import { useAppStore } from "@/lib/store";
 import { EDSProvider, useEDS, useToken } from "@equinor/eds-mobile-components";
 import { ThemeProvider } from "@react-navigation/native";
 import { useEffect } from "react";
@@ -56,7 +57,8 @@ function AppContent() {
 
 export default function RootLayout() {
     const [loaded] = useEDS();
-    const colorScheme = useColorScheme();
+    const systemScheme = useColorScheme();
+    const userScheme = useAppStore((state) => state.scheme);
 
     useEffect(() => {
         if (!loaded) return;
@@ -67,7 +69,10 @@ export default function RootLayout() {
     if (!loaded) return null;
 
     return (
-        <EDSProvider density="comfortable" colorScheme={colorScheme ?? "light"}>
+        <EDSProvider
+            density="comfortable"
+            colorScheme={userScheme ?? systemScheme ?? "light"}
+        >
             <AppContent />
         </EDSProvider>
     );
