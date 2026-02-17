@@ -3,6 +3,7 @@ import React, {
     ReactNode,
     createContext,
     useCallback,
+    useContext,
     useState,
 } from "react";
 
@@ -24,9 +25,13 @@ export type PortalContextType = {
      */
     bindNode: (name: string, node: ReactNode) => void;
     /**
-     * A list containing the portal hosts.
+     * A list containing the portal hosts in the current context.
      */
     hosts: PortalHostType[];
+    /**
+     * Reference to the parent PortalContext, if any.
+     */
+    parent: PortalContextType | null;
 };
 
 export type PortalHostType = {
@@ -45,9 +50,11 @@ export const PortalContext = createContext<PortalContextType>({
     unregisterHost: () => null,
     bindNode: () => null,
     hosts: [],
+    parent: null,
 });
 
 export const PortalProvider = ({ children }: PropsWithChildren) => {
+    const parentContext = useContext(PortalContext);
     const [hosts, setHosts] = useState<PortalHostType[]>([]);
 
     const registerHost = useCallback(
@@ -82,6 +89,7 @@ export const PortalProvider = ({ children }: PropsWithChildren) => {
         unregisterHost,
         bindNode,
         hosts,
+        parent: parentContext.hosts.length > 0 ? parentContext : null,
     };
 
     return (

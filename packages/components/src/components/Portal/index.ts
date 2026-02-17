@@ -1,6 +1,7 @@
 import { Portal as _Portal, PortalProps } from "./Portal";
 import { PortalProvider } from "./PortalContext";
 import { PortalHost, PortalHostProps } from "./PortalHost";
+import { ModalPortalHost } from "./ModalPortalHost";
 
 type PortalFamily = typeof _Portal & {
     Host: typeof PortalHost;
@@ -9,5 +10,5 @@ type PortalFamily = typeof _Portal & {
 const Portal = _Portal as PortalFamily;
 Portal.Host = PortalHost;
 
-export { Portal, PortalProvider };
+export { Portal, PortalProvider, ModalPortalHost };
 export type { PortalProps, PortalHostProps };
