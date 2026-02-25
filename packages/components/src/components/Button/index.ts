@@ -1,7 +1,7 @@
-import { Button as _Button, ButtonProps, ButtonSpecificProps } from "./Button";
+import { Button as _Button, ButtonProps } from "./Button";
 import { ButtonGroup, ButtonGroupProps } from "./ButtonGroup";
-import { ToggleButton, ToggleButtonProps } from "./ToggleButton";
 import { IconButton, IconButtonProps } from "./IconButton";
+import { ToggleButton, ToggleButtonProps } from "./ToggleButton";
 
 type ExtendedButton = typeof _Button & {
     /**
@@ -25,9 +25,6 @@ Button.Icon = IconButton;
 
 export { Button };
 export type {
-    ButtonProps,
-    ButtonSpecificProps,
-    ButtonGroupProps,
-    ToggleButtonProps,
-    IconButtonProps,
+    ButtonGroupProps, ButtonProps, IconButtonProps, ToggleButtonProps
 };
+

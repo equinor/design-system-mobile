@@ -2,7 +2,6 @@ import React, { forwardRef } from "react";
 import { View, ViewProps } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { getBackgroundColorForButton } from "../../utils/getBackgroundColorForButton";
 import { Icon, IconName } from "../Icon";
 import { PressableHighlight } from "../PressableHighlight";
 import { CircularProgress } from "../ProgressIndicator";
@@ -103,12 +102,12 @@ const themeStyles = EDSStyleSheet.create(
         const { color, disabled, variant, iconSize } = props;
         const pressableContainerSize = iconSize * 1.8;
 
-        const backgroundColor = getBackgroundColorForButton(
-            theme,
-            variant,
-            color,
-            disabled
-        );
+        const backgroundColor =
+            variant !== "contained"
+                ? "transparent"
+                : disabled
+                  ? theme.colors.interactive.disabled
+                  : theme.colors.interactive[color];
         let textColor =
             variant === "contained"
                 ? theme.colors.text.primaryInverted

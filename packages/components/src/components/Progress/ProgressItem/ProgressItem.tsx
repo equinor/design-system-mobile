@@ -146,7 +146,7 @@ const WrappedProgressItem = ({
             <View style={styles.row}>
                 <View style={styles.leftCol} />
                 <View style={styles.buttonRow}>
-                    {breakpoint === "xs" && <ExpandButton variant="outlined" />}
+                    {breakpoint === "xs" && <ExpandButton variant="secondary" />}
                     <ActionButtonsRow
                         shouldShowRetryButton={onRetryButtonPress !== undefined}
                         shouldShowCopyTextButton={

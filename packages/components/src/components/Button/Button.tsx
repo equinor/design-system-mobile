@@ -1,93 +1,63 @@
 import React, { forwardRef, useContext } from "react";
-import { GestureResponderEvent, View, ViewProps } from "react-native";
+import { View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
 import { getBackgroundColorForButton } from "../../utils/getBackgroundColorForButton";
 import { Icon, IconName } from "../Icon";
 import { PressableHighlight } from "../PressableHighlight";
-import { DotProgress } from "../ProgressIndicator";
 import { Typography } from "../Typography";
 import { ButtonGroupContext } from "./ButtonGroup";
 import { ToggleButtonContext } from "./ToggleButton";
 
-export type ButtonSpecificProps = {
+export type ButtonProps = {
     /**
      * Label text of the button.
      */
-    title: string;
+    label: string;
     /**
-     * Color theme of the button.
+     * Color tone of the button.
+     * @default "accent"
      */
-    color?: "primary" | "secondary" | "danger";
+    tone?: "accent" | "neutral" | "danger";
     /**
-     * Button variant. This value works with the `color` prop to set the theming of the button.
+     * Size of the button.
+     * @default "default"
      */
-    variant?: "contained" | "outlined" | "ghost";
+    size?: "small" | "default" | "large";
+    /**
+     * Button variant.
+     * @default "primary"
+     */
+    variant?: "primary" | "secondary" | "ghost";
+    /**
+     * Name of the leading icon to display alongside the button label.
+     */
+    leadingIcon?: IconName;
+    /**
+     * Name of the trailing icon to display alongside the button label.
+     */
+    trailingIcon?: IconName;
     /**
      * Boolean value indicating whether or not the button is in its disabled state.
      */
     disabled?: boolean;
     /**
-     * Boolean value indicating whether or not the button should be in its loading state.
-     */
-    loading?: boolean;
-    /**
-     * Boolean value that floats icon to the edges of the button while the text stay centered.
-     */
-    fullWidth?: boolean;
-    /**
-     * @deprecated use `trailingIcon` and/or `leadingIcon` instead.
-     *
-     * Name of the icon to use with the title.
-     */
-    iconName?: IconName;
-    /**
-     * @deprecated use `trailingIcon` and/or `leadingIcon` instead.
-     *
-     * Options for positioning the icon either to the left or to the right of the label text.
-     */
-    iconPosition?: "leading" | "trailing";
-    /**
-     * Name of the leading icon to display alongside the button title.
-     */
-    leadingIcon?: IconName;
-    /**
-     * Name of the trailing icon to display alongside the button title.
-     */
-    trailingIcon?: IconName;
-    /**
      * Callback method invoked when the user presses the button.
      */
     onPress?: () => void;
-    /**
-     * Callback method invoked when the user presses in the button.
-     */
-    onPressIn?: (event: GestureResponderEvent) => void;
-    /**
-     * Callback method invoked when the user presses out the button.
-     */
-    onPressOut?: (event: GestureResponderEvent) => void;
 };
-
-export type ButtonProps = ButtonSpecificProps & ViewProps;
 
 export const Button = forwardRef<View, ButtonProps>(
     (
         {
-            title,
-            color = "primary",
-            variant = "contained",
-            disabled = false,
-            loading = false,
-            fullWidth = false,
-            iconName,
-            iconPosition = "leading",
+            label,
+            tone = "accent",
+            size = "default",
+            variant = "primary",
             leadingIcon,
             trailingIcon,
+            disabled = false,
             onPress = () => null,
-            onPressIn = () => null,
-            onPressOut = () => null,
-            ...rest
         },
         ref
     ) => {
@@ -96,25 +66,21 @@ export const Button = forwardRef<View, ButtonProps>(
         const groupData = useContext(ButtonGroupContext);
 
         const styles = useStyles(tokenStyles, {
-            color,
+            tone,
             variant,
             isToggleButton,
             toggleStatus: isToggleButton ? toggleData.isSelected : false,
             groupData,
             disabled,
-            fullWidth,
+            size,
         });
 
-        const leadingIconName =
-            leadingIcon ?? (iconPosition === "leading" ? iconName : undefined);
-        const trailingIconName =
-            trailingIcon ?? (iconPosition === "trailing" ? iconName : undefined);
         const ButtonContent = () => (
             <View style={styles.labelContainer}>
-                {leadingIconName && (
+                {leadingIcon && (
                     <View style={styles.leadingIcon}>
                         <Icon
-                            name={leadingIconName}
+                            name={leadingIcon}
                             color={styles.textStyle.color}
                         />
                     </View>
@@ -124,12 +90,12 @@ export const Button = forwardRef<View, ButtonProps>(
                     variant="button"
                     style={styles.textStyle}
                 >
-                    {title}
+                    {label}
                 </Typography>
-                {trailingIconName && (
+                {trailingIcon && (
                     <View style={styles.trailingIcon}>
                         <Icon
-                            name={trailingIconName}
+                            name={trailingIcon}
                             color={styles.textStyle.color}
                         />
                     </View>
@@ -138,26 +104,13 @@ export const Button = forwardRef<View, ButtonProps>(
         );
 
         return (
-            <View ref={ref} style={[styles.colorContainer, rest.style]}>
+            <View ref={ref} style={styles.colorContainer}>
                 <PressableHighlight
                     disabled={disabled}
                     onPress={onPress}
-                    onPressIn={onPressIn}
-                    onPressOut={onPressOut}
                     style={styles.pressableContainer}
                 >
-                    {loading ? (
-                        <DotProgress
-                            color={
-                                disabled || variant !== "contained"
-                                    ? "primary"
-                                    : "neutral"
-                            }
-                            size={12}
-                        />
-                    ) : (
-                        ButtonContent()
-                    )}
+                    {ButtonContent()}
                 </PressableHighlight>
             </View>
         );
@@ -165,44 +118,48 @@ export const Button = forwardRef<View, ButtonProps>(
 );
 
 Button.displayName = "Button";
+
 type ButtonStyleSheetProps = {
     groupData: { isFirstItem: boolean; isLastItem: boolean };
     isToggleButton: boolean;
     toggleStatus: boolean;
-    color: "primary" | "secondary" | "danger";
-    variant: "contained" | "outlined" | "ghost";
+    tone: "accent" | "neutral" | "danger";
+    variant: "primary" | "secondary" | "ghost";
     disabled: boolean;
-    fullWidth: boolean;
+    size: "small" | "default" | "large";
 };
 
 const tokenStyles = EDSStyleSheet.create(
     (token, props: ButtonStyleSheetProps) => {
-        const {
-            color,
-            isToggleButton,
-            toggleStatus,
-            groupData,
-            disabled,
-            fullWidth,
-        } = props;
+        const { tone, isToggleButton, toggleStatus, groupData, disabled } =
+            props;
         let { variant } = props;
 
         variant = isToggleButton
             ? toggleStatus
-                ? "contained"
-                : "outlined"
+                ? "primary"
+                : "secondary"
             : variant;
+
+        // TODO: Update when new color tokens for tone are available
+        const interactiveColor =
+            tone === "accent"
+                ? token.colors.interactive.primary
+                : tone === "neutral"
+                  ? token.colors.interactive.secondary
+                  : token.colors.interactive.danger;
 
         const backgroundColor = getBackgroundColorForButton(
             token,
             variant,
-            color,
+            tone,
             disabled
         );
+
         let textColor =
-            variant === "contained"
+            variant === "primary"
                 ? token.colors.text.primaryInverted
-                : token.colors.interactive[color];
+                : interactiveColor;
         textColor = disabled ? token.colors.text.disabled : textColor;
 
         const leftRadius = !groupData.isFirstItem
@@ -212,7 +169,7 @@ const tokenStyles = EDSStyleSheet.create(
             ? 0
             : token.geometry.border.elementBorderRadius;
         const outlinedPaddingReduction =
-            variant === "outlined" ? token.geometry.border.borderWidth : 0;
+            variant === "secondary" ? token.geometry.border.borderWidth : 0;
 
         return {
             colorContainer: {
@@ -223,9 +180,9 @@ const tokenStyles = EDSStyleSheet.create(
                 borderBottomRightRadius: rightRadius,
                 borderColor: disabled
                     ? token.colors.text.disabled
-                    : token.colors.interactive[color],
+                    : interactiveColor,
                 borderWidth:
-                    variant === "outlined"
+                    variant === "secondary"
                         ? token.geometry.border.borderWidth
                         : undefined,
                 overflow: "hidden",
@@ -245,17 +202,10 @@ const tokenStyles = EDSStyleSheet.create(
                 justifyContent: "center",
                 gap: token.newSpacing.spacing.icon.sm["gap-horizontal"],
             },
-            trailingIcon: {
-                flex: fullWidth ? 1 : undefined,
-                alignItems: fullWidth ? "flex-end" : undefined,
-            },
-            leadingIcon: {
-                flex: fullWidth ? 1 : undefined,
-                alignItems: fullWidth ? "flex-start" : undefined,
-            },
+            trailingIcon: {},
+            leadingIcon: {},
             textStyle: {
                 color: textColor,
-                position: fullWidth ? "absolute" : undefined,
             },
         };
     }
