@@ -1,7 +1,10 @@
 import { Paper, Typography } from "@equinor/eds-mobile-components";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Image, Pressable, ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
+    const router = useRouter();
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.hero}>
@@ -34,15 +37,22 @@ export default function HomeScreen() {
                     },
                 ]}
             >
-                <Paper elevation="raised" style={{ padding: 16 }}>
-                    <Typography variant="h6">What&apos;s New</Typography>
-                    <Typography
-                        variant="p"
-                        style={{ flexWrap: "wrap", fontSize: 14 }}
-                    >
-                        We are happy to...
-                    </Typography>
-                </Paper>
+                <Pressable
+                    onPress={() => router.push("/(tabs)/whats-new")}
+                    style={({ pressed }) => ({
+                        opacity: pressed ? 0.6 : 1,
+                    })}
+                >
+                    <Paper elevation="raised" style={{ padding: 16 }}>
+                        <Typography variant="h6">What&apos;s New</Typography>
+                        <Typography
+                            variant="p"
+                            style={{ flexWrap: "wrap", fontSize: 14 }}
+                        >
+                            We are happy to...
+                        </Typography>
+                    </Paper>
+                </Pressable>
                 <Paper elevation="raised" style={{ padding: 16 }}>
                     <Typography variant="h6">Getting Started</Typography>
                     <Typography

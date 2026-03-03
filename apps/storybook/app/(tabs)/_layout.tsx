@@ -1,3 +1,4 @@
+import { ColorSchemeButton } from "@/components/ColorSchemeButton";
 import { Icon, IconProps, useToken } from "@equinor/eds-mobile-components";
 import { Tabs } from "expo-router";
 
@@ -34,6 +35,21 @@ export default function TabLayout() {
                     tabBarIcon: ({ color, size }) => (
                         <Icon
                             name="view-grid"
+                            size={size}
+                            color={color as IconProps["color"]}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="whats-new"
+                options={{
+                    title: "What's New",
+                    headerShown: true,
+                    headerRight: () => <ColorSchemeButton />,
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon
+                            name="newspaper"
                             size={size}
                             color={color as IconProps["color"]}
                         />
