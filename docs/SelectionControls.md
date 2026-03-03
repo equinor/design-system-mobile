@@ -1,6 +1,6 @@
 # SelectionControls
 
-The `SelectionControls` package provides interactive selection components for React Native, styled according to the EDS design system. It includes `Switch`, `Switch.Small`, and `Radio` components for toggling and single-choice selection.
+The `SelectionControls` package provides interactive selection components for React Native, styled according to the EDS design system. It includes `Switch` and `Radio` components for toggling and single-choice selection.
 
 <img src="/assets/images/SelectionControls.png" width="400" alt="SelectionControls"/>
 
@@ -30,25 +30,6 @@ import { Switch } from "@equinor/eds-mobile-components";
 | `color`    | "primary" \| "secondary" \| "danger" | `"primary"` | Color theme of the switch.           |
 | `disabled` | boolean                              | `false`     | If true, disables the switch.        |
 | ...rest    | ViewProps                            |             | Additional props for the container.  |
-
-### Switch.Small
-
-A compact version of the switch, suitable for dense UIs.
-
-```tsx
-import { Switch } from "@equinor/eds-mobile-components";
-
-<Switch.Small active={isActive} onChange={setIsActive} disabled={false} />;
-```
-
-#### Props
-
-| Name       | Type                        | Default | Description                          |
-| ---------- | --------------------------- | ------- | ------------------------------------ |
-| `active`   | boolean                     | `false` | Whether the switch is on.            |
-| `onChange` | (isActive: boolean) => void |         | Callback when the switch is toggled. |
-| `disabled` | boolean                     | `false` | If true, disables the switch.        |
-| ...rest    | ViewProps                   |         | Additional props for the container.  |
 
 ### Radio
 
@@ -97,7 +78,6 @@ import { Radio } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Switch active={enabled} onChange={setEnabled} />
-<Switch.Small active={smallEnabled} onChange={setSmallEnabled} />
 <Radio checked={selected} onPress={setSelected} />
 ```
 

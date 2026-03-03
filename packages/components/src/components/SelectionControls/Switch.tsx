@@ -7,7 +7,6 @@ import { Paper } from "../Paper";
 import { PressableHighlight } from "../PressableHighlight";
 export type SwitchProps = {
     onChange?: (isActive: boolean) => void;
-    color?: "primary" | "secondary" | "danger";
     active?: boolean;
     disabled?: boolean;
 };
@@ -19,7 +18,6 @@ const HEIGHT = 60;
 export const Switch = forwardRef<View, SwitchProps & ViewProps>(
     (
         {
-            color = "primary",
             onChange = () => null,
             active = false,
             disabled = false,
@@ -28,7 +26,6 @@ export const Switch = forwardRef<View, SwitchProps & ViewProps>(
         ref
     ) => {
         const styles = useStyles(themeStyles, {
-            color,
             disabled,
             isActive: active,
         });
@@ -125,26 +122,26 @@ Switch.displayName = "Switch";
 
 type ToggleStyleSheetProps = {
     isActive: boolean;
-    color: "primary" | "secondary" | "danger";
     disabled: boolean;
 };
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: ToggleStyleSheetProps) => {
-        const { color, disabled, isActive } = props;
+        const { disabled, isActive } = props;
 
-        const activeBackgroundColor = theme.colors.interactive[color];
-        const inactiveBackgroundColor = theme.colors.interactive.disabled;
-
-        const knobColor = theme.colors.text.tertiary;
+        const activeTrackColor = theme.newColors.bg.accent.fillMuted.default;
+        const activeKnobColor = theme.newColors.bg.accent.fillEmphasis.default;
+        const inactiveTrackColor = theme.newColors.bg.neutral.fillMuted.default;
+        const inactiveKnobColor =
+            theme.newColors.bg.neutral.fillEmphasis.default;
         const disabledKnobColor = theme.colors.text.disabled;
         const backgroundHeight = KNOB_SIZE * 0.5;
 
         const backgroundColor = disabled
-            ? theme.colors.interactive.disabled
+            ? inactiveTrackColor
             : isActive
-              ? activeBackgroundColor
-              : inactiveBackgroundColor;
+              ? activeTrackColor
+              : inactiveTrackColor;
 
         return {
             toggleContainer: {
@@ -173,8 +170,8 @@ const themeStyles = EDSStyleSheet.create(
                 backgroundColor: disabled
                     ? disabledKnobColor
                     : isActive
-                      ? activeBackgroundColor
-                      : knobColor,
+                      ? activeKnobColor
+                      : inactiveKnobColor,
             },
             animatedBackground: {
                 position: "absolute",
@@ -182,9 +179,8 @@ const themeStyles = EDSStyleSheet.create(
                 borderRadius: KNOB_SIZE,
                 backgroundColor:
                     disabled || !isActive
-                        ? theme.colors.interactive.pressedOverlay
-                        : theme.colors.interactive.selectedHighlight,
-
+                        ? theme.newColors.bg.neutral.fillMuted.hover
+                        : theme.newColors.bg.accent.fillMuted.hover,
                 width: WIDTH - KNOB_SIZE,
             },
         };

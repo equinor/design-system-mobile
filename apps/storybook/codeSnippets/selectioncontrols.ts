@@ -28,18 +28,7 @@ export const switchControl = `const [switchActive, setSwitchActive] = useState(f
 <Switch
   active={switchActive}
   onChange={setSwitchActive}
-  color="primary"
-/>
-
-{/* Small variant */}
-<Switch.Small
-  active={switchActive}
-  onChange={setSwitchActive}
 />
 
 {/* Disabled */}
-<Switch
-  active={true}
-  disabled
-  color="primary"
-/>`;
+<Switch active={true} disabled />`;
