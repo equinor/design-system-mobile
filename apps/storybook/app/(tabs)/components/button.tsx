@@ -23,26 +23,25 @@ export default function ButtonsScreen() {
             </View>
 
             <View style={styles.section}>
-                <Typography variant="h6">Colours & States</Typography>
+                <Typography variant="h6">Tones</Typography>
                 <View style={styles.buttonGroup}>
                     <Button
-                        title="Primary Button"
-                        color="primary"
-                        onPress={() => alert("Primary Button pressed")}
+                        label="Accent Button"
+                        tone="accent"
+                        onPress={() => alert("Accent Button pressed")}
                     />
                     <Button
-                        title="Secondary Button"
-                        color="secondary"
-                        onPress={() => alert("Secondary Button pressed")}
+                        label="Neutral Button"
+                        tone="neutral"
+                        onPress={() => alert("Neutral Button pressed")}
                     />
                     <Button
-                        title="Danger Button"
-                        color="danger"
+                        label="Danger Button"
+                        tone="danger"
                         onPress={() => alert("Danger Button pressed")}
                     />
                     <Button
-                        title="Disabled Button"
-                        variant="contained"
+                        label="Disabled Button"
                         disabled
                         onPress={() => alert("Disabled Button pressed")}
                     />
@@ -52,14 +51,12 @@ export default function ButtonsScreen() {
                 <Typography variant="h6">Variants</Typography>
                 <View style={styles.buttonGroup}>
                     <Button
-                        title="Contained Button"
-                        variant="contained"
+                        label="Contained Button"
                         onPress={() => alert("Contained Button pressed")}
                     />
 
                     <Button
-                        title="Outlined Button"
-                        color="secondary"
+                        label="Outlined Button"
                         variant="outlined"
                         onPress={() => alert("Outlined Button pressed")}
                     />

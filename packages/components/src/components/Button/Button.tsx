@@ -1,11 +1,19 @@
-import React, { forwardRef, useContext } from "react";
-import { View } from "react-native";
+import React, { forwardRef, useContext, useEffect, useMemo } from "react";
+import { Pressable, View } from "react-native";
+import Animated, {
+    cancelAnimation,
+    interpolateColor,
+    useAnimatedStyle,
+    useSharedValue,
+    withTiming,
+} from "react-native-reanimated";
 import { useStyles } from "../../hooks/useStyles";
+import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { getBackgroundColorForButton } from "../../utils/getBackgroundColorForButton";
 import { Icon, IconName } from "../Icon";
-import { PressableHighlight } from "../PressableHighlight";
 import { Typography } from "../Typography";
+import { buttonContentStyles } from "./Button.style";
 import { ButtonGroupContext } from "./ButtonGroup";
 import { ToggleButtonContext } from "./ToggleButton";
 
@@ -75,47 +83,99 @@ export const Button = forwardRef<View, ButtonProps>(
             size,
         });
 
-        const ButtonContent = () => (
-            <View style={styles.labelContainer}>
-                {leadingIcon && (
-                    <View style={styles.leadingIcon}>
-                        <Icon
-                            name={leadingIcon}
-                            color={styles.textStyle.color}
-                        />
-                    </View>
-                )}
-                <Typography
-                    group="interactive"
-                    variant="button"
-                    style={styles.textStyle}
-                >
-                    {label}
-                </Typography>
-                {trailingIcon && (
-                    <View style={styles.trailingIcon}>
-                        <Icon
-                            name={trailingIcon}
-                            color={styles.textStyle.color}
-                        />
-                    </View>
-                )}
-            </View>
-        );
-
         return (
-            <View ref={ref} style={styles.colorContainer}>
-                <PressableHighlight
-                    disabled={disabled}
-                    onPress={onPress}
-                    style={styles.pressableContainer}
-                >
-                    {ButtonContent()}
-                </PressableHighlight>
-            </View>
+            <Pressable disabled={disabled} onPress={onPress} style={{}}>
+                {(pressedEvent) => (
+                    <ButtonContent
+                        isPressed={pressedEvent.pressed}
+                        label={label}
+                        leadingIcon={leadingIcon}
+                        trailingIcon={trailingIcon}
+                        tone={tone}
+                    />
+                )}
+            </Pressable>
         );
     }
 );
+
+type ButtonContentProps = {
+    isPressed: boolean;
+    label: string;
+    leadingIcon?: IconName;
+    trailingIcon?: IconName;
+    tone: "accent" | "neutral" | "danger";
+};
+
+const ButtonContent = ({
+    isPressed,
+    label,
+    leadingIcon,
+    trailingIcon,
+    tone,
+}: ButtonContentProps) => {
+    const animationValue = useSharedValue(0);
+
+    useEffect(() => {
+        cancelAnimation(animationValue);
+        if (isPressed) {
+            animationValue.value = 1;
+            return;
+        }
+        animationValue.value = withTiming(0, { duration: 150 });
+    }, [isPressed]);
+
+    const token = useToken();
+
+    const colors = useMemo(
+        () =>
+            ({
+                neutral: {
+                    default:
+                        token.newColors.Bg.Neutral["Fill Emphasis"].Default,
+                    pressed: token.newColors.Bg.Neutral["Fill Emphasis"].Active,
+                },
+                accent: {
+                    default: token.newColors.Bg.Accent["Fill Emphasis"].Default,
+                    pressed: token.newColors.Bg.Accent["Fill Emphasis"].Active,
+                },
+                danger: {
+                    default: token.newColors.Bg.Danger["Fill Emphasis"].Default,
+                    pressed: token.newColors.Bg.Danger["Fill Emphasis"].Active,
+                },
+            })[tone],
+        [token.newColors]
+    );
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        backgroundColor: interpolateColor(
+            animationValue.value,
+            [0, 1],
+            [colors.default, colors.pressed],
+            "LAB"
+        ),
+    }));
+
+    const styles = useStyles(buttonContentStyles, { isPressed });
+
+    return (
+        <Animated.View style={[animatedStyle, styles.container]}>
+            {leadingIcon && (
+                <View style={{}}>
+                    <Icon name={leadingIcon} />
+                </View>
+            )}
+            <Typography group="interactive" variant="button" style={{}}>
+                {label}
+            </Typography>
+            {trailingIcon && (
+                <View style={{}}>
+                    <Icon name={trailingIcon} />
+                </View>
+            )}
+        </Animated.View>
+    );
+};
 
 Button.displayName = "Button";
 
@@ -141,7 +201,6 @@ const tokenStyles = EDSStyleSheet.create(
                 : "secondary"
             : variant;
 
-        // TODO: Update when new color tokens for tone are available
         const interactiveColor =
             tone === "accent"
                 ? token.colors.interactive.primary
