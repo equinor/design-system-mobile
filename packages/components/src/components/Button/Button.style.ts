@@ -2,40 +2,32 @@ import { EDSStyleSheet } from "../../styling";
 import { MasterToken } from "../../styling/tokens";
 import { ButtonTone, ButtonVariant } from "./types";
 
-const getBackgroundColorForButton = (
+const VARIANT_MAP = {
+    ghost: "fillMuted",
+    secondary: "fillMuted",
+    primary: "fillEmphasis",
+} as const satisfies Record<ButtonVariant, string>;
+
+export const getBackgroundColorForButton = (
     token: MasterToken,
     disabled: boolean,
     tone: ButtonTone,
     variant: ButtonVariant
 ) => {
-    const variantColors = {};
+    const mappedVariant = VARIANT_MAP[variant];
 
-    const toneColors = {
-        accent: {
-            default: token.newColors.Bg.Accent["Fill Emphasis"].Default,
-            pressed: token.newColors.Bg.Accent["Fill Emphasis"].Active,
-        },
-        neutral: {
-            default: token.newColors.Bg.Neutral["Fill Emphasis"].Default,
-            pressed: token.newColors.Bg.Neutral["Fill Emphasis"].Active,
-        },
-        danger: {
-            default: token.newColors.Bg.Danger["Fill Emphasis"].Default,
-            pressed: token.newColors.Bg.Danger["Fill Emphasis"].Active,
-        },
+    return {
+        default: `${token.newColors.bg[tone][mappedVariant].default}${variant === "ghost" || variant === "secondary" ? "00" : ""}`,
+        pressed: token.newColors.bg[tone][mappedVariant].active,
     };
 };
 
-export const buttonContentStyles = EDSStyleSheet.create((token) => {
-    return {
-        default: {},
-        pressed: {
-            backgroundColor: token.colors.interactive.primary,
-        },
-        container: {
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-        },
-    };
-});
+export const buttonContentStyles = EDSStyleSheet.create((token) => ({
+    container: {
+        borderRadius: token.newSpacing.spacing.borderRadius.rounded,
+        paddingVertical: token.newSpacing.selectableSpace.sm.vertical,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+}));

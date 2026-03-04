@@ -28,22 +28,22 @@ export default function ButtonsScreen() {
                     <Button
                         label="Accent Button"
                         tone="accent"
-                        // onPress={() => alert("Accent Button pressed")}
+                        onPress={() => null}
                     />
                     <Button
                         label="Neutral Button"
                         tone="neutral"
-                        // onPress={() => alert("Neutral Button pressed")}
+                        onPress={() => null}
                     />
                     <Button
                         label="Danger Button"
                         tone="danger"
-                        // onPress={() => alert("Danger Button pressed")}
+                        onPress={() => null}
                     />
                     <Button
                         label="Disabled Button"
                         disabled
-                        // onPress={() => alert("Disabled Button pressed")}
+                        onPress={() => null}
                     />
                     <ViewCode title="Button Variations" code={statesButtons} />
                 </View>
@@ -51,20 +51,21 @@ export default function ButtonsScreen() {
                 <Typography variant="h6">Variants</Typography>
                 <View style={styles.buttonGroup}>
                     <Button
-                        label="Contained Button"
-                        onPress={() => alert("Contained Button pressed")}
+                        label="Primary variant"
+                        variant="primary"
+                        onPress={() => null}
                     />
 
                     <Button
-                        label="Outlined Button"
-                        variant="outlined"
-                        onPress={() => alert("Outlined Button pressed")}
+                        label="Secondary variant"
+                        variant="secondary"
+                        onPress={() => null}
                     />
 
                     <Button
-                        title="Ghost Button"
+                        label="Ghost Button"
                         variant="ghost"
-                        onPress={() => alert("Ghost Button pressed")}
+                        onPress={() => null}
                     />
                     <ViewCode title="Button Variants" code={variantButtons} />
                 </View>
@@ -77,16 +78,14 @@ export default function ButtonsScreen() {
                 <Typography>Icon positions:</Typography>
                 <View style={styles.row}>
                     <Button
-                        title="Leading"
+                        label="Leading"
                         iconPosition="leading"
-                        variant="outlined"
                         iconName="home-outline"
                     />
                     <Button
-                        title="Trailing"
+                        label="Trailing"
                         iconPosition="trailing"
                         iconName="send-outline"
-                        variant="outlined"
                     />
                 </View>
 
@@ -123,11 +122,11 @@ export default function ButtonsScreen() {
 
                 <Button.Toggle activeIndex={togglePressed ? 1 : 0}>
                     <Button
-                        title="Option 1"
+                        label="Option 1"
                         onPress={() => setTogglePressed(false)}
                     />
                     <Button
-                        title="Option 2"
+                        label="Option 2"
                         onPress={() => setTogglePressed(true)}
                     />
                 </Button.Toggle>

@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, Ref, useContext, useEffect, useMemo } from "react";
+import React, { FC, Ref, useContext, useEffect } from "react";
 import { Pressable, View } from "react-native";
 import Animated, {
     cancelAnimation,
@@ -10,12 +10,15 @@ import Animated, {
 import { useStyles } from "../../hooks/useStyles";
 import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
-import { getBackgroundColorForButton } from "../../utils/getBackgroundColorForButton";
 import { Icon, IconName } from "../Icon";
 import { Typography } from "../Typography";
-import { buttonContentStyles } from "./Button.style";
+import {
+    buttonContentStyles,
+    getBackgroundColorForButton,
+} from "./Button.style";
 import { ButtonGroupContext } from "./ButtonGroup";
 import { ToggleButtonContext } from "./ToggleButton";
+import { ButtonVariant } from "./types";
 
 export type ButtonProps = {
     /**
@@ -53,52 +56,49 @@ export type ButtonProps = {
      * Callback method invoked when the user presses the button.
      */
     onPress?: () => void;
-    ref?: Ref<Pressable>
+    ref?: Ref<View>;
 };
 
-export const Button: FC<ButtonProps> =
-    (
-        {
-            label,
-            tone = "accent",
-            size = "default",
-            variant = "primary",
-            leadingIcon,
-            trailingIcon,
-            disabled = false,
-            onPress = () => null,
-            ref,
-        }
-    ) => {
-        const toggleData = useContext(ToggleButtonContext);
-        const isToggleButton = !!toggleData;
-        const groupData = useContext(ButtonGroupContext);
+export const Button: FC<ButtonProps> = ({
+    label,
+    tone = "accent",
+    size = "default",
+    variant = "primary",
+    leadingIcon,
+    trailingIcon,
+    disabled = false,
+    onPress = () => null,
+    ref,
+}) => {
+    const toggleData = useContext(ToggleButtonContext);
+    const isToggleButton = !!toggleData;
+    const groupData = useContext(ButtonGroupContext);
 
-        const styles = useStyles(tokenStyles, {
-            tone,
-            variant,
-            isToggleButton,
-            toggleStatus: isToggleButton ? toggleData.isSelected : false,
-            groupData,
-            disabled,
-            size,
-        });
+    // const styles = useStyles(tokenStyles, {
+    //     tone,
+    //     variant,
+    //     isToggleButton,
+    //     toggleStatus: isToggleButton ? toggleData.isSelected : false,
+    //     groupData,
+    //     disabled,
+    //     size,
+    // });
 
-        return (
-            <Pressable disabled={disabled} onPress={onPress} style={{}}>
-                {(pressedEvent) => (
-                    <ButtonContent
-                        isPressed={pressedEvent.pressed}
-                        label={label}
-                        leadingIcon={leadingIcon}
-                        trailingIcon={trailingIcon}
-                        tone={tone}
-                    />
-                )}
-            </Pressable>
-        );
-    }
-);
+    return (
+        <Pressable ref={ref} disabled={disabled} onPress={onPress}>
+            {(pressedEvent) => (
+                <ButtonContent
+                    isPressed={pressedEvent.pressed}
+                    label={label}
+                    leadingIcon={leadingIcon}
+                    variant={variant}
+                    trailingIcon={trailingIcon}
+                    tone={tone}
+                />
+            )}
+        </Pressable>
+    );
+};
 
 type ButtonContentProps = {
     isPressed: boolean;
@@ -106,6 +106,7 @@ type ButtonContentProps = {
     leadingIcon?: IconName;
     trailingIcon?: IconName;
     tone: "accent" | "neutral" | "danger";
+    variant: ButtonVariant;
 };
 
 const ButtonContent = ({
@@ -114,6 +115,7 @@ const ButtonContent = ({
     leadingIcon,
     trailingIcon,
     tone,
+    variant,
 }: ButtonContentProps) => {
     const animationValue = useSharedValue(0);
 
@@ -127,32 +129,12 @@ const ButtonContent = ({
     }, [isPressed]);
 
     const token = useToken();
-
-    const colors = useMemo(
-        () =>
-            ({
-                neutral: {
-                    default:
-                        token.newColors.Bg.Neutral["Fill Emphasis"].Default,
-                    pressed: token.newColors.Bg.Neutral["Fill Emphasis"].Active,
-                },
-                accent: {
-                    default: token.newColors.Bg.Accent["Fill Emphasis"].Default,
-                    pressed: token.newColors.Bg.Accent["Fill Emphasis"].Active,
-                },
-                danger: {
-                    default: token.newColors.Bg.Danger["Fill Emphasis"].Default,
-                    pressed: token.newColors.Bg.Danger["Fill Emphasis"].Active,
-                },
-            })[tone],
-        [token.newColors]
-    );
-
+    const background = getBackgroundColorForButton(token, false, tone, variant);
     const animatedStyle = useAnimatedStyle(() => ({
         backgroundColor: interpolateColor(
             animationValue.value,
             [0, 1],
-            [colors.default, colors.pressed],
+            [background.default, background.pressed],
             "LAB"
         ),
     }));
@@ -166,7 +148,7 @@ const ButtonContent = ({
                     <Icon name={leadingIcon} />
                 </View>
             )}
-            <Typography group="interactive" variant="button" style={{}}>
+            <Typography group="interactive" variant="button">
                 {label}
             </Typography>
             {trailingIcon && (
@@ -177,8 +159,6 @@ const ButtonContent = ({
         </Animated.View>
     );
 };
-
-Button.displayName = "Button";
 
 type ButtonStyleSheetProps = {
     groupData: { isFirstItem: boolean; isLastItem: boolean };
