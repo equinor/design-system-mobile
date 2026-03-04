@@ -51,7 +51,7 @@ export default function WhatsNewScreen() {
                         <Typography variant="p">
                             Replace theme.colors.* with theme.newColors.* and
                             theme.spacing.* with theme.newSpacing.* in your
-                            components. See the component library CLAUDE.md for
+                            components. Refer to the EDS documentation for
                             detailed token mappings.
                         </Typography>
                     </View>
@@ -101,14 +101,14 @@ const themeStyles = EDSStyleSheet.create((token) => ({
         backgroundColor: token.newColors.bg.neutral.surface,
     },
     header: {
-        padding: 24,
-        gap: 8,
+        padding: token.newSpacing.spacing.vertical.twoXl,
+        gap: token.newSpacing.spacing.vertical.sm,
     },
     content: {
-        padding: 16,
-        gap: 8,
+        padding: token.newSpacing.spacing.vertical.lg,
+        gap: token.newSpacing.spacing.vertical.sm,
     },
     subheading: {
-        marginTop: 8,
+        marginTop: token.newSpacing.spacing.vertical.sm,
     },
 }));
