@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect, useMemo } from "react";
+import React, { FC, forwardRef, Ref, useContext, useEffect, useMemo } from "react";
 import { Pressable, View } from "react-native";
 import Animated, {
     cancelAnimation,
@@ -53,9 +53,10 @@ export type ButtonProps = {
      * Callback method invoked when the user presses the button.
      */
     onPress?: () => void;
+    ref?: Ref<Pressable>
 };
 
-export const Button = forwardRef<View, ButtonProps>(
+export const Button: FC<ButtonProps> =
     (
         {
             label,
@@ -66,8 +67,8 @@ export const Button = forwardRef<View, ButtonProps>(
             trailingIcon,
             disabled = false,
             onPress = () => null,
-        },
-        ref
+            ref,
+        }
     ) => {
         const toggleData = useContext(ToggleButtonContext);
         const isToggleButton = !!toggleData;

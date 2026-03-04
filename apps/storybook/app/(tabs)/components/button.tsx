@@ -28,22 +28,22 @@ export default function ButtonsScreen() {
                     <Button
                         label="Accent Button"
                         tone="accent"
-                        onPress={() => alert("Accent Button pressed")}
+                        // onPress={() => alert("Accent Button pressed")}
                     />
                     <Button
                         label="Neutral Button"
                         tone="neutral"
-                        onPress={() => alert("Neutral Button pressed")}
+                        // onPress={() => alert("Neutral Button pressed")}
                     />
                     <Button
                         label="Danger Button"
                         tone="danger"
-                        onPress={() => alert("Danger Button pressed")}
+                        // onPress={() => alert("Danger Button pressed")}
                     />
                     <Button
                         label="Disabled Button"
                         disabled
-                        onPress={() => alert("Disabled Button pressed")}
+                        // onPress={() => alert("Disabled Button pressed")}
                     />
                     <ViewCode title="Button Variations" code={statesButtons} />
                 </View>
