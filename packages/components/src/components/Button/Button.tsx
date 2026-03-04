@@ -252,7 +252,7 @@ const tokenStyles = EDSStyleSheet.create(
                     token.newSpacing.spacing.inset.lg.horizontal -
                     outlinedPaddingReduction,
                 paddingVertical:
-                    token.newSpacing.spacing.inset.lg["vertical-squished"] -
+                    token.newSpacing.spacing.inset.lg.verticalSquished -
                     outlinedPaddingReduction,
                 justifyContent: "center",
             },
@@ -260,7 +260,7 @@ const tokenStyles = EDSStyleSheet.create(
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: token.newSpacing.spacing.icon.sm["gap-horizontal"],
+                gap: token.newSpacing.spacing.icon.sm.gapHorizontal,
             },
             trailingIcon: {},
             leadingIcon: {},
