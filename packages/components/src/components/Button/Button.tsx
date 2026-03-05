@@ -1,24 +1,14 @@
-import React, { FC, Ref, useContext, useEffect } from "react";
+import React, { FC, Ref, useContext } from "react";
 import { Pressable, View } from "react-native";
-import Animated, {
-    cancelAnimation,
-    interpolateColor,
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
-} from "react-native-reanimated";
 import { useStyles } from "../../hooks/useStyles";
-import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
+import { ColorToken } from "../../styling/tokens/colorToken";
 import { Icon, IconName } from "../Icon";
 import { Typography } from "../Typography";
-import {
-    buttonContentStyles,
-    getBackgroundColorForButton,
-} from "./Button.style";
+import { ButtonBackground } from "./ButtonBackground";
 import { ButtonGroupContext } from "./ButtonGroup";
 import { ToggleButtonContext } from "./ToggleButton";
-import { ButtonVariant } from "./types";
+import { ButtonTone, ButtonVariant } from "./types";
 
 export type ButtonProps = {
     /**
@@ -73,179 +63,84 @@ export const Button: FC<ButtonProps> = ({
     const toggleData = useContext(ToggleButtonContext);
     const isToggleButton = !!toggleData;
     const groupData = useContext(ButtonGroupContext);
-
-    // const styles = useStyles(tokenStyles, {
-    //     tone,
-    //     variant,
-    //     isToggleButton,
-    //     toggleStatus: isToggleButton ? toggleData.isSelected : false,
-    //     groupData,
-    //     disabled,
-    //     size,
-    // });
+    const styles = useStyles(tokenStyles, { variant, tone });
 
     return (
-        <Pressable ref={ref} disabled={disabled} onPress={onPress}>
+        <Pressable
+            ref={ref}
+            disabled={disabled}
+            onPress={onPress}
+            style={styles.container}
+        >
             {(pressedEvent) => (
-                <ButtonContent
+                <ButtonBackground
                     isPressed={pressedEvent.pressed}
-                    label={label}
-                    leadingIcon={leadingIcon}
-                    variant={variant}
-                    trailingIcon={trailingIcon}
                     tone={tone}
-                />
+                    variant={variant}
+                    disabled={disabled}
+                >
+                    <View style={styles.squareButtonContainer}>
+                        {leadingIcon && (
+                            <View>
+                                <Icon name={leadingIcon} style={styles.text} />
+                            </View>
+                        )}
+                        <Typography
+                            group="interactive"
+                            variant="button"
+                            style={styles.text}
+                        >
+                            {label}
+                        </Typography>
+                        {trailingIcon && (
+                            <View>
+                                <Icon name={trailingIcon} style={styles.text} />
+                            </View>
+                        )}
+                    </View>
+                </ButtonBackground>
             )}
         </Pressable>
     );
 };
 
-type ButtonContentProps = {
-    isPressed: boolean;
-    label: string;
-    leadingIcon?: IconName;
-    trailingIcon?: IconName;
-    tone: "accent" | "neutral" | "danger";
+type ByttonStylesProps = {
+    tone: ButtonTone;
     variant: ButtonVariant;
 };
 
-const ButtonContent = ({
-    isPressed,
-    label,
-    leadingIcon,
-    trailingIcon,
-    tone,
-    variant,
-}: ButtonContentProps) => {
-    const animationValue = useSharedValue(0);
-
-    useEffect(() => {
-        cancelAnimation(animationValue);
-        if (isPressed) {
-            animationValue.value = 1;
-            return;
-        }
-        animationValue.value = withTiming(0, { duration: 150 });
-    }, [isPressed]);
-
-    const token = useToken();
-    const background = getBackgroundColorForButton(token, false, tone, variant);
-    const animatedStyle = useAnimatedStyle(() => ({
-        backgroundColor: interpolateColor(
-            animationValue.value,
-            [0, 1],
-            [background.default, background.pressed],
-            "LAB"
-        ),
-    }));
-
-    const styles = useStyles(buttonContentStyles, { isPressed });
-
-    return (
-        <Animated.View style={[animatedStyle, styles.container]}>
-            {leadingIcon && (
-                <View style={{}}>
-                    <Icon name={leadingIcon} />
-                </View>
-            )}
-            <Typography group="interactive" variant="button">
-                {label}
-            </Typography>
-            {trailingIcon && (
-                <View style={{}}>
-                    <Icon name={trailingIcon} />
-                </View>
-            )}
-        </Animated.View>
-    );
-};
-
-type ButtonStyleSheetProps = {
-    groupData: { isFirstItem: boolean; isLastItem: boolean };
-    isToggleButton: boolean;
-    toggleStatus: boolean;
-    tone: "accent" | "neutral" | "danger";
-    variant: "primary" | "secondary" | "ghost";
-    disabled: boolean;
-    size: "small" | "default" | "large";
-};
+type TextEmphasis = keyof ColorToken["text"][keyof ColorToken["text"]];
+const TEXT_VARIANT_MAP = {
+    primary: "strongOnEmphasis",
+    secondary: "subtle",
+    ghost: "subtle",
+} as const satisfies Record<ButtonVariant, TextEmphasis>;
 
 const tokenStyles = EDSStyleSheet.create(
-    (token, props: ButtonStyleSheetProps) => {
-        const { tone, isToggleButton, toggleStatus, groupData, disabled } =
-            props;
-        let { variant } = props;
-
-        variant = isToggleButton
-            ? toggleStatus
-                ? "primary"
-                : "secondary"
-            : variant;
-
-        const interactiveColor =
-            tone === "accent"
-                ? token.colors.interactive.primary
-                : tone === "neutral"
-                  ? token.colors.interactive.secondary
-                  : token.colors.interactive.danger;
-
-        const backgroundColor = getBackgroundColorForButton(
-            token,
-            variant,
-            tone,
-            disabled
-        );
-
-        let textColor =
-            variant === "primary"
-                ? token.colors.text.primaryInverted
-                : interactiveColor;
-        textColor = disabled ? token.colors.text.disabled : textColor;
-
-        const leftRadius = !groupData.isFirstItem
-            ? 0
-            : token.geometry.border.elementBorderRadius;
-        const rightRadius = !groupData.isLastItem
-            ? 0
-            : token.geometry.border.elementBorderRadius;
-        const outlinedPaddingReduction =
-            variant === "secondary" ? token.geometry.border.borderWidth : 0;
+    (token, { variant, tone }: ByttonStylesProps) => {
+        const borderColor = token.newColors.border[tone].strong;
 
         return {
-            colorContainer: {
-                backgroundColor,
-                borderTopLeftRadius: leftRadius,
-                borderBottomLeftRadius: leftRadius,
-                borderTopRightRadius: rightRadius,
-                borderBottomRightRadius: rightRadius,
-                borderColor: disabled
-                    ? token.colors.text.disabled
-                    : interactiveColor,
+            container: {
+                borderRadius: token.newSpacing.spacing.borderRadius.rounded,
+                overflow: "hidden",
+                borderColor,
                 borderWidth:
                     variant === "secondary"
-                        ? token.geometry.border.borderWidth
-                        : undefined,
-                overflow: "hidden",
+                        ? token.newSpacing.sizing.stroke.thin
+                        : 0,
             },
-            pressableContainer: {
+            squareButtonContainer: {
+                borderRadius: token.newSpacing.spacing.borderRadius.rounded,
+                paddingVertical: token.newSpacing.selectableSpace.md.vertical,
                 paddingHorizontal:
-                    token.newSpacing.spacing.inset.lg.horizontal -
-                    outlinedPaddingReduction,
-                paddingVertical:
-                    token.newSpacing.spacing.inset.lg.verticalSquished -
-                    outlinedPaddingReduction,
-                justifyContent: "center",
-            },
-            labelContainer: {
+                    token.newSpacing.selectableSpace.md.horizontal,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: token.newSpacing.spacing.icon.sm.gapHorizontal,
             },
-            trailingIcon: {},
-            leadingIcon: {},
-            textStyle: {
-                color: textColor,
+            text: {
+                color: token.newColors.text[tone][TEXT_VARIANT_MAP[variant]],
             },
         };
     }
