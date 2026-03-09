@@ -16,20 +16,20 @@ import { Switch } from "@equinor/eds-mobile-components";
 <Switch
     active={isActive}
     onChange={setIsActive}
-    color="primary"
     disabled={false}
+    label="Option"
 />;
 ```
 
 #### Props
 
-| Name       | Type                                 | Default     | Description                          |
-| ---------- | ------------------------------------ | ----------- | ------------------------------------ |
-| `active`   | boolean                              | `false`     | Whether the switch is on.            |
-| `onChange` | (isActive: boolean) => void          |             | Callback when the switch is toggled. |
-| `color`    | "primary" \| "secondary" \| "danger" | `"primary"` | Color theme of the switch.           |
-| `disabled` | boolean                              | `false`     | If true, disables the switch.        |
-| ...rest    | ViewProps                            |             | Additional props for the container.  |
+| Name       | Type                        | Default | Description                          |
+| ---------- | --------------------------- | ------- | ------------------------------------ |
+| `active`   | boolean                     | `false` | Whether the switch is on.            |
+| `onChange`  | (isActive: boolean) => void |         | Callback when the switch is toggled. |
+| `disabled` | boolean                     | `false` | If true, disables the switch.        |
+| `label`    | string                      |         | Optional label text next to switch.  |
+| ...rest    | ViewProps                   |         | Additional props for the container.  |
 
 ### Radio
 
@@ -67,7 +67,7 @@ import { Radio } from "@equinor/eds-mobile-components";
 ## Theming & Styling
 
 - Uses EDS tokens for color, spacing, and animation.
-- Integrates with Paper, Icon, and PressableHighlight components.
+- Integrates with Icon component for Radio.
 
 ## Accessibility
 
@@ -83,6 +83,5 @@ import { Radio } from "@equinor/eds-mobile-components";
 
 ## Related
 
-- [Paper](./Paper.md) – For the underlying surface.
-- [Icon](./Icon.md) – For icons used in radio and switch.
+- [Icon](./Icon.md) – For icons used in radio.
 - [EDS Theming](../README.md#theming)

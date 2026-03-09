@@ -8,6 +8,7 @@ import { ScrollView, View } from "react-native";
 export default function SelectionControlsScreen() {
     const [selectedRadio, setSelectedRadio] = useState<number>(0);
     const [switchActive, setSwitchActive] = useState(false);
+    const [switchWithLabel, setSwitchWithLabel] = useState(true);
     const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
 
     return (
@@ -60,20 +61,37 @@ export default function SelectionControlsScreen() {
 
             <Section title="Switch">
                 <Typography variant="p">
-                    Active switch  and disabled switch
+                    Toggle switch in an active state and a switch in a disabled state
                 </Typography>
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: 48,
+                        gap: 32,
                         alignItems: "center",
                     }}
                 >
                     <Switch active={switchActive} onChange={setSwitchActive} />
-
-                    <Switch active={true} disabled />
+                    <Switch active={false} disabled />
                 </View>
                 <ViewCode title="Switch Control" code={switchControl} />
+            </Section>
+
+            <Section title="Switch with Label">
+                <Typography variant="p">
+                    Switch with an inline label
+                </Typography>
+                <View style={{ gap: 8 }}>
+                    <Switch
+                        active={switchWithLabel}
+                        onChange={setSwitchWithLabel}
+                        label="Enable notifications"
+                    />
+                    <Switch
+                        active={true}
+                        disabled
+                        label="Disabled option"
+                    />
+                </View>
             </Section>
 
             <CodeSnippetDialog />
