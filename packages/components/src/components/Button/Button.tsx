@@ -1,4 +1,4 @@
-import React, { FC, Ref, useContext } from "react";
+import React, { FC, useContext } from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
@@ -8,28 +8,13 @@ import { Typography } from "../Typography";
 import { ButtonBackground } from "./ButtonBackground";
 import { ButtonGroupContext } from "./ButtonGroup";
 import { ToggleButtonContext } from "./ToggleButton";
-import { ButtonTone, ButtonVariant } from "./types";
+import { BaseButtonProps, ButtonTone, ButtonVariant } from "./types";
 
-export type ButtonProps = {
+export type ButtonProps = BaseButtonProps & {
     /**
      * Label text of the button.
      */
     label: string;
-    /**
-     * Color tone of the button.
-     * @default "accent"
-     */
-    tone?: "accent" | "neutral" | "danger";
-    /**
-     * Size of the button.
-     * @default "default"
-     */
-    size?: "small" | "default" | "large";
-    /**
-     * Button variant.
-     * @default "primary"
-     */
-    variant?: "primary" | "secondary" | "ghost";
     /**
      * Name of the leading icon to display alongside the button label.
      */
@@ -38,15 +23,6 @@ export type ButtonProps = {
      * Name of the trailing icon to display alongside the button label.
      */
     trailingIcon?: IconName;
-    /**
-     * Boolean value indicating whether or not the button is in its disabled state.
-     */
-    disabled?: boolean;
-    /**
-     * Callback method invoked when the user presses the button.
-     */
-    onPress?: () => void;
-    ref?: Ref<View>;
 };
 
 export const Button: FC<ButtonProps> = ({
