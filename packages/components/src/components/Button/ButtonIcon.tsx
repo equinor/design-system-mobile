@@ -41,8 +41,8 @@ const tokenStyles = EDSStyleSheet.create(
             icon: {
                 fontSize: token.newSpacing.sizing.icon[sizeKey],
                 color,
-                padding: 2,
-                margin: -4,
+                padding: 2, // TODO: compensates for icon glyph whitespace — revisit when Typography is fixed
+                margin: -4, // offsets the padding above to keep surrounding layout tight
             },
         };
     }

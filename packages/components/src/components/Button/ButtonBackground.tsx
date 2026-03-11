@@ -32,7 +32,7 @@ export const ButtonBackground: FC<PropsWithChildren<ButtonBackgroundProps>> = ({
             return;
         }
         animationValue.value = withTiming(0, { duration: 150 });
-    }, [isPressed]);
+    }, [isPressed, animationValue]);
 
     const token = useToken();
 
@@ -45,7 +45,17 @@ export const ButtonBackground: FC<PropsWithChildren<ButtonBackgroundProps>> = ({
             defaultColor = token.newColors.bg.disabled;
         }
 
+        if (__DEV__ && (variant === "ghost" || variant === "secondary")) {
+            console.assert(
+                /^#[0-9a-fA-F]{6}$/.test(defaultColor),
+                `ButtonBackground: expected a 6-digit hex color for ghost/secondary transparent animation, got "${defaultColor}". The "00" alpha suffix trick will produce an invalid color.`
+            );
+        }
+
         return {
+            // Append "00" alpha to create a transparent version of the pressed color.
+            // This allows interpolateColor to animate in LAB space without hue shift on press.
+            // NOTE: Only works when the token returns a 6-digit hex string (e.g. #rrggbb).
             default: `${defaultColor}${variant === "ghost" || variant === "secondary" ? "00" : ""}`,
             pressed: pressedColor,
         };
