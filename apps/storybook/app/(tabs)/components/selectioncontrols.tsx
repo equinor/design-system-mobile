@@ -1,7 +1,13 @@
 import { radioButtons, switchControl } from "@/codeSnippets/selectioncontrols";
 import { Section } from "@/components/Section";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
-import { Radio, Spacer, Switch, Typography } from "@equinor/eds-mobile-components";
+import {
+    Radio,
+    Spacer,
+    Switch,
+    Typography,
+    useToken,
+} from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -10,6 +16,7 @@ export default function SelectionControlsScreen() {
     const [switchActive, setSwitchActive] = useState(false);
     const [switchWithLabel, setSwitchWithLabel] = useState(true);
     const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
+    const { newSpacing } = useToken();
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -66,7 +73,7 @@ export default function SelectionControlsScreen() {
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: 32,
+                        gap: newSpacing.spacing.horizontal.xl,
                         alignItems: "center",
                     }}
                 >
@@ -80,7 +87,7 @@ export default function SelectionControlsScreen() {
                 <Typography variant="p">
                     Switch with an inline label
                 </Typography>
-                <View style={{ gap: 8 }}>
+                <View>
                     <Switch
                         active={switchWithLabel}
                         onChange={setSwitchWithLabel}
