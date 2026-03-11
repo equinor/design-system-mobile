@@ -6,8 +6,6 @@
         /* Visit https://aka.ms/tsconfig to read more about this file */
 
         "rootDir": "./src",
-        "incremental": true,
-        "tsBuildInfoFile": "./.tsbuildinfo",
         "allowSyntheticDefaultImports": true,
         "jsx": "react-native",
         "noImplicitOverride": true,
