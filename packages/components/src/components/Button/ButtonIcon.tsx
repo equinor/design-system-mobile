@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
 import { Icon, IconName } from "../Icon";
@@ -34,10 +34,13 @@ type ButtonIconStyleProps = {
 const tokenStyles = EDSStyleSheet.create(
     (token, { disabled, size, variant, tone }: ButtonIconStyleProps) => {
         const sizeKey = SIZE_MAP[size];
+        const color = disabled
+            ? token.newColors.text.disabled
+            : token.newColors.text[tone][TEXT_VARIANT_MAP[variant]];
         return {
             icon: {
                 fontSize: token.newSpacing.sizing.icon[sizeKey],
-                color: token.newColors.text[tone][TEXT_VARIANT_MAP[variant]],
+                color,
                 padding: 2,
                 margin: -4,
             },

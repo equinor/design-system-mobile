@@ -19,10 +19,6 @@ export type BaseButtonProps = {
      */
     variant?: ButtonVariant;
     /**
-     * Boolean value indicating whether or not the button should be in its busy state.
-     */
-    busy?: boolean;
-    /**
      * Ref to the button component.
      */
     ref?: Ref<View>;

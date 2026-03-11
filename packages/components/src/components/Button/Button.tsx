@@ -2,9 +2,10 @@ import React, { FC } from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { Icon, IconName } from "../Icon";
+import { IconName } from "../Icon";
 import { Typography } from "../Typography";
 import { ButtonBackground } from "./ButtonBackground";
+import { ButtonIcon } from "./ButtonIcon";
 import {
     BaseButtonProps,
     ButtonSize,
@@ -39,7 +40,12 @@ export const Button: FC<ButtonProps> = ({
     onPress = () => null,
     ref,
 }) => {
-    const styles = useStyles(tokenStyles, { variant, tone, size });
+    const styles = useStyles(tokenStyles, {
+        variant,
+        tone,
+        size,
+        disabled: disabled ?? false,
+    });
 
     return (
         <Pressable
@@ -57,7 +63,13 @@ export const Button: FC<ButtonProps> = ({
                 >
                     <View style={styles.squareButtonContainer}>
                         {leadingIcon && (
-                            <Icon name={leadingIcon} style={styles.icon} />
+                            <ButtonIcon
+                                name={leadingIcon}
+                                tone={tone}
+                                variant={variant}
+                                size={size}
+                                disabled={disabled ?? false}
+                            />
                         )}
                         <Typography
                             group="interactive"
@@ -67,7 +79,13 @@ export const Button: FC<ButtonProps> = ({
                             {label}
                         </Typography>
                         {trailingIcon && (
-                            <Icon name={trailingIcon} style={styles.icon} />
+                            <ButtonIcon
+                                name={trailingIcon}
+                                tone={tone}
+                                variant={variant}
+                                size={size}
+                                disabled={disabled ?? false}
+                            />
                         )}
                     </View>
                 </ButtonBackground>
@@ -80,12 +98,17 @@ type ByttonStylesProps = {
     tone: ButtonTone;
     variant: ButtonVariant;
     size: ButtonSize;
+    disabled: boolean;
 };
 
 const tokenStyles = EDSStyleSheet.create(
-    (token, { variant, tone, size }: ByttonStylesProps) => {
+    (token, { variant, tone, size, disabled }: ByttonStylesProps) => {
         const borderColor = token.newColors.border[tone].strong;
         const sizeKey = SIZE_MAP[size];
+
+        const textColor = disabled
+            ? token.newColors.text.disabled
+            : token.newColors.text[tone][TEXT_VARIANT_MAP[variant]];
 
         return {
             container: {
@@ -109,7 +132,7 @@ const tokenStyles = EDSStyleSheet.create(
                 gap: token.newSpacing.spacing.icon[sizeKey].gapHorizontal,
             },
             text: {
-                color: token.newColors.text[tone][TEXT_VARIANT_MAP[variant]],
+                color: textColor,
             },
         };
     }

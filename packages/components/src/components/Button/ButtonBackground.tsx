@@ -7,16 +7,8 @@ import Animated, {
     withTiming,
 } from "react-native-reanimated";
 import { useToken } from "../../hooks/useToken";
-import { ColorToken } from "../../styling/tokens/colorToken";
 import { ButtonVariant } from "./types";
-
-type FillEmphasis = keyof ColorToken["bg"][keyof ColorToken["bg"]];
-
-const VARIANT_MAP = {
-    ghost: "fillMuted",
-    secondary: "fillMuted",
-    primary: "fillEmphasis",
-} as const satisfies Record<ButtonVariant, FillEmphasis>;
+import { VARIANT_MAP } from "./utils";
 
 type ButtonBackgroundProps = {
     isPressed: boolean;
@@ -39,7 +31,7 @@ export const ButtonBackground: FC<PropsWithChildren<ButtonBackgroundProps>> = ({
             animationValue.value = 1;
             return;
         }
-        animationValue.value = withTiming(0, { duration: 100 });
+        animationValue.value = withTiming(0, { duration: 150 });
     }, [isPressed]);
 
     const token = useToken();
@@ -50,7 +42,7 @@ export const ButtonBackground: FC<PropsWithChildren<ButtonBackgroundProps>> = ({
             .default as string;
         const pressedColor = token.newColors.bg[tone][mappedVariant].active;
         if (disabled) {
-            defaultColor = token.newColors.bg.neutral.fillMuted.active;
+            defaultColor = token.newColors.bg.disabled;
         }
 
         return {

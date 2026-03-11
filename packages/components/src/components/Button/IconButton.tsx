@@ -1,12 +1,10 @@
 import React, { FC } from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
-import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
-import { ColorToken } from "../../styling/tokens/colorToken";
-import { Icon, IconName } from "../Icon";
-import { CircularProgress } from "../ProgressIndicator";
+import { IconName } from "../Icon";
 import { ButtonBackground } from "./ButtonBackground";
+import { ButtonIcon } from "./ButtonIcon";
 import {
     BaseButtonProps,
     ButtonSize,
@@ -26,32 +24,17 @@ export type IconButtonProps = BaseButtonProps & {
     round?: boolean;
 };
 
-type TextEmphasis = keyof ColorToken["text"][keyof ColorToken["text"]];
-const TEXT_VARIANT_MAP = {
-    primary: "strongOnEmphasis",
-    secondary: "subtle",
-    ghost: "subtle",
-} as const satisfies Record<ButtonVariant, TextEmphasis>;
-
 export const IconButton: FC<IconButtonProps> = ({
     name,
     tone = "accent",
     size = "default",
     variant = "primary",
     round = false,
-    busy = false,
     disabled = false,
     onPress = () => null,
     ref,
 }) => {
-    const token = useToken();
     const styles = useStyles(tokenStyles, { variant, tone, size, round });
-
-    const iconSize = {
-        small: token.newSpacing.sizing.icon.sm,
-        default: token.newSpacing.sizing.icon.md,
-        large: token.newSpacing.sizing.icon.lg,
-    }[size];
 
     return (
         <Pressable
@@ -68,22 +51,13 @@ export const IconButton: FC<IconButtonProps> = ({
                     disabled={disabled ?? false}
                 >
                     <View style={styles.iconContainer}>
-                        {busy ? (
-                            <CircularProgress
-                                color={
-                                    variant === "primary" && !disabled
-                                        ? "neutral"
-                                        : "primary"
-                                }
-                                size={iconSize}
-                            />
-                        ) : (
-                            <Icon
-                                name={name}
-                                size={iconSize}
-                                style={styles.icon}
-                            />
-                        )}
+                        <ButtonIcon
+                            name={name}
+                            tone={tone}
+                            variant={variant}
+                            size={size}
+                            disabled={disabled ?? false}
+                        />
                     </View>
                 </ButtonBackground>
             )}
@@ -127,9 +101,6 @@ const tokenStyles = EDSStyleSheet.create(
                 paddingHorizontal: inset.horizontal,
                 justifyContent: "center",
                 alignItems: "center",
-            },
-            icon: {
-                color: token.newColors.text[tone][TEXT_VARIANT_MAP[variant]],
             },
         };
     }

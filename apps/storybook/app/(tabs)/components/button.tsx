@@ -23,7 +23,7 @@ export default function ButtonsScreen() {
                     Buttons come in three tones. These can be used to indicate
                     importance.
                 </Typography>
-                <View style={styles.buttonGroup}>
+                <View style={styles.buttonRow}>
                     <Button label="Accent" tone="accent" />
                     <Button label="Neutral" tone="neutral" />
                     <Button label="Danger" tone="danger" />
@@ -37,7 +37,7 @@ export default function ButtonsScreen() {
                 <Typography>
                     Buttons come in three different variants:
                 </Typography>
-                <View style={styles.buttonGroup}>
+                <View style={styles.buttonRow}>
                     <Button label="Primary" variant="primary" />
                     <Button label="Secondary" variant="secondary" />
                     <Button label="Ghost" variant="ghost" />
@@ -52,19 +52,19 @@ export default function ButtonsScreen() {
                     Combining tones and variants creates a range of button
                     styles to choose from.
                 </Typography>
-                <View style={styles.buttonGroup}>
+                <View style={styles.buttonRow}>
                     <Button label="Label" tone="accent" variant="primary" />
                     <Button label="Label" tone="accent" variant="secondary" />
                     <Button label="Label" tone="accent" variant="ghost" />
                 </View>
 
-                <View style={styles.buttonGroup}>
+                <View style={styles.buttonRow}>
                     <Button label="Label" tone="neutral" variant="primary" />
                     <Button label="Label" tone="neutral" variant="secondary" />
                     <Button label="Label" tone="neutral" variant="ghost" />
                 </View>
 
-                <View style={styles.buttonGroup}>
+                <View style={styles.buttonRow}>
                     <Button label="Label" tone="danger" variant="primary" />
                     <Button label="Label" tone="danger" variant="secondary" />
                     <Button label="Label" tone="danger" variant="ghost" />
@@ -78,7 +78,7 @@ export default function ButtonsScreen() {
                     You can add icons to buttons to provide additional context
                     and visual interest.
                 </Typography>
-                <View style={styles.row}>
+                <View style={styles.buttonRow}>
                     <Button label="Leading" leadingIcon="home-outline" />
                     <Button label="Trailing" trailingIcon="send-outline" />
                     <Button
@@ -98,14 +98,18 @@ export default function ButtonsScreen() {
                     space is limited, or where the action can be easily
                     represented by an icon.
                 </Typography>
-                <View style={styles.row}>
+                <Typography>
+                    They come out the box with rounded corners...
+                </Typography>
+                <View style={styles.buttonRow}>
                     <Button.Icon name="heart" />
                     <Button.Icon name="star" variant="secondary" />
                     <Button.Icon name="close" variant="ghost" />
-                    <Button.Icon name="check" disabled />
                 </View>
-
-                <View style={styles.row}>
+                <Typography>
+                    ...but can also be configured to be circular
+                </Typography>
+                <View style={styles.buttonRow}>
                     <Button.Icon name="heart" round />
                     <Button.Icon name="star" round variant="secondary" />
                     <Button.Icon name="close" round variant="ghost" />
@@ -115,12 +119,11 @@ export default function ButtonsScreen() {
             <Spacer />
 
             <Section title="States">
-                <Typography>Buttons can be disabled or busy</Typography>
-                <View style={styles.row}>
+                <Typography>Buttons can be disabled</Typography>
+                <View style={styles.buttonRow}>
                     <Button label="Disabled" disabled />
-                    <Button label="Busy" busy />
                     <Button.Icon name="cancel" disabled />
-                    <Button.Icon name="shuffle" busy />
+                    <Button.Icon name="cancel" round disabled />
                 </View>
             </Section>
 
@@ -132,14 +135,9 @@ export default function ButtonsScreen() {
 }
 
 const styles = StyleSheet.create({
-    buttonGroup: {
+    buttonRow: {
         flexDirection: "row",
         justifyContent: "space-evenly",
         alignItems: "center",
-    },
-    row: {
-        flexDirection: "row",
-        gap: 12,
-        flexWrap: "wrap",
     },
 });
