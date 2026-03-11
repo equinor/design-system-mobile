@@ -94,7 +94,7 @@ export const Button: FC<ButtonProps> = ({
     );
 };
 
-type ByttonStylesProps = {
+type ButtonStylesProps = {
     tone: ButtonTone;
     variant: ButtonVariant;
     size: ButtonSize;
@@ -102,7 +102,7 @@ type ByttonStylesProps = {
 };
 
 const tokenStyles = EDSStyleSheet.create(
-    (token, { variant, tone, size, disabled }: ByttonStylesProps) => {
+    (token, { variant, tone, size, disabled }: ButtonStylesProps) => {
         const borderColor = token.newColors.border[tone].strong;
         const sizeKey = SIZE_MAP[size];
 
