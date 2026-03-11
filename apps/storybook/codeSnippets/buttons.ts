@@ -1,86 +1,25 @@
-export const statesButtons = `// Different colors/states
-<Button
-  title="Primary Button"
-  color="primary"
-  onPress={() => alert("Primary pressed")}
-/>
+export const toneButtons = `<Button label="Accent" tone="accent" onPress={() => null} />
+<Button label="Neutral" tone="neutral" onPress={() => null} />
+<Button label="Danger" tone="danger" onPress={() => null} />`;
 
-<Button
-  title="Secondary Button"
-  color="secondary"
-  onPress={() => alert("Secondary pressed")}
-/>
-
-<Button
-  title="Danger Button"
-  color="danger"
-  onPress={() => alert("Danger pressed")}
-/>
-
-<Button
-  title="Disabled Button"
-  variant="contained"
-  disabled
-/>`;
-export const variantButtons = `
-// Different variants
-<Button
-  title="Contained Button"
-  variant="contained"
-  onPress={() => alert("Contained pressed")}
-/>
-
-<Button
-  title="Outlined Button"
-  color="secondary"
-  variant="outlined"
-  onPress={() => alert("Outlined pressed")}
-/>
-
-<Button
-  title="Ghost Button"
-  variant="ghost"
-  onPress={() => alert("Ghost pressed")}
-/>`;
+export const variantButtons = `<Button label="Primary" variant="primary" onPress={() => null} />
+<Button label="Secondary" variant="secondary" onPress={() => null} />
+<Button label="Ghost" variant="ghost" onPress={() => null} />`;
 
 export const iconButtons = `// Icon positions
-<Button
-  title="Leading"
-  iconPosition="leading"
-  variant="outlined"
-  iconName="home-outline"
-/>
+<Button label="Leading" leadingIcon="home-outline" />
+<Button label="Trailing" trailingIcon="send-outline" />
 
-<Button
-  title="Trailing"
-  iconPosition="trailing"
-  iconName="send-outline"
-  variant="outlined"
-/>
+// Icon-only
+<Button.Icon name="heart" onPress={() => alert("Heart pressed")} />
+<Button.Icon name="star" variant="secondary" onPress={() => alert("Star pressed")} />
+<Button.Icon name="close" variant="ghost" onPress={() => alert("Close pressed")} />
+<Button.Icon name="check" disabled />
 
-<Button.Icon
-  name="heart"
-  onPress={() => alert("Heart pressed")}
-/>
-
-<Button.Icon
-  name="star"
-  variant="outlined"
-  onPress={() => alert("Star pressed")}
-/>
-
-<Button.Icon
-  name="close"
-  variant="ghost"
-  onPress={() => alert("Close pressed")}
-/>
-
-<Button.Icon
-  name="check"
-  disabled
-/>`;
+// Round
+<Button.Icon name="heart" round onPress={() => alert("Heart pressed")} />`;
 
 export const toggleButtons = `<Button.Toggle activeIndex={togglePressed ? 1 : 0}>
-  <Button title="Option 1" onPress={() => setTogglePressed(false)} />
-  <Button title="Option 2" onPress={() => setTogglePressed(true)} />
+  <Button label="Option 1" onPress={() => setTogglePressed(false)} />
+  <Button label="Option 2" onPress={() => setTogglePressed(true)} />
 </Button.Toggle>`;

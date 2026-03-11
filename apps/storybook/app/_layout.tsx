@@ -69,7 +69,7 @@ export default function RootLayout() {
 
     return (
         <EDSProvider
-            density="comfortable"
+            density="spacious"
             colorScheme={userScheme ?? systemScheme ?? "light"}
         >
             <AppContent />

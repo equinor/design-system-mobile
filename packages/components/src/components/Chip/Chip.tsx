@@ -2,7 +2,6 @@ import React from "react";
 import { View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { Button } from "../Button";
 import { Icon, IconName } from "../Icon";
 import { PressableHighlight } from "../PressableHighlight";
 import { Typography } from "../Typography";
@@ -73,14 +72,14 @@ export const Chip = ({
                         <View>
                             <View style={styles.dummyElement} />
                             <View style={styles.floatingCloseButton}>
-                                <Button.Icon
+                                {/* <Button.Icon
                                     name="close"
                                     iconSize={ICON_SIZE}
                                     variant="ghost"
                                     color={iconColor}
                                     disabled={disabled}
                                     onPress={onDelete}
-                                />
+                                /> */}
                             </View>
                         </View>
                     )}

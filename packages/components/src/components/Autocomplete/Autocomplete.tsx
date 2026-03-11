@@ -122,7 +122,6 @@ export const Autocomplete = <T,>({
                             <IconButton
                                 name="close"
                                 variant="ghost"
-                                iconSize={18}
                                 onPress={handleClearText}
                                 style={styles.closeIcon}
                             />
@@ -130,7 +129,6 @@ export const Autocomplete = <T,>({
                         <IconButton
                             name={isOptionsVisible ? "menu-up" : "menu-down"}
                             variant="ghost"
-                            iconSize={18}
                             onPress={handleMenuOpen}
                             style={styles.menuIcon}
                         />

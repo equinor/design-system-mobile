@@ -173,7 +173,6 @@ export const Search = ({
                                 <Button.Icon
                                     id="search-clear-text-button"
                                     name="close"
-                                    color="primary"
                                     variant="ghost"
                                     onPress={handleClearText}
                                 />

@@ -1,14 +1,17 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { ColorToken } from "../../styling/tokens/colorToken";
 import { Icon, IconName } from "../Icon";
 import { Typography } from "../Typography";
 import { ButtonBackground } from "./ButtonBackground";
-import { ButtonGroupContext } from "./ButtonGroup";
-import { ToggleButtonContext } from "./ToggleButton";
-import { BaseButtonProps, ButtonTone, ButtonVariant } from "./types";
+import {
+    BaseButtonProps,
+    ButtonSize,
+    ButtonTone,
+    ButtonVariant,
+} from "./types";
+import { SIZE_MAP, TEXT_VARIANT_MAP } from "./utils";
 
 export type ButtonProps = BaseButtonProps & {
     /**
@@ -36,10 +39,7 @@ export const Button: FC<ButtonProps> = ({
     onPress = () => null,
     ref,
 }) => {
-    const toggleData = useContext(ToggleButtonContext);
-    const isToggleButton = !!toggleData;
-    const groupData = useContext(ButtonGroupContext);
-    const styles = useStyles(tokenStyles, { variant, tone });
+    const styles = useStyles(tokenStyles, { variant, tone, size });
 
     return (
         <Pressable
@@ -53,13 +53,11 @@ export const Button: FC<ButtonProps> = ({
                     isPressed={pressedEvent.pressed}
                     tone={tone}
                     variant={variant}
-                    disabled={disabled}
+                    disabled={disabled ?? false}
                 >
                     <View style={styles.squareButtonContainer}>
                         {leadingIcon && (
-                            <View>
-                                <Icon name={leadingIcon} style={styles.text} />
-                            </View>
+                            <Icon name={leadingIcon} style={styles.icon} />
                         )}
                         <Typography
                             group="interactive"
@@ -69,9 +67,7 @@ export const Button: FC<ButtonProps> = ({
                             {label}
                         </Typography>
                         {trailingIcon && (
-                            <View>
-                                <Icon name={trailingIcon} style={styles.text} />
-                            </View>
+                            <Icon name={trailingIcon} style={styles.icon} />
                         )}
                     </View>
                 </ButtonBackground>
@@ -83,18 +79,13 @@ export const Button: FC<ButtonProps> = ({
 type ByttonStylesProps = {
     tone: ButtonTone;
     variant: ButtonVariant;
+    size: ButtonSize;
 };
 
-type TextEmphasis = keyof ColorToken["text"][keyof ColorToken["text"]];
-const TEXT_VARIANT_MAP = {
-    primary: "strongOnEmphasis",
-    secondary: "subtle",
-    ghost: "subtle",
-} as const satisfies Record<ButtonVariant, TextEmphasis>;
-
 const tokenStyles = EDSStyleSheet.create(
-    (token, { variant, tone }: ByttonStylesProps) => {
+    (token, { variant, tone, size }: ByttonStylesProps) => {
         const borderColor = token.newColors.border[tone].strong;
+        const sizeKey = SIZE_MAP[size];
 
         return {
             container: {
@@ -108,12 +99,14 @@ const tokenStyles = EDSStyleSheet.create(
             },
             squareButtonContainer: {
                 borderRadius: token.newSpacing.spacing.borderRadius.rounded,
-                paddingVertical: token.newSpacing.selectableSpace.md.vertical,
+                paddingVertical:
+                    token.newSpacing.spacing.inset[sizeKey].verticalSquished,
                 paddingHorizontal:
-                    token.newSpacing.selectableSpace.md.horizontal,
+                    token.newSpacing.spacing.inset[sizeKey].horizontal,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
+                gap: token.newSpacing.spacing.icon[sizeKey].gapHorizontal,
             },
             text: {
                 color: token.newColors.text[tone][TEXT_VARIANT_MAP[variant]],
