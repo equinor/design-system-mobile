@@ -1,7 +1,8 @@
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
+import { Icon } from "../Icon/Icon";
 
 export type RadioProps = {
     /**
@@ -17,9 +18,14 @@ export type RadioProps = {
      */
     checked?: boolean;
     /**
-     * Optional label displayed next to the radio button.
+     * Label displayed next to the radio button. When omitted, an
+     * `accessibilityLabel` must be provided for screen readers.
      */
     label?: string;
+    /**
+     * Accessible name for screen readers. Required when `label` is not provided.
+     */
+    accessibilityLabel?: string;
 };
 
 export const Radio = ({
@@ -27,8 +33,9 @@ export const Radio = ({
     checked = false,
     disabled = false,
     label,
+    accessibilityLabel,
 }: RadioProps) => {
-    const styles = useStyles(themeStyles, { checked, disabled, hasLabel: !!label });
+    const styles = useStyles(themeStyles, { checked, disabled });
 
     const handlePress = () => {
         if (!disabled) {
@@ -46,13 +53,14 @@ export const Radio = ({
             ]}
             accessibilityRole="radio"
             accessibilityState={{ checked, disabled }}
+            accessibilityLabel={accessibilityLabel ?? label}
         >
-            <View style={styles.radioOuter}>
-                {checked && <View style={styles.radioInner} />}
-            </View>
-            {label !== undefined && (
-                <Text style={styles.label}>{label}</Text>
-            )}
+            <Icon
+                name={checked ? "radiobox-marked" : "radiobox-blank"}
+                size={styles.icon.size}
+                color={styles.icon.color}
+            />
+            {label != null && <Text style={styles.label}>{label}</Text>}
         </Pressable>
     );
 };
@@ -60,13 +68,11 @@ export const Radio = ({
 type RadioStyleProps = {
     checked: boolean;
     disabled: boolean;
-    hasLabel: boolean;
 };
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: RadioStyleProps) => {
         const radioSize = theme.newSpacing.sizing.selectable.sm;
-        const innerDotSize = radioSize / 2;
 
         return {
             container: {
@@ -77,44 +83,26 @@ const themeStyles = EDSStyleSheet.create(
                     theme.newSpacing.spacingProportions.squished.lg.horizontal,
                 paddingVertical:
                     theme.newSpacing.spacingProportions.squished.lg.vertical,
-                borderRadius: theme.geometry.border.elementBorderRadius,
+                borderRadius: theme.newSpacing.spacing.borderRadius.rounded,
             },
             containerPressed: {
-                backgroundColor: props.hasLabel
-                    ? theme.newColors.bg.neutral.fillMuted.hover
-                    : "transparent",
+                backgroundColor: theme.newColors.bg.accent.fillMuted.hover,
             },
-            radioOuter: {
-                width: radioSize,
-                height: radioSize,
-                borderRadius: radioSize / 2,
-                borderWidth: 2,
-                borderColor: props.disabled
-                    ? theme.colors.text.disabled
-                    : props.checked
-                      ? theme.newColors.bg.accent.fillEmphasis.default
-                      : theme.newColors.bg.neutral.fillEmphasis.default,
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "transparent",
-            },
-            radioInner: {
-                width: innerDotSize,
-                height: innerDotSize,
-                borderRadius: innerDotSize / 2,
-                backgroundColor: props.disabled
-                    ? theme.colors.text.disabled
+            icon: {
+                size: radioSize,
+                color: props.disabled
+                    ? theme.newColors.text.disabled
                     : theme.newColors.bg.accent.fillEmphasis.default,
             },
-        label: {
-            fontSize: 14,
-            fontWeight: "500",
-            lineHeight: 20,
-            letterSpacing: 0,
-            color: props.disabled
-                ? theme.colors.text.disabled
-                : theme.newColors.text.neutral.strong,
-        },
+            label: {
+                fontSize: 14,
+                fontWeight: "500",
+                lineHeight: 20,
+                letterSpacing: 0,
+                color: props.disabled
+                    ? theme.newColors.text.disabled
+                    : theme.newColors.text.neutral.strong,
+            },
     };
     }
 );

@@ -2,23 +2,36 @@
 
 Migrate a component to match the EDS Figma design using new tokens. Follow each step in order.
 
-## Step 1: Figma Design Lookup
+## Step 1: Design & Implementation Lookup
 
+### 1a: Figma Design
 1. Ask the user to select the component in Figma (or provide a node ID)
 2. Use `mcp__figma__get_design_context` to get the component structure, props, and generated code
 3. Use `mcp__figma__get_variable_defs` to get the design token variables used
 4. Use `mcp__figma__get_screenshot` to get a visual reference
 5. Use `mcp__figma__get_metadata` to understand the variant structure (states, sizes, etc.)
 
-## Step 2: Analyze Figma Design
+### 1b: EDS Web Storybook (Dev Implementation)
+1. Use `WebFetch` to check `https://storybook.eds.equinor.com` — navigate to the **EDS 2.0 beta** section for the component
+2. Look for the full API surface: props, subcomponents (e.g. RadioGroup, CheckboxGroup), compound patterns
+3. Figma only shows atomic variants (e.g. individual Radio states) — the web storybook reveals grouping components, default behaviors, and the intended developer API
+4. Our mobile components should mirror the web implementation's API where it makes sense for React Native
 
-Extract from the Figma data:
+## Step 2: Analyze Design & API
+
+Extract from **Figma**:
 - **Dimensions**: width, height, padding, gap, border radius for all elements
 - **Colors**: map each Figma CSS variable (e.g. `--eds-color-bg-fill-muted-default`) to a `theme.newColors.*` token path
 - **Spacing**: map each Figma spacing variable (e.g. `--eds-selectable-space-horizontal`) to a `theme.newSpacing.*` token path
 - **Typography**: font size, weight, line height, letter spacing (hardcode these until typography tokens are available)
 - **States**: default, hover/pressed, disabled, focus — note visual differences between each
 - **Variants**: what props control which visual changes
+
+Extract from **EDS Web Storybook**:
+- **Component API**: props, their types, and default values
+- **Subcomponents**: grouping wrappers (e.g. RadioGroup, CheckboxGroup) that Figma doesn't show
+- **Behavior**: selection logic, keyboard/accessibility patterns, controlled vs uncontrolled usage
+- **Compound patterns**: how atomic components compose (e.g. Radio inside RadioGroup)
 
 Present a summary table to the user before proceeding.
 

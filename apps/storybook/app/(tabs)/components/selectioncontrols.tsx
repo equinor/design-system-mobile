@@ -1,23 +1,22 @@
-import { radioButtons, switchControl } from "@/codeSnippets/selectioncontrols";
 import { Section } from "@/components/Section";
-import { useCodeSnippet } from "@/hooks/useCodeSnippet";
 import {
     Radio,
     Spacer,
     Switch,
     Typography,
+    useToken,
 } from "@equinor/eds-mobile-components";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
 export default function SelectionControlsScreen() {
+    const token = useToken();
     const [selectedRadio, setSelectedRadio] = useState<number>(0);
     const [selectedRadioNoLabel, setSelectedRadioNoLabel] = useState<number>(0);
     const [switchActive, setSwitchActive] = useState(false);
     const [switchSecondaryActive, setSwitchSecondaryActive] = useState(true);
     const [switchDangerActive, setSwitchDangerActive] = useState(true);
     const [smallSwitchActive, setSmallSwitchActive] = useState(true);
-    const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -27,10 +26,13 @@ export default function SelectionControlsScreen() {
                     option from a group, or toggle a setting on and off.
                 </Typography>
             </Section>
-            <Spacer amount="medium" />
-            <Section title="Radio Buttons">
-                <Typography variant="h6">With labels</Typography>
 
+            <Spacer amount="medium" />
+            <Section>
+                <Typography variant="h4">Radio Buttons</Typography>
+            </Section>
+            <Spacer amount="medium" />
+            <Section title="With labels">
                 <View>
                     <Radio
                         checked={selectedRadio === 0}
@@ -48,29 +50,29 @@ export default function SelectionControlsScreen() {
                         label="Option C"
                     />
                 </View>
-
-                <Typography variant="h6">Without labels</Typography>
+            </Section>
+            <Spacer amount="medium" />
+            <Section title="Without visible label">
                 <View
                     style={{
                         flexDirection: "row",
-                        alignItems: "center",
+                        gap: token.newSpacing.spacing.horizontal.md,
                     }}
                 >
                     <Radio
                         checked={selectedRadioNoLabel === 0}
                         onPress={() => setSelectedRadioNoLabel(0)}
+                        accessibilityLabel="Option D"
                     />
                     <Radio
                         checked={selectedRadioNoLabel === 1}
                         onPress={() => setSelectedRadioNoLabel(1)}
-                    />
-                    <Radio
-                        checked={selectedRadioNoLabel === 2}
-                        onPress={() => setSelectedRadioNoLabel(2)}
+                        accessibilityLabel="Option E"
                     />
                 </View>
-
-                <Typography variant="h6">Disabled</Typography>
+            </Section>
+            <Spacer amount="medium" />
+            <Section title="Disabled">
                 <View>
                     <Radio
                         checked={false}
@@ -79,18 +81,18 @@ export default function SelectionControlsScreen() {
                     />
                     <Radio checked={true} disabled label="Disabled checked" />
                 </View>
-
-                <ViewCode title="Radio Buttons" code={radioButtons} />
             </Section>
 
-            <Section title="Switch">
-                <Typography variant="p">
-                    Primary and Secondary colors
-                </Typography>
+            <Spacer amount="medium" />
+            <Section>
+                <Typography variant="h4">Switch</Typography>
+            </Section>
+
+            <Section title="Without labels">
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: 48,
+                        gap: token.newSpacing.spacing.horizontal.lg,
                         alignItems: "center",
                     }}
                 >
@@ -106,11 +108,13 @@ export default function SelectionControlsScreen() {
                         color="secondary"
                     />
                 </View>
-                <Typography>Danger and Disabled</Typography>
+            </Section>
+
+            <Section title="Danger and Disabled">
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: 48,
+                        gap: token.newSpacing.spacing.horizontal.lg,
                         alignItems: "center",
                     }}
                 >
@@ -125,13 +129,10 @@ export default function SelectionControlsScreen() {
             </Section>
 
             <Section title="Small Switch">
-                <Typography variant="p">
-                    Primary and Secondary colors
-                </Typography>
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: 16,
+                        gap: token.newSpacing.spacing.horizontal.md,
                         alignItems: "center",
                     }}
                 >
@@ -142,10 +143,7 @@ export default function SelectionControlsScreen() {
 
                     <Switch.Small active={true} disabled />
                 </View>
-                <ViewCode title="Switch Control" code={switchControl} />
             </Section>
-
-            <CodeSnippetDialog />
         </ScrollView>
     );
 }
