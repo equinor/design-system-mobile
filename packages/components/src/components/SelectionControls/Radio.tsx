@@ -35,7 +35,8 @@ export const Radio = ({
     label,
     accessibilityLabel,
 }: RadioProps) => {
-    const styles = useStyles(themeStyles, { checked, disabled });
+    const hasLabel = label != null;
+    const styles = useStyles(themeStyles, { checked, disabled, hasLabel });
 
     const handlePress = () => {
         if (!disabled) {
@@ -68,22 +69,36 @@ export const Radio = ({
 type RadioStyleProps = {
     checked: boolean;
     disabled: boolean;
+    hasLabel: boolean;
 };
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: RadioStyleProps) => {
         const radioSize = theme.newSpacing.sizing.selectable.sm;
+        const touchTargetSize = theme.newSpacing.sizing.selectable.lg;
 
         return {
             container: {
                 flexDirection: "row",
                 alignItems: "center",
                 gap: theme.newSpacing.spacing.icon.lg.gapHorizontal,
-                paddingHorizontal:
-                    theme.newSpacing.spacingProportions.squished.lg.horizontal,
-                paddingVertical:
-                    theme.newSpacing.spacingProportions.squished.lg.vertical,
-                borderRadius: theme.newSpacing.spacing.borderRadius.rounded,
+                ...(props.hasLabel
+                    ? {
+                          paddingHorizontal:
+                              theme.newSpacing.spacingProportions.squished.lg
+                                  .horizontal,
+                          paddingVertical:
+                              theme.newSpacing.spacingProportions.squished.lg
+                                  .vertical,
+                          borderRadius:
+                              theme.newSpacing.spacing.borderRadius.rounded,
+                      }
+                    : {
+                          width: touchTargetSize,
+                          height: touchTargetSize,
+                          justifyContent: "center",
+                          borderRadius: touchTargetSize / 2,
+                      }),
             },
             containerPressed: {
                 backgroundColor: theme.newColors.bg.accent.fillMuted.hover,
