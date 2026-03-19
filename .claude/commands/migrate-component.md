@@ -67,7 +67,7 @@ Rules:
 
 ## Step 6: Update Supporting Files
 
-1. **Documentation** (`docs/ComponentName.md`) — update props table, examples, remove stale references
+1. **Documentation** (`docs/ComponentName.md`) — **do not modify** (docs are moving to Docusaurus after all components are done)
 2. **Storybook** (`apps/storybook/app/(tabs)/components/`) — update showcase screen with new variants
 3. **Code snippets** (`apps/storybook/codeSnippets/`) — **delete** the component's code snippets (code snippets are being removed from the app)
 4. **Wrapper components** (e.g. Cell variants) — verify they still work with the redesigned component
