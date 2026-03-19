@@ -151,8 +151,8 @@ importers:
   packages/components:
     dependencies:
       '@equinor/eds-tokens':
-        specifier: 2.3.0-beta.0
-        version: 2.3.0-beta.0
+        specifier: 2.3.0-beta.1
+        version: 2.3.0-beta.1
       '@floating-ui/react-native':
         specifier: ^0.10.7
         version: 0.10.7(react-native@0.79.6(@babel/core@7.28.5)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -761,8 +761,8 @@ packages:
   '@emnapi/wasi-threads@1.1.0':
     resolution: {integrity: sha512-WI0DdZ8xFSbgMjR1sFsKABJ/C5OnRrjT06JXbZKexJGrDuPTzZdDYfFlsgcCXCyf+suG5QU2e/y1Wo2V/OapLQ==}
 
-  '@equinor/eds-tokens@2.3.0-beta.0':
-    resolution: {integrity: sha512-P/JJMaR0VXvypA8i8b7p58IUxkO6nr8qGqBu2t3TU5ISIHcXyjSaZBKDHhR+W1Pm6PWEVdec34TlHtfxU5YWSQ==}
+  '@equinor/eds-tokens@2.3.0-beta.1':
+    resolution: {integrity: sha512-3Jph81iGDpnZBBlytdja+Whbl+JB9NqKV8w51UPHi0BNucZ4VhG8i8jLzRv7I+cR+3cr0Vwjbc81B84FLSQ5Vw==}
 
   '@esbuild/aix-ppc64@0.27.0':
     resolution: {integrity: sha512-KuZrd2hRjz01y5JK9mEBSD3Vj3mbCvemhT466rSuJYeE/hjuBrHfjjcjMdTm/sz7au+++sdbJZJmuBwQLuw68A==}
@@ -5283,7 +5283,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@equinor/eds-tokens@2.3.0-beta.0': {}
+  '@equinor/eds-tokens@2.3.0-beta.1': {}
 
   '@esbuild/aix-ppc64@0.27.0':
     optional: true
