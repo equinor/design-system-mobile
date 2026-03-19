@@ -133,9 +133,6 @@ export default function InputScreen() {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        backgroundColor: "#fff",
-    },
     section: {
         padding: 16,
         gap: 16,
