@@ -1,6 +1,6 @@
 # SelectionControls
 
-The `SelectionControls` package provides interactive selection components for React Native, styled according to the EDS design system. It includes `Switch`, `Switch.Small`, and `Radio` components for toggling and single-choice selection.
+The `SelectionControls` package provides interactive selection components for React Native, styled according to the EDS design system. It includes `Switch` and `Radio` components for toggling and single-choice selection.
 
 <img src="/assets/images/SelectionControls.png" width="400" alt="SelectionControls"/>
 
@@ -16,29 +16,9 @@ import { Switch } from "@equinor/eds-mobile-components";
 <Switch
     active={isActive}
     onChange={setIsActive}
-    color="primary"
     disabled={false}
+    label="Option"
 />;
-```
-
-#### Props
-
-| Name       | Type                                 | Default     | Description                          |
-| ---------- | ------------------------------------ | ----------- | ------------------------------------ |
-| `active`   | boolean                              | `false`     | Whether the switch is on.            |
-| `onChange` | (isActive: boolean) => void          |             | Callback when the switch is toggled. |
-| `color`    | "primary" \| "secondary" \| "danger" | `"primary"` | Color theme of the switch.           |
-| `disabled` | boolean                              | `false`     | If true, disables the switch.        |
-| ...rest    | ViewProps                            |             | Additional props for the container.  |
-
-### Switch.Small
-
-A compact version of the switch, suitable for dense UIs.
-
-```tsx
-import { Switch } from "@equinor/eds-mobile-components";
-
-<Switch.Small active={isActive} onChange={setIsActive} disabled={false} />;
 ```
 
 #### Props
@@ -46,8 +26,9 @@ import { Switch } from "@equinor/eds-mobile-components";
 | Name       | Type                        | Default | Description                          |
 | ---------- | --------------------------- | ------- | ------------------------------------ |
 | `active`   | boolean                     | `false` | Whether the switch is on.            |
-| `onChange` | (isActive: boolean) => void |         | Callback when the switch is toggled. |
+| `onChange`  | (isActive: boolean) => void |         | Callback when the switch is toggled. |
 | `disabled` | boolean                     | `false` | If true, disables the switch.        |
+| `label`    | string                      |         | Optional label text next to switch.  |
 | ...rest    | ViewProps                   |         | Additional props for the container.  |
 
 ### Radio
@@ -86,7 +67,7 @@ import { Radio } from "@equinor/eds-mobile-components";
 ## Theming & Styling
 
 - Uses EDS tokens for color, spacing, and animation.
-- Integrates with Paper, Icon, and PressableHighlight components.
+- Integrates with Icon component for Radio.
 
 ## Accessibility
 
@@ -97,12 +78,10 @@ import { Radio } from "@equinor/eds-mobile-components";
 
 ```tsx
 <Switch active={enabled} onChange={setEnabled} />
-<Switch.Small active={smallEnabled} onChange={setSmallEnabled} />
 <Radio checked={selected} onPress={setSelected} />
 ```
 
 ## Related
 
-- [Paper](./Paper.md) – For the underlying surface.
-- [Icon](./Icon.md) – For icons used in radio and switch.
+- [Icon](./Icon.md) – For icons used in radio.
 - [EDS Theming](../README.md#theming)
