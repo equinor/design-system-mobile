@@ -1,6 +1,4 @@
-import { radioButtons, switchControl } from "@/codeSnippets/selectioncontrols";
 import { Section } from "@/components/Section";
-import { useCodeSnippet } from "@/hooks/useCodeSnippet";
 import {
     Radio,
     Spacer,
@@ -15,7 +13,6 @@ export default function SelectionControlsScreen() {
     const [selectedRadio, setSelectedRadio] = useState<number>(0);
     const [switchActive, setSwitchActive] = useState(false);
     const [switchWithLabel, setSwitchWithLabel] = useState(true);
-    const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
     const { newSpacing } = useToken();
 
     return (
@@ -63,7 +60,6 @@ export default function SelectionControlsScreen() {
                     <Radio checked={true} disabled color="primary" />
                 </View>
 
-                <ViewCode title="Radio Buttons" code={radioButtons} />
             </Section>
 
             <Section title="Switch">
@@ -80,7 +76,6 @@ export default function SelectionControlsScreen() {
                     <Switch active={switchActive} onChange={setSwitchActive} />
                     <Switch active={false} disabled />
                 </View>
-                <ViewCode title="Switch Control" code={switchControl} />
             </Section>
 
             <Section title="Switch with Label">
@@ -101,7 +96,6 @@ export default function SelectionControlsScreen() {
                 </View>
             </Section>
 
-            <CodeSnippetDialog />
         </ScrollView>
     );
 }

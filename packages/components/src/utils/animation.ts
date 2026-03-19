@@ -4,4 +4,4 @@
  */
 
 /** Standard animation duration in ms (matches Figma). */
-export const animationDuration = 150;
+export const ANIMATION_DURATION = 150;

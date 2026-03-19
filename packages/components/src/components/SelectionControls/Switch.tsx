@@ -1,15 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-    Animated,
+import React, { useEffect, useState } from "react";
+import { Pressable, Text, View, ViewProps } from "react-native";
+import Animated, {
+    useSharedValue,
+    useAnimatedStyle,
+    withTiming,
     Easing,
-    Pressable,
-    Text,
-    View,
-    ViewProps,
-} from "react-native";
+} from "react-native-reanimated";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { animationDuration } from "../../utils/animation";
+import { ANIMATION_DURATION } from "../../utils/animation";
 
 export type SwitchProps = {
     onChange?: (isActive: boolean) => void;
@@ -35,23 +34,19 @@ export const Switch = ({
         hasLabel: !!label,
     });
 
-    const progressValue = useRef(new Animated.Value(active ? 1 : 0)).current;
+    const knobTravel = styles.track.width - styles.knob.width;
+    const progress = useSharedValue(active ? 1 : 0);
 
     useEffect(() => {
-        Animated.timing(progressValue, {
-            toValue: active ? 1 : 0,
-            duration: animationDuration,
-            useNativeDriver: true,
+        progress.value = withTiming(active ? 1 : 0, {
+            duration: ANIMATION_DURATION,
             easing: Easing.inOut(Easing.ease),
-        }).start();
+        });
     }, [active]);
 
-    const knobTravel = styles.track.width - styles.knob.width;
-    const knobDisplacement = progressValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, knobTravel],
-        extrapolate: "clamp",
-    });
+    const knobAnimatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateX: progress.value * knobTravel }],
+    }));
 
     const handlePress = () => {
         onChange(!active);
@@ -70,12 +65,7 @@ export const Switch = ({
         >
             <View style={styles.track}>
                 <Animated.View
-                    style={[
-                        styles.knob,
-                        {
-                            transform: [{ translateX: knobDisplacement }],
-                        },
-                    ]}
+                    style={[styles.knob, knobAnimatedStyle]}
                 />
             </View>
             {label && <Text style={styles.label}>{label}</Text>}
