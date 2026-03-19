@@ -119,7 +119,6 @@ import { SwitchCell } from "@your-org/components";
 | color       | string                    |         | Color of the icon.                      |
 | isActive    | boolean                   | _(req)_ | Whether the switch is on.               |
 | onChange    | (active: boolean) => void | _(req)_ | Callback when the switch is toggled.    |
-| switchSize  | "small" \| "normal"       | "small" | Size of the switch.                     |
 | disabled    | boolean                   | false   | If true, disables the cell and switch.  |
 | ...rest     | CellProps                 |         | All other Cell props except adornments. |
 
