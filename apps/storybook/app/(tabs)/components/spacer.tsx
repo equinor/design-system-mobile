@@ -111,19 +111,19 @@ const tokenStyles = EDSStyleSheet.create((token) => ({
     },
     verticalDivider: {
         width: token.newSpacing.sizing.stroke.thin,
-        height: token.newSpacing.sizing.icon["6xl"],
+        height: token.newSpacing.sizing.icon.sixXl,
         backgroundColor: token.newColors.border.neutral.medium,
     },
     verticalPaperContainer: {
         gap: token.newSpacing.spacing.horizontal.md,
         paddingHorizontal: token.newSpacing.spacing.inset.md.horizontal,
-        paddingVertical: token.newSpacing.spacing.inset.md["vertical-squished"],
+        paddingVertical: token.newSpacing.spacing.inset.md.verticalSquished,
     },
     horizontalPaperContainer: {
         flex: 1,
         gap: token.newSpacing.spacing.vertical.md,
         paddingHorizontal: token.newSpacing.spacing.inset.md.horizontal,
-        paddingVertical: token.newSpacing.spacing.inset.md["vertical-squished"],
+        paddingVertical: token.newSpacing.spacing.inset.md.verticalSquished,
     },
     horizontalPaperRow: {
         gap: token.newSpacing.spacing.horizontal.lg,

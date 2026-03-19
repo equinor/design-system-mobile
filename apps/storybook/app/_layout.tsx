@@ -40,8 +40,7 @@ function AppContent() {
                     primary: token.newColors.bg.accent.fillEmphasis.default,
                     text: token.newColors.text.neutral.strong,
                     border: token.newColors.border.neutral.medium,
-                    notification:
-                        token.newColors.bg.accent.fillEmphasis.active,
+                    notification: token.newColors.bg.accent.fillEmphasis.active,
                     card: token.newColors.bg.neutral.surface,
                 },
             }}
@@ -70,7 +69,7 @@ export default function RootLayout() {
 
     return (
         <EDSProvider
-            density="comfortable"
+            density="spacious"
             colorScheme={userScheme ?? systemScheme ?? "light"}
         >
             <AppContent />
