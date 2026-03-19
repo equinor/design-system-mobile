@@ -2,7 +2,6 @@ import { Section } from "@/components/Section";
 import {
     Checkbox,
     Radio,
-    Spacer,
     Switch,
     Typography,
     useToken,
@@ -12,17 +11,15 @@ import { ScrollView, View } from "react-native";
 
 export default function SelectionControlsScreen() {
     const token = useToken();
-    const [selectedRadio, setSelectedRadio] = useState<number>(0);
-    const [selectedRadioNoLabel, setSelectedRadioNoLabel] = useState<number>(0);
     const [checkA, setCheckA] = useState(true);
     const [checkB, setCheckB] = useState(false);
     const [checkC, setCheckC] = useState(false);
     const [checkNoLabelA, setCheckNoLabelA] = useState(true);
     const [checkNoLabelB, setCheckNoLabelB] = useState(false);
+    const [selectedRadio, setSelectedRadio] = useState<number>(0);
+    const [selectedRadioNoLabel, setSelectedRadioNoLabel] = useState<number>(0);
     const [switchActive, setSwitchActive] = useState(false);
-    const [switchSecondaryActive, setSwitchSecondaryActive] = useState(true);
-    const [switchDangerActive, setSwitchDangerActive] = useState(true);
-    const [smallSwitchActive, setSmallSwitchActive] = useState(true);
+    const [switchWithLabel, setSwitchWithLabel] = useState(true);
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -33,12 +30,13 @@ export default function SelectionControlsScreen() {
                 </Typography>
             </Section>
 
-            <Spacer amount="medium" />
             <Section>
                 <Typography variant="h4">Radio Buttons</Typography>
             </Section>
-            <Spacer amount="medium" />
             <Section title="With labels">
+                <Typography variant="p">
+                    Radio buttons with a visible label next to the control
+                </Typography>
                 <View>
                     <Radio
                         checked={selectedRadio === 0}
@@ -57,8 +55,11 @@ export default function SelectionControlsScreen() {
                     />
                 </View>
             </Section>
-            <Spacer amount="medium" />
             <Section title="Without visible label">
+                <Typography variant="p">
+                    Radio buttons without a label, using accessibilityLabel for
+                    screen readers
+                </Typography>
                 <View
                     style={{
                         flexDirection: "row",
@@ -77,8 +78,11 @@ export default function SelectionControlsScreen() {
                     />
                 </View>
             </Section>
-            <Spacer amount="medium" />
             <Section title="Disabled">
+                <Typography variant="p">
+                    Radio buttons in their disabled state, both checked and
+                    unchecked
+                </Typography>
                 <View>
                     <Radio
                         checked={false}
@@ -89,11 +93,43 @@ export default function SelectionControlsScreen() {
                 </View>
             </Section>
 
-            <Spacer amount="large" />
+            <Section>
+                <Typography variant="h4">Switch</Typography>
+            </Section>
+
+            <Section title="Switch with Label">
+                <Typography variant="p">
+                    Switch with an inline label for toggling settings on and off
+                </Typography>
+                <View>
+                    <Switch
+                        active={switchWithLabel}
+                        onChange={setSwitchWithLabel}
+                        label="Enable notifications"
+                    />
+                    <Switch active={true} disabled label="Disabled option" />
+                </View>
+            </Section>
+
+            <Section title="Switch without Labels">
+                <Typography variant="p">
+                    Switch without a label, useful when the context is provided
+                    by surrounding UI
+                </Typography>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: token.newSpacing.spacing.horizontal.xl,
+                        alignItems: "center",
+                    }}
+                >
+                    <Switch active={switchActive} onChange={setSwitchActive} />
+                    <Switch active={false} disabled />
+                </View>
+            </Section>
             <Section>
                 <Typography variant="h4">Checkboxes</Typography>
             </Section>
-            <Spacer amount="medium" />
             <Section title="With labels">
                 <View>
                     <Checkbox
@@ -114,7 +150,6 @@ export default function SelectionControlsScreen() {
                     />
                 </View>
             </Section>
-            <Spacer amount="medium" />
             <Section title="Without visible label">
                 <View
                     style={{
@@ -134,7 +169,6 @@ export default function SelectionControlsScreen() {
                     />
                 </View>
             </Section>
-            <Spacer amount="medium" />
             <Section title="Disabled">
                 <View>
                     <Checkbox
@@ -154,68 +188,18 @@ export default function SelectionControlsScreen() {
                     />
                 </View>
             </Section>
-
-            <Spacer amount="medium" />
-            <Section>
-                <Typography variant="h4">Switch</Typography>
-            </Section>
-
-            <Section title="Without labels">
-                <View
-                    style={{
-                        flexDirection: "row",
-                        gap: token.newSpacing.spacing.horizontal.lg,
-                        alignItems: "center",
-                    }}
-                >
-                    <Switch
-                        active={switchActive}
-                        onChange={setSwitchActive}
-                        color="primary"
-                    />
-
-                    <Switch
-                        active={switchSecondaryActive}
-                        onChange={setSwitchSecondaryActive}
-                        color="secondary"
-                    />
-                </View>
-            </Section>
-
-            <Section title="Danger and Disabled">
-                <View
-                    style={{
-                        flexDirection: "row",
-                        gap: token.newSpacing.spacing.horizontal.lg,
-                        alignItems: "center",
-                    }}
-                >
-                    <Switch
-                        active={switchDangerActive}
-                        onChange={setSwitchDangerActive}
-                        color="danger"
-                    />
-
-                    <Switch active={true} disabled color="primary" />
-                </View>
-            </Section>
-
-            <Section title="Small Switch">
-                <View
-                    style={{
-                        flexDirection: "row",
-                        gap: token.newSpacing.spacing.horizontal.md,
-                        alignItems: "center",
-                    }}
-                >
-                    <Switch.Small
-                        active={smallSwitchActive}
-                        onChange={setSmallSwitchActive}
-                    />
-
-                    <Switch.Small active={true} disabled />
-                </View>
-            </Section>
         </ScrollView>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+

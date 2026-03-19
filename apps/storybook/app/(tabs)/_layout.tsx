@@ -7,10 +7,8 @@ export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
-                tabBarActiveTintColor:
-                    newColors.bg.accent.fillEmphasis.active,
-                tabBarInactiveTintColor:
-                    newColors.bg.accent.fillMuted.default,
+                tabBarActiveTintColor: newColors.bg.accent.fillEmphasis.active,
+                tabBarInactiveTintColor: newColors.bg.accent.fillMuted.default,
                 headerShown: false,
             }}
         >
