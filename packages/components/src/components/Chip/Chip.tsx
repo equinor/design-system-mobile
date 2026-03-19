@@ -75,6 +75,11 @@ export const Chip = ({
                                 <Button.Icon
                                     name="close"
                                     size="small"
+                                    tone={
+                                        variant === "error"
+                                            ? "danger"
+                                            : "accent"
+                                    }
                                     variant="ghost"
                                     disabled={disabled}
                                     onPress={onDelete}
