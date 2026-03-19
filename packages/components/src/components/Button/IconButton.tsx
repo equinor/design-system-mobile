@@ -30,18 +30,20 @@ export const IconButton: FC<IconButtonProps> = ({
     size = "default",
     variant = "primary",
     round = false,
-    disabled = false,
-    onPress = () => null,
+    disabled,
     ref,
+    ...pressableProps
 }) => {
     const styles = useStyles(tokenStyles, { variant, tone, size, round });
 
     return (
         <Pressable
             ref={ref}
-            disabled={disabled}
-            onPress={onPress}
             style={styles.container}
+            accessibilityRole={"button"}
+            accessibilityState={{ disabled: disabled ?? false, ...pressableProps.accessibilityState }}
+            disabled={disabled}
+            {...pressableProps}
         >
             {(pressedEvent) => (
                 <ButtonBackground
