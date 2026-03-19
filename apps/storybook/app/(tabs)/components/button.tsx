@@ -1,12 +1,8 @@
-import { sizeButtons, toneButtons, variantButtons } from "@/codeSnippets/buttons";
 import { Section } from "@/components/Section";
-import { useCodeSnippet } from "@/hooks/useCodeSnippet";
 import { Button, Spacer, Typography } from "@equinor/eds-mobile-components";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function ButtonsScreen() {
-    const { ViewCode, CodeSnippetDialog } = useCodeSnippet();
-
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             <Section>
@@ -28,7 +24,6 @@ export default function ButtonsScreen() {
                     <Button label="Neutral" tone="neutral" />
                     <Button label="Danger" tone="danger" />
                 </View>
-                <ViewCode title="Tones" code={toneButtons} />
             </Section>
 
             <Spacer />
@@ -42,21 +37,17 @@ export default function ButtonsScreen() {
                     <Button label="Secondary" variant="secondary" />
                     <Button label="Ghost" variant="ghost" />
                 </View>
-                <ViewCode title="Variants" code={variantButtons} />
             </Section>
 
             <Spacer />
 
             <Section title="Sizes">
-                <Typography>
-                    Buttons are available in three sizes.
-                </Typography>
+                <Typography>Buttons are available in three sizes.</Typography>
                 <View style={styles.buttonRow}>
                     <Button label="Small" size="small" />
                     <Button label="Default" size="default" />
                     <Button label="Large" size="large" />
                 </View>
-                <ViewCode title="Sizes" code={sizeButtons} />
             </Section>
 
             <Spacer />
@@ -142,8 +133,6 @@ export default function ButtonsScreen() {
             </Section>
 
             <Spacer />
-
-            <CodeSnippetDialog />
         </ScrollView>
     );
 }
