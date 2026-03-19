@@ -47,7 +47,7 @@ The Figma design is created for web. Components need to be scaled up for mobile 
 
 ## Step 4: Map Tokens
 
-Map all Figma variables to code tokens. Check the memory file `component-migration.md` for known mappings first.
+Map all Figma variables to code tokens. Check `packages/components/CLAUDE.md` for known mappings and patterns first.
 
 Rules:
 - **Never hardcode** spacing or color values — always use `theme.newSpacing.*` or `theme.newColors.*`
@@ -69,7 +69,7 @@ Rules:
 
 1. **Documentation** (`docs/ComponentName.md`) — update props table, examples, remove stale references
 2. **Storybook** (`apps/storybook/app/(tabs)/components/`) — update showcase screen with new variants
-3. **Code snippets** (`apps/storybook/codeSnippets/`) — update if props changed
+3. **Code snippets** (`apps/storybook/codeSnippets/`) — **delete** the component's code snippets (code snippets are being removed from the app)
 4. **Wrapper components** (e.g. Cell variants) — verify they still work with the redesigned component
 
 ## Step 7: Quality Checks

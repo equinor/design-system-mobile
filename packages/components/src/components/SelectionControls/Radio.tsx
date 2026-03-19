@@ -39,9 +39,7 @@ export const Radio = ({
     const styles = useStyles(themeStyles, { checked, disabled, hasLabel });
 
     const handlePress = () => {
-        if (!disabled) {
-            onPress?.(!checked);
-        }
+        onPress?.(!checked);
     };
 
     return (
@@ -74,7 +72,7 @@ type RadioStyleProps = {
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: RadioStyleProps) => {
-        const radioSize = theme.newSpacing.sizing.selectable.sm;
+        const radioSize = theme.newSpacing.sizing.icon.lg;
         const touchTargetSize = theme.newSpacing.sizing.selectable.lg;
 
         return {
@@ -101,7 +99,7 @@ const themeStyles = EDSStyleSheet.create(
                       }),
             },
             containerPressed: {
-                backgroundColor: theme.newColors.bg.accent.fillMuted.hover,
+                backgroundColor: theme.newColors.bg.accent.fillMuted.default,
             },
             icon: {
                 size: radioSize,
