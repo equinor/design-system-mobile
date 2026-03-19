@@ -29,6 +29,7 @@ dist
 
 # Generated files
 *.generated.ts
+*.tsbuildinfo
 
 # Expo prebuild (at root level - storybook ios/android are tracked)
 /ios/
