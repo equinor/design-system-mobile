@@ -1,7 +1,6 @@
 import { TextInput, View } from "react-native";
 import { Input, InputProps } from "../Input";
 import React, { forwardRef } from "react";
-import { Typography } from "../Typography";
 import { EDSStyleSheet } from "../../styling";
 import { useStyles } from "../../hooks/useStyles";
 import { Label } from "../Label";
@@ -37,7 +36,7 @@ export type TextFieldProps = {
      * An icon to add to the left of the helper text.
      */
     helperIcon?: IconName;
-} & Omit<InputProps, "leftAdornment" | "rightAdornment">;
+} & Omit<InputProps, "startText" | "endText" | "startAdornment" | "endAdornment">;
 
 export const TextField = forwardRef<TextInput, TextFieldProps>(
     (
@@ -52,24 +51,15 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
                 )}
                 <Input
                     ref={ref}
-                    rightAdornments={
-                        <View style={styles.adornmentStyle}>
-                            {inputIcon && (
-                                <Icon
-                                    name={inputIcon}
-                                    size={20}
-                                    style={styles.iconColor}
-                                />
-                            )}
-                            {unit && (
-                                <Typography
-                                    variant="label"
-                                    color="textTertiary"
-                                >
-                                    {unit}
-                                </Typography>
-                            )}
-                        </View>
+                    endText={unit}
+                    endAdornment={
+                        inputIcon ? (
+                            <Icon
+                                name={inputIcon}
+                                size={16}
+                                style={styles.iconColor}
+                            />
+                        ) : undefined
                     }
                     {...rest}
                 />

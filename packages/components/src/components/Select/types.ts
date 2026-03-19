@@ -37,5 +37,5 @@ export type SelectBaseProps<T> = {
     /**
      * A variant to use for the validation of the input field.
      */
-    variant?: "danger" | "warning" | "success";
+    variant?: "danger";
 };

@@ -159,7 +159,7 @@ export const Search = ({
                             handleOnBlurNative(e);
                         }
                     }}
-                    leftAdornments={
+                    startAdornment={
                         <View style={styles.magnifyIconContainer}>
                             <Icon
                                 name="magnify"
@@ -171,7 +171,7 @@ export const Search = ({
                             />
                         </View>
                     }
-                    rightAdornments={
+                    endAdornment={
                         text && !disabled ? (
                             <View style={styles.adornmentIconContainer}>
                                 <Button.Icon

@@ -2,6 +2,7 @@ import React, { ReactNode, forwardRef, useState } from "react";
 import {
     NativeSyntheticEvent,
     Platform,
+    Text,
     TextInput,
     TextInputFocusEventData,
     TextInputProps,
@@ -12,7 +13,7 @@ import { inputTokenStyles } from "./inputStyle";
 
 export type InputProps = {
     /**
-     * A callback method invoked when the input component registeres a change of text content.
+     * A callback method invoked when the input component registers a change of text content.
      * @param contents A string representing the new text in the input field.
      */
     onChange?: (contents: string) => void;
@@ -25,33 +26,48 @@ export type InputProps = {
      */
     placeholder?: string;
     /**
-     * A component that will be added to the left of the input field.
+     * Prefix text displayed at the start of the input (e.g., "https://", "NOK", "€").
      */
-    leftAdornments?: ReactNode;
+    startText?: string;
     /**
-     * A component that will be added to the right of the input field.
+     * Suffix text displayed at the end of the input (e.g., "EUR", "kg", ".com").
      */
-    rightAdornments?: ReactNode;
+    endText?: string;
+    /**
+     * An element displayed at the start of the input (e.g., an icon or button).
+     */
+    startAdornment?: ReactNode;
+    /**
+     * An element displayed at the end of the input (e.g., an icon or button).
+     */
+    endAdornment?: ReactNode;
     /**
      * A variant to use for the validation of the input field.
      */
-    variant?: "danger" | "warning" | "success";
+    variant?: "danger";
     /**
      * Whether or not the text should be editable.
      */
     readOnly?: boolean;
+    /**
+     * Whether or not the input is disabled.
+     */
+    disabled?: boolean;
 } & Omit<TextInputProps, "onChange" | "onChangeText" | "readOnly">;
 
 export const Input = forwardRef<TextInput, InputProps>(
     (
         {
-            leftAdornments,
-            rightAdornments,
+            startText,
+            endText,
+            startAdornment,
+            endAdornment,
             placeholder,
             onChange,
             multiline = false,
             variant,
             readOnly = false,
+            disabled = false,
             ...rest
         },
         ref
@@ -61,6 +77,7 @@ export const Input = forwardRef<TextInput, InputProps>(
             isSelected,
             variant,
             readOnly,
+            disabled,
         });
 
         const onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
@@ -75,18 +92,24 @@ export const Input = forwardRef<TextInput, InputProps>(
 
         return (
             <View style={styles.contentContainer}>
-                {leftAdornments}
+                {startText != null && (
+                    <Text style={styles.adornmentText}>{startText}</Text>
+                )}
+                {startAdornment}
                 <TextInput
                     {...rest}
                     ref={ref}
                     multiline={multiline}
-                    editable={!readOnly}
+                    editable={!readOnly && !disabled}
                     placeholder={placeholder}
                     onChangeText={onChange}
                     textAlignVertical="top"
                     placeholderTextColor={styles.placeholder.color}
                     onFocus={onFocus}
                     onBlur={onBlur}
+                    accessibilityState={{
+                        disabled: disabled || readOnly,
+                    }}
                     style={[
                         styles.textInput,
                         Platform.OS === "web"
@@ -95,7 +118,10 @@ export const Input = forwardRef<TextInput, InputProps>(
                         rest.style,
                     ]}
                 />
-                {rightAdornments}
+                {endText != null && (
+                    <Text style={styles.adornmentText}>{endText}</Text>
+                )}
+                {endAdornment}
             </View>
         );
     }
