@@ -131,7 +131,10 @@ export default function SelectionControlsScreen() {
                 <Typography variant="h4">Checkboxes</Typography>
             </Section>
             <Section title="With labels">
-                <View>
+                <View
+                    accessibilityRole="group"
+                    accessibilityLabel="Select options"
+                >
                     <Checkbox
                         checked={checkA}
                         onPress={setCheckA}
@@ -152,6 +155,8 @@ export default function SelectionControlsScreen() {
             </Section>
             <Section title="Without visible label">
                 <View
+                    accessibilityRole="group"
+                    accessibilityLabel="Select options"
                     style={{
                         flexDirection: "row",
                         gap: token.newSpacing.spacing.horizontal.md,
@@ -170,7 +175,10 @@ export default function SelectionControlsScreen() {
                 </View>
             </Section>
             <Section title="Disabled">
-                <View>
+                <View
+                    accessibilityRole="group"
+                    accessibilityLabel="Disabled options"
+                >
                     <Checkbox
                         checked={false}
                         disabled
@@ -191,8 +199,6 @@ export default function SelectionControlsScreen() {
         </ScrollView>
     );
 }
-
-
 
 
 

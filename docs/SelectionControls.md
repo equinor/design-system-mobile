@@ -33,7 +33,7 @@ import { Switch } from "@equinor/eds-mobile-components";
 
 ### Radio
 
-A radio button for single-choice selection. Matches the EDS Figma design with accent color tokens.
+A radio button for single-choice selection.
 
 ```tsx
 import { Radio } from "@equinor/eds-mobile-components";
@@ -41,27 +41,28 @@ import { Radio } from "@equinor/eds-mobile-components";
 <Radio
     checked={isChecked}
     onPress={setChecked}
-    label="Option A"
+    color="primary"
     disabled={false}
+    size={24}
 />;
 ```
 
 #### Props
 
-| Name       | Type                       | Default | Description                         |
-| ---------- | -------------------------- | ------- | ----------------------------------- |
-| `checked`  | boolean                    | `false` | Whether the radio is selected.      |
-| `onPress`  | (checked: boolean) => void |         | Callback when the radio is pressed. |
-| `label`    | string                     |         | Optional label next to the radio.   |
-| `disabled` | boolean                    | `false` | If true, disables the radio.        |
+| Name       | Type                                                           | Default     | Description                         |
+| ---------- | -------------------------------------------------------------- | ----------- | ----------------------------------- |
+| `checked`  | boolean                                                        | `false`     | Whether the radio is selected.      |
+| `onPress`  | (checked: boolean) => void                                     |             | Callback when the radio is pressed. |
+| `color`    | "primary" \| "secondary" \| "warning" \| "danger" \| "success" | `"primary"` | Color theme of the radio.           |
+| `disabled` | boolean                                                        | `false`     | If true, disables the radio.        |
+| `size`     | number                                                         | `24`        | Size of the radio icon.             |
 
 ## Features
 
 - EDS theming for colors, spacing, and animation.
-- Accessible with proper accessibility roles and states.
+- Accessible and keyboard-friendly.
 - Animated transitions for toggles.
-- Disabled states.
-- Light and dark mode support via design tokens.
+- Disabled and read-only states.
 
 ## Theming & Styling
 
