@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Pressable, Text } from "react-native";
 import Animated, {
+    cancelAnimation,
+    interpolateColor,
     useSharedValue,
     useAnimatedStyle,
     withTiming,
-    Easing,
 } from "react-native-reanimated";
 import { useStyles } from "../../hooks/useStyles";
+import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
-import { ANIMATION_DURATION } from "../../utils/animation";
 import { Icon } from "../Icon/Icon";
 
 export type RadioProps = {
@@ -43,28 +44,36 @@ export const Radio = ({
     accessibilityLabel,
 }: RadioProps) => {
     const hasLabel = label != null;
-    const styles = useStyles(themeStyles, { checked, disabled, hasLabel });
+    const styles = useStyles(themeStyles, { disabled, hasLabel });
 
-    const backgroundColor = useSharedValue("transparent");
+    const token = useToken();
+    const pressedColor = token.newColors.bg.accent.fillMuted.default;
+    const backgroundColors = useMemo(
+        () => ({ default: `${pressedColor}00`, pressed: pressedColor }),
+        [pressedColor],
+    );
+
+    const animationValue = useSharedValue(0);
 
     const animatedContainerStyle = useAnimatedStyle(() => ({
-        backgroundColor: backgroundColor.value,
+        backgroundColor: interpolateColor(
+            animationValue.value,
+            [0, 1],
+            [backgroundColors.default, backgroundColors.pressed],
+            "LAB",
+        ),
     }));
 
     const handlePressIn = () => {
         if (!disabled) {
-            backgroundColor.value = withTiming(
-                styles.containerPressed.backgroundColor,
-                { duration: ANIMATION_DURATION, easing: Easing.inOut(Easing.ease) },
-            );
+            cancelAnimation(animationValue);
+            animationValue.value = 1;
         }
     };
 
     const handlePressOut = () => {
-        backgroundColor.value = withTiming("transparent", {
-            duration: ANIMATION_DURATION,
-            easing: Easing.inOut(Easing.ease),
-        });
+        cancelAnimation(animationValue);
+        animationValue.value = withTiming(0, { duration: 150 });
     };
 
     const handlePress = () => {
@@ -94,7 +103,6 @@ export const Radio = ({
 };
 
 type RadioStyleProps = {
-    checked: boolean;
     disabled: boolean;
     hasLabel: boolean;
 };
@@ -126,9 +134,6 @@ const themeStyles = EDSStyleSheet.create(
                           justifyContent: "center",
                           borderRadius: touchTargetSize / 2,
                       }),
-            },
-            containerPressed: {
-                backgroundColor: theme.newColors.bg.accent.fillMuted.default,
             },
             icon: {
                 size: radioSize,
