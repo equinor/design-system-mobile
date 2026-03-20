@@ -133,7 +133,6 @@ export default function SelectionControlsScreen() {
             </Section>
             <Section title="With labels">
                 <View
-                    accessibilityRole="group"
                     accessibilityLabel="Select options"
                 >
                     <Checkbox
@@ -156,7 +155,6 @@ export default function SelectionControlsScreen() {
             </Section>
             <Section title="Without visible label">
                 <View
-                    accessibilityRole="group"
                     accessibilityLabel="Select options"
                     style={{
                         flexDirection: "row",
@@ -177,7 +175,6 @@ export default function SelectionControlsScreen() {
             </Section>
             <Section title="Disabled">
                 <View
-                    accessibilityRole="group"
                     accessibilityLabel="Disabled options"
                 >
                     <Checkbox
