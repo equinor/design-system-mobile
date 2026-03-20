@@ -99,7 +99,8 @@ export default function SelectionControlsScreen() {
 
             <Section title="Switch with Label">
                 <Typography variant="p">
-                    Switch with an inline label for toggling settings on and off
+                    Switch with an inline label for toggling settings on and
+                    off
                 </Typography>
                 <View>
                     <Switch
