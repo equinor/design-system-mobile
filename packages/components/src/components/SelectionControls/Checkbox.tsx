@@ -90,7 +90,7 @@ type CheckboxStyleProps = {
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: CheckboxStyleProps) => {
-        const checkboxSize = theme.newSpacing.sizing.selectable.sm;
+        const checkboxSize = theme.newSpacing.sizing.icon.lg;
         const touchTargetSize = theme.newSpacing.sizing.selectable.lg;
 
         return {
