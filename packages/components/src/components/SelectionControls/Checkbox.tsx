@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Pressable, Text } from "react-native";
+import Animated, {
+    cancelAnimation,
+    interpolateColor,
+    useSharedValue,
+    useAnimatedStyle,
+    withTiming,
+} from "react-native-reanimated";
 import { useStyles } from "../../hooks/useStyles";
+import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon/Icon";
 
@@ -42,7 +50,37 @@ export const Checkbox = ({
     accessibilityLabel,
 }: CheckboxProps) => {
     const hasLabel = label != null;
-    const styles = useStyles(themeStyles, { checked, disabled, indeterminate, hasLabel });
+    const styles = useStyles(themeStyles, { disabled, indeterminate, hasLabel });
+
+    const token = useToken();
+    const pressedColor = token.newColors.bg.accent.fillMuted.default;
+    const backgroundColors = useMemo(
+        () => ({ default: `${pressedColor}00`, pressed: pressedColor }),
+        [pressedColor],
+    );
+
+    const animationValue = useSharedValue(0);
+
+    const animatedContainerStyle = useAnimatedStyle(() => ({
+        backgroundColor: interpolateColor(
+            animationValue.value,
+            [0, 1],
+            [backgroundColors.default, backgroundColors.pressed],
+            "LAB",
+        ),
+    }));
+
+    const handlePressIn = () => {
+        if (!disabled) {
+            cancelAnimation(animationValue);
+            animationValue.value = 1;
+        }
+    };
+
+    const handlePressOut = () => {
+        cancelAnimation(animationValue);
+        animationValue.value = withTiming(0, { duration: 150 });
+    };
 
     const handlePress = () => {
         if (!disabled) {
@@ -59,11 +97,9 @@ export const Checkbox = ({
     return (
         <Pressable
             onPress={handlePress}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
             disabled={!onPress || disabled}
-            style={({ pressed }) => [
-                styles.container,
-                pressed && !disabled && styles.containerPressed,
-            ]}
             accessibilityRole="checkbox"
             accessibilityState={{
                 checked: indeterminate ? "mixed" : checked,
@@ -71,18 +107,19 @@ export const Checkbox = ({
             }}
             accessibilityLabel={accessibilityLabel ?? label}
         >
-            <Icon
-                name={iconName}
-                size={styles.icon.size}
-                color={styles.icon.color}
-            />
-            {label != null && <Text style={styles.label}>{label}</Text>}
+            <Animated.View style={[styles.container, animatedContainerStyle]}>
+                <Icon
+                    name={iconName}
+                    size={styles.icon.size}
+                    color={styles.icon.color}
+                />
+                {label != null && <Text style={styles.label}>{label}</Text>}
+            </Animated.View>
         </Pressable>
     );
 };
 
 type CheckboxStyleProps = {
-    checked: boolean;
     disabled: boolean;
     indeterminate: boolean;
     hasLabel: boolean;
@@ -115,9 +152,6 @@ const themeStyles = EDSStyleSheet.create(
                           justifyContent: "center",
                           borderRadius: touchTargetSize / 2,
                       }),
-            },
-            containerPressed: {
-                backgroundColor: theme.newColors.bg.accent.fillMuted.hover,
             },
             icon: {
                 size: checkboxSize,
