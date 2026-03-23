@@ -12,21 +12,26 @@ import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon/Icon";
 
-export type RadioProps = {
+export type CheckboxProps = {
     /**
-     * Callback method invoked when the user presses the radio button.
+     * Callback method invoked when the user presses the checkbox.
      */
     onPress?: (checked: boolean) => void;
     /**
-     * Whether the radio button is in its disabled state.
+     * Whether the checkbox is in its disabled state.
      */
     disabled?: boolean;
     /**
-     * Whether the radio button should be in its checked state.
+     * Whether the checkbox should be in its checked state.
      */
     checked?: boolean;
     /**
-     * Label displayed next to the radio button. When omitted, an
+     * Whether the checkbox should be in its indeterminate state.
+     * Takes precedence over `checked`.
+     */
+    indeterminate?: boolean;
+    /**
+     * Label displayed next to the checkbox. When omitted, an
      * `accessibilityLabel` must be provided for screen readers.
      */
     label?: string;
@@ -36,15 +41,16 @@ export type RadioProps = {
     accessibilityLabel?: string;
 };
 
-export const Radio = ({
+export const Checkbox = ({
     onPress,
     checked = false,
     disabled = false,
+    indeterminate = false,
     label,
     accessibilityLabel,
-}: RadioProps) => {
+}: CheckboxProps) => {
     const hasLabel = label != null;
-    const styles = useStyles(themeStyles, { disabled, hasLabel });
+    const styles = useStyles(themeStyles, { disabled, indeterminate, hasLabel });
 
     const token = useToken();
     const pressedColor = token.newColors.bg.accent.fillMuted.default;
@@ -77,8 +83,16 @@ export const Radio = ({
     };
 
     const handlePress = () => {
-        onPress?.(!checked);
+        if (!disabled) {
+            onPress?.(!checked);
+        }
     };
+
+    const iconName = indeterminate
+        ? "minus-box"
+        : checked
+          ? "checkbox-marked"
+          : "checkbox-blank-outline";
 
     return (
         <Pressable
@@ -86,13 +100,16 @@ export const Radio = ({
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             disabled={!onPress || disabled}
-            accessibilityRole="radio"
-            accessibilityState={{ checked, disabled }}
+            accessibilityRole="checkbox"
+            accessibilityState={{
+                checked: indeterminate ? "mixed" : checked,
+                disabled,
+            }}
             accessibilityLabel={accessibilityLabel ?? label}
         >
             <Animated.View style={[styles.container, animatedContainerStyle]}>
                 <Icon
-                    name={checked ? "radiobox-marked" : "radiobox-blank"}
+                    name={iconName}
                     size={styles.icon.size}
                     color={styles.icon.color}
                 />
@@ -102,14 +119,15 @@ export const Radio = ({
     );
 };
 
-type RadioStyleProps = {
+type CheckboxStyleProps = {
     disabled: boolean;
+    indeterminate: boolean;
     hasLabel: boolean;
 };
 
 const themeStyles = EDSStyleSheet.create(
-    (theme, props: RadioStyleProps) => {
-        const radioSize = theme.newSpacing.sizing.icon.lg;
+    (theme, props: CheckboxStyleProps) => {
+        const checkboxSize = theme.newSpacing.sizing.icon.lg;
         const touchTargetSize = theme.newSpacing.sizing.selectable.lg;
 
         return {
@@ -136,7 +154,7 @@ const themeStyles = EDSStyleSheet.create(
                       }),
             },
             icon: {
-                size: radioSize,
+                size: checkboxSize,
                 color: props.disabled
                     ? theme.newColors.text.disabled
                     : theme.newColors.bg.accent.fillEmphasis.default,
@@ -150,6 +168,6 @@ const themeStyles = EDSStyleSheet.create(
                     ? theme.newColors.text.disabled
                     : theme.newColors.text.neutral.strong,
             },
-    };
+        };
     }
 );

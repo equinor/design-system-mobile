@@ -125,7 +125,7 @@ const tokenStyles = EDSStyleSheet.create((token) => ({
         backgroundColor: token.newColors.border.neutral.medium,
     },
     sectionTitle: {
-        paddingVertical: token.newSpacing.spacing.inset.md["vertical-squished"],
+        paddingVertical: token.newSpacing.spacing.inset.md.verticalSquished,
         paddingHorizontal: token.newSpacing.spacing.inset.xl.horizontal,
         backgroundColor: token.newColors.bg.neutral.canvas,
     },
