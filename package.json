@@ -6,7 +6,6 @@
     "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "build": "turbo run build",
-    "build:docs": "mkdocs serve -a localhost:8080",
     "build:components": "turbo run build --filter @equinor/eds-mobile-components",
     "dev": "turbo run dev",
     "dev:storybook": "turbo run dev --filter @equinor/mobile-storybook",
@@ -14,10 +13,7 @@
     "lint": "turbo run lint",
     "lint:components": "turbo run lint --filter @equinor/eds-mobile-components",
     "clean": "turbo run clean && rm -rf node_modules .turbo .pnpm",
-    "clean:storybook": "turbo run clean --filter @equinor/mobile-storybook",
-    "docker:build": "docker build -t equinor/oss-web .",
-    "docker:start": "docker run -p 8080:8080 equinor/oss-web",
-    "docker:inspect": "docker run -it equinor/oss-web /bin/sh"
+    "clean:storybook": "turbo run clean --filter @equinor/mobile-storybook"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.39.0",
