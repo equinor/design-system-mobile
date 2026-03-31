@@ -1,0 +1,101 @@
+{/* Mobile-specific content for Button component.
+   Pulled into the EDS Docusaurus site via docusaurus-plugin-remote-content.
+   This content is rendered inside <TabItem value="mobile"> tabs in the EDS docs. */}
+
+## Preview
+
+{/* TODO: Replace with animated GIF from iOS simulator */}
+
+![Button preview](./assets/button-preview.gif)
+
+## Variants
+
+![Button variants](./assets/button-variants.gif)
+
+## Tones
+
+![Button tones](./assets/button-tones.gif)
+
+## Icon-only
+
+![Icon-only buttons](./assets/button-icon-only.gif)
+
+## Installation
+
+```bash
+npm install @equinor/eds-mobile-components
+```
+
+## Setup
+
+Wrap your app with `EDSProvider`:
+
+```tsx
+import { EDSProvider, useEDS } from '@equinor/eds-mobile-components'
+
+export default function App() {
+  const [hasLoadedEds] = useEDS();
+  if (!hasLoadedEds) return null;
+
+  return (
+    <EDSProvider colorScheme="light" density="comfortable">
+      <YourApp />
+    </EDSProvider>
+  );
+}
+```
+
+## Usage
+
+```tsx
+import { Button } from '@equinor/eds-mobile-components'
+
+// Text button
+<Button label="Click me" />
+<Button label="Delete" variant="secondary" tone="danger" />
+
+// With icons
+<Button label="Save" leadingIcon="save" />
+<Button label="Next" trailingIcon="chevron_right" />
+
+// Icon-only button
+<Button.Icon name="add" />
+<Button.Icon name="close" round />
+```
+
+## Props
+
+### `Button`
+
+| Prop           | Type                                     | Default     | Description                        |
+| -------------- | ---------------------------------------- | ----------- | ---------------------------------- |
+| `label`        | `string`                                 | *required*  | Label text of the button           |
+| `variant`      | `"primary" \| "secondary" \| "ghost"`    | `"primary"` | Button variant                     |
+| `tone`         | `"accent" \| "neutral" \| "danger"`      | `"accent"`  | Color tone of the button           |
+| `size`         | `"small" \| "default" \| "large"`        | `"default"` | Size of the button                 |
+| `leadingIcon`  | `IconName`                               | —           | Icon displayed before the label    |
+| `trailingIcon` | `IconName`                               | —           | Icon displayed after the label     |
+| `disabled`     | `boolean`                                | `false`     | Whether the button is disabled     |
+
+### `Button.Icon`
+
+| Prop      | Type                                     | Default     | Description                              |
+| --------- | ---------------------------------------- | ----------- | ---------------------------------------- |
+| `name`    | `IconName`                               | *required*  | Name of the icon                         |
+| `variant` | `"primary" \| "secondary" \| "ghost"`    | `"primary"` | Button variant                           |
+| `tone`    | `"accent" \| "neutral" \| "danger"`      | `"accent"`  | Color tone of the button                 |
+| `size`    | `"small" \| "default" \| "large"`        | `"default"` | Size of the button                       |
+| `round`   | `boolean`                                | `false`     | Whether the button is fully circular     |
+| `disabled`| `boolean`                                | `false`     | Whether the button is disabled           |
+
+Both components also accept all React Native [`PressableProps`](https://reactnative.dev/docs/pressable).
+
+## Accessibility
+
+The mobile button sets `accessibilityRole="button"` automatically. When disabled, `accessibilityState={{ disabled: true }}` is set.
+
+For icon-only buttons (`Button.Icon`), always provide an `accessibilityLabel`:
+
+```tsx
+<Button.Icon name="add" accessibilityLabel="Add item" />
+```
