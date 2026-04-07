@@ -43,7 +43,7 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
         { unit, helperText, label, meta, helperIcon, inputIcon, ...rest },
         ref
     ) => {
-        const styles = useStyles(themeStyles, { variant: rest.variant });
+        const styles = useStyles(themeStyles, { invalid: rest.invalid });
         return (
             <View style={{ flexGrow: 1 }}>
                 {label && (
@@ -88,26 +88,26 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
 
 TextField.displayName = "TextField";
 
-type TextFieldStyleProps = Pick<TextFieldProps, "variant">;
+type TextFieldStyleProps = Pick<TextFieldProps, "invalid">;
 const themeStyles = EDSStyleSheet.create(
     (theme, props: TextFieldStyleProps) => ({
         adornmentStyle: {
             justifyContent: "center",
-            paddingHorizontal: theme.spacing.textField.paddingHorizontal,
+            paddingHorizontal: theme.newSpacing.spacing.inset.sm.horizontal,
             flexDirection: "row",
-            gap: theme.spacing.element.paddingHorizontal,
+            gap: theme.newSpacing.spacing.icon.sm.gapHorizontal,
             alignItems: "center",
         },
         label: {
-            paddingHorizontal: theme.spacing.textField.paddingHorizontal,
-            color: props.variant
-                ? theme.colors.interactive[props.variant]
-                : theme.colors.text.tertiary,
+            paddingHorizontal: theme.newSpacing.spacing.inset.sm.horizontal,
+            color: props.invalid
+                ? theme.newColors.text.danger.subtle
+                : theme.newColors.text.neutral.subtle,
         },
         iconColor: {
-            color: props.variant
-                ? theme.colors.interactive[props.variant]
-                : theme.colors.text.primary,
+            color: props.invalid
+                ? theme.newColors.text.danger.subtle
+                : theme.newColors.text.neutral.strong,
         },
     })
 );

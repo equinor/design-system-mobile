@@ -16,7 +16,7 @@ export default function InputScreen() {
     return (
         <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.screen}
+            style={{ flex: 1 }}
         >
             <View style={styles.section}>
                 <Typography variant="p">
@@ -51,8 +51,8 @@ export default function InputScreen() {
 
                 <Typography>With icon</Typography>
                 <Input
-                    startAdornment={<Icon name="magnify" size={18} />}
-                    endAdornment={<Icon name="download" size={18} />}
+                    startAdornment={<Icon name="magnify" size={16} />}
+                    endAdornment={<Icon name="download" size={16} />}
                     placeholder="With icon"
                 />
 
@@ -61,7 +61,7 @@ export default function InputScreen() {
                     ref={clearableRef}
                     value={clearableValue}
                     onChange={setClearableValue}
-                    startAdornment={<Icon name="magnify" size={18} />}
+                    startAdornment={<Icon name="magnify" size={16} />}
                     endAdornment={
                         clearableValue ? (
                             <Pressable
@@ -70,7 +70,7 @@ export default function InputScreen() {
                                     clearableRef.current?.focus();
                                 }}
                             >
-                                <Icon name="close" size={18} />
+                                <Icon name="close" size={16} />
                             </Pressable>
                         ) : undefined
                     }
@@ -80,7 +80,7 @@ export default function InputScreen() {
                 <Typography>With unit and icon</Typography>
                 <Input
                     endText="kg"
-                    endAdornment={<Icon name="download" size={20} />}
+                    endAdornment={<Icon name="download" size={16} />}
                     placeholder="100"
                 />
 
@@ -101,9 +101,18 @@ export default function InputScreen() {
             </View>
 
             <View style={styles.section}>
-                <Typography variant="h6">Error Variant</Typography>
+                <Typography variant="h6">Invalid State</Typography>
                 <View style={styles.inputContainer}>
-                    <Input placeholder="Placeholder danger" variant="danger" />
+                    <Input placeholder="Placeholder" invalid />
+                </View>
+                <View style={styles.inputContainer}>
+                    <Input
+                        placeholder="Invalid search"
+                        invalid
+                        hideErrorIcon
+                        startAdornment={<Icon name="magnify" size={16} />}
+                        endAdornment={<Icon name="close" size={16} />}
+                    />
                 </View>
             </View>
 

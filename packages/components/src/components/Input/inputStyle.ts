@@ -1,26 +1,25 @@
 import { EDSStyleSheet } from "../../styling";
 import { InputProps } from "./Input";
 
-type InputStyleProps = Pick<InputProps, "readOnly" | "variant" | "disabled"> & {
+type InputStyleProps = Pick<InputProps, "readOnly" | "invalid" | "disabled"> & {
     isSelected: boolean;
 };
 
 export const inputTokenStyles = EDSStyleSheet.create(
     (token, props: InputStyleProps) => {
-        const { isSelected, variant, readOnly, disabled } = props;
+        const { isSelected, invalid, readOnly, disabled } = props;
         const isInactive = readOnly === true || disabled === true;
 
         // Background color
-        const backgroundColor =
-            variant === "danger"
-                ? token.newColors.bg.danger.canvas
-                : token.newColors.bg.input;
+        const backgroundColor = invalid
+            ? token.newColors.bg.danger.canvas
+            : token.newColors.bg.input;
 
         // Border
-        const borderWidth = isInactive ? 0 : 1;
+        const borderWidth = 1;
         const borderColor = (() => {
-            if (isInactive) return "transparent";
-            if (variant === "danger") {
+            if (isInactive) return token.newColors.border.neutral.subtle;
+            if (invalid) {
                 return isSelected
                     ? token.newColors.border.danger.strong
                     : token.newColors.border.danger.subtle;
@@ -73,6 +72,9 @@ export const inputTokenStyles = EDSStyleSheet.create(
                 fontWeight: "400",
                 lineHeight: 16,
                 textTransform: "uppercase",
+            },
+            errorIcon: {
+                color: token.newColors.text.danger.subtle,
             },
         };
     }

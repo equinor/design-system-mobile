@@ -9,6 +9,7 @@ import {
     View,
 } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
+import { Icon } from "../Icon";
 import { inputTokenStyles } from "./inputStyle";
 
 export type InputProps = {
@@ -42,9 +43,13 @@ export type InputProps = {
      */
     endAdornment?: ReactNode;
     /**
-     * A variant to use for the validation of the input field.
+     * Whether the input is in an invalid/error state.
      */
-    variant?: "danger";
+    invalid?: boolean;
+    /**
+     * Whether to hide the built-in error icon shown when invalid is true.
+     */
+    hideErrorIcon?: boolean;
     /**
      * Whether or not the text should be editable.
      */
@@ -65,7 +70,8 @@ export const Input = forwardRef<TextInput, InputProps>(
             placeholder,
             onChange,
             multiline = false,
-            variant,
+            invalid = false,
+            hideErrorIcon = false,
             readOnly = false,
             disabled = false,
             ...rest
@@ -75,10 +81,11 @@ export const Input = forwardRef<TextInput, InputProps>(
         const [isSelected, setIsSelected] = useState<boolean>(false);
         const styles = useStyles(inputTokenStyles, {
             isSelected,
-            variant,
+            invalid,
             readOnly,
             disabled,
         });
+        const showErrorIcon = invalid && !hideErrorIcon && !disabled;
 
         const onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
             setIsSelected(true);
@@ -92,6 +99,13 @@ export const Input = forwardRef<TextInput, InputProps>(
 
         return (
             <View style={styles.contentContainer}>
+                {showErrorIcon && (
+                    <Icon
+                        name="alert-circle"
+                        size={16}
+                        style={styles.errorIcon}
+                    />
+                )}
                 {startText != null && (
                     <Text style={styles.adornmentText}>{startText}</Text>
                 )}
