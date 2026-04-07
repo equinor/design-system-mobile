@@ -50,12 +50,6 @@ pnpm format
 pnpm check-types
 ```
 
-### Documentation
-```bash
-# Serve documentation locally (uses MkDocs)
-pnpm build:docs
-```
-
 ### Cleanup
 ```bash
 # Clean all build artifacts and dependencies

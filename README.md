@@ -154,7 +154,6 @@ pnpm build
 | `pnpm lint`           | Run ESLint                              |
 | `pnpm format`         | Format code with Prettier               |
 | `pnpm clean`          | Remove build artifacts and node_modules |
-| `pnpm build:docs`     | Serve documentation locally             |
 
 ### Project structure
 
