@@ -62,8 +62,6 @@ export const inputTokenStyles = EDSStyleSheet.create(
                 color: textColor,
                 fontSize: 14,
                 fontWeight: "400",
-                lineHeight: 20,
-                height: 20,
                 padding: 0,
             },
             placeholder: {
