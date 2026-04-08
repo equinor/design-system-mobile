@@ -1,13 +1,8 @@
+import { Section } from "@/components/Section";
 import { Surface } from "@/components/Surface";
 import { Icon, Input, Typography } from "@equinor/eds-mobile-components";
 import { useRef, useState } from "react";
-import {
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    TextInput,
-    View,
-} from "react-native";
+import { Pressable, ScrollView, TextInput } from "react-native";
 
 export default function InputScreen() {
     const [value1, setValue1] = useState("");
@@ -19,16 +14,14 @@ export default function InputScreen() {
             contentInsetAdjustmentBehavior="automatic"
             style={{ flex: 1 }}
         >
-            <View style={styles.section}>
+            <Section>
                 <Typography variant="p">
                     Input fields let users enter and edit text — in forms,
                     search bars, or anywhere you need to capture user input.
                 </Typography>
-            </View>
+            </Section>
 
-            <View style={styles.section}>
-                <Typography variant="h6">Basic Input</Typography>
-            </View>
+            <Section title="Basic Input" />
             <Surface>
                 <Input
                     placeholder="Enter text here"
@@ -37,14 +30,13 @@ export default function InputScreen() {
                 />
             </Surface>
 
-            <View style={styles.section}>
-                <Typography variant="h6">With Adornments</Typography>
+            <Section title="With Adornments">
                 <Typography variant="p">
                     Use startText and endText for prefix/suffix text.
                     Use startAdornment and endAdornment for elements
                     like icons or buttons.
                 </Typography>
-            </View>
+            </Section>
             <Surface>
                 <Typography>Amount with prefix and suffix text</Typography>
                 <Input startText="€" endText="EUR" placeholder="Amount" />
@@ -85,9 +77,7 @@ export default function InputScreen() {
                 />
             </Surface>
 
-            <View style={styles.section}>
-                <Typography variant="h6">Multiline Input</Typography>
-            </View>
+            <Section title="Multiline Input" />
             <Surface>
                 <Input
                     placeholder="Enter multiple lines of text"
@@ -98,9 +88,7 @@ export default function InputScreen() {
                 />
             </Surface>
 
-            <View style={styles.section}>
-                <Typography variant="h6">Invalid State</Typography>
-            </View>
+            <Section title="Invalid State" />
             <Surface>
                 <Input placeholder="Placeholder" invalid />
                 <Input
@@ -112,9 +100,7 @@ export default function InputScreen() {
                 />
             </Surface>
 
-            <View style={styles.section}>
-                <Typography variant="h6">Read-Only Input</Typography>
-            </View>
+            <Section title="Read-Only Input" />
             <Surface>
                 <Input
                     readOnly
@@ -125,9 +111,7 @@ export default function InputScreen() {
                 />
             </Surface>
 
-            <View style={styles.section}>
-                <Typography variant="h6">Disabled Input</Typography>
-            </View>
+            <Section title="Disabled Input" />
             <Surface>
                 <Input
                     placeholder="This input is disabled"
@@ -138,10 +122,3 @@ export default function InputScreen() {
         </ScrollView>
     );
 }
-
-const styles = StyleSheet.create({
-    section: {
-        padding: 16,
-        gap: 16,
-    },
-});
