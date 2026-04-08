@@ -1,4 +1,5 @@
 import { basicInput, inputWithAdornments } from "@/codeSnippets/input";
+import { Surface } from "@/components/Surface";
 import { useCodeSnippet } from "@/hooks/useCodeSnippet";
 import {
     Icon,
@@ -25,23 +26,23 @@ export default function InputScreen() {
 
             <View style={styles.section}>
                 <Typography variant="h6">Basic Input</Typography>
-
-                <View style={styles.inputContainer}>
-                    <Input
-                        placeholder="Enter text here"
-                        value={value1}
-                        onChange={setValue1}
-                    />
-                </View>
-
-                <ViewCode title="Basic Input" code={basicInput} />
             </View>
+            <Surface>
+                <Input
+                    placeholder="Enter text here"
+                    value={value1}
+                    onChange={setValue1}
+                />
+                <ViewCode title="Basic Input" code={basicInput} />
+            </Surface>
 
             <View style={styles.section}>
-                <Spacer amount="small" />
+                <Typography variant="h6">With Adornments</Typography>
                 <Typography>
                     You can add left adornments to the input field
                 </Typography>
+            </View>
+            <Surface>
                 <Input
                     leftAdornments={
                         <View
@@ -56,7 +57,6 @@ export default function InputScreen() {
                     placeholder="Anything goes here"
                 />
 
-                <Spacer amount="small" />
                 <Typography>Right adornments</Typography>
                 <Input
                     rightAdornments={
@@ -76,66 +76,60 @@ export default function InputScreen() {
                         </View>
                     }
                     placeholder="Anything goes here"
-                ></Input>
-                <Spacer amount="small" />
-
+                />
                 <ViewCode
                     title="Input with Adornments"
                     code={inputWithAdornments}
                 />
-            </View>
+            </Surface>
 
             <View style={styles.section}>
                 <Typography variant="h6">Multiline Input</Typography>
-
-                <View style={styles.inputContainer}>
-                    <Input
-                        placeholder="Enter multiple lines of text"
-                        value={value3}
-                        onChange={setValue3}
-                        multiline
-                        numberOfLines={4}
-                    />
-                </View>
             </View>
+            <Surface>
+                <Input
+                    placeholder="Enter multiple lines of text"
+                    value={value3}
+                    onChange={setValue3}
+                    multiline
+                    numberOfLines={4}
+                />
+            </Surface>
 
             <View style={styles.section}>
                 <Typography variant="h6">Input with Variants</Typography>
-                <View style={styles.inputContainer}>
-                    <Input placeholder="Placeholder danger" variant="danger" />
-                    <Spacer />
-                    <Input
-                        placeholder="Placeholder warning"
-                        variant="warning"
-                    />
-                    <Spacer />
-                    <Input
-                        placeholder="Placeholder success"
-                        variant="success"
-                    />
-                </View>
             </View>
+            <Surface>
+                <Input placeholder="Placeholder danger" variant="danger" />
+                <Spacer />
+                <Input placeholder="Placeholder warning" variant="warning" />
+                <Spacer />
+                <Input placeholder="Placeholder success" variant="success" />
+            </Surface>
 
             <View style={styles.section}>
                 <Typography variant="h6">Read-Only Input</Typography>
-                <View style={styles.inputContainer}>
-                    <Input
-                        readOnly
-                        multiline
-                        value={
-                            "This content is readonly and multiline so that you can select text from it!"
-                        }
-                    />
-                </View>
             </View>
+            <Surface>
+                <Input
+                    readOnly
+                    multiline
+                    value={
+                        "This content is readonly and multiline so that you can select text from it!"
+                    }
+                />
+            </Surface>
+
             <View style={styles.section}>
                 <Typography variant="h6">Disabled Input</Typography>
+            </View>
+            <Surface>
                 <Input
                     placeholder="This input is disabled"
                     value="Cannot edit this"
                     readOnly={true}
                 />
-            </View>
+            </Surface>
 
             <CodeSnippetDialog />
         </ScrollView>
@@ -146,8 +140,5 @@ const styles = StyleSheet.create({
     section: {
         padding: 16,
         gap: 16,
-    },
-    inputContainer: {
-        gap: 8,
     },
 });
