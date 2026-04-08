@@ -56,12 +56,14 @@ export const inputTokenStyles = EDSStyleSheet.create(
                     token.newSpacing.spacing.inset.lg.verticalSquished,
                 gap: token.newSpacing.spacing.icon.sm.gapHorizontal,
             },
+            // Typography tokens will replace hardcoded values
             textInput: {
                 flex: 1,
                 color: textColor,
                 fontSize: 14,
                 fontWeight: "400",
                 lineHeight: 20,
+                height: 20,
                 padding: 0,
             },
             placeholder: {
