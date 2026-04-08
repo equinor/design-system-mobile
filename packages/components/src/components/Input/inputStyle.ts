@@ -16,9 +16,10 @@ export const inputTokenStyles = EDSStyleSheet.create(
             : token.newColors.bg.input;
 
         // Border
-        const borderWidth = 1;
+        const borderWidth = disabled ? 0 : 1;
         const borderColor = (() => {
-            if (isInactive) return token.newColors.border.neutral.subtle;
+            if (disabled) return "transparent";
+            if (readOnly) return token.newColors.bg.disabled;
             if (invalid) {
                 return isSelected
                     ? token.newColors.border.danger.strong
