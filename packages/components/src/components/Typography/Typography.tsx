@@ -1,34 +1,19 @@
-import React, { LegacyRef, forwardRef } from "react";
+import React from "react";
 import { Text, TextProps, TextStyle } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
+import { Color, EDSStyleSheet, resolveColor } from "../../styling";
 import {
-    Color,
-    EDSStyleSheet,
-    TypographyGroup,
-    TypographyStyle,
-    TypographyVariant,
-    resolveColor,
-} from "../../styling";
+    TypographyPreset,
+    TypographyPresetStyle,
+    resolvePreset,
+} from "../../styling/tokens/typographyToken";
 
-export type TypographyColorVariant =
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "primaryInverted"
-    | "disabled"
-    | "warning"
-    | "success"
-    | "danger";
-
-export type TypographyProps<TGroup extends TypographyGroup = "basic"> = {
+export type TypographyProps = {
     /**
-     * Typography groups, specifies which group to use.
+     * Typography variant, specifies which style to use.
+     * @default "body.md"
      */
-    group?: TGroup;
-    /**
-     * Typography variants, specifies which variant to use.
-     */
-    variant?: TypographyVariant<TGroup>;
+    variant?: TypographyPreset;
     /**
      * Enable bold text.
      */
@@ -38,13 +23,10 @@ export type TypographyProps<TGroup extends TypographyGroup = "basic"> = {
      */
     italic?: boolean;
     /**
-     * Typography colors.
+     * @deprecated Use `style={{ color: ... }}` with new color tokens instead.
      */
     color?: Color;
-    /**
-     * Reference to text object
-     */
-    ref?: React.ForwardedRef<Text>;
+    ref?: React.Ref<Text>;
 } & TextProps;
 
 export type TextChildren = {
@@ -57,20 +39,74 @@ export type TextChildren = {
         | (string | string[] | number | null | undefined | React.JSX.Element)[];
 };
 
-const TypographyInner = <TGroup extends TypographyGroup>(
-    {
-        group = "basic" as TGroup,
-        variant,
-        bold,
-        italic,
-        color,
-        children,
-        ...rest
-    }: TypographyProps<TGroup> & TextChildren,
-    ref?: LegacyRef<Text>
-) => {
+const resolveFontName = (
+    presetStyle: TypographyPresetStyle,
+    bold?: boolean,
+    italic?: boolean
+): string => {
+    let fontName = presetStyle.fontFamily;
+
+    if (fontName.startsWith("Equinor")) {
+        if (bold) {
+            fontName = "Equinor-Bold";
+        }
+        if (italic) {
+            fontName += "Italic";
+        }
+    }
+
+    return fontName;
+};
+
+const themeStyles = EDSStyleSheet.create(
+    (
+        theme,
+        props: Pick<TypographyProps, "variant" | "bold" | "italic" | "color">
+    ) => {
+        const {
+            variant: presetKey = "body.md",
+            bold,
+            italic,
+            color,
+        } = props;
+
+        const presetStyle = resolvePreset(
+            theme.newTypography,
+            presetKey
+        );
+
+        const textStyle: TextStyle = {
+            color: color
+                ? resolveColor(color, theme)
+                : theme.newColors.text.neutral.strong,
+            fontSize: presetStyle.fontSize,
+            lineHeight: presetStyle.lineHeight,
+            letterSpacing: presetStyle.letterSpacing,
+            fontFamily: resolveFontName(presetStyle, bold, italic),
+            ...(bold && !presetStyle.fontFamily.startsWith("Equinor")
+                ? { fontWeight: "700" }
+                : {}),
+            ...(italic && !presetStyle.fontFamily.startsWith("Equinor")
+                ? { fontStyle: "italic" as const }
+                : {}),
+        };
+
+        return {
+            text: textStyle,
+        };
+    }
+);
+
+export const Typography = ({
+    variant = "body.md",
+    bold,
+    italic,
+    color,
+    children,
+    ref,
+    ...rest
+}: TypographyProps & TextChildren) => {
     const styles = useStyles(themeStyles, {
-        group,
         variant,
         bold,
         italic,
@@ -83,58 +119,3 @@ const TypographyInner = <TGroup extends TypographyGroup>(
         </Text>
     );
 };
-
-const resolveFontName = (
-    bold: boolean | undefined,
-    italic: boolean | undefined,
-    defaultName: string
-) => {
-    let fontName = defaultName;
-    if (bold) {
-        fontName = fontName.replace(/Medium|Light/gi, "Bold");
-    }
-    if (italic) fontName += "Italic";
-    fontName = fontName.replace("RegularItalic", "Italic");
-    return fontName;
-};
-
-const themeStyles = EDSStyleSheet.create(
-    (
-        theme,
-        props: Pick<
-            TypographyProps<TypographyGroup>,
-            "group" | "variant" | "color" | "bold" | "italic"
-        >
-    ) => {
-        const {
-            group: group = "basic",
-            variant: variant = "p",
-            color: color = "textPrimary",
-            bold,
-            italic,
-        } = props;
-
-        const typography = (theme.typography as never)[group][
-            variant
-        ] as TypographyStyle;
-
-        const textStyle: TextStyle = {
-            color: resolveColor(color, theme),
-            ...typography,
-            fontFamily: resolveFontName(
-                bold,
-                italic,
-                typography.fontFamily ?? "Inter"
-            ),
-        };
-        return {
-            text: textStyle,
-        };
-    }
-);
-
-export const Typography = forwardRef(TypographyInner) as <
-    TGroup extends TypographyGroup,
->(
-    p: TypographyProps<TGroup> & TextChildren & TextProps
-) => React.ReactElement;

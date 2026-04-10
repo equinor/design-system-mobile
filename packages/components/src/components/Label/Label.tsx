@@ -23,10 +23,10 @@ export const Label = (props: LabelProps & TypographyProps) => {
                 paddingVertical: 4,
             }}
         >
-            <Typography variant="label" color="textTertiary" {...other}>
+            <Typography variant="label.md" {...other}>
                 {label}
             </Typography>
-            <Typography variant="label" color="textTertiary" {...other}>
+            <Typography variant="label.md" {...other}>
                 {meta}
             </Typography>
         </View>
