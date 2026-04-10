@@ -3,9 +3,9 @@ import { Text, TextProps, TextStyle } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { Color, EDSStyleSheet, resolveColor } from "../../styling";
 import {
-    TypographyPreset,
-    TypographyPresetStyle,
-    resolvePreset,
+    TypographyVariant,
+    TypographyVariantStyle,
+    resolveVariant,
 } from "../../styling/tokens/typographyToken";
 
 export type TypographyProps = {
@@ -13,7 +13,7 @@ export type TypographyProps = {
      * Typography variant, specifies which style to use.
      * @default "body.md"
      */
-    variant?: TypographyPreset;
+    variant?: TypographyVariant;
     /**
      * Enable bold text.
      */
@@ -40,11 +40,11 @@ export type TextChildren = {
 };
 
 const resolveFontName = (
-    presetStyle: TypographyPresetStyle,
+    variantStyle: TypographyVariantStyle,
     bold?: boolean,
     italic?: boolean
 ): string => {
-    let fontName = presetStyle.fontFamily;
+    let fontName = variantStyle.fontFamily;
 
     if (fontName.startsWith("Equinor")) {
         if (bold) {
@@ -64,29 +64,29 @@ const themeStyles = EDSStyleSheet.create(
         props: Pick<TypographyProps, "variant" | "bold" | "italic" | "color">
     ) => {
         const {
-            variant: presetKey = "body.md",
+            variant: variantKey = "body.md",
             bold,
             italic,
             color,
         } = props;
 
-        const presetStyle = resolvePreset(
+        const variantStyle = resolveVariant(
             theme.newTypography,
-            presetKey
+            variantKey
         );
 
         const textStyle: TextStyle = {
             color: color
                 ? resolveColor(color, theme)
                 : theme.newColors.text.neutral.strong,
-            fontSize: presetStyle.fontSize,
-            lineHeight: presetStyle.lineHeight,
-            letterSpacing: presetStyle.letterSpacing,
-            fontFamily: resolveFontName(presetStyle, bold, italic),
-            ...(bold && !presetStyle.fontFamily.startsWith("Equinor")
+            fontSize: variantStyle.fontSize,
+            lineHeight: variantStyle.lineHeight,
+            letterSpacing: variantStyle.letterSpacing,
+            fontFamily: resolveFontName(variantStyle, bold, italic),
+            ...(bold && !variantStyle.fontFamily.startsWith("Equinor")
                 ? { fontWeight: "700" }
                 : {}),
-            ...(italic && !presetStyle.fontFamily.startsWith("Equinor")
+            ...(italic && !variantStyle.fontFamily.startsWith("Equinor")
                 ? { fontStyle: "italic" as const }
                 : {}),
         };

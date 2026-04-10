@@ -1,7 +1,7 @@
 type FontFamily = "Inter" | "Equinor";
 type FontWeight = 300 | 400 | 500 | 700;
 
-export type TypographyPresetStyle = {
+export type TypographyVariantStyle = {
     fontFamily: string;
     fontSize: number;
     lineHeight: number;
@@ -31,7 +31,7 @@ function preset(
     fontSize: number,
     lineHeight: number,
     letterSpacing = 0
-): TypographyPresetStyle {
+): TypographyVariantStyle {
     return {
         fontFamily: resolveFontFamily(family, weight),
         fontSize,
@@ -75,23 +75,23 @@ type BodyVariant = `body.${keyof TypographyToken["body"]}`;
 type LabelVariant = `label.${keyof TypographyToken["label"]}`;
 type StandaloneVariant = "caption" | "button" | "overline";
 
-export type TypographyPreset =
+export type TypographyVariant =
     | DisplayVariant
     | HeadingVariant
     | BodyVariant
     | LabelVariant
     | StandaloneVariant;
 
-export function resolvePreset(
+export function resolveVariant(
     token: TypographyToken,
-    presetKey: TypographyPreset
-): TypographyPresetStyle {
-    if (presetKey.includes(".")) {
-        const [group, variant] = presetKey.split(".") as [
+    variantKey: TypographyVariant
+): TypographyVariantStyle {
+    if (variantKey.includes(".")) {
+        const [group, variant] = variantKey.split(".") as [
             "display" | "heading" | "body" | "label",
             string,
         ];
-        return (token[group] as Record<string, TypographyPresetStyle>)[variant];
+        return (token[group] as Record<string, TypographyVariantStyle>)[variant];
     }
-    return token[presetKey as StandaloneVariant];
+    return token[variantKey as StandaloneVariant];
 }
