@@ -38,7 +38,7 @@ export default function HomeScreen() {
                     <Typography variant="heading.md">What&apos;s New</Typography>
                     <Typography
                         variant="body.md"
-                        style={{ flexWrap: "wrap", fontSize: 14 }}
+                        style={{ flexWrap: "wrap" }}
                     >
                         We are happy to...
                     </Typography>
@@ -47,7 +47,7 @@ export default function HomeScreen() {
                     <Typography variant="heading.md">Getting Started</Typography>
                     <Typography
                         variant="body.md"
-                        style={{ flexWrap: "wrap", fontSize: 14 }}
+                        style={{ flexWrap: "wrap" }}
                     >
                         Welcome to the ...
                     </Typography>

@@ -1,13 +1,12 @@
 type FontFamily = "Inter" | "Equinor";
-type FontWeight = 300 | 400 | 500 | 700;
-
 export type TypographyVariantStyle = {
     fontFamily: string;
     fontSize: number;
     lineHeight: number;
-    fontWeight: FontWeight;
     letterSpacing: number;
 };
+
+type FontWeight = 300 | 400 | 500 | 700;
 
 const fontNameMap: Record<FontFamily, Partial<Record<FontWeight, string>>> = {
     Inter: {
@@ -36,7 +35,6 @@ function preset(
         fontFamily: resolveFontFamily(family, weight),
         fontSize,
         lineHeight,
-        fontWeight: weight,
         letterSpacing,
     };
 }
@@ -58,13 +56,13 @@ export const typographyToken = {
         sm: preset("Inter", 400, 13, 18),
     },
     label: {
-        lg: preset("Inter", 500, 15, 20),
-        md: preset("Inter", 500, 13, 18),
-        sm: preset("Inter", 500, 12, 16),
+        lg: preset("Inter", 400, 15, 20),
+        md: preset("Inter", 400, 13, 18),
+        sm: preset("Inter", 400, 12, 16),
     },
     caption: preset("Inter", 400, 11, 13),
-    button: preset("Inter", 500, 17, 22),
-    overline: preset("Inter", 500, 12, 16),
+    button: preset("Inter", 400, 17, 22),
+    overline: preset("Inter", 400, 12, 16),
 };
 
 export type TypographyToken = typeof typographyToken;
@@ -75,7 +73,7 @@ type BodyVariant = `body.${keyof TypographyToken["body"]}`;
 type LabelVariant = `label.${keyof TypographyToken["label"]}`;
 type StandaloneVariant = "caption" | "button" | "overline";
 
-export type TypographyVariant =
+export type NewTypographyVariant =
     | DisplayVariant
     | HeadingVariant
     | BodyVariant
@@ -84,7 +82,7 @@ export type TypographyVariant =
 
 export function resolveVariant(
     token: TypographyToken,
-    variantKey: TypographyVariant
+    variantKey: NewTypographyVariant
 ): TypographyVariantStyle {
     if (variantKey.includes(".")) {
         const [group, variant] = variantKey.split(".") as [

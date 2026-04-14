@@ -111,25 +111,24 @@ export default function TypographyScreen() {
             <Section title="Label">
                 <Typography>
                     Labels pair with interactive elements — form fields, inputs,
-                    toggles, and selection controls. Their medium weight helps
-                    them stand out at smaller sizes, making them ideal for
-                    compact UI where readability matters.
+                    toggles, and selection controls. They are sized for compact
+                    UI where readability matters.
                 </Typography>
             </Section>
             <Surface>
                 <View style={styles.row}>
                     <Typography variant="label.lg">Label lg</Typography>
-                    <Typography variant="caption">Inter Medium 15/20</Typography>
+                    <Typography variant="caption">Inter 15/20</Typography>
                 </View>
                 <View style={styles.divider} />
                 <View style={styles.row}>
                     <Typography variant="label.md">Label md</Typography>
-                    <Typography variant="caption">Inter Medium 13/18</Typography>
+                    <Typography variant="caption">Inter 13/18</Typography>
                 </View>
                 <View style={styles.divider} />
                 <View style={styles.row}>
                     <Typography variant="label.sm">Label sm</Typography>
-                    <Typography variant="caption">Inter Medium 12/16</Typography>
+                    <Typography variant="caption">Inter 12/16</Typography>
                 </View>
             </Surface>
 
@@ -145,12 +144,12 @@ export default function TypographyScreen() {
             <Surface>
                 <View style={styles.row}>
                     <Typography variant="button">Button</Typography>
-                    <Typography variant="caption">Inter Medium 17/22</Typography>
+                    <Typography variant="caption">Inter 17/22</Typography>
                 </View>
                 <View style={styles.divider} />
                 <View style={styles.row}>
                     <Typography variant="overline">Overline</Typography>
-                    <Typography variant="caption">Inter Medium 12/16</Typography>
+                    <Typography variant="caption">Inter 12/16</Typography>
                 </View>
                 <View style={styles.divider} />
                 <View style={styles.row}>

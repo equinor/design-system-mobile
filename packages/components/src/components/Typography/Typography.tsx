@@ -3,7 +3,7 @@ import { Text, TextProps, TextStyle } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { Color, EDSStyleSheet, resolveColor } from "../../styling";
 import {
-    TypographyVariant,
+    NewTypographyVariant,
     TypographyVariantStyle,
     resolveVariant,
 } from "../../styling/tokens/typographyToken";
@@ -13,7 +13,7 @@ export type TypographyProps = {
      * Typography variant, specifies which style to use.
      * @default "body.md"
      */
-    variant?: TypographyVariant;
+    variant?: NewTypographyVariant;
     /**
      * Enable bold text.
      */
@@ -51,7 +51,7 @@ const resolveFontName = (
             fontName = "Equinor-Bold";
         }
         if (italic) {
-            fontName += "Italic";
+            fontName = fontName.replace("Equinor-Regular", "Equinor-") + "Italic";
         }
     }
 
