@@ -22,7 +22,6 @@
         "typescript-eslint": "^8.39.0"
     },
     "files": [
-        "CODE_OF_CONDUCT.md",
         "LICENSE",
         "CHANGELOG.md",
         "dist"
