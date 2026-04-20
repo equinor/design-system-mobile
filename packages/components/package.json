@@ -24,7 +24,8 @@
     "files": [
         "LICENSE",
         "CHANGELOG.md",
-        "dist"
+        "dist",
+        "docs"
     ],
     "homepage": "https://github.com/equinor/design-system-mobile/",
     "keywords": [

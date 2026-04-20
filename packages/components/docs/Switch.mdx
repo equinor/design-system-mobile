@@ -1,0 +1,85 @@
+{/* 
+  Links component is provided by the EDS Storybook wrapper, not imported here.
+  The EDS Switch.docs.mdx should wrap <MobileDocs /> with:
+  
+  In next/Switch/Switch.docs.mdx:
+  import MobileDocs from '@equinor/eds-mobile-components/docs/Switch.mdx'
+  import { Links } from './../../../../.storybook/components'            
+                                                                                                                                                                            
+  <PlatformTabs mobile={<>
+    <Links                                                                                                                                                                  
+      sourceUrl="https://github.com/equinor/design-system-mobile/blob/main/packages/components/src/components/SelectionControls/Switch.tsx"
+      npmUrl="https://www.npmjs.com/package/@equinor/eds-mobile-components"                                                                
+    />                                                                                                                                                                      
+    <MobileDocs />                                                                                                                                                          
+  </>} />   
+*/}
+
+
+## Installation
+
+```bash
+npm install @equinor/eds-mobile-components
+```
+
+## Usage
+
+```tsx
+import { Switch } from '@equinor/eds-mobile-components'
+
+const [active, setActive] = useState(false)
+
+<Switch
+  label="Notifications"
+  active={active}
+  onChange={setActive}
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `active` | `boolean` | `false` | Whether the switch is on or off |
+| `onChange` | `(isActive: boolean) =&gt; void` | — | Called when the switch is toggled |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `label` | `string` | — | Text label displayed next to the switch |
+
+Also accepts all React Native `ViewProps`.
+
+## Examples
+
+### With label
+
+```tsx
+<Switch
+  label="Dark mode"
+  active={isDarkMode}
+  onChange={setIsDarkMode}
+/>
+```
+
+### Without label
+
+When no visible label is needed, use `accessibilityLabel` for screen readers.
+
+```tsx
+<Switch
+  active={isEnabled}
+  onChange={setIsEnabled}
+  accessibilityLabel="Enable feature"
+/>
+```
+
+### Disabled
+
+```tsx
+<Switch label="Locked setting" active={true} disabled />
+<Switch label="Unavailable" active={false} disabled />
+```
+
+## Accessibility
+
+- Uses `accessibilityRole="switch"` automatically
+- Reports `checked` and `disabled` states to assistive technology
+- Always provide a `label` or `accessibilityLabel`
