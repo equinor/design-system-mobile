@@ -1,0 +1,155 @@
+name: Build and Release EDS Mobile Components
+
+# PAUSED — scaffolded ahead of Apple Developer access (see issue #150).
+# Will not succeed until the following are in place:
+#   Repo secrets:
+#     P12SECRET, P12PASSWORD, PROVISIONING_PROFILE_BASE64, KEYCHAIN_PASSWORD,
+#     APPSTORE_API_PRIVATE_KEY, APPSTORE_API_KEY_ID, APPSTORE_ISSUER_ID
+#   Repo variables:
+#     BUNDLE_IDENTIFIER (= com.equinor.eds.mobile-storybook)
+#     APP_NAME          (= EDS Mobile Components)
+#   Apple side:
+#     App ID registered under Equinor ASA, Apple Distribution cert (.p12),
+#     App Store provisioning profile (.mobileprovision),
+#     App Store Connect API key (.p8 + Key ID + Issuer ID).
+
+on:
+  workflow_dispatch:
+
+env:
+  CODE_SIGN_IDENTITY: "Apple Distribution: Equinor ASA"
+  TEAM_ID: "2F7Q634FSX"
+
+jobs:
+  build:
+    name: Build and upload IPA
+    runs-on: macos-26
+
+    outputs:
+      build_number: ${{ steps.set-build-number.outputs.build_number }}
+
+    steps:
+      - name: Set Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "26.2"
+
+      - name: Set build number
+        id: set-build-number
+        run: |
+          build_number="$(date +'%Y%m%d').${{ github.run_number }}"
+          echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
+          echo "build_number=$build_number" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Apple certificate and provisioning profile
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.P12SECRET }}
+          P12_PASSWORD: ${{ secrets.P12PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
+          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Extract UUID from provisioning profile
+        run: |
+          PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
+          UUID=$(security cms -D -i "$PROFILE" | /usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin)
+          echo "UUID=$UUID" >> $GITHUB_ENV
+
+      - name: Generate ExportOptions.plist
+        working-directory: apps/storybook
+        run: |
+          FILE=ExportOptions.plist
+          /usr/libexec/PlistBuddy -c "add :compileBitcode bool true" $FILE
+          /usr/libexec/PlistBuddy -c "add :method string app-store" $FILE
+          /usr/libexec/PlistBuddy -c "add :provisioningProfiles dict" $FILE
+          /usr/libexec/PlistBuddy -c "add :provisioningProfiles:${{ vars.BUNDLE_IDENTIFIER }} string ${{ env.UUID }}" $FILE
+          /usr/libexec/PlistBuddy -c "add :signingStyle string manual" $FILE
+          /usr/libexec/PlistBuddy -c "add :teamId string ${{ env.TEAM_ID }}" $FILE
+          cat $FILE
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build components package
+        run: pnpm build:components
+
+      - name: Patch app.json
+        uses: onlyutkarsh/patch-files-action@v1.0.1
+        with:
+          fail-if-no-files-patched: true
+          fail-if-error: true
+          files: ./apps/storybook/app.json
+          patch-syntax: |
+            = /expo/ios/bundleIdentifier => "${{ vars.BUNDLE_IDENTIFIER }}"
+            = /expo/ios/buildNumber => "${{ env.BUILD_NUMBER }}"
+
+      - name: Prebuild Expo project
+        working-directory: apps/storybook
+        run: npx expo prebuild --platform ios
+
+      - name: Set display name
+        working-directory: apps/storybook
+        run: |
+          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName ${{ vars.APP_NAME }}" ios/EDSMobile/Info.plist
+
+      - name: Xcode archive
+        working-directory: apps/storybook
+        run: |
+          /usr/bin/xcodebuild archive \
+            -workspace ios/EDSMobile.xcworkspace \
+            -scheme EDSMobile \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/EDSMobile.xcarchive \
+            CODE_SIGN_STYLE="Manual" \
+            CODE_SIGN_IDENTITY="${{ env.CODE_SIGN_IDENTITY }}" \
+            PROVISIONING_PROFILE="${{ env.UUID }}"
+
+      - name: Export IPA
+        working-directory: apps/storybook
+        run: |
+          /usr/bin/xcodebuild -exportArchive \
+            -archivePath build/EDSMobile.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath build
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EDSMobile-${{ env.BUILD_NUMBER }}
+          path: apps/storybook/build/*.ipa
+
+      - name: Upload to TestFlight
+        run: |
+          mkdir -p ./private_keys
+          echo -n "${{ secrets.APPSTORE_API_PRIVATE_KEY }}" | base64 --decode -o "./private_keys/AuthKey_${{ secrets.APPSTORE_API_KEY_ID }}.p8"
+          IPA_PATH="$GITHUB_WORKSPACE/apps/storybook/build/EDSMobile.ipa"
+          xcrun altool --validate-app -f "$IPA_PATH" -t ios --apiKey ${{ secrets.APPSTORE_API_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_ISSUER_ID }}
+          xcrun altool --upload-app -f "$IPA_PATH" -t ios --apiKey ${{ secrets.APPSTORE_API_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_ISSUER_ID }}
