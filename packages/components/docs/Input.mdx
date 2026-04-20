@@ -1,0 +1,126 @@
+{/* 
+  Links component is provided by the EDS Storybook wrapper, not imported here.
+  The EDS Input.docs.mdx should wrap <MobileDocs /> with:
+  
+  In next/Input/Input.docs.mdx:
+  import MobileDocs from '@equinor/eds-mobile-components/docs/Input.mdx'
+  import { Links } from './../../../../.storybook/components'            
+                                                                                                                                                                            
+  <PlatformTabs mobile={<>
+    <Links                                                                                                                                                                  
+      sourceUrl="https://github.com/equinor/design-system-mobile/blob/main/packages/components/src/components/Input/Input.tsx"
+      npmUrl="https://www.npmjs.com/package/@equinor/eds-mobile-components"                                                                
+    />                                                                                                                                                                      
+    <MobileDocs />                                                                                                                                                          
+  </>} />   
+*/}
+
+
+## Features
+
+- Text input primitive with controlled focus styling.
+- Single-line or multiline via the `multiline` prop.
+- Supports adornments (start/end elements) and prefix/suffix text.
+- Error, read-only, and disabled states with matching visuals.
+- Extends React Native's `TextInput` — forwards refs and accepts all native text-input props.
+- Adapts to light/dark themes and comfortable/spacious density via the EDS token system.
+
+## Usage
+
+```tsx
+import { Input } from '@equinor/eds-mobile-components'
+
+const [value, setValue] = useState('')
+
+<Input placeholder="Enter text" value={value} onChange={setValue} />
+```
+
+Note: `onChange` receives the new string directly, not a React Native event. If you need the raw event, use `onChangeText`'s underlying API via a ref.
+
+## Examples
+
+### With prefix or suffix text
+
+Use `startText` and `endText` for short static labels like currency symbols, units, or protocol prefixes.
+
+```tsx
+<Input startText="https://" value={url} onChange={setUrl} />
+<Input endText="kg" value={weight} onChange={setWeight} keyboardType="numeric" />
+```
+
+### With adornments
+
+Use `startAdornment` and `endAdornment` for interactive or icon-based decoration.
+
+```tsx
+<Input
+  startAdornment={<Icon name="magnify" size={16} />}
+  placeholder="Search"
+  value={query}
+  onChange={setQuery}
+/>
+```
+
+### Multiline
+
+```tsx
+<Input
+  multiline
+  placeholder="Describe the issue…"
+  value={description}
+  onChange={setDescription}
+/>
+```
+
+### Invalid state
+
+```tsx
+<Input
+  invalid
+  value={email}
+  onChange={setEmail}
+  placeholder="name@example.com"
+/>
+```
+
+Set `hideErrorIcon` to suppress the built-in error indicator when you're rendering your own.
+
+### Read-only vs disabled
+
+Both prevent editing. Use `readOnly` when the value should remain copyable and focusable; use `disabled` when the field is fully inactive.
+
+```tsx
+<Input value="Fixed value" readOnly />
+<Input value="Unavailable" disabled />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onChange` | `(contents: string) =&gt; void` | — | Called with the new text content |
+| `placeholder` | `string` | — | Placeholder text shown when empty |
+| `multiline` | `boolean` | `false` | Wrap text across multiple lines |
+| `startText` | `string` | — | Prefix text (e.g. `https://`, `€`) |
+| `endText` | `string` | — | Suffix text (e.g. `kg`, `.com`) |
+| `startAdornment` | `ReactNode` | — | Element at the start of the input (e.g. icon) |
+| `endAdornment` | `ReactNode` | — | Element at the end of the input (e.g. icon) |
+| `invalid` | `boolean` | `false` | Renders the error state |
+| `hideErrorIcon` | `boolean` | `false` | Hide the built-in error icon when `invalid` is true |
+| `readOnly` | `boolean` | `false` | Prevents editing but remains focusable |
+| `disabled` | `boolean` | `false` | Disables the input entirely |
+
+Also accepts all React Native [`TextInputProps`](https://reactnative.dev/docs/textinput#props), except `onChange`, `onChangeText`, and `readOnly` which are overridden or handled above.
+
+## Accessibility
+
+- Inherits the native text-input role from React Native's `TextInput`
+- Reports `disabled` state to assistive tech when `disabled` or `readOnly` is true
+- Pair with a label by wrapping in `TextField`, or supply `accessibilityLabel` for standalone usage
+- The error state is visual only — expose validation messages programmatically (e.g. via `accessibilityHint`) when using `invalid`
+
+## Related components
+
+- `TextField` — higher-level wrapper around Input with label, helper text, and unit support. Use this for most forms.
+- `Search` — Input preconfigured for search UX.
+- `Select` — dropdown selector for choosing from a fixed list.

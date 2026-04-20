@@ -16,11 +16,13 @@
 */}
 
 
-## Installation
+## Features
 
-```bash
-npm install @equinor/eds-mobile-components
-```
+- Controlled on/off toggle with animated thumb.
+- Optional visible label; labelless variant renders as a circular touch target.
+- Disabled state with reduced opacity.
+- Adapts to light/dark themes and comfortable/spacious density via the EDS token system.
+- Reports `switch` role and checked/disabled state to assistive tech.
 
 ## Usage
 
@@ -36,17 +38,6 @@ const [active, setActive] = useState(false)
 />
 ```
 
-## Props
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `active` | `boolean` | `false` | Whether the switch is on or off |
-| `onChange` | `(isActive: boolean) =&gt; void` | — | Called when the switch is toggled |
-| `disabled` | `boolean` | `false` | Disables interaction |
-| `label` | `string` | — | Text label displayed next to the switch |
-
-Also accepts all React Native `ViewProps`.
-
 ## Examples
 
 ### With label
@@ -61,7 +52,7 @@ Also accepts all React Native `ViewProps`.
 
 ### Without label
 
-When no visible label is needed, use `accessibilityLabel` for screen readers.
+When no visible label is needed, use `accessibilityLabel` for screen readers. The switch renders as a circular hit area sized for a comfortable touch target, so it can sit directly next to other controls without extra wrapping.
 
 ```tsx
 <Switch
@@ -78,8 +69,24 @@ When no visible label is needed, use `accessibilityLabel` for screen readers.
 <Switch label="Unavailable" active={false} disabled />
 ```
 
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `active` | `boolean` | `false` | Whether the switch is on or off |
+| `onChange` | `(isActive: boolean) =&gt; void` | — | Called when the switch is toggled |
+| `disabled` | `boolean` | `false` | Disables interaction |
+| `label` | `string` | — | Text label displayed next to the switch |
+
+Also accepts all React Native [`ViewProps`](https://reactnative.dev/docs/view#props).
+
 ## Accessibility
 
 - Uses `accessibilityRole="switch"` automatically
 - Reports `checked` and `disabled` states to assistive technology
 - Always provide a `label` or `accessibilityLabel`
+
+## Related components
+
+- `Checkbox` — for selecting one or more items from a set.
+- `Radio` — for selecting a single option from a mutually exclusive set.
