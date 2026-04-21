@@ -21,8 +21,6 @@
 - Controlled on/off toggle with animated thumb.
 - Optional visible label; labelless variant renders as a circular touch target.
 - Disabled state with reduced opacity.
-- Adapts to light/dark themes and comfortable/spacious density via the EDS token system.
-- Reports `switch` role and checked/disabled state to assistive tech.
 
 ## Usage
 
@@ -74,7 +72,7 @@ When no visible label is needed, use `accessibilityLabel` for screen readers. Th
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `active` | `boolean` | `false` | Whether the switch is on or off |
-| `onChange` | `(isActive: boolean) =&gt; void` | — | Called when the switch is toggled |
+| `onChange` | `(isActive: boolean) => void` | — | Called when the switch is toggled |
 | `disabled` | `boolean` | `false` | Disables interaction |
 | `label` | `string` | — | Text label displayed next to the switch |
 

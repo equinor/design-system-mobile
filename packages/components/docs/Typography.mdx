@@ -21,8 +21,7 @@
 - Text component with presets for display, heading, body, label, caption, button, and overline.
 - Uses Equinor for display and heading variants; Inter for body, label, and standalone variants.
 - Optional `bold` and `italic` modifiers.
-- Extends React Native's `Text` — accepts all native text props.
-- Adapts to light/dark themes via the EDS token system; default color is `text.neutral.strong`.
+- Default color is `text.neutral.strong`.
 
 ## Usage
 
@@ -79,23 +78,23 @@ Because Typography extends React Native's `Text`, all native props pass through.
 
 ## Variants
 
-| Variant | Family | Size / Line height |
-|---|---|---|
-| `display.lg` | Equinor | 34 / 41 |
-| `display.md` | Equinor | 28 / 34 |
-| `display.sm` | Equinor | 22 / 28 |
-| `heading.lg` | Equinor | 20 / 25 |
-| `heading.md` | Equinor | 17 / 22 |
-| `heading.sm` | Equinor | 15 / 20 |
-| `body.lg` | Inter | 17 / 22 |
-| `body.md` | Inter | 15 / 20 |
-| `body.sm` | Inter | 13 / 18 |
-| `label.lg` | Inter | 15 / 20 |
-| `label.md` | Inter | 13 / 18 |
-| `label.sm` | Inter | 12 / 16 |
-| `caption` | Inter | 11 / 13 |
-| `button` | Inter | 17 / 22 |
-| `overline` | Inter | 12 / 16 |
+| Variant | Family | Size | Line height |
+|---|---|---|---|
+| `display.lg` | Equinor | 34 | 41 |
+| `display.md` | Equinor | 28 | 34 |
+| `display.sm` | Equinor | 22 | 28 |
+| `heading.lg` | Equinor | 20 | 25 |
+| `heading.md` | Equinor | 17 | 22 |
+| `heading.sm` | Equinor | 15 | 20 |
+| `body.lg` | Inter | 17 | 22 |
+| `body.md` | Inter | 15 | 20 |
+| `body.sm` | Inter | 13 | 18 |
+| `label.lg` | Inter | 15 | 20 |
+| `label.md` | Inter | 13 | 18 |
+| `label.sm` | Inter | 12 | 16 |
+| `caption` | Inter | 11 | 13 |
+| `button` | Inter | 17 | 22 |
+| `overline` | Inter | 12 | 16 |
 
 ## Props
 
@@ -104,9 +103,10 @@ Because Typography extends React Native's `Text`, all native props pass through.
 | `variant` | `NewTypographyVariant` | `'body.md'` | Typography preset — see Variants table above |
 | `bold` | `boolean` | `false` | Enables bold weight |
 | `italic` | `boolean` | `false` | Enables italic style |
-| `color` | `Color` | — | **Deprecated.** Use `style={{ color: ... }}` with new color tokens instead |
 
 Also accepts all React Native [`TextProps`](https://reactnative.dev/docs/text#props).
+
+A legacy `color` prop is still accepted for backward compatibility but is deprecated — use `style={{ color: ... }}` with the new color tokens instead, as shown in *Overriding color* above.
 
 ## Accessibility
 

@@ -22,8 +22,6 @@
 - Single-line or multiline via the `multiline` prop.
 - Supports adornments (start/end elements) and prefix/suffix text.
 - Error, read-only, and disabled states with matching visuals.
-- Extends React Native's `TextInput` — forwards refs and accepts all native text-input props.
-- Adapts to light/dark themes and comfortable/spacious density via the EDS token system.
 
 ## Usage
 
@@ -35,7 +33,7 @@ const [value, setValue] = useState('')
 <Input placeholder="Enter text" value={value} onChange={setValue} />
 ```
 
-Note: `onChange` receives the new string directly, not a React Native event. If you need the raw event, use `onChangeText`'s underlying API via a ref.
+Note: `onChange` receives the new string value, not a React Native event.
 
 ## Examples
 
@@ -74,16 +72,18 @@ Use `startAdornment` and `endAdornment` for interactive or icon-based decoration
 
 ### Invalid state
 
+Pass `invalid` as any boolean — a literal `true`, or an expression computed from your validation logic.
+
 ```tsx
 <Input
-  invalid
+  invalid={email.length > 0 && !isValidEmail(email)}
   value={email}
   onChange={setEmail}
   placeholder="name@example.com"
 />
 ```
 
-Set `hideErrorIcon` to suppress the built-in error indicator when you're rendering your own.
+When `invalid` is true, Input renders a built-in alert-circle icon at the start of the field. If you're already signalling the error elsewhere (for example inside `TextField` with helper text, or a custom layout), set `hideErrorIcon` to suppress the icon and avoid duplicate signals.
 
 ### Read-only vs disabled
 
@@ -98,7 +98,7 @@ Both prevent editing. Use `readOnly` when the value should remain copyable and f
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `onChange` | `(contents: string) =&gt; void` | — | Called with the new text content |
+| `onChange` | `(contents: string) => void` | — | Called with the new text content |
 | `placeholder` | `string` | — | Placeholder text shown when empty |
 | `multiline` | `boolean` | `false` | Wrap text across multiple lines |
 | `startText` | `string` | — | Prefix text (e.g. `https://`, `€`) |
