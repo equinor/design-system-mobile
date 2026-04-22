@@ -1,6 +1,12 @@
 import { Section } from "@/components/Section";
 import { Surface } from "@/components/Surface";
-import { Button, EDSStyleSheet, Spacer, Typography, useStyles } from "@equinor/eds-mobile-components";
+import {
+    Button,
+    EDSStyleSheet,
+    Spacer,
+    Typography,
+    useStyles,
+} from "@equinor/eds-mobile-components";
 import { ScrollView, View } from "react-native";
 
 export default function ButtonsScreen() {
@@ -49,7 +55,6 @@ export default function ButtonsScreen() {
                 <View style={styles.buttonRow}>
                     <Button label="Small" size="small" />
                     <Button label="Default" size="default" />
-                    <Button label="Large" size="large" />
                 </View>
             </Surface>
 
