@@ -49,7 +49,7 @@ export default function ButtonsScreen() {
             </Surface>
 
             <Section title="Sizes">
-                <Typography>Buttons are available in three sizes.</Typography>
+                <Typography>Buttons are available in two sizes.</Typography>
             </Section>
             <Surface>
                 <View style={styles.buttonRow}>
