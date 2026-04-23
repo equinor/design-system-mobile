@@ -4,6 +4,9 @@ on:
   workflow_call:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   CODE_SIGN_IDENTITY: "Apple Distribution: Equinor ASA"
   TEAM_ID: "2F7Q634FSX"
