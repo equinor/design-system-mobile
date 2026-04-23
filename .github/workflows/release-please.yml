@@ -17,7 +17,7 @@ jobs:
             paths_released: ${{ steps.release.outputs.paths_released }}
             tag_name: ${{ steps.release.outputs['packages/components--tag_name'] }}
         steps:
-            - uses: googleapis/release-please-action@v5
+            - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7
               id: release
               with:
                   # Use GITHUB_TOKEN for simpler setup, or use a PAT for workflows that trigger other workflows

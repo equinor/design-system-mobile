@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: "Chekout"
+      - name: "Checkout"
         uses: actions/checkout@v4
 
       - name: "Setup pnpm"

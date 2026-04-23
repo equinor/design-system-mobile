@@ -13,6 +13,11 @@ jobs:
     runs-on: macos-26
     permissions:
       contents: read
+    env:
+      CERTIFICATE_FILE: build_certificate.p12
+      PROVISIONING_PROFILE_FILE: build_pp.mobileprovision
+      KEYCHAIN_FILE: app-signing.keychain-db
+      INSTALLED_PROVISIONING_PROFILE_PATH: ~/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision
 
     steps:
       - name: Set Xcode version
@@ -36,12 +41,12 @@ jobs:
           BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         run: |
-          CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
-          PP_PATH=$RUNNER_TEMP/build_pp.mobileprovision
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          CERTIFICATE_PATH="$RUNNER_TEMP/$CERTIFICATE_FILE"
+          PROVISIONING_PROFILE_PATH="$RUNNER_TEMP/$PROVISIONING_PROFILE_FILE"
+          KEYCHAIN_PATH="$RUNNER_TEMP/$KEYCHAIN_FILE"
 
           echo -n "$BUILD_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
-          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PP_PATH
+          echo -n "$BUILD_PROVISION_PROFILE_BASE64" | base64 --decode -o $PROVISIONING_PROFILE_PATH
 
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
@@ -51,7 +56,7 @@ jobs:
           security list-keychain -d user -s $KEYCHAIN_PATH
 
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
+          cp "$PROVISIONING_PROFILE_PATH" "$INSTALLED_PROVISIONING_PROFILE_PATH"
 
       - name: Extract UUID from provisioning profile
         run: |
@@ -127,3 +132,13 @@ jobs:
           IPA_PATH="$GITHUB_WORKSPACE/apps/storybook/build/EDSMobile.ipa"
           xcrun altool --validate-app -f "$IPA_PATH" -t ios --apiKey ${{ secrets.APPSTORE_API_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_ISSUER_ID }}
           xcrun altool --upload-app -f "$IPA_PATH" -t ios --apiKey ${{ secrets.APPSTORE_API_KEY_ID }} --apiIssuer ${{ secrets.APPSTORE_ISSUER_ID }}
+
+      - name: Clean up signing artifacts
+        if: ${{ always() }}
+        run: |
+          PROVISIONING_PROFILE_PATH="$RUNNER_TEMP/$PROVISIONING_PROFILE_FILE"
+          KEYCHAIN_PATH="$RUNNER_TEMP/$KEYCHAIN_FILE"
+
+          security delete-keychain "$KEYCHAIN_PATH" || true
+          rm -f "$PROVISIONING_PROFILE_PATH"
+          rm -f "$INSTALLED_PROVISIONING_PROFILE_PATH"
