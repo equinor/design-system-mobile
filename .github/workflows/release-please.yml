@@ -14,9 +14,10 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
             releases_created: ${{ steps.release.outputs.releases_created }}
+            paths_released: ${{ steps.release.outputs.paths_released }}
             tag_name: ${{ steps.release.outputs['packages/components--tag_name'] }}
         steps:
-            - uses: googleapis/release-please-action@v4
+            - uses: googleapis/release-please-action@v5
               id: release
               with:
                   # Use GITHUB_TOKEN for simpler setup, or use a PAT for workflows that trigger other workflows
@@ -26,12 +27,14 @@ jobs:
 
     publish-npm:
         needs: release-please
-        if: ${{ needs.release-please.outputs.releases_created }}
+        if: ${{ contains(join(fromJSON(needs['release-please'].outputs.paths_released),
+            ','), 'packages/') }}
         uses: ./.github/workflows/publish-packages.yml
         secrets: inherit
 
     build-release-ios:
         needs: release-please
-        if: ${{ needs.release-please.outputs.releases_created }}
+        if: ${{ contains(fromJSON(needs['release-please'].outputs.paths_released),
+            'apps/storybook') }}
         uses: ./.github/workflows/build-release-ios.yml
         secrets: inherit
