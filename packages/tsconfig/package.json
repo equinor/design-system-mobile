@@ -6,9 +6,6 @@
   "files": [
     "base.json"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "workspaces": [
     "apps/*",
     "packages/*"

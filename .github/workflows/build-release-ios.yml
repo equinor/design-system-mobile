@@ -7,22 +7,16 @@ on:
 permissions:
   contents: read
 
-env:
-  CODE_SIGN_IDENTITY: "Apple Distribution: Equinor ASA"
-  TEAM_ID: "2F7Q634FSX"
-  BUNDLE_IDENTIFIER: "com.equinor.eds.mobile"
-
 jobs:
   build:
     name: Build and upload IPA
     runs-on: macos-26
-
-    outputs:
-      build_number: ${{ steps.set-build-number.outputs.build_number }}
+    permissions:
+      contents: read
 
     steps:
       - name: Set Xcode version
-        uses: maxim-lobanov/setup-xcode@v1
+        uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90
         with:
           xcode-version: "26.2"
 
@@ -31,7 +25,6 @@ jobs:
         run: |
           build_number="$(date +'%Y%m%d').${{ github.run_number }}"
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
-          echo "build_number=$build_number" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -70,12 +63,11 @@ jobs:
         working-directory: apps/storybook
         run: |
           FILE=ExportOptions.plist
-          /usr/libexec/PlistBuddy -c "add :compileBitcode bool true" $FILE
           /usr/libexec/PlistBuddy -c "add :method string app-store" $FILE
           /usr/libexec/PlistBuddy -c "add :provisioningProfiles dict" $FILE
-          /usr/libexec/PlistBuddy -c "add :provisioningProfiles:${{ env.BUNDLE_IDENTIFIER }} string ${{ env.UUID }}" $FILE
+          /usr/libexec/PlistBuddy -c "add :provisioningProfiles:${{ vars.APPLE_BUNDLE_IDENTIFIER }} string ${{ env.UUID }}" $FILE
           /usr/libexec/PlistBuddy -c "add :signingStyle string manual" $FILE
-          /usr/libexec/PlistBuddy -c "add :teamId string ${{ env.TEAM_ID }}" $FILE
+          /usr/libexec/PlistBuddy -c "add :teamId string ${{ vars.APPLE_TEAM_ID }}" $FILE
           cat $FILE
 
       - name: Setup pnpm
@@ -91,7 +83,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Patch app.json
-        uses: onlyutkarsh/patch-files-action@v1.0.1
+        uses: onlyutkarsh/patch-files-action@21f4ae5a9e27243ba04757e4082c7cd9518cec47
         with:
           fail-if-no-files-patched: true
           fail-if-error: true
@@ -111,7 +103,7 @@ jobs:
             -destination 'generic/platform=iOS' \
             -archivePath build/EDSMobile.xcarchive \
             CODE_SIGN_STYLE="Manual" \
-            CODE_SIGN_IDENTITY="${{ env.CODE_SIGN_IDENTITY }}" \
+            CODE_SIGN_IDENTITY="${{ vars.APPLE_CODE_SIGN_IDENTITY }}" \
             PROVISIONING_PROFILE="${{ env.UUID }}"
 
       - name: Export IPA

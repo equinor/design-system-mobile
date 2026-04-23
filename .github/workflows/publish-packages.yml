@@ -12,11 +12,15 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - name: "Chekout"
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: "Setup pnpm"
+        uses: pnpm/action-setup@v4
+
+      - name: "Setup Node"
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
@@ -29,6 +33,6 @@ jobs:
         run: pnpm build:packages
 
       - name: Publish to npmjs
-        run: pnpm publish --recursive --no-git-checks --access public
+        run: pnpm publish --recursive --no-git-checks --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
