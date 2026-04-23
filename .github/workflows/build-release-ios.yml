@@ -1,24 +1,13 @@
 name: Build and Release EDS Mobile Components
 
-# PAUSED — scaffolded ahead of Apple Developer access (see issue #150).
-# Will not succeed until the following are in place:
-#   Repo secrets:
-#     P12SECRET, P12PASSWORD, PROVISIONING_PROFILE_BASE64, KEYCHAIN_PASSWORD,
-#     APPSTORE_API_PRIVATE_KEY, APPSTORE_API_KEY_ID, APPSTORE_ISSUER_ID
-#   Repo variables:
-#     BUNDLE_IDENTIFIER (= com.equinor.eds.mobile-storybook)
-#     APP_NAME          (= EDS Mobile Components)
-#   Apple side:
-#     App ID registered under Equinor ASA, Apple Distribution cert (.p12),
-#     App Store provisioning profile (.mobileprovision),
-#     App Store Connect API key (.p8 + Key ID + Issuer ID).
-
 on:
+  workflow_call:
   workflow_dispatch:
 
 env:
   CODE_SIGN_IDENTITY: "Apple Distribution: Equinor ASA"
   TEAM_ID: "2F7Q634FSX"
+  BUNDLE_IDENTIFIER: "com.equinor.eds.mobile"
 
 jobs:
   build:
@@ -81,7 +70,7 @@ jobs:
           /usr/libexec/PlistBuddy -c "add :compileBitcode bool true" $FILE
           /usr/libexec/PlistBuddy -c "add :method string app-store" $FILE
           /usr/libexec/PlistBuddy -c "add :provisioningProfiles dict" $FILE
-          /usr/libexec/PlistBuddy -c "add :provisioningProfiles:${{ vars.BUNDLE_IDENTIFIER }} string ${{ env.UUID }}" $FILE
+          /usr/libexec/PlistBuddy -c "add :provisioningProfiles:${{ env.BUNDLE_IDENTIFIER }} string ${{ env.UUID }}" $FILE
           /usr/libexec/PlistBuddy -c "add :signingStyle string manual" $FILE
           /usr/libexec/PlistBuddy -c "add :teamId string ${{ env.TEAM_ID }}" $FILE
           cat $FILE
@@ -98,9 +87,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build components package
-        run: pnpm build:components
-
       - name: Patch app.json
         uses: onlyutkarsh/patch-files-action@v1.0.1
         with:
@@ -108,17 +94,10 @@ jobs:
           fail-if-error: true
           files: ./apps/storybook/app.json
           patch-syntax: |
-            = /expo/ios/bundleIdentifier => "${{ vars.BUNDLE_IDENTIFIER }}"
             = /expo/ios/buildNumber => "${{ env.BUILD_NUMBER }}"
 
       - name: Prebuild Expo project
-        working-directory: apps/storybook
-        run: npx expo prebuild --platform ios
-
-      - name: Set display name
-        working-directory: apps/storybook
-        run: |
-          /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName ${{ vars.APP_NAME }}" ios/EDSMobile/Info.plist
+        run: pnpm build:storybook
 
       - name: Xcode archive
         working-directory: apps/storybook

@@ -23,3 +23,15 @@ jobs:
                   token: ${{ secrets.GITHUB_TOKEN }}
                   config-file: release-please-config.json
                   manifest-file: .release-please-manifest.json
+
+    publish-npm:
+        needs: release-please
+        if: ${{ needs.release-please.outputs.releases_created }}
+        uses: ./.github/workflows/publish-packages.yml
+        secrets: inherit
+
+    build-release-ios:
+        needs: release-please
+        if: ${{ needs.release-please.outputs.releases_created }}
+        uses: ./.github/workflows/build-release-ios.yml
+        secrets: inherit
