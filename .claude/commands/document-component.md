@@ -72,29 +72,25 @@ Short bullet list linking to sibling components with one-line rationales. Exampl
 - `Checkbox` — for selecting one or more items from a set.
 - `Radio` — for selecting a single option from a mutually exclusive set.
 
-## Step 3: File Header
-
-Prepend the standard MDX comment block that tells the EDS Storybook wrapper how to consume this file. Use the existing `Switch.mdx` as the template — update the component name, source URL path, and the sibling-folder name.
-
-## Step 4: Write the File
+## Step 3: Write the File
 
 Save as `packages/components/docs/<Name>.mdx`. Do not create a `.md` file — the doc is MDX.
 
-## Step 5: Verify Shipping
+## Step 4: Verify Shipping
 
 Confirm `packages/components/package.json` `files` array includes `"docs"`. If not, add it.
 
-## Step 6: Quality Checks
+## Step 5: Quality Checks
 
 - Run `pnpm build:components` — the build should not change (MDX is not bundled, it's shipped as a file asset)
 - Spot-check the rendered output if the user has the EDS Storybook wrapper running locally
 - Verify every prop in the Props table exists in the component's exported type; verify every example compiles mentally against the actual API
 
-## Step 7: User Review
+## Step 6: User Review
 
 Present the MDX content inline for review before committing. Flag any judgment calls made in Features bullets or Example selection — the user usually has opinions on tone.
 
-## Step 8: Commit
+## Step 7: Commit
 
 After approval:
 

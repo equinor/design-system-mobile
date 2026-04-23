@@ -11,7 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { EDSProvider, useEDS } from '@equinor/eds-mobile-components'
 
 export default function App() {
-  const [hasLoadedEds, edsLoadError] = useEDS()
+  const [hasLoadedEds] = useEDS()
   if (!hasLoadedEds) return null
 
   return (

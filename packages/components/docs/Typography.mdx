@@ -85,10 +85,9 @@ Because Typography extends React Native's `Text`, all native props pass through.
 | `variant` | `NewTypographyVariant` | `'body.md'` | Typography preset — see Variants table above |
 | `bold` | `boolean` | `false` | Enables bold weight |
 | `italic` | `boolean` | `false` | Enables italic style |
+| `color` | `string` | — | **Deprecated.** Use `style={{ color: ... }}` with the new color tokens instead — see *Overriding color* above |
 
 Also accepts all React Native [`TextProps`](https://reactnative.dev/docs/text#props).
-
-A legacy `color` prop is still accepted for backward compatibility but is deprecated — use `style={{ color: ... }}` with the new color tokens instead, as shown in *Overriding color* above.
 
 ## Accessibility
 
