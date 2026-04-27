@@ -1,4 +1,4 @@
-name: Build and Release EDS Mobile Components
+name: Build and Release Storybook iOS App
 
 on:
   workflow_call:
@@ -53,7 +53,7 @@ jobs:
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
 
           security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH login.keychain
 
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PROVISIONING_PROFILE_PATH" "$INSTALLED_PROVISIONING_PROFILE_PATH"
