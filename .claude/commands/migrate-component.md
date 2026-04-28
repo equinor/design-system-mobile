@@ -80,10 +80,11 @@ A core goal of migration is integrating the new colour, spacing, and typography 
 
 ## Step 7: Update Supporting Files
 
-1. **Documentation** (`docs/ComponentName.md`) — **do not modify** (docs are moving to Docusaurus after all components are done)
+1. **Documentation** (`packages/components/docs/ComponentName.mdx`) — run `/document-component` to write or refresh the developer MDX doc. Design guidance (when-to-use, do/don't) still belongs in Docusaurus, not here.
 2. **Storybook** (`apps/storybook/app/(tabs)/components/`) — update showcase screen with new variants
 3. **Code snippets** (`apps/storybook/codeSnippets/`) — **delete** the component's code snippets (code snippets are being removed from the app)
 4. **Wrapper components** (e.g. Cell variants) — verify they still work with the redesigned component
+5. **Migration findings** — if you surfaced gaps out of scope for this PR (Figma omissions, missing web parity, a11y gaps, API inconsistencies), append them as checklist items to [#152 — Tracking: Findings from component migration](https://github.com/equinor/design-system-mobile/issues/152). Format: **What** · **Rationale** · **Where it surfaced**.
 
 ## Step 8: Quality Checks
 
