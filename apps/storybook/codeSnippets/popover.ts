@@ -2,9 +2,9 @@ export const basicPopover = `const [popoverOpen, setPopoverOpen] = useState(fals
 const anchorRef = useRef<View>(null);
 
 <View ref={anchorRef}>
-  <Button 
-    title="Show Popover" 
-    onPress={() => setPopoverOpen(true)} 
+  <Button
+    label="Show Popover"
+    onPress={() => setPopoverOpen(true)}
   />
 </View>
 
@@ -25,9 +25,9 @@ export const popoverWithActions = `const [popoverOpen, setPopoverOpen] = useStat
 const anchorRef = useRef<View>(null);
 
 <View ref={anchorRef}>
-  <Button 
-    title="Show Popover with Actions" 
-    onPress={() => setPopoverOpen(true)} 
+  <Button
+    label="Show Popover with Actions"
+    onPress={() => setPopoverOpen(true)}
   />
 </View>
 
@@ -40,13 +40,13 @@ const anchorRef = useRef<View>(null);
   <View style={{ padding: 16, gap: 12 }}>
     <Typography weight="bolder">Quick Actions</Typography>
     <Typography>
-      You can add any content inside a popover, including 
+      You can add any content inside a popover, including
       buttons and interactive elements.
     </Typography>
-    <Button 
-      title="Close" 
-      onPress={() => setPopoverOpen(false)} 
-      variant="outlined" 
+    <Button
+      label="Close"
+      onPress={() => setPopoverOpen(false)}
+      variant="secondary"
     />
   </View>
 </Popover>`;

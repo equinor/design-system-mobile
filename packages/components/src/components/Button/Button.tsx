@@ -124,7 +124,7 @@ const tokenStyles = EDSStyleSheet.create(
         const borderThickness = token.newSpacing.sizing.stroke.thin;
 
         const hasBorder = variant === "secondary";
-        const verticalPaddingBorderOfsset = hasBorder ? borderThickness : 0;
+        const verticalPaddingBorderOffset = hasBorder ? borderThickness : 0;
 
         return {
             container: {
@@ -137,7 +137,7 @@ const tokenStyles = EDSStyleSheet.create(
                 borderRadius: token.newSpacing.spacing.borderRadius.rounded,
                 paddingVertical:
                     token.newSpacing.spacing.inset[sizeKey].verticalSquished -
-                    verticalPaddingBorderOfsset,
+                    verticalPaddingBorderOffset,
                 paddingHorizontal:
                     token.newSpacing.spacing.inset[sizeKey].horizontal,
                 flexDirection: "row",

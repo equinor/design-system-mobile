@@ -1,12 +1,12 @@
 export const basicDialog = `const [dialogOpen, setDialogOpen] = useState(false);
 
-<Button 
-  title="Open Dialog" 
-  onPress={() => setDialogOpen(true)} 
+<Button
+  label="Open Dialog"
+  onPress={() => setDialogOpen(true)}
 />
 
-<Dialog 
-  isOpen={dialogOpen} 
+<Dialog
+  isOpen={dialogOpen}
   onScrimPress={() => setDialogOpen(false)}
 >
   <Dialog.Header>Dialog Title</Dialog.Header>
@@ -19,13 +19,13 @@ export const basicDialog = `const [dialogOpen, setDialogOpen] = useState(false);
 
 export const dialogWithActions = `const [dialogOpen, setDialogOpen] = useState(false);
 
-<Button 
-  title="Open Dialog" 
-  onPress={() => setDialogOpen(true)} 
+<Button
+  label="Open Dialog"
+  onPress={() => setDialogOpen(true)}
 />
 
-<Dialog 
-  isOpen={dialogOpen} 
+<Dialog
+  isOpen={dialogOpen}
   onScrimPress={() => setDialogOpen(false)}
 >
   <Dialog.Header>Confirm Action</Dialog.Header>
@@ -36,12 +36,12 @@ export const dialogWithActions = `const [dialogOpen, setDialogOpen] = useState(f
   </Dialog.CustomContent>
   <Dialog.Actions>
     <Button
-      title="Cancel"
+      label="Cancel"
       variant="ghost"
       onPress={() => setDialogOpen(false)}
     />
     <Button
-      title="Confirm"
+      label="Confirm"
       onPress={() => {
         console.log("Confirmed!");
         setDialogOpen(false);

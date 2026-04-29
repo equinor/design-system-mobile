@@ -4,7 +4,7 @@ import { useState } from "react";
 const [scrimOpen, setScrimOpen] = useState(false);
 
 <>
-  <Button title="Show Scrim" onPress={() => setScrimOpen(true)} />
+  <Button label="Show Scrim" onPress={() => setScrimOpen(true)} />
 
   <Scrim isOpen={scrimOpen} onPress={() => setScrimOpen(false)}>
     <View style={{ backgroundColor: "white", padding: 24, margin: 20, borderRadius: 12 }}>
@@ -14,9 +14,9 @@ const [scrimOpen, setScrimOpen] = useState(false);
         Tap the dark area to close.
       </Typography>
       <Button
-        title="Close"
+        label="Close"
         onPress={() => setScrimOpen(false)}
-        variant="outlined"
+        variant="secondary"
       />
     </View>
   </Scrim>
