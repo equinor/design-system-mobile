@@ -17,19 +17,18 @@ export const DialogHeader: React.FC<PropsWithChildren> = (props) => {
     );
 };
 
-const themeStyles = EDSStyleSheet.create((theme) => ({
+const themeStyles = EDSStyleSheet.create((token) => ({
     header: {
         minHeight:
-            theme.geometry.dimension.dialog.header.height -
-            theme.geometry.border.borderWidth,
+            token.geometry.dimension.dialog.header.height -
+            token.geometry.border.borderWidth,
         width: "100%",
-        borderBottomWidth: theme.geometry.border.borderWidth,
-        borderBottomColor: theme.colors.border.medium,
-        padding: theme.spacing.dialog.padding,
+        borderBottomWidth: token.geometry.border.borderWidth,
+        borderBottomColor: token.newColors.border.neutral.subtle,
+        padding: token.spacing.dialog.padding,
         paddingBottom: 0,
     },
     title: {
-        lineHeight: 26,
-        color: theme.colors.text.primary,
+        color: token.newColors.text.neutral.strong,
     },
 }));

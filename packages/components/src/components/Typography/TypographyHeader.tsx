@@ -5,7 +5,7 @@ import { TypographyToken } from "../../styling/tokens";
 import { createTypographyStyles } from "./styles";
 import { TypographyBaseProps } from "./types";
 
-export type TypographyHeadingProps = TypographyBaseProps & {
+export type TypographyHeaderProps = TypographyBaseProps & {
     /**
      * Header font size variant.
      */
@@ -14,7 +14,7 @@ export type TypographyHeadingProps = TypographyBaseProps & {
 
 const typographyStyles = createTypographyStyles("header");
 
-export const TypographyHeading: React.FC<TypographyHeadingProps> = ({
+export const TypographyHeader: React.FC<TypographyHeaderProps> = ({
     size = "xl",
     weight = "normal",
     tracking = "normal",
