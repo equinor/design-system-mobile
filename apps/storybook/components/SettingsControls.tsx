@@ -19,7 +19,7 @@ export const SettingsControls = () => {
     const systemScheme = useColorScheme();
     const userScheme = useAppStore((state) => state.scheme);
     const setScheme = useAppStore((state) => state.setScheme);
-    const scheme = userScheme ?? systemScheme;
+    const scheme = userScheme ?? systemScheme ?? "light";
 
     const density = useAppStore((state) => state.density);
     const setDensity = useAppStore((state) => state.setDensity);
@@ -34,6 +34,9 @@ export const SettingsControls = () => {
             {open && (
                 <>
                     <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel={`Switch to ${scheme === "dark" ? "light" : "dark"} mode`}
+                        hitSlop={2}
                         style={({ pressed }) => [
                             styles.iconButton,
                             pressed && styles.pressed,
@@ -53,6 +56,9 @@ export const SettingsControls = () => {
                         />
                     </Pressable>
                     <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel={`Switch to ${density === "spacious" ? "comfortable" : "spacious"} density`}
+                        hitSlop={2}
                         style={({ pressed }) => [
                             styles.iconButton,
                             pressed && styles.pressed,
@@ -78,11 +84,14 @@ export const SettingsControls = () => {
                 </>
             )}
             <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={open ? "Close settings" : "Open settings"}
+                hitSlop={2}
                 style={({ pressed }) => [
                     styles.iconButton,
                     pressed && styles.pressed,
                 ]}
-                onPress={() => setOpen(!open)}
+                onPress={() => setOpen((prev) => !prev)}
             >
                 <Icon name="cog" size={ICON_SIZE} color={iconColor} />
             </Pressable>
