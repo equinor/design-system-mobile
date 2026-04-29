@@ -28,14 +28,7 @@ pnpm add @equinor/eds-mobile-components
 
 ### 2. Load the EDS fonts
 
-`useEDS` loads the font families EDS components depend on. Call it at the root of your app and wait for the fonts to resolve before rendering EDS components.
-
-```tsx
-import { useEDS } from '@equinor/eds-mobile-components'
-
-const [hasLoadedEds] = useEDS()
-if (!hasLoadedEds) return null
-```
+`useEDS` loads the font families EDS components depend on. Call it at the root of your app and wait for the fonts to resolve before rendering EDS components — the next step shows the full setup.
 
 ### 3. Wrap your app in `EDSProvider`
 
@@ -72,7 +65,7 @@ import { Button } from '@equinor/eds-mobile-components'
 ## Resources
 
 - [Design guidelines](https://eds.equinor.com/)
-- [Figma library](https://www.figma.com/files/682286909510540417/workspace/1404734309303602976/directory/teams?fuid=915521446308735262)
+- [Figma library](https://www.figma.com/files/682286909510540417/workspace/1404734309303602976/directory/teams)
 - [GitHub repository](https://github.com/equinor/design-system-mobile)
 - [Release notes](https://github.com/equinor/design-system-mobile/releases)
 
