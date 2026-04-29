@@ -34,6 +34,7 @@ export function createTypographyStyles<TGroup extends keyof TypographyToken>(
                         sizeToken[PROP_TOKEN_FIELD_MAP.lineHeight[lineHeight]],
                     letterSpacing:
                         sizeToken[PROP_TOKEN_FIELD_MAP.tracking[tracking]],
+                    color: token.newColors.text.neutral.strong,
                 },
             };
         }

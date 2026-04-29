@@ -77,7 +77,8 @@ export const Button: FC<ButtonProps> = ({
                             />
                         )}
                         <Typography
-                            variant="button"
+                            weight="bolder"
+                            size="md"
                             style={styles.text}
                         >
                             {label}
@@ -137,6 +138,8 @@ const tokenStyles = EDSStyleSheet.create(
             },
             text: {
                 color: textColor,
+                marginVertical: -5,
+                paddingVertical: 1,
             },
         };
     }
