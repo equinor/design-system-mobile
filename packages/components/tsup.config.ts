@@ -11,7 +11,6 @@ export default defineConfig((options) => ({
     tsconfig: "./tsconfig.json",
     loader: {
         ".otf": "copy",
-        ".ttf": "copy",
     },
     esbuildOptions(options) {
         options.assetNames = "assets/fonts/[name]";

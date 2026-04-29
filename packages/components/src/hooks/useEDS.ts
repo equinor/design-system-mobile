@@ -9,9 +9,9 @@ import EquinorLightItalic from "../assets/fonts/Equinor-LightItalic.otf";
 import EquinorMedium from "../assets/fonts/Equinor-Medium.otf";
 import EquinorMediumItalic from "../assets/fonts/Equinor-MediumItalic.otf";
 import EquinorRegular from "../assets/fonts/Equinor-Regular.otf";
-import InterLight from "../assets/fonts/Inter_18pt-Light.ttf";
-import InterMedium from "../assets/fonts/Inter_18pt-Medium.ttf";
-import InterRegular from "../assets/fonts/Inter_18pt-Regular.ttf";
+import InterLight from "../assets/fonts/Inter-Light.otf";
+import InterMedium from "../assets/fonts/Inter-Medium.otf";
+import InterRegular from "../assets/fonts/Inter-Regular.otf";
 
 const fontMap = {
     ...MaterialCommunityIcons.font,
@@ -23,9 +23,9 @@ const fontMap = {
     "Equinor-Medium": EquinorMedium as FontSource,
     "Equinor-MediumItalic": EquinorMediumItalic as FontSource,
     "Equinor-Regular": EquinorRegular as FontSource,
-    "Inter_18pt-Light": InterLight as FontSource,
-    "Inter_18pt-Regular": InterRegular as FontSource,
-    "Inter_18pt-Medium": InterMedium as FontSource,
+    "Inter-Light": InterLight as FontSource,
+    "Inter-Regular": InterRegular as FontSource,
+    "Inter-Medium": InterMedium as FontSource,
 };
 
 /**
