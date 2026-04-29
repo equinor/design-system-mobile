@@ -1,14 +1,18 @@
-import React from "react";
-import { EDSStyleSheet } from "../../styling";
-import { TextChildren, Typography } from "../Typography";
+import React, { PropsWithChildren } from "react";
 import { View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
+import { EDSStyleSheet } from "../../styling";
+import { Typography } from "../Typography";
 
-export const DialogHeader = (props: TextChildren) => {
+export const DialogHeader: React.FC<PropsWithChildren> = (props) => {
     const styles = useStyles(themeStyles);
     return (
         <View style={styles.header}>
-            <Typography variant="heading.md" numberOfLines={1} style={styles.title}>
+            <Typography
+                variant="heading.md"
+                numberOfLines={1}
+                style={styles.title}
+            >
                 {props.children}
             </Typography>
         </View>

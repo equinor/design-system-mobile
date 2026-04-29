@@ -13,7 +13,11 @@ export const Section: FC<PropsWithChildren<{ title?: string }>> = ({
     const styles = useStyles(tokenStyles);
     return (
         <View style={styles.container}>
-            {title && <Typography variant="heading.lg">{title}</Typography>}
+            {title && (
+                <Typography.Header variant="heading.lg">
+                    {title}
+                </Typography.Header>
+            )}
             {children}
         </View>
     );
