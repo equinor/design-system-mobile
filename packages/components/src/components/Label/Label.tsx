@@ -20,10 +20,10 @@ export const Label = (props: LabelProps & TypographyUIProps) => {
     const styles = useStyles(themeStyles);
     return (
         <View style={styles.container}>
-            <Typography variant="label.md" style={styles.text} {...other}>
+            <Typography style={styles.text} {...other}>
                 {label}
             </Typography>
-            <Typography variant="label.md" style={styles.text} {...other}>
+            <Typography style={styles.text} {...other}>
                 {meta}
             </Typography>
         </View>

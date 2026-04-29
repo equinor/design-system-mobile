@@ -14,9 +14,7 @@ export const Section: FC<PropsWithChildren<{ title?: string }>> = ({
     return (
         <View style={styles.container}>
             {title && (
-                <Typography.Header variant="heading.lg">
-                    {title}
-                </Typography.Header>
+                <Typography.Header weight="bolder">{title}</Typography.Header>
             )}
             {children}
         </View>

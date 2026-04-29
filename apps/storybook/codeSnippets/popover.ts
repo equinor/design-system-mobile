@@ -14,7 +14,7 @@ const anchorRef = useRef<View>(null);
   onClose={() => setPopoverOpen(false)}
 >
   <View style={{ padding: 16 }}>
-    <Typography variant="p">This is a popover!</Typography>
+    <Typography>This is a popover!</Typography>
     <Typography>
       Popovers are great for displaying additional information.
     </Typography>
@@ -38,7 +38,7 @@ const anchorRef = useRef<View>(null);
   placement="top" // or "bottom", "left", "right"
 >
   <View style={{ padding: 16, gap: 12 }}>
-    <Typography variant="p" bold>Quick Actions</Typography>
+    <Typography weight="bolder">Quick Actions</Typography>
     <Typography>
       You can add any content inside a popover, including 
       buttons and interactive elements.

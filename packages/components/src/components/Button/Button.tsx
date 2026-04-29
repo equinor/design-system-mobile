@@ -12,7 +12,13 @@ import {
     ButtonTone,
     ButtonVariant,
 } from "./types";
-import { SIZE_MAP, TEXT_VARIANT_MAP } from "./utils";
+import {
+    BUTTON_TEXT_NEGATIVE_MARGIN,
+    BUTTON_TEXT_PADDING,
+    ICON_NEGATIVE_MARGIN,
+    SIZE_MAP,
+    TEXT_VARIANT_MAP,
+} from "./utility";
 
 export type ButtonProps = BaseButtonProps & {
     /**
@@ -115,31 +121,36 @@ const tokenStyles = EDSStyleSheet.create(
             ? token.newColors.text.disabled
             : token.newColors.text[tone][TEXT_VARIANT_MAP[variant]];
 
+        const borderThickness = token.newSpacing.sizing.stroke.thin;
+
+        const hasBorder = variant === "secondary";
+        const verticalPaddingBorderOfsset = hasBorder ? borderThickness : 0;
+
         return {
             container: {
                 borderRadius: token.newSpacing.spacing.borderRadius.rounded,
                 overflow: "hidden",
                 borderColor,
-                borderWidth:
-                    variant === "secondary"
-                        ? token.newSpacing.sizing.stroke.thin
-                        : 0,
+                borderWidth: hasBorder ? borderThickness : 0,
             },
             squareButtonContainer: {
                 borderRadius: token.newSpacing.spacing.borderRadius.rounded,
                 paddingVertical:
-                    token.newSpacing.spacing.inset[sizeKey].verticalSquished,
+                    token.newSpacing.spacing.inset[sizeKey].verticalSquished -
+                    verticalPaddingBorderOfsset,
                 paddingHorizontal:
                     token.newSpacing.spacing.inset[sizeKey].horizontal,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: token.newSpacing.spacing.icon[sizeKey].gapHorizontal,
+                gap:
+                    token.newSpacing.spacing.icon[sizeKey].gapHorizontal -
+                    ICON_NEGATIVE_MARGIN,
             },
             text: {
                 color: textColor,
-                marginVertical: -5,
-                paddingVertical: 1,
+                marginVertical: BUTTON_TEXT_NEGATIVE_MARGIN,
+                paddingVertical: BUTTON_TEXT_PADDING,
             },
         };
     }

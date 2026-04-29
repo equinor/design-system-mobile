@@ -15,7 +15,7 @@ export type TypographyHeadingProps = TypographyBaseProps & {
 const typographyStyles = createTypographyStyles("header");
 
 export const TypographyHeading: React.FC<TypographyHeadingProps> = ({
-    size = "lg",
+    size = "xl",
     weight = "normal",
     tracking = "normal",
     lineHeight = "default",

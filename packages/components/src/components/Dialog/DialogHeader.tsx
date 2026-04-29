@@ -8,13 +8,11 @@ export const DialogHeader: React.FC<PropsWithChildren> = (props) => {
     const styles = useStyles(themeStyles);
     return (
         <View style={styles.header}>
-            <Typography
-                variant="heading.md"
+            <Typography.Header size="lg"
                 numberOfLines={1}
-                style={styles.title}
-            >
+                style={styles.title}>
                 {props.children}
-            </Typography>
+            </Typography.Header>
         </View>
     );
 };

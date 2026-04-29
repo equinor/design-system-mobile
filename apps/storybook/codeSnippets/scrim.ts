@@ -8,7 +8,7 @@ const [scrimOpen, setScrimOpen] = useState(false);
 
   <Scrim isOpen={scrimOpen} onPress={() => setScrimOpen(false)}>
     <View style={{ backgroundColor: "white", padding: 24, margin: 20, borderRadius: 12 }}>
-      <Typography variant="h5">Scrim Content</Typography>
+      <Typography.Header size="lg">Scrim Content</Typography.Header>
       <Typography>
         This content appears on top of the scrim overlay.
         Tap the dark area to close.

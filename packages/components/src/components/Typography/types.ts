@@ -21,9 +21,4 @@ export type TypographyStyleProps = {
     tracking: TypographyTracking;
 };
 
-export type TypographyBaseProps = Partial<TypographyStyleProps> & {
-    // TODO: Delete / accommodate for these
-    color?: unknown;
-    variant?: unknown;
-    bold?: unknown;
-} & TextProps;
+export type TypographyBaseProps = Partial<TypographyStyleProps> & TextProps;

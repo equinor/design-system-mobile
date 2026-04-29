@@ -22,21 +22,21 @@ export default function TypographyScreen() {
             sizeToken,
         })
     );
-    const headerSizes = Object.entries(
-        newTypography.header.fontFamilySize
-    ).map(([size, sizeToken]) => ({
-        size: size as NonNullable<TypographyHeaderProps["size"]>,
-        sizeToken,
-    }));
+    const headerSizes = Object.entries(newTypography.header.fontFamilySize).map(
+        ([size, sizeToken]) => ({
+            size: size as NonNullable<TypographyHeaderProps["size"]>,
+            sizeToken,
+        })
+    );
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             <Section>
                 <Typography>
-                    Typography exposes two font-family variants: UI (Inter) for
-                    body and interface text, and Header (Equinor) for titles and
-                    headings. Both variants share the same size, weight,
-                    tracking, and lineHeight props.
+                    Typography exposes two font-family variants: UI for body and
+                    interface text, and Header for titles and headings. Both
+                    variants share the same size, weight, tracking, and
+                    lineHeight props.
                 </Typography>
             </Section>
 
@@ -141,8 +141,7 @@ export default function TypographyScreen() {
                         The quick brown fox
                     </Typography>
                     <Typography size="xs">
-                        wide ·{" "}
-                        {newTypography.ui.fontFamilySize.lg.trackingWide}
+                        wide · {newTypography.ui.fontFamilySize.lg.trackingWide}
                     </Typography>
                 </View>
             </Surface>
