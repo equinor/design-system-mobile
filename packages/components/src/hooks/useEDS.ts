@@ -34,6 +34,6 @@ const fontMap = {
  * @returns A tuple array of the loading state in addition to any potential errors caught during asset initialization.
  */
 export const useEDS = () => {
-    const load = useFonts(fontMap);
-    return load;
+    const [isLoaded, error] = useFonts(fontMap);
+    return [isLoaded, error] as const;
 };

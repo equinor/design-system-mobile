@@ -27,5 +27,5 @@ export const TypographyUI: React.FC<TypographyUIProps> = ({
         tracking,
         lineHeight,
     });
-    return <Text {...rest} style={[styles.text, rest.style]}></Text>;
+    return <Text {...rest} style={[styles.text, rest.style]} />;
 };

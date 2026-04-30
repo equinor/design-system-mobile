@@ -179,7 +179,7 @@ export default function TypographyScreen() {
                 <Typography>
                     Uses the {newTypography.header.typography.fontFamily}{" "}
                     typeface. Access via Typography.Header. The default size is
-                    lg ({newTypography.header.fontFamilySize.lg.fontSize}px).
+                    xl ({newTypography.header.fontFamilySize.xl.fontSize}px).
                 </Typography>
             </Section>
 
