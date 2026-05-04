@@ -79,9 +79,7 @@ export default function ChipsScreen() {
                 <Typography.Header size="lg">Deletable Chips</Typography.Header>
 
                 <View style={styles.row}>
-                    {deleteChipVisible ? (
-                        ""
-                    ) : (
+                    {deleteChipVisible ? null : (
                         <Chip
                             title="Delete Me!"
                             onDelete={() => setDeleteChipVisible(true)}
@@ -90,7 +88,7 @@ export default function ChipsScreen() {
                     <Chip
                         title="Deletable Error"
                         variant="error"
-                        onDelete={() => {}}
+                        onDelete={() => alert("Delete pressed")}
                     />
                 </View>
 

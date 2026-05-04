@@ -33,7 +33,8 @@ export default function AboutScreen() {
             flex: 1,
         },
         header: {
-            padding: newSpacing.spacing.vertical.xl,
+            paddingHorizontal: newSpacing.spacing.horizontal.xl,
+            paddingVertical: newSpacing.spacing.vertical.xl,
             gap: newSpacing.spacing.vertical.md,
         },
         groupLabel: {
@@ -62,6 +63,9 @@ export default function AboutScreen() {
             paddingVertical: newSpacing.spacing.vertical.xl,
             alignItems: "center",
         },
+        subtleText: {
+            color: newColors.text.neutral.subtle,
+        },
     });
 
     return (
@@ -89,11 +93,7 @@ export default function AboutScreen() {
             </View>
 
             <View style={styles.groupLabel}>
-                <Typography
-                    style={{ color: newColors.text.neutral.subtle }}
-                >
-                    Versions
-                </Typography>
+                <Typography style={styles.subtleText}>Versions</Typography>
             </View>
             <Paper elevation="none" style={styles.group}>
                 <View style={styles.rowInner}>
@@ -108,11 +108,7 @@ export default function AboutScreen() {
             </Paper>
 
             <View style={styles.groupLabel}>
-                <Typography
-                    style={{ color: newColors.text.neutral.subtle }}
-                >
-                    Resources
-                </Typography>
+                <Typography style={styles.subtleText}>Resources</Typography>
             </View>
             <Paper elevation="none" style={styles.group}>
                 {LINKS.map(({ label, url }, index) => (
@@ -120,7 +116,7 @@ export default function AboutScreen() {
                         {index > 0 && <View style={styles.rowDivider} />}
                         <Pressable
                             style={styles.rowInner}
-                            onPress={() => Linking.openURL(url)}
+                            onPress={() => Linking.openURL(url).catch(() => {})}
                         >
                             <Typography>{label}</Typography>
                             <Icon
@@ -134,7 +130,7 @@ export default function AboutScreen() {
             </Paper>
 
             <View style={styles.footer}>
-                <Typography style={{ color: newColors.text.neutral.subtle }}>
+                <Typography style={styles.subtleText}>
                     @equinor/eds-mobile-components v{libraryVersion}
                 </Typography>
             </View>

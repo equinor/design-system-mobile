@@ -1,8 +1,10 @@
 import { Typography, useToken } from "@equinor/eds-mobile-components";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { Image, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
     const { newColors, newSpacing } = useToken();
+    const tabBarHeight = useBottomTabBarHeight();
 
     const styles = StyleSheet.create({
         container: {
@@ -11,7 +13,7 @@ export default function HomeScreen() {
             alignItems: "center",
             paddingHorizontal: newSpacing.spacing.horizontal.threeXl,
             paddingTop: newSpacing.spacing.vertical.threeXl,
-            paddingBottom: 100,
+            paddingBottom: tabBarHeight,
             gap: newSpacing.spacing.vertical.lg,
         },
         logo: {
