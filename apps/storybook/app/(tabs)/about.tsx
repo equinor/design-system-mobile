@@ -9,7 +9,7 @@ const libraryVersion = edsPkg.version;
 const LINKS = [
     {
         label: "EDS documentation",
-        url: "https://eds.radix.equinor.com/",
+        url: "https://eds.equinor.com/",
     },
     {
         label: "EDS Storybook",
