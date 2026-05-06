@@ -2,7 +2,6 @@ import { Section } from "@/components/Section";
 import { Surface } from "@/components/Surface";
 import {
     EDSStyleSheet,
-    Spacer,
     Typography,
     type TypographyHeaderProps,
     type TypographyUIProps,
@@ -14,7 +13,7 @@ import { ScrollView, View } from "react-native";
 
 export default function TypographyScreen() {
     const styles = useStyles(themeStyles);
-    const { newTypography } = useToken();
+    const { newTypography, newSpacing } = useToken();
 
     const uiSizes = Object.entries(newTypography.ui.fontFamilySize).map(
         ([size, sizeToken]) => ({
@@ -42,7 +41,8 @@ export default function TypographyScreen() {
 
             {/* ── Typography UI ──────────────────────────────────────── */}
 
-            <Section title="Typography UI">
+            <Section style={{ paddingTop: newSpacing.spacing.vertical.threeXl }}>
+                <Typography.Header size="lg" weight="bolder">Typography UI</Typography.Header>
                 <Typography>
                     Uses the {newTypography.ui.typography.fontFamily} typeface.
                     The default size is lg (
@@ -175,7 +175,8 @@ export default function TypographyScreen() {
 
             {/* ── Typography Header ──────────────────────────────────── */}
 
-            <Section title="Typography Header">
+            <Section style={{ paddingTop: newSpacing.spacing.vertical.threeXl }}>
+                <Typography.Header size="lg" weight="bolder">Typography Header</Typography.Header>
                 <Typography>
                     Uses the {newTypography.header.typography.fontFamily}{" "}
                     typeface. Access via Typography.Header. The default size is
@@ -324,7 +325,6 @@ export default function TypographyScreen() {
                 </View>
             </Surface>
 
-            <Spacer />
         </ScrollView>
     );
 }
