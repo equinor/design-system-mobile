@@ -2,9 +2,9 @@ import { EDSStyleSheet, useStyles } from "@equinor/eds-mobile-components";
 import { FC, PropsWithChildren } from "react";
 import { View } from "react-native";
 
-export const Surface: FC<PropsWithChildren> = ({ children }) => {
+export const Surface: FC<PropsWithChildren<{ style?: object }>> = ({ children, style }) => {
     const styles = useStyles(tokenStyles);
-    return <View style={styles.container}>{children}</View>;
+    return <View style={[styles.container, style]}>{children}</View>;
 };
 
 const tokenStyles = EDSStyleSheet.create((token) => ({

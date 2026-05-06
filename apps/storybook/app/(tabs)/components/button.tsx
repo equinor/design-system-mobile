@@ -3,7 +3,6 @@ import { Surface } from "@/components/Surface";
 import {
     Button,
     EDSStyleSheet,
-    Spacer,
     Typography,
     useStyles,
 } from "@equinor/eds-mobile-components";
@@ -110,14 +109,17 @@ export default function ButtonsScreen() {
                     represented by an icon.
                 </Typography>
             </Section>
+            <Section title="Rounded corners" />
             <Surface>
-                <Typography>Rounded corners</Typography>
                 <View style={styles.buttonRow}>
                     <Button.Icon name="heart" />
                     <Button.Icon name="star" variant="secondary" />
                     <Button.Icon name="close" variant="ghost" />
                 </View>
-                <Typography>Circular</Typography>
+            </Surface>
+
+            <Section title="Circular" />
+            <Surface>
                 <View style={styles.buttonRow}>
                     <Button.Icon name="heart" round />
                     <Button.Icon name="star" round variant="secondary" />
@@ -136,7 +138,7 @@ export default function ButtonsScreen() {
                 </View>
             </Surface>
 
-            <Spacer />
+            <View style={styles.spacer} />
         </ScrollView>
     );
 }
@@ -148,5 +150,8 @@ const themeStyles = EDSStyleSheet.create((token) => ({
         justifyContent: "space-evenly",
         alignItems: "center",
         rowGap: token.newSpacing.spacing.vertical.md,
+    },
+    spacer: {
+        height: token.newSpacing.spacing.vertical.xl,
     },
 }));

@@ -32,7 +32,7 @@ export default function SelectionControlsScreen() {
             </Section>
 
             <Section>
-                <Typography.Header size="xl">Radio Buttons</Typography.Header>
+                <Typography.Header size="lg" weight="bolder">Radio Buttons</Typography.Header>
             </Section>
 
             <Section title="With labels">
@@ -68,6 +68,7 @@ export default function SelectionControlsScreen() {
                 <View
                     style={{
                         flexDirection: "row",
+                        justifyContent: "center",
                         gap: token.newSpacing.spacing.horizontal.md,
                     }}
                 >
@@ -99,8 +100,8 @@ export default function SelectionControlsScreen() {
                 <Radio checked={true} disabled label="Disabled checked" />
             </Surface>
 
-            <Section>
-                <Typography.Header size="xl">Switch</Typography.Header>
+            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+                <Typography.Header size="lg" weight="bolder">Switch</Typography.Header>
             </Section>
 
             <Section title="Switch with Label">
@@ -128,6 +129,7 @@ export default function SelectionControlsScreen() {
                 <View
                     style={{
                         flexDirection: "row",
+                        justifyContent: "center",
                         gap: token.newSpacing.spacing.horizontal.xl,
                         alignItems: "center",
                     }}
@@ -137,8 +139,8 @@ export default function SelectionControlsScreen() {
                 </View>
             </Surface>
 
-            <Section>
-                <Typography.Header size="xl">Checkboxes</Typography.Header>
+            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+                <Typography.Header size="lg" weight="bolder">Checkboxes</Typography.Header>
             </Section>
 
             <Section title="With labels" />
@@ -169,6 +171,7 @@ export default function SelectionControlsScreen() {
                     accessibilityLabel="Select options"
                     style={{
                         flexDirection: "row",
+                        justifyContent: "center",
                         gap: token.newSpacing.spacing.horizontal.md,
                     }}
                 >
@@ -208,3 +211,4 @@ export default function SelectionControlsScreen() {
         </ScrollView>
     );
 }
+
