@@ -31,7 +31,7 @@ export default function SelectionControlsScreen() {
                 </Typography>
             </Section>
 
-            <Section>
+            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
                 <Typography.Header size="lg" weight="bolder">Radio Buttons</Typography.Header>
             </Section>
 

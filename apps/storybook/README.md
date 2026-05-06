@@ -68,7 +68,6 @@ apps/storybook/
 │           ├── typography.tsx
 │           └── ...         # Future screens added per slice
 ├── components/             # Shared storybook UI (Section, Surface, SettingsControls)
-├── hooks/                  # Shared screen hooks
 └── ios/                    # Native iOS project
 ```
 

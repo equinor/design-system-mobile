@@ -79,8 +79,6 @@ components/                 # Storybook-specific utility components
 ├── Surface.tsx            # Wraps component demos with elevated background
 └── SettingsControls.tsx   # Theme and density controls in the header
 
-hooks/                      # (currently empty — add shared screen hooks here)
-
 lib/
 └── store.ts               # Zustand store for app state (theme)
 ```
