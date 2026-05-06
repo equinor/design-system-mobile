@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.0](https://github.com/equinor/design-system-mobile/compare/eds-mobile-components-v0.1.0...eds-mobile-components-v0.2.0) (2026-05-06)
+## [0.2.0](https://github.com/equinor/design-system-mobile/compare/mobile-storybook-v0.1.0...mobile-storybook-v0.2.0) (2026-05-06)
 
 
 ### ⚠ BREAKING CHANGES
@@ -17,29 +17,8 @@
 * **checkbox:** add Checkbox component matching Figma design ([#110](https://github.com/equinor/design-system-mobile/issues/110)) ([1fadbea](https://github.com/equinor/design-system-mobile/commit/1fadbea5d8e785ca1b463006e8434bf1abc6d9a1)), closes [#98](https://github.com/equinor/design-system-mobile/issues/98)
 * implement color token system across components ([#76](https://github.com/equinor/design-system-mobile/issues/76)) ([12e645c](https://github.com/equinor/design-system-mobile/commit/12e645c964141045ad73b1ee541d78457deff2f1)), closes [#72](https://github.com/equinor/design-system-mobile/issues/72)
 * **input:** redesign Input to match Figma design ([#111](https://github.com/equinor/design-system-mobile/issues/111)) ([2f31784](https://github.com/equinor/design-system-mobile/commit/2f317840be6dace5722c2b439b183f56b0fae79b)), closes [#95](https://github.com/equinor/design-system-mobile/issues/95)
-* integrate EDS semantic color tokens ([#74](https://github.com/equinor/design-system-mobile/issues/74)) ([6ce1322](https://github.com/equinor/design-system-mobile/commit/6ce132259b3ce4c3a1abb5397d5479ffbf91b3a2))
 * **radio:** redesign Radio to match Figma design ([#108](https://github.com/equinor/design-system-mobile/issues/108)) ([996ca99](https://github.com/equinor/design-system-mobile/commit/996ca99f542cd02400478c7c3732b3d063eae209))
+* **storybook:** add density toggle to component header ([#159](https://github.com/equinor/design-system-mobile/issues/159)) ([e62c476](https://github.com/equinor/design-system-mobile/commit/e62c4768868438c1e30d50f309eaeafd555459ad))
 * **storybook:** app cleanup and release prep ([#162](https://github.com/equinor/design-system-mobile/issues/162)) ([e7fae72](https://github.com/equinor/design-system-mobile/commit/e7fae72dd87f96795255fb5561879406f2e75c84))
 * **switch:** redesign Switch to match Figma design ([#103](https://github.com/equinor/design-system-mobile/issues/103)) ([1a6a5e1](https://github.com/equinor/design-system-mobile/commit/1a6a5e16d24cd8d275645b6fcbb20d94c214d205)), closes [#96](https://github.com/equinor/design-system-mobile/issues/96)
 * **typography:** migrate Typography to new token system ([#146](https://github.com/equinor/design-system-mobile/issues/146)) ([9e6fefd](https://github.com/equinor/design-system-mobile/commit/9e6fefd38e876def16337ffeda3a4b680f9a9df0)), closes [#99](https://github.com/equinor/design-system-mobile/issues/99)
-
-
-### Bug Fixes
-
-* **input:** add border radius and minimum height ([#147](https://github.com/equinor/design-system-mobile/issues/147)) ([#148](https://github.com/equinor/design-system-mobile/issues/148)) ([9b70be7](https://github.com/equinor/design-system-mobile/commit/9b70be7f84b55fe420539991dcd2bf51036e2666))
-
-## [0.1.0](https://github.com/equinor/design-system-mobile/compare/eds-mobile-components-v0.0.1...eds-mobile-components-v0.1.0) (2025-12-18)
-
-
-### Features
-
-* **build:** Create expo app to test components ([6198075](https://github.com/equinor/design-system-mobile/commit/6198075fb411ea5ae839a81646bf5c1bbc8510bd))
-* Implement release-please and package name change([#63](https://github.com/equinor/design-system-mobile/issues/63)) ([e717f26](https://github.com/equinor/design-system-mobile/commit/e717f26b1f0916e5093f5a84d899d80fb8e4ee45))
-* Replace Equinor-Regular with Inter font ([#62](https://github.com/equinor/design-system-mobile/issues/62)) ([0e5747f](https://github.com/equinor/design-system-mobile/commit/0e5747fc211c3012c31ae834e65c53c983a03f51))
-* **storybook:** remove template code  from app and implement drawer … ([#50](https://github.com/equinor/design-system-mobile/issues/50)) ([97f3140](https://github.com/equinor/design-system-mobile/commit/97f3140d9ac8b27deb42e33c29a6263b0646788e))
-
-
-### Performance Improvements
-
-* **build:** optimize bundle size by using single entry point ([7fe2f1f](https://github.com/equinor/design-system-mobile/commit/7fe2f1f9e43df477fa1ad5cd2a44a3d2dc73648d))
-* **build:** optimize bundle size by using single entry point ([3b80ec1](https://github.com/equinor/design-system-mobile/commit/3b80ec1737fe65b0a99412abad1fac86c21d0a3b))
