@@ -77,7 +77,7 @@ app/
 components/                 # Storybook-specific utility components
 ├── Section.tsx            # Layout helper — canvas-level text, titles, descriptions
 ├── Surface.tsx            # Wraps component demos with elevated background
-└── ColorSchemeButton.tsx  # Theme switcher button
+└── SettingsControls.tsx   # Theme and density controls in the header
 
 hooks/                      # (currently empty — add shared screen hooks here)
 
@@ -225,15 +225,9 @@ When working on the component library:
 
 ## Common Tasks
 
-### Adding a Theme Switcher
+### Theme and Density Controls
 
-The `ColorSchemeButton` component is available for toggling themes:
-
-```tsx
-import { ColorSchemeButton } from "@/components/ColorSchemeButton";
-
-<ColorSchemeButton />
-```
+Theme (light/dark) and density (spacious/comfortable) are controlled by `SettingsControls`, which is mounted in the stack header via `_layout.tsx`. It reads/writes the Zustand store in `lib/store.ts`. No action needed in individual screens.
 
 ### Accessing Design Tokens
 

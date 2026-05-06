@@ -4,9 +4,9 @@ import {
     useStyles,
 } from "@equinor/eds-mobile-components";
 import { FC, PropsWithChildren } from "react";
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
-export const Section: FC<PropsWithChildren<{ title?: string; style?: object }>> = ({
+export const Section: FC<PropsWithChildren<{ title?: string; style?: StyleProp<ViewStyle> }>> = ({
     title,
     children,
     style,

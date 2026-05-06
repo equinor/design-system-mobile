@@ -138,7 +138,6 @@ export default function ButtonsScreen() {
                 </View>
             </Surface>
 
-            <View style={styles.spacer} />
         </ScrollView>
     );
 }
@@ -150,8 +149,5 @@ const themeStyles = EDSStyleSheet.create((token) => ({
         justifyContent: "space-evenly",
         alignItems: "center",
         rowGap: token.newSpacing.spacing.vertical.md,
-    },
-    spacer: {
-        height: token.newSpacing.spacing.vertical.xl,
     },
 }));

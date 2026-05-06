@@ -325,7 +325,6 @@ export default function TypographyScreen() {
                 </View>
             </Surface>
 
-            <View style={styles.spacer} />
         </ScrollView>
     );
 }
@@ -337,8 +336,5 @@ const themeStyles = EDSStyleSheet.create((token) => ({
     divider: {
         height: token.newSpacing.sizing.stroke.thin,
         backgroundColor: token.newColors.border.neutral.subtle,
-    },
-    spacer: {
-        height: token.newSpacing.spacing.vertical.xl,
     },
 }));
