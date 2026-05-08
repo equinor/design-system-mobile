@@ -13,7 +13,7 @@ import { ScrollView, View } from "react-native";
 
 export default function TypographyScreen() {
     const styles = useStyles(themeStyles);
-    const { newTypography, newSpacing } = useToken();
+    const { newTypography } = useToken();
 
     const uiSizes = Object.entries(newTypography.ui.fontFamilySize).map(
         ([size, sizeToken]) => ({
@@ -41,7 +41,7 @@ export default function TypographyScreen() {
 
             {/* ── Typography UI ──────────────────────────────────────── */}
 
-            <Section style={{ paddingTop: newSpacing.spacing.vertical.threeXl }}>
+            <Section style={styles.groupHeader}>
                 <Typography.Header size="lg" weight="bolder">Typography UI</Typography.Header>
                 <Typography>
                     Uses the {newTypography.ui.typography.fontFamily} typeface.
@@ -175,7 +175,7 @@ export default function TypographyScreen() {
 
             {/* ── Typography Header ──────────────────────────────────── */}
 
-            <Section style={{ paddingTop: newSpacing.spacing.vertical.threeXl }}>
+            <Section style={styles.groupHeader}>
                 <Typography.Header size="lg" weight="bolder">Typography Header</Typography.Header>
                 <Typography>
                     Uses the {newTypography.header.typography.fontFamily}{" "}
@@ -330,6 +330,9 @@ export default function TypographyScreen() {
 }
 
 const themeStyles = EDSStyleSheet.create((token) => ({
+    groupHeader: {
+        paddingTop: token.newSpacing.spacing.vertical.threeXl,
+    },
     row: {
         gap: token.newSpacing.spacing.vertical.twoXs,
     },

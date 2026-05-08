@@ -112,7 +112,7 @@ Component screens follow a consistent two-level hierarchy:
 - **Demos** (`Surface`) — wraps the actual component examples with an elevated background.
 
 ```tsx
-<Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+<Section style={styles.groupHeader}>
     <Typography.Header size="lg" weight="bolder">Group Name</Typography.Header>
 </Section>
 
@@ -179,15 +179,38 @@ When working on the component library:
 
 ### Styling Guidelines
 
-**For storybook-specific UI:**
-- Use standard `StyleSheet.create()` for layout and storybook-specific components
-- Use EDS components (Paper, Typography, Button, etc.) for content display
-- Keep styles simple and focused on showcasing components
+**Always use `EDSStyleSheet.create` + `useStyles` for styling:**
+
+```tsx
+import { EDSStyleSheet, useStyles } from "@equinor/eds-mobile-components";
+
+export default function MyScreen() {
+    const styles = useStyles(themeStyles);
+    return <View style={styles.container} />;
+}
+
+const themeStyles = EDSStyleSheet.create((token) => ({
+    container: {
+        paddingTop: token.newSpacing.spacing.vertical.threeXl,
+    },
+}));
+```
+
+This keeps styling separate from layout and gets full token type-safety and theme reactivity.
+
+**Use `useToken()` only when the token value must be passed outside a stylesheet** — e.g. rendered as text content, or passed to a third-party API that doesn't accept a style object:
+
+```tsx
+const { newTypography } = useToken();
+// OK: displaying font size as a string
+<Typography>{newTypography.ui.fontFamilySize.lg.fontSize}px</Typography>
+```
 
 **Don't:**
-- Over-style the showcase screens - keep focus on the components
+- Use `useToken()` + inline style objects for regular styling — use `EDSStyleSheet` instead
+- Over-style the showcase screens — keep focus on the components
 - Use hardcoded colors except for code display backgrounds
-- Create complex custom components - use EDS components
+- Create complex custom components — use EDS components
 
 ## Key Dependencies
 
@@ -229,12 +252,16 @@ Theme (light/dark) and density (spacious/comfortable) are controlled by `Setting
 
 ### Accessing Design Tokens
 
-Use `useToken()` from EDS components to access theme values:
+For styling, use `EDSStyleSheet.create((token) => ...)` — the `token` argument gives full access to all design tokens inside the stylesheet factory.
+
+Use `useToken()` only when you need a token value outside a stylesheet (e.g. to render it as text or pass it to a third-party API):
 
 ```tsx
 import { useToken } from "@equinor/eds-mobile-components";
 
-const { newColors, newSpacing } = useToken();
+const { newTypography } = useToken();
+// Render the font size value as visible text
+<Typography>{newTypography.ui.fontFamilySize.lg.fontSize}px</Typography>
 ```
 
 ### Creating Reusable Section Layouts
