@@ -31,7 +31,7 @@ export default function SelectionControlsScreen() {
                 </Typography>
             </Section>
 
-            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+            <Section style={{ paddingTop: token.spacing.spacing.vertical.threeXl }}>
                 <Typography.Header size="lg" weight="bolder">Radio Buttons</Typography.Header>
             </Section>
 
@@ -69,7 +69,7 @@ export default function SelectionControlsScreen() {
                     style={{
                         flexDirection: "row",
                         justifyContent: "center",
-                        gap: token.newSpacing.spacing.horizontal.md,
+                        gap: token.spacing.spacing.horizontal.md,
                     }}
                 >
                     <Radio
@@ -100,7 +100,7 @@ export default function SelectionControlsScreen() {
                 <Radio checked={true} disabled label="Disabled checked" />
             </Surface>
 
-            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+            <Section style={{ paddingTop: token.spacing.spacing.vertical.threeXl }}>
                 <Typography.Header size="lg" weight="bolder">Switch</Typography.Header>
             </Section>
 
@@ -130,7 +130,7 @@ export default function SelectionControlsScreen() {
                     style={{
                         flexDirection: "row",
                         justifyContent: "center",
-                        gap: token.newSpacing.spacing.horizontal.xl,
+                        gap: token.spacing.spacing.horizontal.xl,
                         alignItems: "center",
                     }}
                 >
@@ -139,7 +139,7 @@ export default function SelectionControlsScreen() {
                 </View>
             </Surface>
 
-            <Section style={{ paddingTop: token.newSpacing.spacing.vertical.threeXl }}>
+            <Section style={{ paddingTop: token.spacing.spacing.vertical.threeXl }}>
                 <Typography.Header size="lg" weight="bolder">Checkboxes</Typography.Header>
             </Section>
 
@@ -172,7 +172,7 @@ export default function SelectionControlsScreen() {
                     style={{
                         flexDirection: "row",
                         justifyContent: "center",
-                        gap: token.newSpacing.spacing.horizontal.md,
+                        gap: token.spacing.spacing.horizontal.md,
                     }}
                 >
                     <Checkbox

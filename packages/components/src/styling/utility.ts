@@ -1,4 +1,3 @@
-import type { OldToken } from "./tokens";
 import type {
     Color,
     EDSColor,
@@ -27,27 +26,8 @@ export const isTextColor = (obj: string): obj is EDSTextColor =>
         "textDisabled",
     ].some((col) => col === obj);
 
-/**
- * Given a library color, resolve it to a abstracted color used by the master token.
- * @param color Color to resolve.
- * @param theme The current theme of the application.
- * @returns A resolved color.
- */
-export function resolveColor(color: Color, theme: OldToken): Color {
-    if (isEDSColor(color)) return theme.colors.interactive[color];
-    if (isTextColor(color)) {
-        const textColorToThemeKeyMap = {
-            textPrimary: "primary",
-            textSecondary: "secondary",
-            textTertiary: "tertiary",
-            textInverted: "primaryInverted",
-            textDisabled: "disabled",
-        } as const satisfies Record<
-            EDSTextColor,
-            keyof typeof theme.colors.text
-        >;
-
-        return theme.colors.text[textColorToThemeKeyMap[color]];
-    }
+// Stub retained for unmigrated Icon component — will be removed when Icon is migrated in Slice 4
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function resolveColor(color: Color, _theme: any): Color {
     return color;
 }

@@ -26,46 +26,46 @@ const LINKS = [
 ];
 
 export default function AboutScreen() {
-    const { newColors, newSpacing } = useToken();
+    const { colors, spacing } = useToken();
 
     const styles = StyleSheet.create({
         container: {
             flex: 1,
         },
         header: {
-            paddingHorizontal: newSpacing.spacing.horizontal.xl,
-            paddingVertical: newSpacing.spacing.vertical.xl,
-            gap: newSpacing.spacing.vertical.md,
+            paddingHorizontal: spacing.spacing.horizontal.xl,
+            paddingVertical: spacing.spacing.vertical.xl,
+            gap: spacing.spacing.vertical.md,
         },
         groupLabel: {
-            paddingHorizontal: newSpacing.spacing.horizontal.xl,
-            paddingTop: newSpacing.spacing.vertical.lg,
-            paddingBottom: newSpacing.spacing.vertical.xs,
+            paddingHorizontal: spacing.spacing.horizontal.xl,
+            paddingTop: spacing.spacing.vertical.lg,
+            paddingBottom: spacing.spacing.vertical.xs,
         },
         group: {
-            marginHorizontal: newSpacing.spacing.horizontal.xl,
-            borderRadius: newSpacing.spacing.borderRadius.rounded,
+            marginHorizontal: spacing.spacing.horizontal.xl,
+            borderRadius: spacing.spacing.borderRadius.rounded,
             overflow: "hidden",
-            backgroundColor: newColors.bg.neutral.surface,
+            backgroundColor: colors.bg.neutral.surface,
         },
         rowInner: {
-            paddingHorizontal: newSpacing.spacing.horizontal.lg,
-            paddingVertical: newSpacing.spacing.vertical.md,
+            paddingHorizontal: spacing.spacing.horizontal.lg,
+            paddingVertical: spacing.spacing.vertical.md,
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
         },
         rowDivider: {
             height: StyleSheet.hairlineWidth,
-            backgroundColor: newColors.border.neutral.subtle,
-            marginLeft: newSpacing.spacing.horizontal.lg,
+            backgroundColor: colors.border.neutral.subtle,
+            marginLeft: spacing.spacing.horizontal.lg,
         },
         footer: {
-            paddingVertical: newSpacing.spacing.vertical.xl,
+            paddingVertical: spacing.spacing.vertical.xl,
             alignItems: "center",
         },
         subtleText: {
-            color: newColors.text.neutral.subtle,
+            color: colors.text.neutral.subtle,
         },
     });
 
@@ -123,7 +123,7 @@ export default function AboutScreen() {
                             <Icon
                                 name="chevron-right"
                                 size={20}
-                                color={newColors.text.neutral.subtle}
+                                color={colors.text.neutral.subtle}
                             />
                         </Pressable>
                     </View>
