@@ -33,7 +33,9 @@ export default function SelectionControlsScreen() {
             </Section>
 
             <Section style={styles.groupHeader}>
-                <Typography.Header size="lg" weight="bolder">Radio Buttons</Typography.Header>
+                <Typography.Header size="lg" weight="bolder">
+                    Radio Buttons
+                </Typography.Header>
             </Section>
 
             <Section title="With labels">
@@ -87,22 +89,19 @@ export default function SelectionControlsScreen() {
                 </Typography>
             </Section>
             <Surface>
-                <Radio
-                    checked={false}
-                    disabled
-                    label="Disabled unchecked"
-                />
+                <Radio checked={false} disabled label="Disabled unchecked" />
                 <Radio checked={true} disabled label="Disabled checked" />
             </Surface>
 
             <Section style={styles.groupHeader}>
-                <Typography.Header size="lg" weight="bolder">Switch</Typography.Header>
+                <Typography.Header size="lg" weight="bolder">
+                    Switch
+                </Typography.Header>
             </Section>
 
             <Section title="Switch with Label">
                 <Typography>
-                    Switch with an inline label for toggling settings on and
-                    off
+                    Switch with an inline label for toggling settings on and off
                 </Typography>
             </Section>
             <Surface>
@@ -128,7 +127,9 @@ export default function SelectionControlsScreen() {
             </Surface>
 
             <Section style={styles.groupHeader}>
-                <Typography.Header size="lg" weight="bolder">Checkboxes</Typography.Header>
+                <Typography.Header size="lg" weight="bolder">
+                    Checkboxes
+                </Typography.Header>
             </Section>
 
             <Section title="With labels" />
@@ -212,4 +213,3 @@ const themeStyles = EDSStyleSheet.create((token) => ({
         alignItems: "center",
     },
 }));
-

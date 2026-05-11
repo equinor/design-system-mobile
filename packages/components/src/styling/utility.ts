@@ -1,5 +1,4 @@
 import type {
-    Color,
     EDSColor,
     EDSTextColor,
     HexColorValue,
@@ -25,9 +24,3 @@ export const isTextColor = (obj: string): obj is EDSTextColor =>
         "textInverted",
         "textDisabled",
     ].some((col) => col === obj);
-
-// Stub retained for unmigrated Icon component — will be removed when Icon is migrated in Slice 4
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function resolveColor(color: Color, _theme: any): Color {
-    return color;
-}
