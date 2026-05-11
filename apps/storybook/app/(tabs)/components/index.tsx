@@ -36,10 +36,7 @@ export default function ComponentsIndex() {
     };
 
     const renderItem = ({ item }: { item: ComponentItem }) => (
-        <Pressable
-            onPress={() => navigateTo(item.route)}
-            style={styles.row}
-        >
+        <Pressable onPress={() => navigateTo(item.route)} style={styles.row}>
             <Typography>{item.name}</Typography>
             <Icon name="chevron-right" size={20} color={styles.chevron.color} />
         </Pressable>
