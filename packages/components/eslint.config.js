@@ -25,6 +25,7 @@ export default tseslint.config(
     {
         // Unmigrated Slice 2–4 components are excluded from tsc during the migration window.
         // Type-checked lint rules are disabled here to match — remove each entry as the component is migrated.
+        // Keep in sync with the exclude list in tsconfig.json.
         files: [
             "src/components/Accordion/**",
             "src/components/Autocomplete/**",
