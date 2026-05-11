@@ -21,9 +21,9 @@ Migrate a component to match the EDS Figma design using new tokens. Follow each 
 
 Extract from **Figma**:
 - **Dimensions**: width, height, padding, gap, border radius for all elements
-- **Colors**: map each Figma CSS variable (e.g. `--eds-color-bg-fill-muted-default`) to a `theme.newColors.*` token path
-- **Spacing**: map each Figma spacing variable (e.g. `--eds-selectable-space-horizontal`) to a `theme.newSpacing.*` token path
-- **Typography**: map font size, weight, line height, letter spacing to `theme.newTypography.*` token paths
+- **Colors**: map each Figma CSS variable (e.g. `--eds-color-bg-fill-muted-default`) to a `theme.colors.*` token path
+- **Spacing**: map each Figma spacing variable (e.g. `--eds-selectable-space-horizontal`) to a `theme.spacing.*` token path
+- **Typography**: map font size, weight, line height, letter spacing to `theme.typography.*` token paths
 - **States**: default, hover/pressed, disabled, focus — note visual differences between each
 - **Variants**: what props control which visual changes
 
@@ -50,9 +50,9 @@ The Figma design is created for web. Components need to be scaled up for mobile 
 Map all Figma variables to code tokens. Check `packages/components/CLAUDE.md` for known mappings and patterns first.
 
 Rules:
-- **Never hardcode** spacing or color values — always use `theme.newSpacing.*` or `theme.newColors.*`
-- **Typography**: use `theme.newTypography.*` for fontSize, fontWeight, lineHeight, letterSpacing
-- If a Figma variable doesn't have a matching token in the proxy, find the closest semantic equivalent
+- **Never hardcode** spacing or color values — always use `theme.spacing.*` or `theme.colors.*`
+- **Typography**: use `theme.typography.*` for fontSize, fontWeight, lineHeight, letterSpacing
+- If a Figma variable doesn't have a matching token, find the closest semantic equivalent
 - Verify token paths compile with `tsc --noEmit` before proceeding
 - Save any new mappings discovered to the memory file
 
@@ -69,11 +69,9 @@ Rules:
 
 A core goal of migration is integrating the new colour, spacing, and typography foundations into the component library. Every migrated component **must** be free of old tokens when the migration is complete.
 
-1. Search the component file(s) for any remaining references to old tokens:
-   - `theme.colors.*` or `token.colors.*` → replace with `token.newColors.*`
-   - `theme.spacing.*` or `token.spacing.*` → replace with `token.newSpacing.*`
-   - `theme.typography.*` or `token.typography.*` → replace with `token.newTypography.*`
+1. Search the component file(s) for any remaining hardcoded values:
    - Hardcoded color hex values, spacing numbers, or font sizes that have a semantic token equivalent
+   - Replace any found with the appropriate `token.colors.*`, `token.spacing.*`, or `token.typography.*` path
 2. Check the component's storybook screen for old token usage and update those too
 3. Verify the component still renders correctly after replacements
 4. Run `npx tsc --noEmit` to confirm no type errors from the token changes
