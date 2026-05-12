@@ -111,9 +111,6 @@ The library is actively growing and more components will be added with each rele
 - `useStyles` — resolve themed stylesheets
 - `useToken` — access design tokens directly
 - `useBreakpoint` — respond to screen size changes
-- `useDynamicStyle` — compute styles that depend on runtime values
-- `useDynamicStyleSheet` — create dynamic stylesheets
-- `useValidChildren` — filter valid React children
 
 ## License
 
