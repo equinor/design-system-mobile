@@ -1,0 +1,77 @@
+## Features
+
+- Two variants: `standalone` (default) for CTAs and navigation links with a proper touch target, and `inline` for embedding inside a sentence alongside other text.
+- Five sizes that follow the Typography UI scale, allowing a link to match the text it sits alongside.
+- Optional external link icon via the `external` prop.
+- Disabled state with muted color and no interaction.
+
+## Usage
+
+```tsx
+import { Link } from '@equinor/eds-mobile-components'
+
+<Link onPress={handlePress}>Open documentation</Link>
+```
+
+## Examples
+
+### External link
+
+Use `external` to indicate the link opens outside the app. An icon is shown alongside the text.
+
+```tsx
+<Link onPress={handlePress} external>View on GitHub</Link>
+```
+
+### Sizes
+
+Size matches the Typography UI scale. Use this to align a link with surrounding text.
+
+```tsx
+<Link onPress={handlePress} size="xs">Extra small</Link>
+<Link onPress={handlePress} size="sm">Small</Link>
+<Link onPress={handlePress} size="md">Medium (default)</Link>
+<Link onPress={handlePress} size="lg">Large</Link>
+<Link onPress={handlePress} size="xl">Extra large</Link>
+```
+
+### Disabled
+
+```tsx
+<Link onPress={handlePress} disabled>Disabled link</Link>
+```
+
+### Inline usage
+
+Use `variant="inline"` to embed a link inside a sentence. It renders as a `Text` element so it sits naturally alongside other text.
+
+```tsx
+<Typography>
+    Read the{" "}
+    <Link variant="inline" size="lg" onPress={handlePress}>
+        full documentation
+    </Link>
+    {" "}for more details.
+</Typography>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `string` | — | The link text (required) |
+| `onPress` | `() => void` | — | Called when the link is pressed |
+| `variant` | `'standalone' \| 'inline'` | `'standalone'` | `standalone` renders as a `Pressable` with a proper touch target; `inline` renders as `Text` inside a sentence |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Font size, matching the Typography UI scale |
+| `external` | `boolean` | `false` | Shows an external link icon alongside the text |
+| `disabled` | `boolean` | `false` | Disables interaction and applies a muted color |
+
+## Accessibility
+
+- Uses `accessibilityRole="link"` automatically on both variants.
+- Reports `disabled` state to assistive technology via `accessibilityState`.
+- The `children` string doubles as the accessible name.
+
+## Related components
+
+- [`Typography`](/components/typography) — for body text that surrounds inline links.
