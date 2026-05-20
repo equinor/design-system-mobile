@@ -32,7 +32,7 @@ export default function LinkScreen() {
             </Section>
             <Surface>
                 <Link
-                    onPress={() => Linking.openURL(GITHUB_URL).catch(() => {})}
+                    onPress={() => Linking.openURL(GITHUB_URL).catch((e) => console.warn("Failed to open URL", e))}
                     external
                 >
                     View on GitHub
@@ -73,7 +73,7 @@ export default function LinkScreen() {
                     <Link
                         variant="inline"
                         size="lg"
-                        onPress={() => Linking.openURL(DOCS_URL).catch(() => {})}
+                        onPress={() => Linking.openURL(DOCS_URL).catch((e) => console.warn("Failed to open URL", e))}
                     >
                         full documentation
                     </Link>

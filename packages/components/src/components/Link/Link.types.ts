@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { TextProps } from "react-native";
 import { TypographyToken } from "../../styling/tokens";
 
@@ -6,8 +7,8 @@ export type LinkSize = keyof TypographyToken["ui"]["fontFamilySize"];
 export type LinkVariant = "standalone" | "inline";
 
 export type LinkProps = {
-    /** The link text. */
-    children: string;
+    /** The link label. */
+    children: ReactNode;
     /** Called when the link is pressed. */
     onPress?: TextProps["onPress"];
     /**
