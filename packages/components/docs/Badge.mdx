@@ -1,0 +1,92 @@
+Badge labels content with status, category, or a numeric value. Use it in table cells, list rows, and card headers to communicate information at a glance.
+
+Badge is not interactive. For selectable or dismissible labels, use Chip.
+
+## Features
+
+- Six tones: `neutral`, `accent`, `success`, `info`, `warning`, and `danger`.
+- Three emphasis levels that control fill intensity: `low` (canvas), `medium` (muted fill), and `high` (emphasis fill with on-emphasis text).
+- Two styles: `solid` (default) and `outlined`.
+- Accepts a string or number as children — useful for status labels and counts.
+- `Badge.Status` sub-component for a compact dot indicator when no label is needed.
+
+## Usage
+
+```tsx
+import { Badge } from '@equinor/eds-mobile-components'
+
+<Badge tone="success">Approved</Badge>
+```
+
+## Examples
+
+### Tones
+
+```tsx
+<Badge tone="neutral">Neutral</Badge>
+<Badge tone="accent">Accent</Badge>
+<Badge tone="success">Success</Badge>
+<Badge tone="info">Info</Badge>
+<Badge tone="warning">Warning</Badge>
+<Badge tone="danger">Danger</Badge>
+```
+
+### Emphasis
+
+```tsx
+<Badge tone="accent" emphasis="low">Low</Badge>
+<Badge tone="accent" emphasis="medium">Medium</Badge>
+<Badge tone="accent" emphasis="high">High</Badge>
+```
+
+### Outlined
+
+```tsx
+<Badge tone="accent" style="outlined" emphasis="low">Low</Badge>
+<Badge tone="accent" style="outlined" emphasis="medium">Medium</Badge>
+<Badge tone="accent" style="outlined" emphasis="high">High</Badge>
+```
+
+### Numbers
+
+```tsx
+<Badge tone="danger" emphasis="high">{3}</Badge>
+<Badge tone="neutral" emphasis="medium">{42}</Badge>
+```
+
+### Status dot
+
+Use `Badge.Status` when only a color indicator is needed with no label text.
+
+```tsx
+<Badge.Status tone="success" />
+<Badge.Status tone="danger" style="outlined" />
+```
+
+## Props
+
+### Badge
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `string \| number` | — | The label text or count (required) |
+| `tone` | `'neutral' \| 'accent' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'neutral'` | Semantic color tone |
+| `emphasis` | `'low' \| 'medium' \| 'high'` | `'low'` | Fill intensity |
+| `style` | `'solid' \| 'outlined'` | `'solid'` | Solid fill or outlined border |
+
+### Badge.Status
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `tone` | `'neutral' \| 'accent' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'neutral'` | Semantic color tone |
+| `style` | `'solid' \| 'outlined'` | `'solid'` | Solid fill or outlined border |
+
+## Accessibility
+
+- Badge is a purely visual, non-interactive element and sets no `accessibilityRole` by default.
+- When used to convey status in a table or list, wrap the Badge in a parent element that provides the accessible label, or pass `accessibilityLabel` directly to the containing `View`.
+- Avoid relying on tone alone to convey meaning — pair with a text label where possible.
+
+## Related components
+
+- [`Typography`](/components/typography) — for plain text labels that do not need a colored pill.
