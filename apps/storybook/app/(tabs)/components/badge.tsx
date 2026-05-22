@@ -35,15 +35,15 @@ export default function BadgeScreen() {
             </Section>
             <Surface>
                 <View style={styles.listRow}>
-                    <Typography>Work order #1042</Typography>
+                    <Typography>Work order &#35;1042</Typography>
                     <Badge tone="success">Approved</Badge>
                 </View>
                 <View style={styles.listRow}>
-                    <Typography>Work order #1043</Typography>
+                    <Typography>Work order &#35;1043</Typography>
                     <Badge tone="warning">Pending</Badge>
                 </View>
                 <View style={styles.listRow}>
-                    <Typography>Work order #1044</Typography>
+                    <Typography>Work order &#35;1044</Typography>
                     <Badge tone="danger" emphasis="high">Rejected</Badge>
                 </View>
                 <View style={styles.listRow}>
