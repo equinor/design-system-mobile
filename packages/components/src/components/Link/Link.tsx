@@ -7,51 +7,39 @@ import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { LinkProps, LinkSize } from "./Link.types";
 
-type LinkStyleProps = {
-    size: LinkSize;
-    pressed: boolean;
-    disabled: boolean;
-};
-
 export const Link = ({
     children,
     onPress,
     variant = "standalone",
     size = "md",
     external = false,
-    disabled = false,
+    visited = false,
 }: LinkProps) => {
     const [pressed, setPressed] = useState(false);
-    const standaloneStyles = useStyles(standaloneThemeStyles, {
-        size,
-        pressed,
-        disabled,
-    });
-    const inlineStyles = useStyles(inlineThemeStyles, { size, pressed, disabled });
-    const inlineIconStyles = useStyles(inlineIconThemeStyles, { size });
+    const standaloneStyles = useStyles(standaloneThemeStyles, { size });
+    const inlineStyles = useStyles(inlineThemeStyles, { size });
     const token = useToken();
     const sizeToken = token.typography.ui.fontFamilySize[size];
 
-    const color = disabled
-        ? token.colors.text.disabled
-        : pressed
+    const color = pressed
         ? token.colors.text.neutral.strong
+        : visited
+        ? token.colors.text.info.subtle
         : token.colors.text.link;
 
     if (variant === "inline") {
         return (
             <Typography
                 size={size}
-                onPress={disabled ? undefined : onPress}
-                onPressIn={() => !disabled && setPressed(true)}
+                onPress={onPress}
+                onPressIn={() => setPressed(true)}
                 onPressOut={() => setPressed(false)}
                 accessibilityRole="link"
-                accessibilityState={{ disabled }}
-                style={inlineStyles.link}
+                style={[inlineStyles.link, { color, textDecorationColor: color }]}
             >
                 {children}
                 {external && (
-                    <Text style={inlineIconStyles.iconWrapper}>
+                    <Text style={inlineStyles.iconWrapper}>
                         <Icon
                             name="open-in-new"
                             size={sizeToken.iconSize}
@@ -68,13 +56,11 @@ export const Link = ({
             onPress={onPress}
             onPressIn={() => setPressed(true)}
             onPressOut={() => setPressed(false)}
-            disabled={disabled}
             accessibilityRole="link"
-            accessibilityState={{ disabled }}
             style={standaloneStyles.pressable}
         >
-            <View style={standaloneStyles.row}>
-                <Typography size={size} style={standaloneStyles.typography}>
+            <View style={[standaloneStyles.row, { borderBottomColor: color }]}>
+                <Typography size={size} style={{ color, lineHeight: sizeToken.lineHeight.squished }}>
                     {children}
                 </Typography>
                 {external && (
@@ -92,13 +78,8 @@ export const Link = ({
 Link.displayName = "Link";
 
 const standaloneThemeStyles = EDSStyleSheet.create(
-    (token, { size, pressed, disabled }: LinkStyleProps) => {
+    (token, { size }: { size: LinkSize }) => {
         const sizeToken = token.typography.ui.fontFamilySize[size];
-        const color = disabled
-            ? token.colors.text.disabled
-            : pressed
-            ? token.colors.text.neutral.strong
-            : token.colors.text.link;
 
         return {
             pressable: {
@@ -107,38 +88,18 @@ const standaloneThemeStyles = EDSStyleSheet.create(
             row: {
                 flexDirection: "row",
                 alignItems: "center",
-                paddingBottom: token.spacing.spacing.vertical.threeXs,
                 borderBottomWidth: token.spacing.sizing.stroke.thin,
                 gap: sizeToken.gapHorizontal,
-                borderBottomColor: color,
-            },
-            typography: {
-                color,
             },
         };
     }
 );
 
 const inlineThemeStyles = EDSStyleSheet.create(
-    (token, { pressed, disabled }: LinkStyleProps) => {
-        const color = disabled
-            ? token.colors.text.disabled
-            : pressed
-            ? token.colors.text.neutral.strong
-            : token.colors.text.link;
-
-        return {
-            link: {
-                color,
-                textDecorationLine: "underline",
-                textDecorationColor: color,
-            },
-        };
-    }
-);
-
-const inlineIconThemeStyles = EDSStyleSheet.create(
     (token, { size }: { size: LinkSize }) => ({
+        link: {
+            textDecorationLine: "underline",
+        },
         iconWrapper: {
             marginLeft: token.typography.ui.fontFamilySize[size].gapHorizontal,
         },

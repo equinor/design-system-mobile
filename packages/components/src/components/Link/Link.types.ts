@@ -21,6 +21,6 @@ export type LinkProps = {
     size?: LinkSize;
     /** Shows an external link icon alongside the text. */
     external?: boolean;
-    /** Disables interaction and applies a muted color. */
-    disabled?: boolean;
+    /** Marks the link as previously visited. Consumer is responsible for tracking this state. */
+    visited?: boolean;
 };

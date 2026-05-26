@@ -59,18 +59,17 @@ Use `variant="inline"` to embed a link inside a sentence. It renders as a `Text`
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `children` | `string` | — | The link text (required) |
+| `children` | `ReactNode` | — | The link label (required) |
 | `onPress` | `() => void` | — | Called when the link is pressed |
 | `variant` | `'standalone' \| 'inline'` | `'standalone'` | `standalone` renders as a `Pressable` with a proper touch target; `inline` renders as `Text` inside a sentence |
 | `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Font size, matching the Typography UI scale |
 | `external` | `boolean` | `false` | Shows an external link icon alongside the text |
-| `disabled` | `boolean` | `false` | Disables interaction and applies a muted color |
+| `visited` | `boolean` | `false` | Marks the link as previously visited. The consumer is responsible for tracking this state. |
 
 ## Accessibility
 
 - Uses `accessibilityRole="link"` automatically on both variants.
-- Reports `disabled` state to assistive technology via `accessibilityState`.
-- The `children` string doubles as the accessible name.
+- The `children` value doubles as the accessible name.
 
 ## Related components
 

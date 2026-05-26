@@ -2,26 +2,37 @@ import { Section } from "@/components/Section";
 import { Surface } from "@/components/Surface";
 import { Link, Typography } from "@equinor/eds-mobile-components";
 import { Alert, Linking, ScrollView } from "react-native";
+import { useState } from "react";
 
 const GITHUB_URL = "https://github.com/equinor/design-system-mobile";
 const DOCS_URL = "https://eds.equinor.com/docs/Next/components/navigation/link";
 
 export default function LinkScreen() {
-    const handlePress = () => Alert.alert("Link pressed");
+    const [visited, setVisited] = useState({
+        default: false,
+        external: false,
+        xs: false, sm: false, md: false, lg: false, xl: false,
+        inline: false,
+    });
+    const markVisited = (key: keyof typeof visited) =>
+        setVisited(prev => ({ ...prev, [key]: true }));
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
             <Section>
                 <Typography>
                     Link is a pressable text element for navigation and
-                    external URLs. It supports standalone use as a CTA or
-                    inline use embedded inside a sentence.
+                    external URLs. Use it standalone as a CTA or inline
+                    within a sentence. It supports a visited state that
+                    the consumer tracks — press any example below to see it.
                 </Typography>
             </Section>
 
             <Section title="Default" />
             <Surface>
-                <Link onPress={handlePress}>Open documentation</Link>
+                <Link onPress={() => markVisited("default")} visited={visited.default}>
+                    Open documentation
+                </Link>
             </Surface>
 
             <Section title="External Link">
@@ -32,8 +43,12 @@ export default function LinkScreen() {
             </Section>
             <Surface>
                 <Link
-                    onPress={() => Linking.openURL(GITHUB_URL).catch((e) => console.warn("Failed to open URL", e))}
+                    onPress={() => {
+                        markVisited("external");
+                        Linking.openURL(GITHUB_URL).catch((e) => console.warn("Failed to open URL", e));
+                    }}
                     external
+                    visited={visited.external}
                 >
                     View on GitHub
                 </Link>
@@ -46,18 +61,11 @@ export default function LinkScreen() {
                 </Typography>
             </Section>
             <Surface>
-                <Link onPress={handlePress} size="xs">Extra small</Link>
-                <Link onPress={handlePress} size="sm">Small</Link>
-                <Link onPress={handlePress} size="md">Medium (default)</Link>
-                <Link onPress={handlePress} size="lg">Large</Link>
-                <Link onPress={handlePress} size="xl">Extra large</Link>
-            </Surface>
-
-            <Section title="Disabled" />
-            <Surface>
-                <Link onPress={handlePress} disabled>
-                    Disabled link
-                </Link>
+                <Link onPress={() => markVisited("xs")} size="xs" visited={visited.xs}>Extra small</Link>
+                <Link onPress={() => markVisited("sm")} size="sm" visited={visited.sm}>Small</Link>
+                <Link onPress={() => markVisited("md")} size="md" visited={visited.md}>Medium (default)</Link>
+                <Link onPress={() => markVisited("lg")} size="lg" visited={visited.lg}>Large</Link>
+                <Link onPress={() => markVisited("xl")} size="xl" visited={visited.xl}>Extra large</Link>
             </Surface>
 
             <Section title="Inline usage">
@@ -73,7 +81,11 @@ export default function LinkScreen() {
                     <Link
                         variant="inline"
                         size="lg"
-                        onPress={() => Linking.openURL(DOCS_URL).catch((e) => console.warn("Failed to open URL", e))}
+                        onPress={() => {
+                            markVisited("inline");
+                            Linking.openURL(DOCS_URL).catch((e) => console.warn("Failed to open URL", e));
+                        }}
+                        visited={visited.inline}
                     >
                         full documentation
                     </Link>
