@@ -3,7 +3,7 @@
 - Two variants: `standalone` (default) for CTAs and navigation links with a proper touch target, and `inline` for embedding inside a sentence alongside other text.
 - Five sizes that follow the Typography UI scale, allowing a link to match the text it sits alongside.
 - Optional external link icon via the `external` prop.
-- Disabled state with muted color and no interaction.
+- Visited state via the `visited` prop, which the consumer tracks after the link is pressed.
 
 ## Usage
 
@@ -35,10 +35,16 @@ Size matches the Typography UI scale. Use this to align a link with surrounding 
 <Link onPress={handlePress} size="xl">Extra large</Link>
 ```
 
-### Disabled
+### Visited
+
+The consumer is responsible for tracking visited state and passing it as a prop.
 
 ```tsx
-<Link onPress={handlePress} disabled>Disabled link</Link>
+const [visited, setVisited] = useState(false)
+
+<Link onPress={() => setVisited(true)} visited={visited}>
+    Open documentation
+</Link>
 ```
 
 ### Inline usage
@@ -69,7 +75,7 @@ Use `variant="inline"` to embed a link inside a sentence. It renders as a `Text`
 ## Accessibility
 
 - Uses `accessibilityRole="link"` automatically on both variants.
-- The `children` value doubles as the accessible name.
+- VoiceOver builds the accessible name from the text content of `children`. If `children` contains no readable text, provide an explicit `accessibilityLabel`.
 
 ## Related components
 
