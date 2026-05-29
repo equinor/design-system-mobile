@@ -9,12 +9,12 @@ export default function TextFieldScreen() {
     const [errorValue, setErrorValue] = useState("");
 
     return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled">
             <Section>
                 <Typography>
-                    TextField combines a label, an input, and helper text into a
-                    single form field. Use it wherever you need a labelled text
-                    input.
+                    TextField combines a label, an input, and a helper message
+                    into a single form field. Use it wherever you need a
+                    labelled text input.
                 </Typography>
             </Section>
 

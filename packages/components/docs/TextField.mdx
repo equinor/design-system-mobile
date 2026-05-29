@@ -99,8 +99,8 @@ Also accepts all [`Input` props](/components/input#props), including `onChange`,
 
 ## Accessibility
 
-- `label` is visual only — pass `accessibilityLabel` to the field for assistive tech when no screen-readable label is visible.
-- Helper message is visual only when `invalid` is true. Expose the validation message programmatically via `accessibilityHint` so VoiceOver users hear it.
+- `TextField` defaults `accessibilityLabel` to the `label` value and `accessibilityHint` to a joined `description` + `helperMessage`. Pass these props explicitly to override.
+- The helper message is visual only. When `invalid` is true, expose the validation message programmatically via `accessibilityHint` so VoiceOver users hear it — or rely on the default wiring above.
 - `disabled` and `readOnly` states are reported to assistive tech automatically via the underlying `Input`.
 
 ## Related components

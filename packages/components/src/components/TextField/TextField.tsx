@@ -22,7 +22,16 @@ export type TextFieldProps = {
 
 export const TextField = forwardRef<TextInput, TextFieldProps>(
     (
-        { label, description, helperMessage, invalid, disabled, ...rest },
+        {
+            label,
+            description,
+            helperMessage,
+            invalid,
+            disabled,
+            accessibilityLabel,
+            accessibilityHint,
+            ...rest
+        },
         ref
     ) => {
         const styles = useStyles(themeStyles, { invalid, disabled });
@@ -45,6 +54,14 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
                     ref={ref}
                     invalid={invalid}
                     disabled={disabled}
+                    accessibilityLabel={accessibilityLabel ?? label}
+                    accessibilityHint={
+                        accessibilityHint ??
+                        [description, helperMessage]
+                            .filter(Boolean)
+                            .join(". ") ||
+                            undefined
+                    }
                     {...rest}
                 />
                 {helperMessage && (
@@ -70,12 +87,16 @@ const themeStyles = EDSStyleSheet.create(
             gap: token.spacing.spacing.vertical.xs,
         },
         label: {
-            color: invalid
+            color: disabled
+                ? token.colors.text.disabled
+                : invalid
                 ? token.colors.text.danger.subtle
                 : token.colors.text.neutral.strong,
         },
         description: {
-            color: token.colors.text.neutral.subtle,
+            color: disabled
+                ? token.colors.text.disabled
+                : token.colors.text.neutral.subtle,
         },
         helperMessage: {
             color: disabled

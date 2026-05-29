@@ -62,6 +62,7 @@ export const inputTokenStyles = EDSStyleSheet.create(
                 fontFamily: token.typography.ui.typography.fontFamily,
                 fontSize: token.typography.ui.fontFamilySize.md.fontSize,
                 fontWeight: token.typography.ui.fontFamilySize.md.fontWeight.normal,
+                // lineHeight intentionally omitted — explicit lineHeight on RN TextInput causes cursor offset issues
                 padding: 0,
             },
             placeholder: {
