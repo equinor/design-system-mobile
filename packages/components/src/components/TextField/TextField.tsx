@@ -57,10 +57,9 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
                     accessibilityLabel={accessibilityLabel ?? label}
                     accessibilityHint={
                         accessibilityHint ??
-                        [description, helperMessage]
+                        ([description, helperMessage]
                             .filter(Boolean)
-                            .join(". ") ||
-                            undefined
+                            .join(". ") || undefined)
                     }
                     {...rest}
                 />
