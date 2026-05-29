@@ -1,0 +1,108 @@
+## Features
+
+- Composes a label, optional description, input field, and helper message into a single form field.
+- Description sits below the label to provide additional context before the user starts typing.
+- Helper message sits below the input; shown in error colour when `invalid` is true.
+- All [`Input`](/components/input) props are forwarded — supports adornments, prefix/suffix text, multiline, read-only, and disabled states.
+
+## Usage
+
+```tsx
+import { TextField } from '@equinor/eds-mobile-components'
+
+const [value, setValue] = useState('')
+
+<TextField label="Title" value={value} onChange={setValue} />
+```
+
+## Examples
+
+### With description
+
+Use `description` to clarify the expected input before the user starts typing.
+
+```tsx
+<TextField
+  label="Email"
+  description="We'll only use this to send you account notifications."
+  placeholder="name@example.com"
+  value={value}
+  onChange={setValue}
+/>
+```
+
+### With helper message
+
+Use `helperMessage` to surface feedback below the field — character counts, formatting hints, or validation errors.
+
+```tsx
+<TextField
+  label="Title"
+  helperMessage="Maximum 80 characters."
+  value={value}
+  onChange={setValue}
+/>
+```
+
+### Invalid state
+
+Pass `invalid` to activate the error state. The label and helper message both shift to the danger colour.
+
+```tsx
+<TextField
+  label="Email"
+  helperMessage="Enter a valid email address."
+  invalid={submitted && !isValidEmail(value)}
+  value={value}
+  onChange={setValue}
+/>
+```
+
+### With adornments
+
+Adornments are passed directly as `Input` props.
+
+```tsx
+<TextField
+  label="Amount"
+  startText="NOK"
+  endAdornment={<Icon name="information" size={16} />}
+  placeholder="0.00"
+  value={value}
+  onChange={setValue}
+/>
+```
+
+### Disabled
+
+```tsx
+<TextField
+  label="Title"
+  description="This field is not editable."
+  helperMessage="Contact your administrator to make changes."
+  value="Fixed value"
+  disabled
+/>
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Label displayed above the input |
+| `description` | `string` | — | Secondary text below the label, above the input |
+| `helperMessage` | `string` | — | Text below the input; shown in danger colour when `invalid` is true |
+| `invalid` | `boolean` | `false` | Activates the error state on the label, input border, and helper message |
+| `disabled` | `boolean` | `false` | Disables the entire field |
+
+Also accepts all [`Input` props](/components/input#props), including `onChange`, `placeholder`, `startText`, `endText`, `startAdornment`, `endAdornment`, `hideErrorIcon`, `readOnly`, and `multiline`.
+
+## Accessibility
+
+- `label` is visual only — pass `accessibilityLabel` to the field for assistive tech when no screen-readable label is visible.
+- Helper message is visual only when `invalid` is true. Expose the validation message programmatically via `accessibilityHint` so VoiceOver users hear it.
+- `disabled` and `readOnly` states are reported to assistive tech automatically via the underlying `Input`.
+
+## Related components
+
+- [`Input`](/components/input) — the underlying input primitive, for when you need the field without the label wrapper.
