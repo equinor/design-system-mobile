@@ -1,6 +1,7 @@
 export * from "./components/Badge";
 export * from "./components/Button";
 export * from "./components/Input";
+export * from "./components/Link";
 export * from "./components/SelectionControls";
 export * from "./components/Typography";
 
