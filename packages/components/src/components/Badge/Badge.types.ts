@@ -6,9 +6,11 @@ export type BadgeTone =
     | "warning"
     | "danger";
 
-export type BadgeEmphasis = "low" | "medium" | "high";
+export type BadgeEmphasis = "low" | "medium";
 
 export type BadgeStyle = "solid" | "outlined";
+
+import { ViewProps } from "react-native";
 
 export type BadgeProps = {
     /** The label text or number displayed inside the badge. */
@@ -19,12 +21,6 @@ export type BadgeProps = {
     emphasis?: BadgeEmphasis;
     /** Solid fill or outlined border. */
     style?: BadgeStyle;
-};
+} & ViewProps;
 
-export type BadgeStatusProps = {
-    /** Semantic color tone. */
-    tone?: BadgeTone;
-    /** Solid fill or outlined border. */
-    style?: BadgeStyle;
-};
 

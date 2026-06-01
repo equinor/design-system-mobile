@@ -17,127 +17,106 @@ export default function BadgeScreen() {
                 <Typography>
                     Badge labels content with status, category, or a numeric
                     value. Use it in table cells, list rows, and card headers.
-                    It is not interactive and does not support overlay on icons
-                    or tab bar items. It comes in two forms: Badge for labeled
-                    pills and Badge.Status for compact dot indicators.
+                    It is non-interactive. For a notification indicator on top
+                    of an icon or avatar, a dedicated notification badge
+                    component is coming in a future release.
                 </Typography>
-            </Section>
-
-            <Section style={styles.groupHeader}>
-                <Typography.Header size="xl" weight="bolder">Badge</Typography.Header>
             </Section>
 
             <Section title="Usage">
                 <Typography>
-                    Place a badge on the trailing edge of a row or alongside a
-                    label to communicate status or a count at a glance.
+                    Place a badge on the trailing edge of a row to communicate
+                    status or a count at a glance.
                 </Typography>
             </Section>
             <Surface>
                 <View style={styles.listRow}>
                     <Typography>Work order &#35;1042</Typography>
-                    <Badge tone="success">Approved</Badge>
+                    <Badge tone="success" emphasis="medium">Approved</Badge>
                 </View>
                 <View style={styles.listRow}>
                     <Typography>Work order &#35;1043</Typography>
-                    <Badge tone="warning">Pending</Badge>
+                    <Badge tone="warning" emphasis="medium">Pending</Badge>
                 </View>
                 <View style={styles.listRow}>
                     <Typography>Work order &#35;1044</Typography>
-                    <Badge tone="danger" emphasis="high">Rejected</Badge>
+                    <Badge tone="danger" emphasis="medium">Rejected</Badge>
                 </View>
                 <View style={styles.listRow}>
                     <Typography>Documents</Typography>
-                    <Badge tone="accent" emphasis="high">{3}</Badge>
+                    <Badge tone="accent" emphasis="medium">{3}</Badge>
                 </View>
             </Surface>
 
             <Section title="Tones" />
             <Surface>
                 <View style={styles.row}>
-                    <Badge tone="neutral">Neutral</Badge>
-                    <Badge tone="accent">Accent</Badge>
-                    <Badge tone="success">Success</Badge>
-                    <Badge tone="info">Info</Badge>
-                    <Badge tone="warning">Warning</Badge>
-                    <Badge tone="danger">Danger</Badge>
+                    <Badge tone="neutral" emphasis="medium">Neutral</Badge>
+                    <Badge tone="accent" emphasis="medium">Accent</Badge>
+                    <Badge tone="success" emphasis="medium">Success</Badge>
+                    <Badge tone="info" emphasis="medium">Info</Badge>
+                    <Badge tone="warning" emphasis="medium">Warning</Badge>
+                    <Badge tone="danger" emphasis="medium">Danger</Badge>
                 </View>
             </Surface>
 
             <Section title="Emphasis">
                 <Typography>
-                    Low uses the canvas background. Medium uses a muted fill.
-                    High uses a strong fill with on-emphasis text.
+                    Low uses the canvas background for a subtle indicator.
+                    Medium uses a muted fill for stronger visual presence.
                 </Typography>
             </Section>
             <Surface>
-                <View style={styles.row}>
-                    <Badge tone="accent" emphasis="low">Low</Badge>
-                    <Badge tone="accent" emphasis="medium">Medium</Badge>
-                    <Badge tone="accent" emphasis="high">High</Badge>
+                <View style={styles.emphasisGrid}>
+                    <View style={styles.emphasisColumn}>
+                        <Typography size="sm" weight="bolder">Low</Typography>
+                        <Badge tone="neutral" emphasis="low">Neutral</Badge>
+                        <Badge tone="accent" emphasis="low">Accent</Badge>
+                        <Badge tone="success" emphasis="low">Success</Badge>
+                        <Badge tone="info" emphasis="low">Info</Badge>
+                        <Badge tone="warning" emphasis="low">Warning</Badge>
+                        <Badge tone="danger" emphasis="low">Danger</Badge>
+                    </View>
+                    <View style={styles.emphasisColumn}>
+                        <Typography size="sm" weight="bolder">Medium</Typography>
+                        <Badge tone="neutral" emphasis="medium">Neutral</Badge>
+                        <Badge tone="accent" emphasis="medium">Accent</Badge>
+                        <Badge tone="success" emphasis="medium">Success</Badge>
+                        <Badge tone="info" emphasis="medium">Info</Badge>
+                        <Badge tone="warning" emphasis="medium">Warning</Badge>
+                        <Badge tone="danger" emphasis="medium">Danger</Badge>
+                    </View>
                 </View>
             </Surface>
 
-            <Section title="Style">
+            <Section title="Outlined">
                 <Typography>
-                    Solid is the default. Use outlined when a filled badge would
-                    compete with other elements on the page.
+                    Solid is the default style. Use outlined when a filled badge would compete with other
+                    elements on the page.
                 </Typography>
             </Section>
             <Surface>
                 <View style={styles.row}>
-                    <Badge tone="accent" style="solid" emphasis="medium">Solid</Badge>
-                    <Badge tone="accent" style="outlined" emphasis="medium">Outlined</Badge>
+                    <Badge tone="neutral" style="outlined">Neutral</Badge>
+                    <Badge tone="accent" style="outlined">Accent</Badge>
+                    <Badge tone="success" style="outlined">Success</Badge>
+                    <Badge tone="info" emphasis="medium" style="outlined">Info</Badge>
+                    <Badge tone="warning" emphasis="medium" style="outlined">Warning</Badge>
+                    <Badge tone="danger" emphasis="medium" style="outlined">Danger</Badge>
                 </View>
             </Surface>
 
-            <Section style={styles.groupHeader}>
-                <Typography.Header size="xl" weight="bolder">Badge.Status</Typography.Header>
-            </Section>
-
-            <Section title="Usage">
+            <Section title="Numbers">
                 <Typography>
-                    Use Badge.Status when only a color indicator is needed with
-                    no label text.
+                    Pass a number as children for count badges.
                 </Typography>
             </Section>
             <Surface>
                 <View style={styles.row}>
-                    <Badge.Status tone="success" />
-                    <Typography>Online</Typography>
-                </View>
-                <View style={styles.row}>
-                    <Badge.Status tone="warning" />
-                    <Typography>Degraded</Typography>
-                </View>
-                <View style={styles.row}>
-                    <Badge.Status tone="danger" />
-                    <Typography>Offline</Typography>
-                </View>
-            </Surface>
-
-            <Section title="Tones" />
-            <Surface>
-                <View style={styles.row}>
-                    <Badge.Status tone="neutral" />
-                    <Badge.Status tone="accent" />
-                    <Badge.Status tone="success" />
-                    <Badge.Status tone="info" />
-                    <Badge.Status tone="warning" />
-                    <Badge.Status tone="danger" />
-                </View>
-            </Surface>
-
-            <Section title="Style">
-                <Typography>
-                    Solid is the default. Use outlined for a subtler indicator
-                    on filled or colored backgrounds.
-                </Typography>
-            </Section>
-            <Surface>
-                <View style={styles.row}>
-                    <Badge.Status tone="danger" style="solid" />
-                    <Badge.Status tone="danger" style="outlined" />
+                    <Badge tone="accent" emphasis="medium">{1}</Badge>
+                    <Badge tone="danger" emphasis="medium">{3}</Badge>
+                    <Badge tone="neutral" emphasis="medium">{42}</Badge>
+                    <Badge tone="info" emphasis="medium">{100}</Badge>
                 </View>
             </Surface>
         </ScrollView>
@@ -151,12 +130,17 @@ const themeStyles = EDSStyleSheet.create((token) => ({
         alignItems: "center",
         gap: token.spacing.spacing.horizontal.sm,
     },
-    groupHeader: {
-        paddingTop: token.spacing.spacing.vertical.xl,
-    },
     listRow: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+    },
+    emphasisGrid: {
+        flexDirection: "row",
+        gap: token.spacing.spacing.horizontal.xl,
+    },
+    emphasisColumn: {
+        gap: token.spacing.spacing.vertical.xs,
+        alignItems: "flex-start",
     },
 }));
