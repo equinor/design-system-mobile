@@ -1,8 +1,10 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
 import { MasterToken } from "../../styling/tokens";
+import { Typography } from "../Typography";
+
 import {
     BadgeEmphasis,
     BadgeProps,
@@ -37,7 +39,7 @@ const resolveBadgeColors = (
         backgroundColor: emphasis === "medium"
             ? t.bg[tone].fillMuted.default
             : t.bg[tone].canvas,
-        borderColor: "transparent",
+        borderColor: "transparent", // keeps solid and outlined badges the same total size
         textColor: t.text[tone].subtle,
     };
 };
@@ -53,7 +55,9 @@ export const Badge = ({
 
     return (
         <View style={styles.container} {...rest}>
-            <Text style={styles.label}>{children}</Text>
+            <Typography size="md" weight="bolder" numberOfLines={1} style={styles.label}>
+                {children}
+            </Typography>
         </View>
     );
 };
@@ -62,7 +66,6 @@ const badgeThemeStyles = EDSStyleSheet.create(
     (token, { tone, emphasis, variant }: BadgeStyleProps) => {
         const { backgroundColor, borderColor, textColor } =
             resolveBadgeColors(token.colors, tone, emphasis, variant);
-        const sizeToken = token.typography.ui.fontFamilySize.md;
 
         return {
             container: {
@@ -79,11 +82,6 @@ const badgeThemeStyles = EDSStyleSheet.create(
                 borderColor,
             },
             label: {
-                fontFamily: token.typography.ui.typography.fontFamily,
-                fontSize: sizeToken.fontSize,
-                fontWeight: sizeToken.fontWeight.bolder,
-                lineHeight: sizeToken.lineHeight.default,
-                letterSpacing: sizeToken.tracking.normal,
                 color: textColor,
             },
         };
