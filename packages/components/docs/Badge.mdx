@@ -6,7 +6,7 @@ Badge is a non-interactive component. For selectable or dismissible labels, use 
 
 - Six tones: `neutral`, `accent`, `success`, `info`, `warning`, and `danger`.
 - Two emphasis levels that control fill intensity: `low` (canvas) and `medium` (muted fill).
-- Two styles: `solid` (default) and `outlined`.
+- Two variants: `solid` (default) and `outlined`.
 - Accepts a string or number as children — useful for status labels and counts.
 
 
@@ -41,8 +41,8 @@ import { Badge } from '@equinor/eds-mobile-components'
 ### Outlined
 
 ```tsx
-<Badge tone="accent" style="outlined" emphasis="low">Low</Badge>
-<Badge tone="accent" style="outlined" emphasis="medium">Medium</Badge>
+<Badge tone="accent" variant="outlined" emphasis="low">Low</Badge>
+<Badge tone="accent" variant="outlined" emphasis="medium">Medium</Badge>
 ```
 
 ### Numbers
@@ -59,7 +59,7 @@ import { Badge } from '@equinor/eds-mobile-components'
 | `children` | `string \| number` | — | The label text or count (required) |
 | `tone` | `'neutral' \| 'accent' \| 'success' \| 'info' \| 'warning' \| 'danger'` | `'neutral'` | Semantic color tone |
 | `emphasis` | `'low' \| 'medium'` | `'low'` | Fill intensity |
-| `style` | `'solid' \| 'outlined'` | `'solid'` | Solid fill or outlined border |
+| `variant` | `'solid' \| 'outlined'` | `'solid'` | Solid fill or outlined border |
 
 ## Accessibility
 
@@ -68,7 +68,7 @@ import { Badge } from '@equinor/eds-mobile-components'
 - When additional context is needed beyond the badge text, pass `accessibilityLabel` directly to the Badge component:
 
 ```tsx
-<Badge tone="success" accessibilityLabel="Status: Approved">Approved</Badge>
+<Badge tone="success" variant="solid" accessibilityLabel="Status: Approved">Approved</Badge>
 ```
 
 ## Related components

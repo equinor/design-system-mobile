@@ -89,20 +89,20 @@ export default function BadgeScreen() {
                 </View>
             </Surface>
 
-            <Section title="Outlined">
+            <Section title="Variant">
                 <Typography>
-                    Solid is the default style. Use outlined when a filled badge would compete with other
+                    Solid is the default variant. Use outlined when a filled badge would compete with other
                     elements on the page.
                 </Typography>
             </Section>
             <Surface>
                 <View style={styles.row}>
-                    <Badge tone="neutral" style="outlined">Neutral</Badge>
-                    <Badge tone="accent" style="outlined">Accent</Badge>
-                    <Badge tone="success" style="outlined">Success</Badge>
-                    <Badge tone="info" emphasis="medium" style="outlined">Info</Badge>
-                    <Badge tone="warning" emphasis="medium" style="outlined">Warning</Badge>
-                    <Badge tone="danger" emphasis="medium" style="outlined">Danger</Badge>
+                    <Badge tone="neutral" variant="outlined">Neutral</Badge>
+                    <Badge tone="accent" variant="outlined">Accent</Badge>
+                    <Badge tone="success" variant="outlined">Success</Badge>
+                    <Badge tone="info" variant="outlined">Info</Badge>
+                    <Badge tone="warning" variant="outlined">Warning</Badge>
+                    <Badge tone="danger" variant="outlined">Danger</Badge>
                 </View>
             </Surface>
 

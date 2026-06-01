@@ -6,39 +6,39 @@ import { MasterToken } from "../../styling/tokens";
 import {
     BadgeEmphasis,
     BadgeProps,
-    BadgeStyle,
     BadgeTone,
+    BadgeVariant,
 } from "./Badge.types";
 
 type BadgeStyleProps = {
     tone: BadgeTone;
     emphasis: BadgeEmphasis;
-    style: BadgeStyle;
+    variant: BadgeVariant;
 };
 
 const resolveBadgeColors = (
     t: MasterToken["colors"],
     tone: BadgeTone,
     emphasis: BadgeEmphasis,
-    style: BadgeStyle
+    variant: BadgeVariant
 ) => {
-    if (style === "outlined") {
+    if (variant === "outlined") {
         const borderColorMap: Record<BadgeEmphasis, string> = {
             low: t.border[tone].subtle,
             medium: t.border[tone].medium,
         };
         return {
-            backgroundColor: t.bg[tone].canvas as string,
+            backgroundColor: t.bg[tone].canvas,
             borderColor: borderColorMap[emphasis],
-            textColor: t.text[tone].subtle as string,
+            textColor: t.text[tone].subtle,
         };
     }
     return {
-        backgroundColor: (emphasis === "medium"
+        backgroundColor: emphasis === "medium"
             ? t.bg[tone].fillMuted.default
-            : t.bg[tone].canvas) as string,
+            : t.bg[tone].canvas,
         borderColor: "transparent",
-        textColor: t.text[tone].subtle as string,
+        textColor: t.text[tone].subtle,
     };
 };
 
@@ -46,10 +46,10 @@ export const Badge = ({
     children,
     tone = "neutral",
     emphasis = "low",
-    style = "solid",
+    variant = "solid",
     ...rest
 }: BadgeProps) => {
-    const styles = useStyles(badgeThemeStyles, { tone, emphasis, style });
+    const styles = useStyles(badgeThemeStyles, { tone, emphasis, variant });
 
     return (
         <View style={styles.container} {...rest}>
@@ -58,12 +58,10 @@ export const Badge = ({
     );
 };
 
-Badge.displayName = "Badge";
-
 const badgeThemeStyles = EDSStyleSheet.create(
-    (token, { tone, emphasis, style }: BadgeStyleProps) => {
+    (token, { tone, emphasis, variant }: BadgeStyleProps) => {
         const { backgroundColor, borderColor, textColor } =
-            resolveBadgeColors(token.colors, tone, emphasis, style);
+            resolveBadgeColors(token.colors, tone, emphasis, variant);
         const sizeToken = token.typography.ui.fontFamilySize.md;
 
         return {
@@ -72,7 +70,7 @@ const badgeThemeStyles = EDSStyleSheet.create(
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                minWidth: 20,
+                minWidth: token.spacing.sizing.icon.lg,
                 borderRadius: token.spacing.spacing.borderRadius.rounded,
                 paddingHorizontal: token.spacing.spacing.horizontal.sm,
                 paddingVertical: token.spacing.spacing.vertical.threeXs,
@@ -91,4 +89,3 @@ const badgeThemeStyles = EDSStyleSheet.create(
         };
     }
 );
-

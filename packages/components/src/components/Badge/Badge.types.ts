@@ -1,3 +1,5 @@
+import { ViewProps } from "react-native";
+
 export type BadgeTone =
     | "neutral"
     | "accent"
@@ -8,9 +10,7 @@ export type BadgeTone =
 
 export type BadgeEmphasis = "low" | "medium";
 
-export type BadgeStyle = "solid" | "outlined";
-
-import { ViewProps } from "react-native";
+export type BadgeVariant = "solid" | "outlined";
 
 export type BadgeProps = {
     /** The label text or number displayed inside the badge. */
@@ -20,7 +20,5 @@ export type BadgeProps = {
     /** Visual weight of the badge. */
     emphasis?: BadgeEmphasis;
     /** Solid fill or outlined border. */
-    style?: BadgeStyle;
+    variant?: BadgeVariant;
 } & ViewProps;
-
-
