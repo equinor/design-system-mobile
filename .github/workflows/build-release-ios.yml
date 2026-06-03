@@ -68,8 +68,9 @@ jobs:
       - name: Extract UUID from provisioning profile
         run: |
           PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
-          UUID=$(security cms -D -i "$PROFILE" | /usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin)
+          UUID=$(grep -aEo '[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}' "$PROFILE" | head -1)
           echo "UUID=$UUID" >> $GITHUB_ENV
+          echo "Extracted UUID: $UUID"
 
       - name: Generate ExportOptions.plist
         working-directory: apps/storybook
