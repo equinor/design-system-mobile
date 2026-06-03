@@ -57,6 +57,14 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           cp "$PROVISIONING_PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
 
+      - name: Debug provisioning profile
+        run: |
+          PROFILE_PATH="$RUNNER_TEMP/$PROVISIONING_PROFILE_FILE"
+          INSTALLED="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
+          echo "Temp file size: $(wc -c < "$PROFILE_PATH") bytes"
+          echo "Installed file size: $(wc -c < "$INSTALLED") bytes"
+          file "$INSTALLED"
+
       - name: Extract UUID from provisioning profile
         run: |
           PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
