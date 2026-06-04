@@ -11,11 +11,15 @@ export type TextFieldProps = {
      */
     label?: string;
     /**
+     * Indicator text shown inline after the label, e.g. "(Required)" or "(Optional)".
+     */
+    indicator?: string;
+    /**
      * A description shown below the label, above the input. Use for additional context.
      */
     description?: string;
     /**
-     * A message shown below the input. Shown in error colour when invalid is true.
+     * A message shown below the input.
      */
     helperMessage?: string;
 } & InputProps;
@@ -24,6 +28,7 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
     (
         {
             label,
+            indicator,
             description,
             helperMessage,
             invalid,
@@ -34,15 +39,22 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
         },
         ref
     ) => {
-        const styles = useStyles(themeStyles, { invalid, disabled });
+        const styles = useStyles(themeStyles, { disabled });
 
         return (
             <View style={styles.container}>
                 {label && (
                     <View style={styles.labelSection}>
-                        <Typography size="md" style={styles.label}>
-                            {label}
-                        </Typography>
+                        <View style={styles.labelRow}>
+                            <Typography size="md" style={styles.label}>
+                                {label}
+                            </Typography>
+                            {indicator && (
+                                <Typography size="md" style={styles.indicator}>
+                                    {indicator}
+                                </Typography>
+                            )}
+                        </View>
                         {description && (
                             <Typography size="sm" style={styles.description}>
                                 {description}
@@ -75,33 +87,32 @@ export const TextField = forwardRef<TextInput, TextFieldProps>(
 
 TextField.displayName = "TextField";
 
-type TextFieldStyleProps = Pick<TextFieldProps, "invalid" | "disabled">;
+type TextFieldStyleProps = Pick<TextFieldProps, "disabled">;
 
 const themeStyles = EDSStyleSheet.create(
-    (token, { invalid, disabled }: TextFieldStyleProps) => ({
+    (token, { disabled }: TextFieldStyleProps) => ({
         container: {
             gap: token.spacing.spacing.vertical.twoXs,
         },
         labelSection: {
             gap: token.spacing.spacing.vertical.xs,
         },
+        labelRow: {
+            flexDirection: "row",
+            gap: token.spacing.spacing.horizontal.xs,
+        },
         label: {
-            color: disabled
-                ? token.colors.text.disabled
-                : invalid
-                ? token.colors.text.danger.subtle
-                : token.colors.text.neutral.strong,
+            color: token.colors.text.neutral.strong,
+        },
+        indicator: {
+            color: token.colors.text.neutral.subtle,
         },
         description: {
-            color: disabled
-                ? token.colors.text.disabled
-                : token.colors.text.neutral.subtle,
+            color: token.colors.text.neutral.subtle,
         },
         helperMessage: {
             color: disabled
                 ? token.colors.text.disabled
-                : invalid
-                ? token.colors.text.danger.subtle
                 : token.colors.text.neutral.subtle,
         },
     })

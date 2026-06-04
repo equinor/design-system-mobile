@@ -58,6 +58,7 @@ export default function TextFieldScreen() {
                     startText="NOK"
                     endAdornment={<Icon name="information" size={16} />}
                     placeholder="0.00"
+                    keyboardType="numeric"
                 />
             </Surface>
 
@@ -71,6 +72,35 @@ export default function TextFieldScreen() {
                     value={errorValue}
                     onChange={setErrorValue}
                     invalid
+                />
+            </Surface>
+
+            <Section title="Indicator">
+                <Typography>
+                    Use the indicator prop to show "(Required)" or "(Optional)"
+                    inline after the label.
+                </Typography>
+            </Section>
+            <Surface>
+                <TextField
+                    label="First name"
+                    indicator="(Required)"
+                    placeholder="Placeholder"
+                />
+                <TextField
+                    label="Middle name"
+                    indicator="(Optional)"
+                    placeholder="Placeholder"
+                />
+            </Surface>
+
+            <Section title="Read-only" />
+            <Surface>
+                <TextField
+                    label="Title"
+                    description="Help with more details"
+                    value="Read-only value"
+                    readOnly
                 />
             </Surface>
 

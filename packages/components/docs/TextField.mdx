@@ -2,7 +2,7 @@
 
 - Composes a label, optional description, input field, and helper message into a single form field.
 - Description sits below the label to provide additional context before the user starts typing.
-- Helper message sits below the input; shown in error colour when `invalid` is true.
+- Helper message sits below the input.
 - All [`Input`](/components/input) props are forwarded — supports adornments, prefix/suffix text, multiline, read-only, and disabled states.
 
 ## Usage
@@ -44,9 +44,18 @@ Use `helperMessage` to surface feedback below the field — character counts, fo
 />
 ```
 
+### With indicator
+
+Use `indicator` to show a short inline cue after the label, such as `"(Required)"` or `"(Optional)"`.
+
+```tsx
+<TextField label="First name" indicator="(Required)" value={value} onChange={setValue} />
+<TextField label="Middle name" indicator="(Optional)" value={value} onChange={setValue} />
+```
+
 ### Invalid state
 
-Pass `invalid` to activate the error state. The label and helper message both shift to the danger colour.
+Pass `invalid` to activate the error state. The input border and error icon signal the problem; the label and helper message keep their default colours.
 
 ```tsx
 <TextField
@@ -56,6 +65,12 @@ Pass `invalid` to activate the error state. The label and helper message both sh
   value={value}
   onChange={setValue}
 />
+```
+
+### Read-only
+
+```tsx
+<TextField label="Title" value="Read-only value" readOnly />
 ```
 
 ### With adornments
@@ -90,9 +105,10 @@ Adornments are passed directly as `Input` props.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | — | Label displayed above the input |
+| `indicator` | `string` | — | Short cue shown inline after the label, e.g. `"(Required)"` or `"(Optional)"` |
 | `description` | `string` | — | Secondary text below the label, above the input |
-| `helperMessage` | `string` | — | Text below the input; shown in danger colour when `invalid` is true |
-| `invalid` | `boolean` | `false` | Activates the error state on the label, input border, and helper message |
+| `helperMessage` | `string` | — | Text below the input |
+| `invalid` | `boolean` | `false` | Activates the error state on the input border and error icon |
 | `disabled` | `boolean` | `false` | Disables the entire field |
 
 Also accepts all [`Input` props](/components/input#props), including `onChange`, `placeholder`, `startText`, `endText`, `startAdornment`, `endAdornment`, `hideErrorIcon`, `readOnly`, and `multiline`.
