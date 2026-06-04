@@ -28,7 +28,7 @@ This is an [Expo](https://expo.dev) project using [file-based routing](https://d
 3. Run the storybook app:
 
     ```bash
-    pnpm dev:storybook
+    pnpm storybook
     ```
 
 4. Press `i` to open in iOS Simulator or `a` for Android Emulator.
@@ -47,7 +47,7 @@ Use Expo's development build to run on a physical device:
 
 ```bash
 # iOS
-pnpm dev:storybook -- --device
+pnpm storybook -- --device
 
 # Or scan the QR code with the Expo Go app (limited functionality)
 ```
@@ -99,7 +99,7 @@ pod install
 Clear the cache and restart:
 
 ```bash
-pnpm dev:storybook -- --clear
+pnpm storybook -- --clear
 ```
 
 ## Learn more

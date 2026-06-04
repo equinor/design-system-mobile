@@ -27,7 +27,7 @@ pnpm build:components
 pnpm dev:components
 
 # Run storybook app for iOS (requires prior build)
-pnpm dev:storybook
+pnpm storybook
 
 # Run storybook for specific platform
 cd apps/storybook

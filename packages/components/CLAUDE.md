@@ -165,7 +165,7 @@ export default function App() {
 
 1. Make changes in `src/`
 2. Run `pnpm dev` for watch mode (auto-rebuilds)
-3. Test changes in storybook app: `cd ../../ && pnpm dev:storybook`
+3. Test changes in storybook app: `cd ../../ && pnpm storybook`
 4. **Always use tokens** (`theme.colors`, `theme.spacing`, `theme.typography`) for new work
 5. All components must support both light/dark mode and comfortable/spacious density
 

@@ -61,6 +61,7 @@ jobs:
         run: |
           PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
           UUID=$(grep -aEo '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}' "$PROFILE" | head -1)
+          if [ -z "$UUID" ]; then echo "::error::Failed to extract UUID from provisioning profile"; exit 1; fi
           echo "UUID=$UUID" >> $GITHUB_ENV
           echo "Extracted UUID: $UUID"
 
