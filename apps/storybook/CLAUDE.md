@@ -15,7 +15,7 @@ From the monorepo root:
 pnpm build
 
 # Run the storybook app
-pnpm storybook
+pnpm dev:storybook
 
 # Or from this directory
 pnpm ios       # Run on iOS simulator

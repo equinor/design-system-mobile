@@ -149,7 +149,7 @@ pnpm build
 | --------------------- | --------------------------------------- |
 | `pnpm install`        | Install all dependencies                |
 | `pnpm build`          | Build all packages                      |
-| `pnpm storybook`  | Run the storybook app                   |
+| `pnpm dev:storybook`  | Run the storybook app                   |
 | `pnpm dev:components` | Watch mode for component library        |
 | `pnpm lint`           | Run ESLint                              |
 | `pnpm format`         | Format code with Prettier               |
@@ -176,7 +176,7 @@ design-system-mobile/
 pnpm build
 
 # Start the storybook app
-pnpm storybook
+pnpm dev:storybook
 
 # For iOS, install pods (first time only)
 cd apps/storybook/ios && pod install

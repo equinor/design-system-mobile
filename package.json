@@ -9,7 +9,7 @@
     "build:components": "turbo run build --filter @equinor/eds-mobile-components",
     "build:storybook": "turbo run build --filter @equinor/mobile-storybook",
     "dev": "turbo run dev",
-    "storybook": "turbo run dev --filter @equinor/mobile-storybook",
+    "dev:storybook": "turbo run dev --filter @equinor/mobile-storybook",
     "dev:components": "turbo run dev --filter @equinor/eds-mobile-components",
     "lint": "turbo run lint",
     "lint:components": "turbo run lint --filter @equinor/eds-mobile-components",
