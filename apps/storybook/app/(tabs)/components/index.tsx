@@ -22,6 +22,7 @@ const sections = [
         title: "Data Entry",
         data: [
             { name: "Input", route: "input" },
+            { name: "Select", route: "select" },
             { name: "Selection Controls", route: "selectioncontrols" },
         ],
     },

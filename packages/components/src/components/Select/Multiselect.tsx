@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { LayoutRectangle, Pressable, ScrollView, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
-import { useToken } from "../../hooks/useToken";
+import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon";
 import { inputTokenStyles } from "../Input/inputStyle";
 import { Menu } from "../Menu";
@@ -33,13 +33,9 @@ export const Multiselect = <T,>({
         readOnly,
         invalid,
         isSelected: menuOpen,
+        disabled,
     });
-
-    const token = useToken();
-    const textColor =
-        selectedItems.length > 0
-            ? token.colors.text.primary
-            : token.colors.text.tertiary;
+    const styles = useStyles(multiselectStyles);
     const selectedItemTitle =
         selectedItems
             .map(
@@ -66,7 +62,7 @@ export const Multiselect = <T,>({
     };
 
     return (
-        <View style={{ flexGrow: 1 }}>
+        <View style={styles.container}>
             <Pressable
                 style={inputStyles.contentContainer}
                 ref={triggerRef}
@@ -79,11 +75,7 @@ export const Multiselect = <T,>({
                 <Typography
                     style={[
                         inputStyles.textInput,
-                        {
-                            color: disabled
-                                ? token.colors.text.disabled
-                                : textColor,
-                        },
+                        selectedItems.length === 0 && inputStyles.placeholder,
                     ]}
                     numberOfLines={1}
                 >
@@ -91,8 +83,7 @@ export const Multiselect = <T,>({
                 </Typography>
                 {!readOnly && (
                     <Icon
-                        style={{ alignSelf: "center" }}
-                        color={disabled ? "textDisabled" : "textPrimary"}
+                        color={inputStyles.chevronIcon.color}
                         name={menuOpen ? "menu-up" : "menu-down"}
                     />
                 )}
@@ -103,12 +94,7 @@ export const Multiselect = <T,>({
                 open={menuOpen}
                 onClose={() => setMenuOpen(false)}
                 placement="bottom-start"
-                style={{
-                    width: menuLayout?.width,
-                    marginTop: -8,
-                    marginBottom: -8,
-                    maxHeight: 300,
-                }}
+                style={[styles.menuOverlay, { width: menuLayout?.width }]}
             >
                 <ScrollView>
                     {items.map((item) => (
@@ -136,3 +122,13 @@ export const Multiselect = <T,>({
 };
 
 Multiselect.displayName = "Select.Multi";
+
+const multiselectStyles = EDSStyleSheet.create((token) => ({
+    container: {
+        flexGrow: 1,
+    },
+    menuOverlay: {
+        marginVertical: -token.spacing.spacing.vertical.sm,
+        maxHeight: 300,
+    },
+}));

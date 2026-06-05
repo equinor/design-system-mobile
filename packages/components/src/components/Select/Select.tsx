@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import { LayoutRectangle, Pressable, ScrollView, View } from "react-native";
+import { EDSStyleSheet } from "../../styling";
 import { useStyles } from "../../hooks/useStyles";
-import { useToken } from "../../hooks/useToken";
 import { Icon } from "../Icon";
 import { inputTokenStyles } from "../Input/inputStyle";
 import { Menu } from "../Menu";
@@ -18,6 +18,16 @@ export type SelectProps<T> = SelectBaseProps<T> & {
      * Callback function called when an item is selected or deselected.
      */
     onSelect: (value: T | undefined) => void;
+
+    /**
+     * Label displayed above the select field.
+     */
+    label?: string;
+
+    /**
+     * Helper text displayed below the label, above the field.
+     */
+    helperText?: string;
 };
 
 export const Select = <T,>({
@@ -28,6 +38,8 @@ export const Select = <T,>({
     onSelect,
     readOnly = false,
     invalid,
+    label,
+    helperText,
 }: SelectProps<T>) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [menuLayout, setMenuLayout] = useState<LayoutRectangle | undefined>();
@@ -37,12 +49,10 @@ export const Select = <T,>({
         readOnly,
         invalid,
         isSelected: menuOpen,
+        disabled,
     });
+    const styles = useStyles(selectStyles);
 
-    const token = useToken();
-    const textColor = selectedItem
-        ? token.colors.text.primary
-        : token.colors.text.tertiary;
     const selectedItemTitle = selectedItem
         ? (items.find((item) => item.value === selectedItem)?.title ??
           placeholder)
@@ -56,30 +66,43 @@ export const Select = <T,>({
         [onSelect, selectedItem]
     );
 
-    const toggleMenuOpen = () => {
-        setMenuOpen(!menuOpen);
-    };
+    const showErrorIcon = invalid && !disabled;
 
     return (
-        <View style={{ flexGrow: 1 }}>
+        <View style={styles.container}>
+            {label && (
+                <View style={styles.labelSection}>
+                    <Typography size="md">{label}</Typography>
+                    {helperText && (
+                        <Typography size="sm" style={styles.helperText}>
+                            {helperText}
+                        </Typography>
+                    )}
+                </View>
+            )}
             <Pressable
-                style={inputStyles.contentContainer}
                 ref={triggerRef}
+                style={inputStyles.contentContainer}
                 disabled={disabled || readOnly}
-                onPress={toggleMenuOpen}
-                onLayout={(event) => {
-                    const layout = event.nativeEvent.layout;
-                    setMenuLayout(layout);
+                onPress={() => setMenuOpen(!menuOpen)}
+                onLayout={(event) => setMenuLayout(event.nativeEvent.layout)}
+                accessibilityRole="combobox"
+                accessibilityState={{
+                    disabled: disabled || readOnly,
+                    expanded: menuOpen,
                 }}
             >
+                {showErrorIcon && (
+                    <Icon
+                        name="alert-circle"
+                        size={16}
+                        color={inputStyles.errorIcon.color}
+                    />
+                )}
                 <Typography
                     style={[
                         inputStyles.textInput,
-                        {
-                            color: disabled
-                                ? token.colors.text.disabled
-                                : textColor,
-                        },
+                        !selectedItem && inputStyles.placeholder,
                     ]}
                     numberOfLines={1}
                 >
@@ -87,8 +110,7 @@ export const Select = <T,>({
                 </Typography>
                 {!readOnly && (
                     <Icon
-                        style={{ alignSelf: "center" }}
-                        color={disabled ? "textDisabled" : "textPrimary"}
+                        color={inputStyles.chevronIcon.color}
                         name={menuOpen ? "menu-up" : "menu-down"}
                     />
                 )}
@@ -99,33 +121,48 @@ export const Select = <T,>({
                 open={menuOpen}
                 onClose={() => setMenuOpen(false)}
                 placement="bottom-start"
-                style={{
-                    width: menuLayout?.width,
-                    marginTop: -8,
-                    marginBottom: -8,
-                    maxHeight: 300,
-                }}
+                style={[styles.menuOverlay, { width: menuLayout?.width }]}
             >
                 <ScrollView>
-                    {items.map((item) => {
-                        return (
-                            <Menu.Item
-                                key={
-                                    typeof item.value === "object"
-                                        ? JSON.stringify(item.value)
-                                        : String(item.value)
-                                }
-                                onPress={() => handleSelect(item.value)}
-                                title={item.title}
-                                iconName={item.icon}
-                                active={selectedItem === item.value}
-                            />
-                        );
-                    })}
+                    {items.map((item) => (
+                        <Menu.Item
+                            key={
+                                typeof item.value === "object"
+                                    ? JSON.stringify(item.value)
+                                    : String(item.value)
+                            }
+                            onPress={() => handleSelect(item.value)}
+                            title={item.title}
+                            iconName={item.icon}
+                            trailingIconName={
+                                selectedItem === item.value
+                                    ? "check"
+                                    : undefined
+                            }
+                            active={selectedItem === item.value}
+                        />
+                    ))}
                 </ScrollView>
             </Menu>
         </View>
     );
 };
+
+const selectStyles = EDSStyleSheet.create((token) => ({
+    container: {
+        flexGrow: 1,
+        gap: token.spacing.spacing.vertical.sm,
+    },
+    labelSection: {
+        gap: token.spacing.spacing.vertical.sm,
+    },
+    helperText: {
+        color: token.colors.text.neutral.subtle,
+    },
+    menuOverlay: {
+        marginVertical: -token.spacing.spacing.vertical.sm,
+        maxHeight: 300,
+    },
+}));
 
 Select.displayName = "Select";

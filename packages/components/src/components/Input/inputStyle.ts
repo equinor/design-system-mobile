@@ -25,7 +25,7 @@ export const inputTokenStyles = EDSStyleSheet.create(
                     : token.colors.border.danger.subtle;
             }
             return isSelected
-                ? token.colors.border.neutral.strong
+                ? token.colors.border.neutral.medium
                 : token.colors.border.neutral.subtle;
         })();
 
@@ -56,12 +56,11 @@ export const inputTokenStyles = EDSStyleSheet.create(
                     token.spacing.spacing.inset.lg.verticalSquished,
                 gap: token.spacing.spacing.icon.sm.gapHorizontal,
             },
-            // Typography tokens will replace hardcoded values
             textInput: {
                 flex: 1,
                 color: textColor,
-                fontSize: 14,
-                fontWeight: "400",
+                fontSize: token.typography.ui.fontFamilySize.md.fontSize,
+                fontWeight: token.typography.ui.fontFamilySize.md.fontWeight.normal,
                 padding: 0,
             },
             placeholder: {
@@ -73,6 +72,13 @@ export const inputTokenStyles = EDSStyleSheet.create(
                 fontWeight: "400",
                 lineHeight: 16,
                 textTransform: "uppercase",
+            },
+            chevronIcon: {
+                color: disabled
+                    ? token.colors.text.disabled
+                    : invalid
+                        ? token.colors.text.neutral.subtle
+                        : token.colors.text.accent.subtle,
             },
             errorIcon: {
                 color: token.colors.text.danger.subtle,

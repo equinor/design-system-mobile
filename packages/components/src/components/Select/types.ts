@@ -7,7 +7,7 @@ export type SelectItem<T> = {
      */
     title: string;
     /**
-     * The value associated with the menuc item.
+     * The value associated with the menu item.
      */
     value: T;
     /**
@@ -27,7 +27,7 @@ export type SelectBaseProps<T> = {
      */
     placeholder?: string;
     /**
-     * Placeholder text displayed when no item is selected.
+     * Whether the select is disabled.
      */
     disabled?: boolean;
     /**

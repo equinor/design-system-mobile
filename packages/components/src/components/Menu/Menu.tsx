@@ -3,6 +3,7 @@ import { flip, offset, shift, useFloating } from "@floating-ui/react-native";
 import React, { createContext } from "react";
 import { View, ViewProps } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
+import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { PopInContainer } from "../_internal/PopInContainer";
 import { RootModal } from "../_internal/RootModal";
@@ -46,16 +47,16 @@ export const Menu = ({
     children,
     ...rest
 }: React.PropsWithChildren<MenuProps & ViewProps>) => {
+    const token = useToken();
+    const styles = useStyles(themeStyles);
     const { refs, floatingStyles } = useFloating({
         sameScrollView: false,
         elements: {
             reference: anchorEl.current,
         },
-        middleware: [offset(8), flip(), shift({ padding: 8 })],
+        middleware: [offset(token.spacing.spacing.vertical.sm), flip(), shift({ padding: token.spacing.spacing.vertical.sm })],
         placement,
     });
-
-    const styles = useStyles(themeStyles);
     return (
         open && (
             <RootModal onBackdropPress={onClose}>
@@ -65,17 +66,21 @@ export const Menu = ({
                             style={styles.paperStyle}
                             elevation="temporaryNav"
                         >
+                            {/* Border layer: individual corner radii + border, no overflow clip */}
                             <View
-                                style={[styles.innerContainer, rest.style]}
                                 {...rest}
+                                style={[styles.borderContainer, rest.style]}
                             >
-                                <MenuContext.Provider
-                                    value={{
-                                        close: onClose,
-                                    }}
-                                >
-                                    {children}
-                                </MenuContext.Provider>
+                                {/* Clip layer: uniform radius + overflow hidden — works reliably on iOS */}
+                                <View style={styles.clipContainer}>
+                                    <MenuContext.Provider
+                                        value={{
+                                            close: onClose,
+                                        }}
+                                    >
+                                        {children}
+                                    </MenuContext.Provider>
+                                </View>
                             </View>
                         </Paper>
                     </PopInContainer>
@@ -87,11 +92,16 @@ export const Menu = ({
 
 const themeStyles = EDSStyleSheet.create((theme) => ({
     paperStyle: {
-        borderRadius: theme.geometry.border.elementBorderRadius,
+        borderRadius: theme.spacing.spacing.borderRadius.rounded,
     },
-    innerContainer: {
+    borderContainer: {
+        borderRadius: theme.spacing.spacing.borderRadius.rounded,
+        borderWidth: theme.spacing.sizing.stroke.thin,
+        borderColor: theme.colors.border.neutral.subtle,
+        backgroundColor: theme.colors.bg.floating,
+    },
+    clipContainer: {
+        borderRadius: theme.spacing.spacing.borderRadius.rounded,
         overflow: "hidden",
-        minHeight: theme.geometry.dimension.button.minHeight,
-        paddingVertical: theme.spacing.menu.paddingVertical,
     },
 }));

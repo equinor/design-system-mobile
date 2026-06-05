@@ -16,7 +16,6 @@
         "src/components/Progress",
         "src/components/ProgressIndicator",
         "src/components/Search",
-        "src/components/Select",
         "src/components/Spacer",
         "src/components/Tabs"
     ],

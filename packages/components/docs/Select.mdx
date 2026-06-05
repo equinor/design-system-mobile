@@ -1,0 +1,132 @@
+## Features
+
+- Controlled single-selection dropdown; the selected item is managed via `selectedItem` and `onSelect`.
+- Tapping the currently selected item deselects it — `onSelect` is called with `undefined`.
+- Optional `label` and `helperText` displayed above the trigger field.
+- Disabled, read-only, and invalid states with distinct visual treatments.
+- Dropdown automatically repositions above the trigger when there is insufficient space below.
+- Adapts to light/dark themes and comfortable/spacious density via the EDS token system.
+- Reports `combobox` role and `expanded`/`disabled` state to assistive technology.
+
+## Usage
+
+```tsx
+import { Select, SelectItem } from '@equinor/eds-mobile-components'
+
+const items: SelectItem<string>[] = [
+  { title: 'Option 1', value: 'opt1' },
+  { title: 'Option 2', value: 'opt2' },
+  { title: 'Option 3', value: 'opt3' },
+]
+
+const [selected, setSelected] = useState<string | undefined>()
+
+<Select
+  label="Category"
+  items={items}
+  selectedItem={selected}
+  onSelect={setSelected}
+/>
+```
+
+## Examples
+
+### With label and helper text
+
+```tsx
+<Select
+  label="Priority"
+  helperText="Affects processing order"
+  items={items}
+  selectedItem={selected}
+  onSelect={setSelected}
+/>
+```
+
+### Invalid
+
+An alert icon appears inside the trigger and the border changes to the danger colour.
+
+```tsx
+<Select
+  label="Status"
+  items={items}
+  selectedItem={selected}
+  onSelect={setSelected}
+  invalid
+/>
+```
+
+### Disabled
+
+```tsx
+<Select
+  label="Region"
+  items={items}
+  selectedItem={selected}
+  onSelect={setSelected}
+  disabled
+/>
+```
+
+### Read-only
+
+The field is visible and shows the selected value but cannot be interacted with. The chevron is hidden.
+
+```tsx
+<Select
+  label="Assigned to"
+  items={items}
+  selectedItem={selected}
+  onSelect={setSelected}
+  readOnly
+/>
+```
+
+### With item icons
+
+Each `SelectItem` accepts an optional `icon` name from the EDS icon set, displayed to the left of the item title in the dropdown.
+
+```tsx
+const items: SelectItem<string>[] = [
+  { title: 'Info',    value: 'info',    icon: 'info-circle' },
+  { title: 'Warning', value: 'warning', icon: 'warning-outlined' },
+  { title: 'Error',   value: 'error',   icon: 'error-outlined' },
+]
+```
+
+## Props
+
+### Select
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `SelectItem<T>[]` | — | Array of options to display in the dropdown |
+| `selectedItem` | `T \| undefined` | — | The currently selected value |
+| `onSelect` | `(value: T \| undefined) => void` | — | Called when an item is selected or deselected |
+| `label` | `string` | — | Label displayed above the trigger |
+| `helperText` | `string` | — | Secondary text displayed below the label |
+| `placeholder` | `string` | `"Select an option"` | Text shown when no item is selected |
+| `disabled` | `boolean` | `false` | Prevents interaction and dims the field |
+| `readOnly` | `boolean` | `false` | Shows the value without allowing changes; hides the chevron |
+| `invalid` | `boolean` | — | Applies error styling and shows an alert icon |
+
+### SelectItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Display text for the option |
+| `value` | `T` | — | Value passed to `onSelect` when this option is chosen |
+| `icon` | `IconName` | — | Optional icon displayed to the left of the title |
+
+## Accessibility
+
+- The trigger sets `accessibilityRole="combobox"` automatically.
+- Reports `expanded` state when the dropdown is open and `disabled` when the field is disabled or read-only.
+- Always provide a `label` prop or wrap the component with an accessible label so the field has a meaningful name for screen readers.
+
+## Related components
+
+- `Input` — for free-text entry rather than selecting from a predefined list.
+- `Radio` — for selecting a single option from a small, always-visible set.
+- `Checkbox` — for selecting one or more items from a set.

@@ -31,9 +31,13 @@ export type MenuItemProps = {
      */
     closeMenuOnClick?: boolean;
     /**
-     * The name of the icon to show alongside the text of this item.
+     * Icon displayed to the left of the title.
      */
     iconName?: IconName;
+    /**
+     * Icon displayed to the right of the title.
+     */
+    trailingIconName?: IconName;
 };
 
 export const MenuItem = ({
@@ -43,6 +47,7 @@ export const MenuItem = ({
     onPress = () => null,
     closeMenuOnClick = true,
     iconName,
+    trailingIconName,
 }: MenuItemProps) => {
     const menuContext = useContext(MenuContext);
     const styles = useStyles(themeStyles, { active, disabled });
@@ -63,9 +68,17 @@ export const MenuItem = ({
             >
                 <View style={styles.contentContainer}>
                     {iconName && (
-                        <Icon name={iconName} style={styles.textStyle} />
+                        <Icon name={iconName} color={styles.textStyle.color} />
                     )}
-                    <Typography style={styles.textStyle}>{title}</Typography>
+                    <Typography size="md" style={[styles.textStyle, styles.label]}>
+                        {title}
+                    </Typography>
+                    {trailingIconName && (
+                        <Icon
+                            name={trailingIconName}
+                            color={styles.trailingIconColor.color}
+                        />
+                    )}
                 </View>
             </PressableHighlight>
         </View>
@@ -74,29 +87,42 @@ export const MenuItem = ({
 
 const themeStyles = EDSStyleSheet.create(
     (theme, props: { active: boolean; disabled: boolean }) => {
-        const activeColor = props.active && theme.colors.text.menu.active;
-        const disabledColor = props.disabled && theme.colors.text.disabled;
+        const activeColor =
+            props.active && theme.colors.text.neutral.strong;
+        const disabledColor =
+            props.disabled && theme.colors.text.disabled;
         return {
             itemContainer: {
                 backgroundColor: props.active
-                    ? theme.colors.interactive.selectedHighlight
-                    : theme.colors.container.elevation.temporaryNav,
+                    ? theme.colors.bg.neutral.fillMuted.default
+                    : theme.colors.bg.neutral.surface,
+                minHeight: theme.spacing.sizing.selectable.xl,
+                justifyContent: "center",
             },
             pressableContainer: {
-                paddingHorizontal: theme.spacing.menu.item.paddingHorizontal,
-                paddingVertical: theme.spacing.menu.item.paddingVertical,
+                paddingHorizontal: theme.spacing.spacing.inset.sm.horizontal,
+                paddingVertical:
+                    theme.spacing.spacing.inset.lg.verticalSquished,
             },
             textStyle: {
                 color:
                     disabledColor ||
                     activeColor ||
-                    theme.colors.text.menu.resting,
+                    theme.colors.text.neutral.strong,
+            },
+            trailingIconColor: {
+                color:
+                    disabledColor ||
+                    theme.colors.text.neutral.subtle,
+            },
+            label: {
+                flex: 1,
             },
             contentContainer: {
                 flexDirection: "row",
                 justifyContent: "flex-start",
-                alignContent: "center",
-                gap: theme.spacing.menu.item.iconGap,
+                alignItems: "center",
+                gap: theme.spacing.spacing.icon.sm.gapHorizontal,
             },
         };
     }
