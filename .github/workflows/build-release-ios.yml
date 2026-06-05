@@ -61,7 +61,13 @@ jobs:
         run: |
           PROFILE="$HOME/Library/MobileDevice/Provisioning Profiles/build_pp.mobileprovision"
           if [ ! -s "$PROFILE" ]; then echo "::error::Provisioning profile is missing or empty at $PROFILE"; exit 1; fi
-          UUID=$(openssl smime -inform DER -verify -noverify -in "$PROFILE" 2>/dev/null | /usr/libexec/PlistBuddy -c "Print :UUID" /dev/stdin)
+          UUID=$(python3 -c "
+import plistlib
+with open('$PROFILE', 'rb') as f:
+    data = f.read()
+start = data.find(b'<?xml')
+print(plistlib.loads(data[start:])['UUID'])
+")
           if [ -z "$UUID" ]; then echo "::error::Failed to extract UUID from provisioning profile"; exit 1; fi
           echo "UUID=$UUID" >> $GITHUB_ENV
           echo "Extracted UUID: $UUID"
