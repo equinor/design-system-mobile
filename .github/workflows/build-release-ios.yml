@@ -102,7 +102,7 @@ jobs:
             -archivePath build/EDSMobile.xcarchive \
             CODE_SIGN_STYLE="Manual" \
             CODE_SIGN_IDENTITY="${{ vars.APPLE_CODE_SIGN_IDENTITY }}" \
-            PROVISIONING_PROFILE="${{ env.UUID }}"
+            PROVISIONING_PROFILE_SPECIFIER="${{ vars.APPLE_PROVISIONING_PROFILE_NAME }}"
 
       - name: Export IPA
         working-directory: apps/storybook
