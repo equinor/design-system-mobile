@@ -110,7 +110,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                     <Text style={styles.adornmentText}>{startText}</Text>
                 )}
                 {startAdornment}
-                <View pointerEvents={disabled ? "none" : "auto"}>
+                <View style={{ pointerEvents: disabled ? "none" : "auto" }}>
                     <TextInput
                         {...rest}
                         ref={ref}
