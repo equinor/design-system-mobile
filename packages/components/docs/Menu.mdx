@@ -1,0 +1,147 @@
+## Features
+
+- Floating overlay anchored to a trigger element via a `ref`, positioned automatically with overflow and flip handling.
+- Items support optional leading and trailing slots for custom content — icons, keyboard shortcuts, badges, or anything else.
+- `Menu.Section` groups items under a labelled header. `Menu.Divider` provides a lighter visual separator with no title.
+- Dismisses when an enabled item is selected or the user taps outside; disabled items keep the menu open and do nothing when tapped.
+
+## Usage
+
+```tsx
+import { Menu } from '@equinor/eds-mobile-components'
+import { useRef, useState } from 'react'
+import { View } from 'react-native'
+
+const anchorRef = useRef<View>(null)
+const [open, setOpen] = useState(false)
+
+<Button ref={anchorRef} label="Options" onPress={() => setOpen(true)} />
+
+<Menu anchorEl={anchorRef} open={open} onClose={() => setOpen(false)}>
+  <Menu.Item label="Edit" onPress={() => {}} />
+  <Menu.Item label="Duplicate" onPress={() => {}} />
+  <Menu.Item label="Delete" onPress={() => {}} />
+</Menu>
+```
+
+## Examples
+
+### With leading and trailing slots
+
+Both `leading` and `trailing` accept any `ReactNode` and can be used independently or together.
+
+```tsx
+<Menu anchorEl={anchorRef} open={open} onClose={() => setOpen(false)}>
+  <Menu.Item
+    label="Cut"
+    leading={<Icon name="content-cut" size={16} />}
+    trailing={<Typography size="xs">⌘X</Typography>}
+    onPress={() => {}}
+  />
+  <Menu.Item
+    label="Copy"
+    leading={<Icon name="content-copy" size={16} />}
+    trailing={<Typography size="xs">⌘C</Typography>}
+    onPress={() => {}}
+  />
+</Menu>
+```
+
+### Disabled items
+
+A disabled item is visible and keeps the menu open when tapped.
+
+```tsx
+<Menu anchorEl={anchorRef} open={open} onClose={() => setOpen(false)}>
+  <Menu.Item label="Edit" onPress={() => {}} />
+  <Menu.Item label="Paste" disabled onPress={() => {}} />
+</Menu>
+```
+
+### Grouped sections
+
+Use `Menu.Section` to group related items under a label.
+
+```tsx
+<Menu anchorEl={anchorRef} open={open} onClose={() => setOpen(false)}>
+  <Menu.Section title="File">
+    <Menu.Item label="New" onPress={() => {}} />
+    <Menu.Item label="Open" onPress={() => {}} />
+  </Menu.Section>
+  <Menu.Section title="Edit">
+    <Menu.Item label="Cut" onPress={() => {}} />
+    <Menu.Item label="Paste" onPress={() => {}} />
+  </Menu.Section>
+</Menu>
+```
+
+### Divider
+
+Use `Menu.Divider` for a visual break without a section title.
+
+```tsx
+<Menu anchorEl={anchorRef} open={open} onClose={() => setOpen(false)}>
+  <Menu.Item label="Edit" onPress={() => {}} />
+  <Menu.Item label="Duplicate" onPress={() => {}} />
+  <Menu.Divider />
+  <Menu.Item label="Delete" onPress={() => {}} />
+</Menu>
+```
+
+### Keep menu open after selection
+
+By default the menu closes when an item is pressed. Set `closeMenuOnClick={false}` to keep it open.
+
+```tsx
+<Menu.Item
+  label="Toggle option"
+  closeMenuOnClick={false}
+  onPress={handleToggle}
+/>
+```
+
+## Props
+
+### Menu
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `anchorEl` | `MutableRefObject<View \| null>` | — | Ref to the element the menu is anchored to |
+| `open` | `boolean` | — | Whether the menu is visible |
+| `onClose` | `() => void` | — | Called when the menu should close |
+| `placement` | `Placement` | `"bottom"` | Preferred position relative to the anchor |
+
+Also accepts all React Native [`ViewProps`](https://reactnative.dev/docs/view#props).
+
+### Menu.Item
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | `string` | — | Text content of the item |
+| `onPress` | `() => void` | — | Called when the item is pressed |
+| `disabled` | `boolean` | `false` | Disables interaction without closing the menu |
+| `leading` | `ReactNode` | — | Optional leading slot for an icon or other content |
+| `trailing` | `ReactNode` | — | Optional trailing slot for an icon, shortcut, or badge |
+| `closeMenuOnClick` | `boolean` | `true` | Whether pressing this item dismisses the menu |
+
+### Menu.Section
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Label displayed above the group |
+| `children` | `ReactNode` | — | `Menu.Item` elements in this group |
+
+### Menu.Divider
+
+No props. Renders a full-width separator line.
+
+## Accessibility
+
+- `Menu.Item` uses `accessibilityRole="menuitem"` automatically.
+- Reports `disabled` state to assistive technology.
+- The trigger element is owned by the consumer — ensure it has an appropriate `accessibilityLabel` or visible label.
+
+## Related components
+
+- `Select` — dropdown selection built on Menu; use when the action is choosing a value for a field.
+- `Autocomplete` — filterable dropdown built on Menu; use when the list is long or searchable.

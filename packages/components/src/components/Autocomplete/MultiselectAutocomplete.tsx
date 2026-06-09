@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
+import { Icon } from "../Icon";
 import { IconButton } from "../Button/IconButton";
 import { Menu } from "../Menu";
 import { TextField, TextFieldProps } from "../TextField";
@@ -74,10 +75,10 @@ export const MultiselectAutocomplete = <T,>({
         return (
             <Menu.Item
                 key={stringifiedOption}
-                title={stringifiedOption}
+                label={stringifiedOption}
                 active={active}
                 closeMenuOnClick={false}
-                iconName={active ? "checkbox-marked" : "checkbox-blank-outline"}
+                leading={<Icon name={active ? "checkbox-marked" : "checkbox-blank-outline"} size={16} />}
                 onPress={() => {
                     setInputValue("");
                     if (active) {

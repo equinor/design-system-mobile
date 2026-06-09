@@ -1,103 +1,90 @@
 import React, { useContext } from "react";
-import { View } from "react-native";
+import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { Icon, IconName } from "../Icon";
-import { PressableHighlight } from "../PressableHighlight";
 import { Typography } from "../Typography";
 import { MenuContext } from "./Menu";
 
 export type MenuItemProps = {
-    /**
-     * The title of the menu item.
-     */
-    title: string;
-    /**
-     * A boolean value indicating whether or not the item should be selected as active.
-     * An active item has a different visual appearance than a non-active item.
-     */
-    active?: boolean;
-    /**
-     * A boolean value indicating whether or not the item should be disabled.
-     * A disabled item has a different visual appearance than a non-disabled item.
-     */
+    label: string;
     disabled?: boolean;
-    /**
-     * A callback method invoked when the item is pressed.
-     */
     onPress?: () => void;
-    /**
-     * A boolean value indicating whether or not the parent menu should be dismissed when a user presses this item.
-     */
     closeMenuOnClick?: boolean;
-    /**
-     * The name of the icon to show alongside the text of this item.
-     */
-    iconName?: IconName;
+    leading?: React.ReactNode;
+    trailing?: React.ReactNode;
 };
 
 export const MenuItem = ({
-    title,
-    active = false,
+    label,
     disabled = false,
     onPress = () => null,
     closeMenuOnClick = true,
-    iconName,
+    leading,
+    trailing,
 }: MenuItemProps) => {
     const menuContext = useContext(MenuContext);
-    const styles = useStyles(themeStyles, { active, disabled });
+    const styles = useStyles(themeStyles, { disabled });
 
     const onPressItem = () => {
-        if (closeMenuOnClick && !disabled) {
-            menuContext.close();
+        if (!disabled) {
+            if (closeMenuOnClick) menuContext.close();
+            onPress();
         }
-        onPress();
     };
 
     return (
-        <View style={styles.itemContainer}>
-            <PressableHighlight
-                style={styles.pressableContainer}
-                onPress={onPressItem}
-                disabled={disabled}
-            >
-                <View style={styles.contentContainer}>
-                    {iconName && (
-                        <Icon name={iconName} style={styles.textStyle} />
-                    )}
-                    <Typography style={styles.textStyle}>{title}</Typography>
-                </View>
-            </PressableHighlight>
-        </View>
+        <Pressable
+            onPress={onPressItem}
+            style={({ pressed }) => [
+                styles.container,
+                pressed && !disabled && styles.containerPressed,
+            ]}
+            accessibilityRole="menuitem"
+            accessibilityState={{ disabled }}
+        >
+            <View style={styles.contentRow}>
+                {leading != null && (
+                    <View style={styles.leading}>{leading}</View>
+                )}
+                <Typography style={styles.label} size="md">
+                    {label}
+                </Typography>
+                {trailing != null && (
+                    <View style={styles.trailing}>{trailing}</View>
+                )}
+            </View>
+        </Pressable>
     );
 };
 
 const themeStyles = EDSStyleSheet.create(
-    (theme, props: { active: boolean; disabled: boolean }) => {
-        const activeColor = props.active && theme.colors.text.menu.active;
-        const disabledColor = props.disabled && theme.colors.text.disabled;
-        return {
-            itemContainer: {
-                backgroundColor: props.active
-                    ? theme.colors.interactive.selectedHighlight
-                    : theme.colors.container.elevation.temporaryNav,
-            },
-            pressableContainer: {
-                paddingHorizontal: theme.spacing.menu.item.paddingHorizontal,
-                paddingVertical: theme.spacing.menu.item.paddingVertical,
-            },
-            textStyle: {
-                color:
-                    disabledColor ||
-                    activeColor ||
-                    theme.colors.text.menu.resting,
-            },
-            contentContainer: {
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                alignContent: "center",
-                gap: theme.spacing.menu.item.iconGap,
-            },
-        };
-    }
+    (token, props: { disabled: boolean }) => ({
+        container: {
+            backgroundColor: token.colors.bg.floating,
+            height: token.spacing.sizing.selectable.xl,
+            justifyContent: "center",
+            paddingHorizontal: token.spacing.spacing.inset.lg.horizontal,
+        },
+        containerPressed: {
+            backgroundColor: token.colors.bg.neutral.fillMuted.default,
+        },
+        contentRow: {
+            flexDirection: "row",
+            alignItems: "center",
+            gap: token.spacing.spacing.icon.md.gapHorizontal,
+        },
+        leading: {
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        label: {
+            flex: 1,
+            color: props.disabled
+                ? token.colors.text.disabled
+                : token.colors.text.neutral.strong,
+        },
+        trailing: {
+            marginLeft: "auto",
+        },
+    })
 );

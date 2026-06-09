@@ -119,12 +119,8 @@ export const Multiselect = <T,>({
                                     : String(item.value)
                             }
                             onPress={() => handleSelect(item.value)}
-                            title={item.title}
-                            iconName={
-                                selectedItems.includes(item.value)
-                                    ? "checkbox-marked"
-                                    : "checkbox-blank-outline"
-                            }
+                            label={item.title}
+                            leading={<Icon name={selectedItems.includes(item.value) ? "checkbox-marked" : "checkbox-blank-outline"} size={16} />}
                             active={selectedItems.includes(item.value)}
                             closeMenuOnClick={false}
                         />

@@ -3,36 +3,23 @@ import { flip, offset, shift, useFloating } from "@floating-ui/react-native";
 import React, { createContext } from "react";
 import { View, ViewProps } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
+import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { PopInContainer } from "../_internal/PopInContainer";
 import { RootModal } from "../_internal/RootModal";
-import { Paper } from "../Paper";
 
 export type MenuProps = {
-    /**
-     * A reference to the element that the menu should appear around.
-     */
     anchorEl: React.MutableRefObject<View | null>;
-    /**
-     * A boolean value indicating whether or not the menu should be open.
-     */
     open: boolean;
-    /**
-     * A callback method invoked when a user closes the menu.
-     */
     onClose: () => void;
-    /**
-     * The positioning of the menu around the anchor element.
-     */
     placement?: Placement;
 };
 
 export type MenuContextType = {
-    /**
-     * A callback method invokable from any part of the menu. Calling this should close the menu.
-     */
     close: () => void;
 };
+
+const MENU_MIN_WIDTH = 160;
 
 export const MenuContext = createContext<MenuContextType>({
     close: () => null,
@@ -46,38 +33,34 @@ export const Menu = ({
     children,
     ...rest
 }: React.PropsWithChildren<MenuProps & ViewProps>) => {
+    const token = useToken();
     const { refs, floatingStyles } = useFloating({
         sameScrollView: false,
         elements: {
             reference: anchorEl.current,
         },
-        middleware: [offset(8), flip(), shift({ padding: 8 })],
+        middleware: [
+            offset(token.spacing.spacing.vertical.sm),
+            flip(),
+            shift({ padding: token.spacing.spacing.vertical.sm }),
+        ],
         placement,
     });
 
     const styles = useStyles(themeStyles);
+
     return (
         open && (
             <RootModal onBackdropPress={onClose}>
                 <View ref={refs.setFloating} style={floatingStyles}>
                     <PopInContainer>
-                        <Paper
-                            style={styles.paperStyle}
-                            elevation="temporaryNav"
-                        >
-                            <View
-                                style={[styles.innerContainer, rest.style]}
-                                {...rest}
-                            >
-                                <MenuContext.Provider
-                                    value={{
-                                        close: onClose,
-                                    }}
-                                >
+                        <View style={styles.borderContainer}>
+                            <View style={[styles.clipContainer, rest.style]}>
+                                <MenuContext.Provider value={{ close: onClose }}>
                                     {children}
                                 </MenuContext.Provider>
                             </View>
-                        </Paper>
+                        </View>
                     </PopInContainer>
                 </View>
             </RootModal>
@@ -85,13 +68,17 @@ export const Menu = ({
     );
 };
 
-const themeStyles = EDSStyleSheet.create((theme) => ({
-    paperStyle: {
-        borderRadius: theme.geometry.border.elementBorderRadius,
-    },
-    innerContainer: {
+const themeStyles = EDSStyleSheet.create(token => ({
+    borderContainer: {
+        borderRadius: token.spacing.spacing.borderRadius.rounded,
+        borderWidth: token.spacing.sizing.stroke.thin,
+        borderColor: token.colors.border.neutral.subtle,
+        backgroundColor: token.colors.bg.floating,
         overflow: "hidden",
-        minHeight: theme.geometry.dimension.button.minHeight,
-        paddingVertical: theme.spacing.menu.paddingVertical,
+        minWidth: MENU_MIN_WIDTH,
+    },
+    clipContainer: {
+        borderRadius: token.spacing.spacing.borderRadius.rounded,
+        overflow: "hidden",
     },
 }));
