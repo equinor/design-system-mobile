@@ -54,12 +54,14 @@ export const Menu = ({
             <RootModal onBackdropPress={onClose}>
                 <View ref={refs.setFloating} style={floatingStyles}>
                     <PopInContainer>
-                        <View style={styles.borderContainer}>
-                            <View style={[styles.clipContainer, rest.style]}>
-                                <MenuContext.Provider value={{ close: onClose }}>
-                                    {children}
-                                </MenuContext.Provider>
-                            </View>
+                        <View
+                            {...rest}
+                            style={[styles.container, rest.style]}
+                            accessibilityRole="menu"
+                        >
+                            <MenuContext.Provider value={{ close: onClose }}>
+                                {children}
+                            </MenuContext.Provider>
                         </View>
                     </PopInContainer>
                 </View>
@@ -69,16 +71,12 @@ export const Menu = ({
 };
 
 const themeStyles = EDSStyleSheet.create(token => ({
-    borderContainer: {
+    container: {
         borderRadius: token.spacing.spacing.borderRadius.rounded,
         borderWidth: token.spacing.sizing.stroke.thin,
         borderColor: token.colors.border.neutral.subtle,
         backgroundColor: token.colors.bg.floating,
         overflow: "hidden",
         minWidth: MENU_MIN_WIDTH,
-    },
-    clipContainer: {
-        borderRadius: token.spacing.spacing.borderRadius.rounded,
-        overflow: "hidden",
     },
 }));
