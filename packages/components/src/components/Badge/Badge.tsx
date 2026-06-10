@@ -2,7 +2,6 @@ import React from "react";
 import { View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
-import { MasterToken } from "../../styling/tokens";
 import { Typography } from "../Typography";
 
 import {
@@ -18,32 +17,6 @@ type BadgeStyleProps = {
     variant: BadgeVariant;
 };
 
-const resolveBadgeColors = (
-    t: MasterToken["colors"],
-    tone: BadgeTone,
-    emphasis: BadgeEmphasis,
-    variant: BadgeVariant
-) => {
-    if (variant === "outlined") {
-        const borderColorMap: Record<BadgeEmphasis, string> = {
-            low: t.border[tone].subtle,
-            medium: t.border[tone].medium,
-        };
-        return {
-            backgroundColor: t.bg[tone].canvas,
-            borderColor: borderColorMap[emphasis],
-            textColor: t.text[tone].subtle,
-        };
-    }
-    return {
-        backgroundColor: emphasis === "medium"
-            ? t.bg[tone].fillMuted.default
-            : t.bg[tone].canvas,
-        borderColor: "transparent", // keeps solid and outlined badges the same total size
-        textColor: t.text[tone].subtle,
-    };
-};
-
 export const Badge = ({
     children,
     tone = "neutral",
@@ -55,7 +28,7 @@ export const Badge = ({
 
     return (
         <View style={styles.container} {...rest}>
-            <Typography size="md" weight="bolder" numberOfLines={1} style={styles.label}>
+            <Typography size="sm" weight="bolder" numberOfLines={1} style={styles.label}>
                 {children}
             </Typography>
         </View>
@@ -64,8 +37,19 @@ export const Badge = ({
 
 const badgeThemeStyles = EDSStyleSheet.create(
     (token, { tone, emphasis, variant }: BadgeStyleProps) => {
-        const { backgroundColor, borderColor, textColor } =
-            resolveBadgeColors(token.colors, tone, emphasis, variant);
+        const backgroundColor = variant === "outlined"
+            ? token.colors.bg[tone].canvas
+            : emphasis === "medium"
+                ? token.colors.bg[tone].fillMuted.default
+                : token.colors.bg[tone].canvas;
+
+        const borderColor = variant === "outlined"
+            ? emphasis === "low"
+                ? token.colors.border[tone].subtle
+                : token.colors.border[tone].medium
+            : "transparent"; // keeps solid and outlined badges the same total size
+
+        const textColor = token.colors.text[tone].subtle;
 
         return {
             container: {
