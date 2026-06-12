@@ -56,5 +56,13 @@
     "eslint-import-resolver-typescript": "^4.4.4",
     "typescript": "~5.9.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "install": {
+      "exclude": [
+        "react-native-reanimated",
+        "react-native-worklets"
+      ]
+    }
+  }
 }

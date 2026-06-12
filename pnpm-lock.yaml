@@ -10,10 +10,10 @@ importers:
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.39.0
-        version: 8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.8.3))(eslint@9.39.1)(typescript@5.8.3)
+        version: 8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
       '@typescript-eslint/parser':
         specifier: ^8.39.0
-        version: 8.47.0(eslint@9.39.1)(typescript@5.8.3)
+        version: 8.47.0(eslint@9.39.1)(typescript@5.9.3)
       eslint:
         specifier: ^9.25.0
         version: 9.39.1
@@ -25,13 +25,13 @@ importers:
         version: 14.0.0-alpha.32
       tsup:
         specifier: ^8.5.0
-        version: 8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.9.0)
+        version: 8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.9.0)
       turbo:
         specifier: ^2.9.15
         version: 2.9.15
       typescript:
-        specifier: ~5.8.3
-        version: 5.8.3
+        specifier: ~5.9.3
+        version: 5.9.3
 
   apps/storybook:
     dependencies:
@@ -181,8 +181,8 @@ importers:
         specifier: ^2.30.0
         version: 2.30.1(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
       react-native-reanimated:
-        specifier: ^4.2.1
-        version: 4.2.1(react-native-worklets@0.8.3(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
+        specifier: ^4.3.1
+        version: 4.3.1(react-native-worklets@0.8.3(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
       react-native-svg:
         specifier: ^15.15.3
         version: 15.15.3(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
@@ -195,22 +195,22 @@ importers:
         version: 19.2.17
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.39.0
-        version: 8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.8.3))(eslint@9.39.1)(typescript@5.8.3)
+        version: 8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
       '@typescript-eslint/parser':
         specifier: ^8.39.0
-        version: 8.47.0(eslint@9.39.1)(typescript@5.8.3)
+        version: 8.47.0(eslint@9.39.1)(typescript@5.9.3)
       eslint:
         specifier: ^9.25.0
         version: 9.39.1
       tsup:
         specifier: ^8.5.0
-        version: 8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.9.0)
+        version: 8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.9.0)
       typescript:
-        specifier: ~5.8.3
-        version: 5.8.3
+        specifier: ~5.9.3
+        version: 5.9.3
       typescript-eslint:
         specifier: ^8.39.0
-        version: 8.47.0(eslint@9.39.1)(typescript@5.8.3)
+        version: 8.47.0(eslint@9.39.1)(typescript@5.9.3)
 
   packages/eslint-config-eds-mobile:
     devDependencies:
@@ -4338,13 +4338,6 @@ packages:
     peerDependencies:
       react: '*'
       react-native: '*'
-
-  react-native-reanimated@4.2.1:
-    resolution: {integrity: sha512-/NcHnZMyOvsD/wYXug/YqSKw90P9edN0kEPL5lP4PFf1aQ4F1V7MKe/E0tvfkXKIajy3Qocp5EiEnlcrK/+BZg==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-      react-native-worklets: '>=0.7.0'
 
   react-native-reanimated@4.3.1:
     resolution: {integrity: sha512-KhGsS0YkCA+gusgyzlf9hnqzVPIR398KTpqXyqq/+yYJJPAvyEEPKcxlB0xtOOXSMrR2A9uRKVARVQhZwrOh+Q==}
@@ -10253,14 +10246,6 @@ snapshots:
       react: 19.2.0
       react-native: 0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0)
 
-  react-native-reanimated@4.2.1(react-native-worklets@0.8.3(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0):
-    dependencies:
-      react: 19.2.0
-      react-native: 0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0)
-      react-native-is-edge-to-edge: 1.2.1(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
-      react-native-worklets: 0.8.3(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0)
-      semver: 7.7.3
-
   react-native-reanimated@4.3.1(react-native-worklets@0.8.3(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0))(react-native@0.83.6(@babel/core@7.28.5)(@react-native/metro-config@0.86.0(@babel/core@7.28.5))(@types/react@19.2.17)(react@19.2.0))(react@19.2.0):
     dependencies:
       react: 19.2.0
@@ -10947,7 +10932,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.8.3)(yaml@2.9.0):
+  tsup@8.5.1(postcss@8.5.14)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.9.0):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.0)
       cac: 6.7.14
@@ -10968,7 +10953,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.14
-      typescript: 5.8.3
+      typescript: 5.9.3
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -11042,6 +11027,17 @@ snapshots:
       '@typescript-eslint/utils': 8.47.0(eslint@9.39.1)(typescript@5.8.3)
       eslint: 9.39.1
       typescript: 5.8.3
+    transitivePeerDependencies:
+      - supports-color
+
+  typescript-eslint@8.47.0(eslint@9.39.1)(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.47.0(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.47.0(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.47.0(eslint@9.39.1)(typescript@5.9.3)
+      eslint: 9.39.1
+      typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
 

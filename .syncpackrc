@@ -1,0 +1,11 @@
+{
+  "semverGroups": [],
+  "versionGroups": [
+    {
+      "label": "TypeScript must be the same version across all packages",
+      "packages": ["**"],
+      "dependencies": ["typescript"],
+      "policy": "sameRange"
+    }
+  ]
+}
