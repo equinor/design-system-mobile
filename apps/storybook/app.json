@@ -7,7 +7,7 @@
         "icon": "./assets/images/eDS_Logo_Light.png",
         "scheme": "mobile-storybook",
         "userInterfaceStyle": "automatic",
-        "newArchEnabled": false,
+        "newArchEnabled": true,
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.equinor.eds.mobile",
@@ -38,7 +38,10 @@
                     "resizeMode": "contain",
                     "backgroundColor": "#ffffff"
                 }
-            ]
+            ],
+            "expo-font",
+            "expo-image",
+            "expo-web-browser"
         ],
         "experiments": {
             "typedRoutes": true

@@ -59,6 +59,8 @@ export default function RootLayout() {
     const systemScheme = useColorScheme();
     const userScheme = useAppStore((state) => state.scheme);
     const density = useAppStore((state) => state.density);
+    const resolvedScheme: "light" | "dark" =
+        userScheme ?? (systemScheme === "dark" ? "dark" : "light");
 
     useEffect(() => {
         if (!loaded) return;
@@ -71,7 +73,7 @@ export default function RootLayout() {
     return (
         <EDSProvider
             density={density}
-            colorScheme={userScheme ?? systemScheme ?? "light"}
+            colorScheme={resolvedScheme}
         >
             <AppContent />
         </EDSProvider>

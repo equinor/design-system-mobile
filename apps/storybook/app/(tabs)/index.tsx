@@ -1,10 +1,10 @@
 import { Typography, useToken } from "@equinor/eds-mobile-components";
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { Image, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
     const { colors, spacing } = useToken();
-    const tabBarHeight = useBottomTabBarHeight();
+    const { bottom: tabBarHeight } = useSafeAreaInsets();
 
     const styles = StyleSheet.create({
         container: {

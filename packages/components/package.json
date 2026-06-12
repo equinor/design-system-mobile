@@ -13,7 +13,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.32.0",
-        "@types/react": "~19.0.10",
+        "@types/react": "~19.2.10",
         "@typescript-eslint/eslint-plugin": "^8.39.0",
         "@typescript-eslint/parser": "^8.39.0",
         "eslint": "^9.25.0",
@@ -36,13 +36,13 @@
     "license": "MIT",
     "main": "./dist/index.js",
     "peerDependencies": {
-        "expo-font": "^13.3.2",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
-        "react-native": "^0.79.6",
-        "react-native-gesture-handler": "^2.24.0",
-        "react-native-reanimated": "^3.17.5",
-        "react-native-svg": "^15.11.2"
+        "expo-font": "^55.0.8",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "react-native": "^0.83.6",
+        "react-native-gesture-handler": "^2.30.0",
+        "react-native-reanimated": "^4.2.1",
+        "react-native-svg": "^15.15.3"
     },
     "scripts": {
         "build": "tsup-node && echo '\n ⚙️ Generating typescript declarations..' && tsc --project tsconfig.json --emitDeclarationOnly --declaration",
