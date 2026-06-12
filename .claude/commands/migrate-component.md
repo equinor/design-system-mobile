@@ -95,10 +95,13 @@ pnpm build:components                        # Build
 
 ## Step 9: User Testing
 
-Ask the user to:
-- Test in storybook on device (iOS/Android)
-- Verify all states: default, pressed, disabled
-- Verify dark mode
+Ask the user to test in storybook on iOS before sending for review.
+
+**Light and dark mode — test both before anything else.** Token values often produce different results in dark mode that weren't visible in Figma. Catching these early means design feedback can be gathered before review, not after.
+
+- Verify all states in light mode: default, pressed, disabled
+- Switch to dark mode and check every variant — look for anything that loses contrast, disappears into the background, or looks unintentionally different from light mode
+- If something looks off in dark mode, confirm the token mapping is correct first, then flag to design with a screenshot rather than guessing at a fix
 - Verify any wrapper components (e.g. Cell variants)
 - Confirm the scale factor feels right on device
 - Code review the changes
