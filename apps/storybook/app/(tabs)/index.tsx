@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
     const { colors, spacing } = useToken();
-    const { bottom: tabBarHeight } = useSafeAreaInsets();
+    const { bottom: bottomInset } = useSafeAreaInsets();
 
     const styles = StyleSheet.create({
         container: {
@@ -13,7 +13,7 @@ export default function HomeScreen() {
             alignItems: "center",
             paddingHorizontal: spacing.spacing.horizontal.threeXl,
             paddingTop: spacing.spacing.vertical.threeXl,
-            paddingBottom: tabBarHeight,
+            paddingBottom: bottomInset,
             gap: spacing.spacing.vertical.lg,
         },
         logo: {
