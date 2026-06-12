@@ -11,7 +11,6 @@ import {
 } from "@equinor/eds-mobile-components";
 import React, { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
-
 export default function MenuScreen() {
     const styles = useStyles(themeStyles);
     const token = useToken();
@@ -30,6 +29,17 @@ export default function MenuScreen() {
 
     const dividerAnchorRef = useRef<View>(null);
     const [dividerOpen, setDividerOpen] = useState(false);
+
+    const checkboxAnchorRef = useRef<View>(null);
+    const [checkboxOpen, setCheckboxOpen] = useState(false);
+    const [checkedItems, setCheckedItems] = useState({
+        grid: true,
+        rulers: false,
+        guides: true,
+    });
+
+    const subMenuAnchorRef = useRef<View>(null);
+    const [subMenuOpen, setSubMenuOpen] = useState(false);
 
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -178,6 +188,86 @@ export default function MenuScreen() {
                     <Menu.Item label="Duplicate" onPress={() => {}} />
                     <Menu.Divider />
                     <Menu.Item label="Delete" onPress={() => {}} />
+                </Menu>
+            </Surface>
+
+            <Section title="Checkbox items">
+                <Typography>
+                    Checkbox items let users toggle options on or off within the
+                    menu. The menu stays open so multiple options can be changed
+                    in one interaction.
+                </Typography>
+            </Section>
+            <Surface>
+                <View style={styles.row}>
+                    <Button
+                        ref={checkboxAnchorRef}
+                        label="View options"
+                        onPress={() => setCheckboxOpen(true)}
+                    />
+                </View>
+                <Menu
+                    anchorEl={checkboxAnchorRef}
+                    open={checkboxOpen}
+                    onClose={() => setCheckboxOpen(false)}
+                >
+                    <Menu.CheckboxItem
+                        label="Grid"
+                        checked={checkedItems.grid}
+                        onPress={() =>
+                            setCheckedItems(s => ({ ...s, grid: !s.grid }))
+                        }
+                    />
+                    <Menu.CheckboxItem
+                        label="Rulers"
+                        checked={checkedItems.rulers}
+                        onPress={() =>
+                            setCheckedItems(s => ({ ...s, rulers: !s.rulers }))
+                        }
+                    />
+                    <Menu.CheckboxItem
+                        label="Guides"
+                        checked={checkedItems.guides}
+                        onPress={() =>
+                            setCheckedItems(s => ({ ...s, guides: !s.guides }))
+                        }
+                    />
+                </Menu>
+            </Surface>
+
+            <Section title="Sub-menu">
+                <Typography>
+                    A sub-menu item expands inline below the trigger to reveal
+                    a nested list of options. Selecting any item closes the
+                    whole menu.
+                </Typography>
+                <Typography>
+                    Keep sub-menu labels short. Because the expanded items
+                    increase the menu height, long labels or many nested options
+                    can produce a lengthy, hard-to-scan menu.
+                </Typography>
+            </Section>
+            <Surface>
+                <View style={styles.row}>
+                    <Button
+                        ref={subMenuAnchorRef}
+                        label="Open menu"
+                        onPress={() => setSubMenuOpen(true)}
+                    />
+                </View>
+                <Menu
+                    anchorEl={subMenuAnchorRef}
+                    open={subMenuOpen}
+                    onClose={() => setSubMenuOpen(false)}
+                >
+                    <Menu.Item label="New file" onPress={() => {}} />
+                    <Menu.SubItem label="Open recent">
+                        <Menu.Item label="project-alpha.eds" onPress={() => {}} />
+                        <Menu.Item label="report-q2.eds" onPress={() => {}} />
+                        <Menu.Item label="mockup-v3.eds" onPress={() => {}} />
+                    </Menu.SubItem>
+                    <Menu.Divider />
+                    <Menu.Item label="Save" onPress={() => {}} />
                 </Menu>
             </Surface>
         </ScrollView>
