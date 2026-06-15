@@ -1,5 +1,5 @@
-import React, { forwardRef, useEffect, useState } from "react";
-import { TextInput, TextInputProps, View } from "react-native";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { AccessibilityInfo, TextInput, TextInputProps, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon";
@@ -59,6 +59,26 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(
             }
         }, [value]);
 
+        const announcedThresholdRef = useRef<number | null>(null);
+
+        useEffect(() => {
+            if (!showCharacterCount || maxLength === undefined) return;
+
+            const threshold =
+                charCount >= maxLength
+                    ? maxLength
+                    : charCount >= maxLength * 0.8
+                    ? maxLength * 0.8
+                    : null;
+
+            if (threshold !== null && threshold !== announcedThresholdRef.current) {
+                announcedThresholdRef.current = threshold;
+                AccessibilityInfo.announceForAccessibility(
+                    `${charCount} of ${maxLength} characters`
+                );
+            }
+        }, [charCount, maxLength, showCharacterCount]);
+
         const styles = useStyles(themeStyles, {
             isFocused,
             invalid,
@@ -100,7 +120,11 @@ export const TextArea = forwardRef<TextInput, TextAreaProps>(
                     </View>
                 )}
                 <View style={styles.inputContainer}>
-                    <View style={styles.resizeHandle}>
+                    <View
+                        style={styles.resizeHandle}
+                        accessible={false}
+                        importantForAccessibility="no-hide-descendants"
+                    >
                         <Icon name="resize-bottom-right" size={14} color={styles.resizeHandle.color} />
                     </View>
                     <View style={styles.inputWrapper}>
