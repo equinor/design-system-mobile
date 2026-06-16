@@ -81,6 +81,10 @@ export const inputTokenStyles = EDSStyleSheet.create(
             errorIcon: {
                 color: token.colors.text.danger.subtle,
             },
+            textInputWrapper: {
+                flex: 1,
+                pointerEvents: disabled ? "none" : "auto",
+            },
         };
     }
 );

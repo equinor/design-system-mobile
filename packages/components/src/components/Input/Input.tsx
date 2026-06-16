@@ -111,7 +111,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                     <Text style={styles.adornmentText}>{startText}</Text>
                 )}
                 {startAdornment}
-                <View style={{ pointerEvents: disabled ? "none" : "auto", flex: 1 }}>
+                <View style={styles.textInputWrapper}>
                     <TextInput
                         {...rest}
                         ref={ref}
