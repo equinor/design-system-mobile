@@ -1,10 +1,9 @@
-import React, { FocusEvent, useEffect, useRef, useState } from "react";
+import React, { Ref, useEffect, useState } from "react";
 import {
+    Keyboard,
     LayoutChangeEvent,
-    NativeSyntheticEvent,
-    Platform,
+    Pressable,
     TextInput,
-    TextInputFocusEventData,
     View,
 } from "react-native";
 import Animated, {
@@ -14,185 +13,174 @@ import Animated, {
     withTiming,
 } from "react-native-reanimated";
 
-import { Button } from "../../components/Button";
+import { Button } from "../Button";
 import { useStyles } from "../../hooks/useStyles";
 import { useToken } from "../../hooks/useToken";
-import { EDSStyleSheet } from "../../styling/EDSStyleSheet";
+import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon";
 import { Input, InputProps } from "../Input";
 
-export type SearchProps = Omit<InputProps, "multiline"> & {
+export type SearchProps = Omit<
+    InputProps,
+    "multiline" | "startAdornment" | "endAdornment" | "hideErrorIcon"
+> & {
+    /**
+     * When true, a Cancel button slides in from the right when the input is focused.
+     */
     cancellable?: boolean;
-    disabled?: boolean;
+    /**
+     * Called when the Cancel button is pressed.
+     */
     onCancelPress?: () => void;
+    ref?: Ref<TextInput>;
 };
 
 export const Search = ({
     cancellable,
     value,
-    disabled,
+    defaultValue,
+    disabled = false,
+    readOnly = false,
+    invalid = false,
     onCancelPress,
     onChange,
-    ...restProps
+    onFocus,
+    onBlur,
+    ref,
+    ...rest
 }: SearchProps) => {
-    const [text, setText] = useState(value ?? "");
+    const [text, setText] = useState(String(value ?? defaultValue ?? ""));
     const [isInputFocused, setIsInputFocused] = useState(false);
 
-    const styles = useStyles(themedStyles, { isInputFocused });
     const token = useToken();
+    const styles = useStyles(themeStyles, { disabled, isInputFocused });
 
-    const inputRef = useRef<TextInput>(null);
     const animationValue = useSharedValue(0);
     const cancelButtonWidth = useSharedValue(0);
 
-    // Extract token value before using in worklet
-    const paddingHorizontal = token.spacing.element.paddingHorizontal;
+    const paddingHorizontal = token.spacing.spacing.inset.sm.horizontal;
+    const iconGap = token.spacing.spacing.icon.sm.gapHorizontal;
+    const iconSize = token.spacing.sizing.icon.sm;
 
-    const cancelButtonStyle = useAnimatedStyle(() => {
-        const opacity = interpolate(animationValue.value, [0, 1], [0, 1]);
-        const translateX = interpolate(
-            animationValue.value,
-            [0, 1],
-            [cancelButtonWidth.value, 0]
-        );
+    // Subtract paddingHorizontal: Input's contentContainer already provides that gap on the right.
+    const clearButtonPaddingRight = iconGap + iconSize - paddingHorizontal;
 
-        return {
-            opacity: opacity,
-            transform: [{ translateX: translateX }],
-        };
-    });
+    const showClearButton = !!text && !disabled && !readOnly;
 
-    const inputStyle = useAnimatedStyle(() => {
-        return {
-            marginRight: interpolate(
-                animationValue.value,
-                [0, 1],
-                [0, cancelButtonWidth.value + paddingHorizontal]
-            ),
-        };
-    });
+    useEffect(() => {
+        if (value !== undefined) setText(String(value));
+    }, [value]);
 
     useEffect(() => {
         if (!cancellable) return;
         animationValue.value = withTiming(isInputFocused ? 1 : 0, {
             duration: token.timing.animation.slow,
         });
-    }, [
-        isInputFocused,
-        text,
-        cancellable,
-        animationValue,
-        token.timing.animation.slow,
-    ]);
+    }, [isInputFocused, cancellable, animationValue, token.timing.animation.slow]);
 
-    useEffect(() => {
-        if (value) {
-            setText(value);
-        }
-    }, [value]);
+    const cancelButtonStyle = useAnimatedStyle(() => ({
+        opacity: animationValue.value,
+        transform: [
+            {
+                translateX: interpolate(
+                    animationValue.value,
+                    [0, 1],
+                    [cancelButtonWidth.value, 0]
+                ),
+            },
+        ],
+    }));
+
+    const inputStyle = useAnimatedStyle(() => ({
+        marginRight: interpolate(
+            animationValue.value,
+            [0, 1],
+            [0, cancelButtonWidth.value + paddingHorizontal]
+        ),
+    }));
 
     const handleCancel = () => {
         setText("");
         onCancelPress?.();
-        inputRef.current?.blur();
+        Keyboard.dismiss();
     };
 
     const handleClearText = () => {
         setText("");
         onChange?.("");
-        inputRef.current?.focus();
     };
 
-    const onChangeText = (text: string) => {
-        setText(text);
-        onChange?.(text);
-    };
-
-    const handleOnBlurWeb = (e: FocusEvent<HTMLInputElement>) => {
-        if (
-            e.relatedTarget &&
-            e.relatedTarget.id === "search-clear-text-button"
-        ) {
-            e.target.focus();
-            setIsInputFocused(true);
-        } else {
-            setIsInputFocused(false);
-        }
-    };
-
-    const handleOnBlurNative = (
-        e: NativeSyntheticEvent<TextInputFocusEventData>
-    ) => {
-        setIsInputFocused(false);
-        restProps.onBlur?.(e);
+    const handleChangeText = (newText: string) => {
+        setText(newText);
+        onChange?.(newText);
     };
 
     return (
-        <View style={styles.container}>
-            <Animated.View style={inputStyle}>
+        <View style={styles.container} pointerEvents="box-none">
+            <Animated.View style={inputStyle} pointerEvents="box-none">
                 <Input
-                    {...restProps}
-                    readOnly={disabled}
-                    ref={inputRef}
+                    {...rest}
+                    ref={ref}
                     value={text}
-                    style={[
-                        restProps.style,
-                        disabled && { pointerEvents: "none" },
-                    ]}
-                    onChange={onChangeText}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    invalid={invalid}
+                    hideErrorIcon
+                    multiline={readOnly}
+                    scrollEnabled={readOnly ? false : undefined}
+                    onChange={handleChangeText}
                     onFocus={(e) => {
-                        if (!disabled) {
-                            setIsInputFocused(true);
-                            restProps.onFocus?.(e);
-                        }
+                        setIsInputFocused(true);
+                        onFocus?.(e);
                     }}
                     onBlur={(e) => {
-                        if (Platform.OS === "web") {
-                            handleOnBlurWeb(
-                                e as unknown as FocusEvent<HTMLInputElement>
-                            );
-                        } else {
-                            handleOnBlurNative(e);
-                        }
+                        setIsInputFocused(false);
+                        onBlur?.(e);
                     }}
                     startAdornment={
-                        <View style={styles.magnifyIconContainer}>
+                        <>
+                            {invalid && !disabled && (
+                                <Icon
+                                    name="alert-circle"
+                                    size={iconSize}
+                                    color={styles.errorIcon.color}
+                                />
+                            )}
                             <Icon
                                 name="magnify"
-                                color={
-                                    isInputFocused
-                                        ? "textPrimary"
-                                        : "textTertiary"
-                                }
+                                size={iconSize}
+                                color={styles.searchIcon.color}
                             />
-                        </View>
+                        </>
                     }
-                    endAdornment={
-                        text && !disabled ? (
-                            <View style={styles.adornmentIconContainer}>
-                                <Button.Icon
-                                    id="search-clear-text-button"
-                                    name="close"
-                                    variant="ghost"
-                                    onPress={handleClearText}
-                                />
-                            </View>
-                        ) : null
-                    }
+                    style={showClearButton ? { paddingRight: clearButtonPaddingRight } : undefined}
                 />
+                {showClearButton && (
+                    <Pressable
+                        style={styles.clearButton}
+                        onPress={handleClearText}
+                        accessibilityRole="button"
+                        accessibilityLabel="Clear search"
+                    >
+                        <Icon
+                            name="close"
+                            size={iconSize}
+                            color={styles.clearIcon.color}
+                        />
+                    </Pressable>
+                )}
             </Animated.View>
             {cancellable && (
                 <Animated.View
                     style={[cancelButtonStyle, styles.buttonWrapper]}
-                    onLayout={(event: LayoutChangeEvent) => {
-                        cancelButtonWidth.value =
-                            event.nativeEvent.layout.width;
+                    onLayout={({ nativeEvent }: LayoutChangeEvent) => {
+                        cancelButtonWidth.value = nativeEvent.layout.width;
                     }}
                 >
                     <Button
                         variant="ghost"
+                        size="small"
                         label="Cancel"
-                        size="default"
                         onPress={handleCancel}
                     />
                 </Animated.View>
@@ -201,30 +189,41 @@ export const Search = ({
     );
 };
 
-const themedStyles = EDSStyleSheet.create(
-    (theme, props: { isInputFocused: boolean }) => {
-        return {
-            container: {
-                flexGrow: 1,
-            },
-            adornmentIconContainer: {
-                position: "absolute",
-                top: 0,
-                right: 0,
-                paddingHorizontal: 4,
-            },
-            magnifyIconContainer: {
-                justifyContent: "center",
-                alignItems: "center",
-                paddingLeft: 16,
-                paddingRight: 4,
-                paddingVertical: theme.spacing.element.paddingVertical,
-            },
-            buttonWrapper: {
-                right: 0,
-                position: "absolute",
-                pointerEvents: props.isInputFocused ? "auto" : "none",
-            },
-        };
-    }
+type SearchStyleProps = Pick<SearchProps, "disabled"> & {
+    isInputFocused: boolean;
+};
+
+const themeStyles = EDSStyleSheet.create(
+    (token, { disabled, isInputFocused }: SearchStyleProps) => ({
+        container: {
+            flex: 1,
+        },
+        searchIcon: {
+            color: disabled
+                ? token.colors.text.disabled
+                : token.colors.text.neutral.subtle,
+        },
+        errorIcon: {
+            color: token.colors.text.danger.subtle,
+        },
+        clearButton: {
+            position: "absolute",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            justifyContent: "center",
+            paddingHorizontal: token.spacing.spacing.icon.sm.gapHorizontal,
+        },
+        clearIcon: {
+            color: token.colors.text.accent.subtle,
+        },
+        buttonWrapper: {
+            position: "absolute",
+            right: 0,
+            top: 0,
+            bottom: 0,
+            justifyContent: "center",
+            pointerEvents: isInputFocused ? "auto" : "none",
+        },
+    })
 );

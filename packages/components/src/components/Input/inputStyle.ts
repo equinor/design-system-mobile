@@ -32,6 +32,8 @@ export const inputTokenStyles = EDSStyleSheet.create(
         // Text colors
         const textColor = disabled
             ? token.colors.text.disabled
+            : readOnly
+            ? token.colors.border.neutral.strong
             : token.colors.text.neutral.strong;
 
         const placeholderColor = disabled

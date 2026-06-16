@@ -27,7 +27,8 @@ If the user asks for design content, redirect them to Docusaurus.
 - Core behavior (e.g. "Controlled on/off toggle with animated thumb.")
 - Notable variants (e.g. "Optional label; labelless variant renders as a circular touch target.")
 - Important states (disabled, error, loading — whichever apply)
-- Theming behavior (keep this line simple — e.g. "Adapts to light/dark themes and comfortable/spacious density via the EDS token system.")
+
+**Do NOT include** a bullet about light/dark theming or density mode support. These are universal across every component in the library — mentioning them here implies they are special to this component, which they are not.
 - Accessibility capability (e.g. "Reports `switch` role and checked/disabled state to assistive tech.")
 
 Avoid marketing fluff. Avoid copying wording from other libraries verbatim.
