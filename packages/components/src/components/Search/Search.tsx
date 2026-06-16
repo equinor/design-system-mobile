@@ -101,6 +101,7 @@ export const Search = ({
 
     const handleCancel = () => {
         setText("");
+        onChange?.("");
         onCancelPress?.();
         Keyboard.dismiss();
     };
@@ -144,12 +145,16 @@ export const Search = ({
                                     name="alert-circle"
                                     size={iconSize}
                                     color={styles.errorIcon.color}
+                                    accessible={false}
+                                    importantForAccessibility="no"
                                 />
                             )}
                             <Icon
                                 name="magnify"
                                 size={iconSize}
                                 color={styles.searchIcon.color}
+                                accessible={false}
+                                importantForAccessibility="no"
                             />
                         </>
                     }
@@ -166,6 +171,8 @@ export const Search = ({
                             name="close"
                             size={iconSize}
                             color={styles.clearIcon.color}
+                            accessible={false}
+                            importantForAccessibility="no"
                         />
                     </Pressable>
                 )}
