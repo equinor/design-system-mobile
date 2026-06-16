@@ -36,6 +36,7 @@ export default function ComponentsLayout() {
                 name="textfield"
                 options={{ title: "TextField" }}
             />
+            <Stack.Screen name="search" options={{ title: "Search" }} />
         </Stack>
     );
 }
