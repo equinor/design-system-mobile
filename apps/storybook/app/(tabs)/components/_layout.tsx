@@ -23,6 +23,7 @@ export default function ComponentsLayout() {
                 }}
             />
             <Stack.Screen name="button" options={{ title: "Button" }} />
+            <Stack.Screen name="divider" options={{ title: "Divider" }} />
             <Stack.Screen name="input" options={{ title: "Input" }} />
             <Stack.Screen
                 name="selectioncontrols"
