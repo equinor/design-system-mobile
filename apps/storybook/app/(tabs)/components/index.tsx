@@ -32,7 +32,10 @@ const sections = [
     },
     {
         title: "Navigation",
-        data: [{ name: "Link", route: "link" }],
+        data: [
+            { name: "Link", route: "link" },
+            { name: "Menu", route: "menu" },
+        ],
     },
 ];
 

@@ -2,28 +2,27 @@ import React, { useContext } from "react";
 import { Pressable, View } from "react-native";
 import { useStyles } from "../../hooks/useStyles";
 import { EDSStyleSheet } from "../../styling";
+import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { MenuContext } from "./Menu";
 
-export type MenuItemProps = {
+export type MenuCheckboxItemProps = {
     label: string;
+    checked: boolean;
     disabled?: boolean;
     onPress?: () => void;
     closeMenuOnClick?: boolean;
-    leading?: React.ReactNode;
-    trailing?: React.ReactNode;
 };
 
-export const MenuItem = ({
+export const MenuCheckboxItem = ({
     label,
+    checked,
     disabled = false,
     onPress = () => null,
-    closeMenuOnClick = true,
-    leading,
-    trailing,
-}: MenuItemProps) => {
+    closeMenuOnClick = false,
+}: MenuCheckboxItemProps) => {
     const menuContext = useContext(MenuContext);
-    const styles = useStyles(themeStyles, { disabled });
+    const styles = useStyles(themeStyles, { disabled, checked });
 
     const onPressItem = () => {
         if (!disabled) {
@@ -40,25 +39,27 @@ export const MenuItem = ({
                 pressed && !disabled && styles.containerPressed,
             ]}
             accessibilityRole="menuitem"
-            accessibilityState={{ disabled }}
+            accessibilityState={{ disabled, checked }}
         >
             <View style={styles.contentRow}>
-                {leading != null && (
-                    <View style={styles.leading}>{leading}</View>
-                )}
+                <View style={styles.leading}>
+                    <Icon
+                        name={
+                            checked ? "checkbox-marked" : "checkbox-blank-outline"
+                        }
+                        style={styles.checkboxIcon}
+                    />
+                </View>
                 <Typography style={styles.label} size="md">
                     {label}
                 </Typography>
-                {trailing != null && (
-                    <View style={styles.trailing}>{trailing}</View>
-                )}
             </View>
         </Pressable>
     );
 };
 
 const themeStyles = EDSStyleSheet.create(
-    (token, props: { disabled: boolean }) => ({
+    (token, props: { disabled: boolean; checked: boolean }) => ({
         container: {
             backgroundColor: token.colors.bg.floating,
             height: token.spacing.sizing.selectable.xl,
@@ -77,14 +78,17 @@ const themeStyles = EDSStyleSheet.create(
             alignItems: "center",
             justifyContent: "center",
         },
+        checkboxIcon: {
+            fontSize: token.spacing.sizing.icon.lg,
+            color: props.disabled
+                ? token.colors.text.disabled
+                : token.colors.text.neutral.strong,
+        },
         label: {
             flex: 1,
             color: props.disabled
                 ? token.colors.text.disabled
                 : token.colors.text.neutral.strong,
-        },
-        trailing: {
-            marginLeft: "auto",
         },
     })
 );

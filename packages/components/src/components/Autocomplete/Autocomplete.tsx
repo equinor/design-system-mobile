@@ -81,7 +81,7 @@ export const Autocomplete = <T,>({
         return (
             <Menu.Item
                 key={stringifiedOption}
-                title={stringifiedOption}
+                label={stringifiedOption}
                 onPress={() => {
                     setInputValue(stringifiedOption);
                     onSelect(option);

@@ -116,8 +116,8 @@ export const Select = <T,>({
                                         : String(item.value)
                                 }
                                 onPress={() => handleSelect(item.value)}
-                                title={item.title}
-                                iconName={item.icon}
+                                label={item.title}
+                                leading={item.icon ? <Icon name={item.icon} size={16} /> : undefined}
                                 active={selectedItem === item.value}
                             />
                         );

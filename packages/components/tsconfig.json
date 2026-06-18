@@ -10,7 +10,6 @@
         "src/components/Cell",
         "src/components/Chip",
         "src/components/Environment",
-        "src/components/Menu",
         "src/components/OfflineBanner",
         "src/components/Popover",
         "src/components/Progress",
