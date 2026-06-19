@@ -19,11 +19,28 @@ import { useToken } from "../../hooks/useToken";
 import { EDSStyleSheet } from "../../styling";
 import { Icon } from "../Icon";
 import { Input, InputProps } from "../Input";
+import { Typography } from "../Typography";
 
 export type SearchProps = Omit<
     InputProps,
     "multiline" | "startAdornment" | "endAdornment" | "hideErrorIcon"
 > & {
+    /**
+     * The label displayed above the search input.
+     */
+    label?: string;
+    /**
+     * Indicator text shown inline after the label, e.g. "(Required)" or "(Optional)".
+     */
+    indicator?: string;
+    /**
+     * A description shown below the label, above the search input.
+     */
+    description?: string;
+    /**
+     * A message shown below the search input.
+     */
+    helperMessage?: string;
     /**
      * When true, a Cancel button slides in from the right when the input is focused.
      */
@@ -36,6 +53,10 @@ export type SearchProps = Omit<
 };
 
 export const Search = ({
+    label,
+    indicator,
+    description,
+    helperMessage,
     cancellable,
     value,
     defaultValue,
@@ -46,6 +67,8 @@ export const Search = ({
     onChange,
     onFocus,
     onBlur,
+    accessibilityLabel,
+    accessibilityHint,
     ref,
     ...rest
 }: SearchProps) => {
@@ -53,7 +76,7 @@ export const Search = ({
     const [isInputFocused, setIsInputFocused] = useState(false);
 
     const token = useToken();
-    const styles = useStyles(themeStyles, { disabled, isInputFocused });
+    const styles = useStyles(themeStyles, { disabled, invalid, isInputFocused });
 
     const animationValue = useSharedValue(0);
     const cancelButtonWidth = useSharedValue(0);
@@ -117,93 +140,150 @@ export const Search = ({
     };
 
     return (
-        <View style={styles.container} pointerEvents="box-none">
-            <Animated.View style={inputStyle} pointerEvents="box-none">
-                <Input
-                    {...rest}
-                    ref={ref}
-                    value={text}
-                    disabled={disabled}
-                    readOnly={readOnly}
-                    invalid={invalid}
-                    hideErrorIcon
-                    multiline={readOnly}
-                    scrollEnabled={readOnly ? false : undefined}
-                    onChange={handleChangeText}
-                    onFocus={(e) => {
-                        setIsInputFocused(true);
-                        onFocus?.(e);
-                    }}
-                    onBlur={(e) => {
-                        setIsInputFocused(false);
-                        onBlur?.(e);
-                    }}
-                    startAdornment={
-                        <>
-                            {invalid && !disabled && (
+        <View style={styles.outerContainer}>
+            {label && (
+                <View style={styles.labelSection}>
+                    <View style={styles.labelRow}>
+                        <Typography size="md" style={styles.label}>
+                            {label}
+                        </Typography>
+                        {indicator && (
+                            <Typography size="md" style={styles.indicator}>
+                                {indicator}
+                            </Typography>
+                        )}
+                    </View>
+                    {description && (
+                        <Typography size="sm" style={styles.description}>
+                            {description}
+                        </Typography>
+                    )}
+                </View>
+            )}
+            <View style={styles.container} pointerEvents="box-none">
+                <Animated.View style={inputStyle} pointerEvents="box-none">
+                    <Input
+                        {...rest}
+                        ref={ref}
+                        value={text}
+                        disabled={disabled}
+                        readOnly={readOnly}
+                        invalid={invalid}
+                        hideErrorIcon
+                        multiline={readOnly}
+                        scrollEnabled={readOnly ? false : undefined}
+                        onChange={handleChangeText}
+                        accessibilityLabel={accessibilityLabel ?? label}
+                        accessibilityHint={
+                            accessibilityHint ??
+                            ([description, helperMessage]
+                                .filter(Boolean)
+                                .join(". ") || undefined)
+                        }
+                        onFocus={(e) => {
+                            setIsInputFocused(true);
+                            onFocus?.(e);
+                        }}
+                        onBlur={(e) => {
+                            setIsInputFocused(false);
+                            onBlur?.(e);
+                        }}
+                        startAdornment={
+                            <View style={styles.iconGroup}>
+                                {invalid && !disabled && (
+                                    <Icon
+                                        name="alert-circle"
+                                        size={iconSize}
+                                        color={styles.errorIcon.color}
+                                        accessible={false}
+                                        importantForAccessibility="no"
+                                    />
+                                )}
                                 <Icon
-                                    name="alert-circle"
+                                    name="magnify"
                                     size={iconSize}
-                                    color={styles.errorIcon.color}
+                                    color={styles.searchIcon.color}
                                     accessible={false}
                                     importantForAccessibility="no"
                                 />
-                            )}
+                            </View>
+                        }
+                        style={showClearButton ? { paddingRight: clearButtonPaddingRight } : undefined}
+                    />
+                    {showClearButton && (
+                        <Pressable
+                            style={styles.clearButton}
+                            onPress={handleClearText}
+                            accessibilityRole="button"
+                            accessibilityLabel="Clear search"
+                        >
                             <Icon
-                                name="magnify"
+                                name="close"
                                 size={iconSize}
-                                color={styles.searchIcon.color}
+                                color={styles.clearIcon.color}
                                 accessible={false}
                                 importantForAccessibility="no"
                             />
-                        </>
-                    }
-                    style={showClearButton ? { paddingRight: clearButtonPaddingRight } : undefined}
-                />
-                {showClearButton && (
-                    <Pressable
-                        style={styles.clearButton}
-                        onPress={handleClearText}
-                        accessibilityRole="button"
-                        accessibilityLabel="Clear search"
-                    >
-                        <Icon
-                            name="close"
-                            size={iconSize}
-                            color={styles.clearIcon.color}
-                            accessible={false}
-                            importantForAccessibility="no"
-                        />
-                    </Pressable>
-                )}
-            </Animated.View>
-            {cancellable && (
-                <Animated.View
-                    style={[cancelButtonStyle, styles.buttonWrapper]}
-                    onLayout={({ nativeEvent }: LayoutChangeEvent) => {
-                        cancelButtonWidth.value = nativeEvent.layout.width;
-                    }}
-                >
-                    <Button
-                        variant="ghost"
-                        size="small"
-                        label="Cancel"
-                        onPress={handleCancel}
-                    />
+                        </Pressable>
+                    )}
                 </Animated.View>
+                {cancellable && (
+                    <Animated.View
+                        style={[cancelButtonStyle, styles.buttonWrapper]}
+                        onLayout={({ nativeEvent }: LayoutChangeEvent) => {
+                            cancelButtonWidth.value = nativeEvent.layout.width;
+                        }}
+                    >
+                        <Button
+                            variant="ghost"
+                            size="small"
+                            label="Cancel"
+                            onPress={handleCancel}
+                        />
+                    </Animated.View>
+                )}
+            </View>
+            {helperMessage && (
+                <Typography size="sm" style={styles.helperMessage}>
+                    {helperMessage}
+                </Typography>
             )}
         </View>
     );
 };
 
-type SearchStyleProps = Pick<SearchProps, "disabled"> & {
+type SearchStyleProps = Pick<SearchProps, "disabled" | "invalid"> & {
     isInputFocused: boolean;
 };
 
 const themeStyles = EDSStyleSheet.create(
-    (token, { disabled, isInputFocused }: SearchStyleProps) => ({
+    (token, { disabled, invalid, isInputFocused }: SearchStyleProps) => ({
+        outerContainer: {
+            gap: token.spacing.spacing.vertical.twoXs,
+        },
         container: {
             flex: 1,
+        },
+        labelSection: {
+            gap: token.spacing.spacing.vertical.xs,
+        },
+        labelRow: {
+            flexDirection: "row",
+            gap: token.spacing.spacing.horizontal.xs,
+        },
+        label: {
+            color: token.colors.text.neutral.strong,
+        },
+        indicator: {
+            color: token.colors.text.neutral.subtle,
+        },
+        description: {
+            color: token.colors.text.neutral.subtle,
+        },
+        helperMessage: {
+            color: disabled
+                ? token.colors.text.disabled
+                : token.colors.text.neutral.subtle,
         },
         searchIcon: {
             color: disabled
@@ -212,6 +292,11 @@ const themeStyles = EDSStyleSheet.create(
         },
         errorIcon: {
             color: token.colors.text.danger.subtle,
+        },
+        iconGroup: {
+            flexDirection: "row",
+            alignItems: "center",
+            // Tighter than the content gap so the alert + magnify read as one leading cluster.
         },
         clearButton: {
             position: "absolute",
@@ -222,7 +307,10 @@ const themeStyles = EDSStyleSheet.create(
             paddingHorizontal: token.spacing.spacing.icon.sm.gapHorizontal,
         },
         clearIcon: {
-            color: token.colors.text.accent.subtle,
+            // Invalid state: neutral so the clear affordance doesn't compete with the error border (Figma).
+            color: invalid
+                ? token.colors.text.neutral.subtle
+                : token.colors.text.accent.subtle,
         },
         buttonWrapper: {
             position: "absolute",

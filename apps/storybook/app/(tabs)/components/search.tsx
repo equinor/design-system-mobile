@@ -15,32 +15,71 @@ export default function SearchScreen() {
     const styles = useStyles(themeStyles);
 
     return (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            keyboardShouldPersistTaps="handled"
+        >
             <Section>
                 <Typography>
-                    Search lets users filter or find content using a dedicated
-                    input with a magnify icon and a clear button.
+                    Search lets users filter or find content. It includes a
+                    label, a magnify icon, an inline clear button, and an
+                    optional animated Cancel button.
                 </Typography>
             </Section>
 
-            <Section title="Default" />
+            <Section title="Basic" />
             <Surface>
                 <Search
-                    placeholder="Search"
+                    label="Title"
+                    placeholder="Placeholder"
                     value={value}
                     onChange={setValue}
                 />
             </Surface>
 
-            <Section title="With Cancel Button">
+            <Section title="With description" />
+            <Surface>
+                <Search
+                    label="Projects"
+                    description="Filter by project name or tag."
+                    placeholder="Placeholder"
+                />
+            </Surface>
+
+            <Section title="With helper message" />
+            <Surface>
+                <Search
+                    label="Title"
+                    helperMessage="Helper message"
+                    placeholder="Placeholder"
+                />
+            </Surface>
+
+            <Section title="With indicator">
                 <Typography>
-                    When cancellable is true, a Cancel button slides in when the
-                    input is focused.
+                    Use the indicator prop to show &quot;(Required)&quot; or
+                    &quot;(Optional)&quot; inline after the label.
                 </Typography>
             </Section>
             <Surface>
                 <Search
-                    placeholder="Search"
+                    label="Title"
+                    indicator="(Optional)"
+                    placeholder="Placeholder"
+                />
+            </Surface>
+
+            <Section title="With Cancel button">
+                <Typography>
+                    When cancellable is true, a Cancel button slides in when
+                    the input is focused. Pressing it clears the text and
+                    dismisses the keyboard automatically.
+                </Typography>
+            </Section>
+            <Surface>
+                <Search
+                    label="Title"
+                    placeholder="Placeholder"
                     value={cancellableValue}
                     onChange={setCancellableValue}
                     cancellable
@@ -49,10 +88,15 @@ export default function SearchScreen() {
 
             <Section title="Invalid" />
             <Surface>
-                <Search placeholder="Search" invalid />
+                <Search
+                    label="Title"
+                    helperMessage="No results found."
+                    placeholder="Placeholder"
+                    invalid
+                />
             </Surface>
 
-            <Section title="Read-Only">
+            <Section title="Read-only">
                 <Typography>
                     The value is visible and can be selected and copied, but
                     cannot be edited. Long-press to select text.
@@ -66,6 +110,7 @@ export default function SearchScreen() {
             </Section>
             <Surface>
                 <Search
+                    label="Title"
                     value="This is a read-only value."
                     readOnly
                 />
@@ -73,7 +118,7 @@ export default function SearchScreen() {
 
             <Section title="Disabled" />
             <Surface>
-                <Search placeholder="Search" disabled />
+                <Search label="Title" placeholder="Placeholder" disabled />
             </Surface>
         </ScrollView>
     );
