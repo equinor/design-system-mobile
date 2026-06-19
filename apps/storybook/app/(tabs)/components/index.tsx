@@ -27,6 +27,7 @@ const sections = [
             { name: "Input", route: "input" },
             { name: "Search", route: "search" },
             { name: "Selection Controls", route: "selectioncontrols" },
+            { name: "TextArea", route: "textarea" },
             { name: "TextField", route: "textfield" },
         ],
     },
