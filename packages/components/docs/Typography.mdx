@@ -60,7 +60,7 @@ const { colors } = useToken()
 
 ```tsx
 <Typography numberOfLines={2} onPress={handlePress}>
-  A tappable, truncating paragraph.
+    A tappable, truncating paragraph.
 </Typography>
 ```
 
@@ -70,44 +70,44 @@ Font sizes and line heights are fixed — they do not change with the `density` 
 
 ### Typography.Header — Equinor typeface
 
-| Size | Font size | Line height |
-|---|---|---|
-| `xs` | 12 | 16 |
-| `sm` | 14 | 16 |
-| `md` | 16 | 20 |
-| `lg` | 18 | 24 |
-| `xl` | 21 | 24 |
-| `twoXl` | 24 | 28 |
-| `threeXl` | 27.5 | 32 |
-| `fourXl` | 31.5 | 32 |
-| `fiveXl` | 36.5 | 36 |
-| `sixXl` | 42 | 40 |
+| Size      | Font size | Line height |
+| --------- | --------- | ----------- |
+| `xs`      | 12        | 16          |
+| `sm`      | 14        | 16          |
+| `md`      | 16        | 20          |
+| `lg`      | 18        | 24          |
+| `xl`      | 21        | 24          |
+| `twoXl`   | 24        | 28          |
+| `threeXl` | 27.5      | 32          |
+| `fourXl`  | 31.5      | 32          |
+| `fiveXl`  | 36.5      | 36          |
+| `sixXl`   | 42        | 40          |
 
 ### Typography — Inter typeface
 
-| Size | Font size | Line height |
-|---|---|---|
-| `xs` | 10.5 | 16 |
-| `sm` | 12 | 16 |
-| `md` | 14 | 20 |
-| `lg` | 16 | 24 |
-| `xl` | 18.5 | 24 |
-| `twoXl` | 21 | 28 |
-| `threeXl` | 24.5 | 32 |
-| `fourXl` | 28 | 32 |
-| `fiveXl` | 32 | 36 |
-| `sixXl` | 37 | 40 |
+| Size      | Font size | Line height |
+| --------- | --------- | ----------- |
+| `xs`      | 10.5      | 16          |
+| `sm`      | 12        | 16          |
+| `md`      | 14        | 20          |
+| `lg`      | 16        | 24          |
+| `xl`      | 18.5      | 24          |
+| `twoXl`   | 21        | 28          |
+| `threeXl` | 24.5      | 32          |
+| `fourXl`  | 28        | 32          |
+| `fiveXl`  | 32        | 36          |
+| `sixXl`   | 37        | 40          |
 
 ## Props
 
 Both `Typography` and `Typography.Header` accept the following props.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'twoXl' \| 'threeXl' \| 'fourXl' \| 'fiveXl' \| 'sixXl'` | `'lg'` (Typography) / `'xl'` (Typography.Header) | Size variant |
-| `weight` | `'lighter' \| 'normal' \| 'bolder'` | `'normal'` | Font weight |
-| `lineHeight` | `'default' \| 'squished'` | `'default'` | `squished` reduces line height for denser layouts |
-| `tracking` | `'normal' \| 'tight' \| 'wide'` | `'normal'` | Letter spacing — `tight` contracts letters, `wide` spreads them |
+| Prop         | Type                                                                                              | Default                                          | Description                                                     |
+| ------------ | ------------------------------------------------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------- |
+| `size`       | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| 'twoXl' \| 'threeXl' \| 'fourXl' \| 'fiveXl' \| 'sixXl'` | `'lg'` (Typography) / `'xl'` (Typography.Header) | Size variant                                                    |
+| `weight`     | `'lighter' \| 'normal' \| 'bolder'`                                                               | `'normal'`                                       | Font weight                                                     |
+| `lineHeight` | `'default' \| 'squished'`                                                                         | `'default'`                                      | `squished` reduces line height for denser layouts               |
+| `tracking`   | `'normal' \| 'tight' \| 'wide'`                                                                   | `'normal'`                                       | Letter spacing — `tight` contracts letters, `wide` spreads them |
 
 Both components also accept all React Native [`TextProps`](https://reactnative.dev/docs/text#props).
 
@@ -117,4 +117,3 @@ Both components also accept all React Native [`TextProps`](https://reactnative.d
 - For structural headings (such as screen titles), supply `accessibilityRole="header"` on the element.
 - All native `Text` accessibility props (`accessibilityLabel`, `accessibilityHint`, etc.) pass through.
 - Font scaling follows the OS text-size setting by default; override with `allowFontScaling={false}` if needed.
-
