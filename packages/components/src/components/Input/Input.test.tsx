@@ -66,6 +66,19 @@ describe("Input", () => {
         expect(input).toHaveProp("accessibilityState", { disabled: false });
     });
 
+    it("merges a caller-supplied accessibilityState instead of overwriting it", () => {
+        render(
+            <Input
+                accessibilityState={{ selected: true }}
+                placeholder="Type here"
+            />
+        );
+        expect(screen.getByPlaceholderText("Type here")).toHaveProp(
+            "accessibilityState",
+            { disabled: false, selected: true }
+        );
+    });
+
     it("calls the user-provided onFocus and onBlur handlers", () => {
         const onFocus = jest.fn();
         const onBlur = jest.fn();
