@@ -1,6 +1,12 @@
 import React from "react";
+import { StyleProp, StyleSheet, TextStyle } from "react-native";
+import type { ReactTestInstance } from "react-test-renderer";
 import { fireEvent, render, screen } from "test-utils";
 import { Link } from "./index";
+import { LinkSize } from "./Link.types";
+
+const flattenStyle = (element: ReactTestInstance) =>
+    StyleSheet.flatten(element.props.style as StyleProp<TextStyle>);
 
 describe("Link", () => {
     it("renders the label", () => {
@@ -32,6 +38,34 @@ describe("Link", () => {
         expect(
             screen.UNSAFE_getByProps({ name: "open-in-new" })
         ).toBeTruthy();
+    });
+
+    const sizes: LinkSize[] = [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl",
+        "twoXl",
+        "threeXl",
+        "fourXl",
+        "fiveXl",
+        "sixXl",
+    ];
+
+    it.each(sizes)("renders without error for size %s", (size) => {
+        render(<Link size={size}>Learn more</Link>);
+        expect(screen.getByText("Learn more")).toBeTruthy();
+    });
+
+    it("applies a different fontSize for a different size", () => {
+        render(<Link size="sm">Learn more</Link>);
+        const small = flattenStyle(screen.getByText("Learn more"))?.fontSize;
+
+        render(<Link size="xl">Learn more</Link>);
+        const large = flattenStyle(screen.getByText("Learn more"))?.fontSize;
+
+        expect(large).not.toEqual(small);
     });
 
     describe("inline variant", () => {
