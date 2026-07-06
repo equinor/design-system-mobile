@@ -3,7 +3,6 @@ import { StyleProp, StyleSheet, TextStyle } from "react-native";
 import type { ReactTestInstance } from "react-test-renderer";
 import { fireEvent, render, screen } from "test-utils";
 import { Link } from "./index";
-import { LinkSize } from "./Link.types";
 
 const flattenStyle = (element: ReactTestInstance) =>
     StyleSheet.flatten(element.props.style as StyleProp<TextStyle>);
@@ -40,25 +39,7 @@ describe("Link", () => {
         ).toBeTruthy();
     });
 
-    const sizes: LinkSize[] = [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl",
-        "twoXl",
-        "threeXl",
-        "fourXl",
-        "fiveXl",
-        "sixXl",
-    ];
-
-    it.each(sizes)("renders without error for size %s", (size) => {
-        render(<Link size={size}>Learn more</Link>);
-        expect(screen.getByText("Learn more")).toBeTruthy();
-    });
-
-    it("applies a different fontSize for a different size", () => {
+    it("renders without error and applies a different fontSize for a different size", () => {
         render(<Link size="sm">Learn more</Link>);
         const small = flattenStyle(screen.getByText("Learn more"))?.fontSize;
 

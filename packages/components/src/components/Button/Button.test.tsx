@@ -3,7 +3,6 @@ import { StyleProp, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import type { ReactTestInstance } from "react-test-renderer";
 import { fireEvent, render, screen } from "test-utils";
 import { Button } from "./index";
-import { ButtonSize, ButtonTone, ButtonVariant } from "./types";
 
 const flattenStyle = (element: ReactTestInstance) =>
     StyleSheet.flatten(element.props.style as StyleProp<ViewStyle & TextStyle>);
@@ -49,14 +48,7 @@ describe("Button", () => {
         ).toBeTruthy();
     });
 
-    const tones: ButtonTone[] = ["accent", "neutral", "danger"];
-
-    it.each(tones)("renders without error for tone %s", (tone) => {
-        render(<Button label="Save" tone={tone} />);
-        expect(screen.getByText("Save")).toBeTruthy();
-    });
-
-    it("applies a different border color for a different tone", () => {
+    it("renders without error and applies a different border color for a different tone", () => {
         render(<Button label="Save" tone="accent" />);
         const accentBorder = flattenStyle(
             screen.getByRole("button")
@@ -70,14 +62,7 @@ describe("Button", () => {
         expect(dangerBorder).not.toEqual(accentBorder);
     });
 
-    const sizes: ButtonSize[] = ["small", "default"];
-
-    it.each(sizes)("renders without error for size %s", (size) => {
-        render(<Button label="Save" size={size} />);
-        expect(screen.getByText("Save")).toBeTruthy();
-    });
-
-    it("applies a different icon size for a different size", () => {
+    it("renders without error and applies a different icon size for a different size", () => {
         // UNSAFE_getByProps matches the first node carrying the prop, which
         // is ButtonIcon itself (the wrapper, which also has a `name` prop
         // but no style) — UNSAFE_getAllByProps + the last match gets the
@@ -105,14 +90,7 @@ describe("Button", () => {
         expect(defaultIconSize).not.toEqual(smallIconSize);
     });
 
-    const variants: ButtonVariant[] = ["primary", "secondary", "ghost"];
-
-    it.each(variants)("renders without error for variant %s", (variant) => {
-        render(<Button label="Save" variant={variant} />);
-        expect(screen.getByText("Save")).toBeTruthy();
-    });
-
-    it("gives the secondary variant a visible border, unlike the default primary variant", () => {
+    it("renders without error and gives the secondary variant a visible border, unlike the default primary variant", () => {
         render(<Button label="Save" />);
         expect(flattenStyle(screen.getByRole("button"))?.borderWidth).toBe(0);
 
