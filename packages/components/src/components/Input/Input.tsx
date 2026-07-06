@@ -125,6 +125,7 @@ export const Input = forwardRef<TextInput, InputProps>(
                         onBlur={onBlur}
                         accessibilityState={{
                             disabled,
+                            ...rest.accessibilityState,
                         }}
                         style={[
                             styles.textInput,
