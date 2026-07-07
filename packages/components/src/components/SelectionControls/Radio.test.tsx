@@ -55,6 +55,13 @@ describe("Radio", () => {
         expect(screen.getByRole("radio")).toBeDisabled();
     });
 
+    it("is non-interactive and reports disabled to assistive technology when onPress is not provided", () => {
+        render(<Radio label="Option A" />);
+        const radio = screen.getByRole("radio");
+        expect(() => fireEvent.press(radio)).not.toThrow();
+        expect(radio).toBeDisabled();
+    });
+
     it("defaults accessibilityLabel to the label", () => {
         render(<Radio onPress={jest.fn()} label="Option A" />);
         expect(screen.getByRole("radio")).toHaveProp(

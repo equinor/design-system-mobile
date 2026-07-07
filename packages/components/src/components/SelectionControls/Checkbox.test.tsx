@@ -70,6 +70,13 @@ describe("Checkbox", () => {
         expect(screen.getByRole("checkbox")).toBeDisabled();
     });
 
+    it("is non-interactive and reports disabled to assistive technology when onPress is not provided", () => {
+        render(<Checkbox label="Accept terms" />);
+        const checkbox = screen.getByRole("checkbox");
+        expect(() => fireEvent.press(checkbox)).not.toThrow();
+        expect(checkbox).toBeDisabled();
+    });
+
     it("defaults accessibilityLabel to the label", () => {
         render(<Checkbox onPress={jest.fn()} label="Accept terms" />);
         expect(screen.getByRole("checkbox")).toHaveProp(
