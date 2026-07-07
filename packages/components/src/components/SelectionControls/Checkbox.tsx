@@ -103,7 +103,7 @@ export const Checkbox = ({
             accessibilityRole="checkbox"
             accessibilityState={{
                 checked: indeterminate ? "mixed" : checked,
-                disabled,
+                disabled: !onPress || disabled,
             }}
             accessibilityLabel={accessibilityLabel ?? label}
         >
