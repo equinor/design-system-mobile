@@ -86,6 +86,19 @@ describe("TextArea", () => {
         expect(input).toHaveProp("accessibilityState", { disabled: false });
     });
 
+    it("merges a caller-supplied accessibilityState, with the component's own disabled value winning on conflict", () => {
+        render(
+            <TextArea
+                accessibilityState={{ selected: true, disabled: true }}
+                defaultValue="hi"
+            />
+        );
+        expect(screen.getByDisplayValue("hi")).toHaveProp(
+            "accessibilityState",
+            { selected: true, disabled: false }
+        );
+    });
+
     it("defaults accessibilityHint to the joined description and helperMessage", () => {
         render(
             <TextArea
