@@ -42,8 +42,8 @@ export const IconButton: FC<IconButtonProps> = ({
             style={styles.container}
             accessibilityRole={"button"}
             accessibilityState={{
-                disabled: disabled ?? false,
                 ...pressableProps.accessibilityState,
+                disabled: disabled ?? false,
             }}
             disabled={disabled}
             {...pressableProps}
