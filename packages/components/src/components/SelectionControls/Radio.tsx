@@ -87,7 +87,7 @@ export const Radio = ({
             onPressOut={handlePressOut}
             disabled={!onPress || disabled}
             accessibilityRole="radio"
-            accessibilityState={{ checked, disabled: !onPress || disabled }}
+            accessibilityState={{ checked, disabled }}
             accessibilityLabel={accessibilityLabel ?? label}
         >
             <Animated.View style={[styles.container, animatedContainerStyle]}>
