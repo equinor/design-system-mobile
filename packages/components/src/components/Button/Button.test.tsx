@@ -32,6 +32,19 @@ describe("Button", () => {
         expect(screen.getByRole("button")).toBeDisabled();
     });
 
+    it("merges a caller-supplied accessibilityState, with the component's own disabled value winning on conflict", () => {
+        render(
+            <Button
+                label="Save"
+                accessibilityState={{ selected: true, disabled: true }}
+            />
+        );
+        expect(screen.getByRole("button")).toHaveProp("accessibilityState", {
+            selected: true,
+            disabled: false,
+        });
+    });
+
     it("renders a leading and trailing icon when provided", () => {
         render(
             <Button
@@ -132,5 +145,24 @@ describe("Button.Icon", () => {
         );
         fireEvent.press(screen.getByRole("button"));
         expect(onPress).not.toHaveBeenCalled();
+    });
+
+    it("merges a caller-supplied accessibilityState, with the component's own disabled value winning on conflict", () => {
+        // This is the exact case that caught IconButton's original bug: the
+        // explicit accessibilityState prop was placed before {...pressableProps}
+        // in JSX, so a caller-supplied accessibilityState (which lands in
+        // pressableProps, since it isn't destructured out) silently replaced
+        // the whole computed accessibilityState object, disabled key included.
+        render(
+            <Button.Icon
+                name="close"
+                accessibilityLabel="Close"
+                accessibilityState={{ selected: true, disabled: true }}
+            />
+        );
+        expect(screen.getByRole("button")).toHaveProp("accessibilityState", {
+            selected: true,
+            disabled: false,
+        });
     });
 });
