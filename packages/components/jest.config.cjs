@@ -33,7 +33,7 @@ const testPathIgnorePatterns = [
     // entry as soon as its ComponentName.test.tsx lands — this list is a
     // checklist, not a migration-status list like the one above.
     //
-    // Dialog, ErrorBoundary, Icon, Label, Portal, Scrim, and _internal are
+    // ErrorBoundary, Icon, Label, Portal, Scrim, and _internal are
     // intentionally not on this checklist — they're internal/utility pieces
     // covered indirectly through the components that consume them, not with
     // dedicated test files of their own.
@@ -42,16 +42,6 @@ const testPathIgnorePatterns = [
     // checklist — both are slated for removal/replacement (Paper -> Card,
     // PressableHighlight -> Pressable) once the library migration completes,
     // so we're not adding new tests for code we're about to delete.
-    "<rootDir>/src/components/Badge/",
-    "<rootDir>/src/components/Button/",
-    "<rootDir>/src/components/Divider/",
-    "<rootDir>/src/components/EDSProvider/",
-    "<rootDir>/src/components/Input/",
-    "<rootDir>/src/components/Link/",
-    "<rootDir>/src/components/Search/",
-    "<rootDir>/src/components/TextArea/",
-    "<rootDir>/src/components/TextField/",
-    "<rootDir>/src/components/Typography/",
 ];
 
 // Guard against the exact footgun these lists create: a follow-up PR adds
