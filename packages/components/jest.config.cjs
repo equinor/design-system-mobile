@@ -20,6 +20,7 @@ const testPathIgnorePatterns = [
     "<rootDir>/src/components/Autocomplete/",
     "<rootDir>/src/components/Cell/",
     "<rootDir>/src/components/Chip/",
+    "<rootDir>/src/components/Dialog/",
     "<rootDir>/src/components/Environment/",
     "<rootDir>/src/components/Menu/",
     "<rootDir>/src/components/OfflineBanner/",
